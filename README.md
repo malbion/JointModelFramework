@@ -4,10 +4,10 @@ This folder covers the code, analyses, case study results and manuscript for the
 
 Trying out a different project dir structure.
 
-1.model - files for a generalised joint model
+**1.model** - files for a generalised joint model
 
-2.analyses - analyses of the model (verification, sensitivity etc)
+**2.analyses** - analyses of the model (verification, sensitivity etc)
 
-3.case_study - data, code, results and figures for running model on case study data
+**3.case_study** - data, code, results and figures for running model on case study data
 
-4.mm - manuscript
+**4.mss** - manuscript
