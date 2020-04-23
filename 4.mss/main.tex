@@ -1,0 +1,290 @@
+% DOCUMENT CLASS
+    % Change "letterpaper" to "a4" if you use a4 paper size
+    \documentclass[a4,12pt]{article}
+
+    \usepackage{titlesec} % Allows customization of titles
+    \usepackage{authblk} % For multiple authors
+    \usepackage{amsmath}
+    \usepackage[utf8]{inputenc}
+	\usepackage{setspace} % See \doublespacing command at the top of content.tex
+    \usepackage{lineno} 	% See \linenumbers at the top of content.tex
+    \usepackage{booktabs}
+    \usepackage[skip=2.5\baselineskip]{caption} % to give more space between figs and captions
+    \usepackage{listings} % allows me to insert code 
+
+% GRAPHICS
+    \usepackage{graphicx} % More advanced figure inclusion
+    \usepackage{float} % For specifying table/figure locations, i.e. [ht!]
+    \usepackage[table,xcdraw]{xcolor}
+
+\title{Estimating interaction networks for diverse, single-trophic communities}
+
+
+\author[1]{Malyon D. Bimler}
+\author[2]{Daniel B. Stouffer}
+\author[4]{Margaret M. Mayfield}
+
+\affil[1]{First affiliation address, with corresponding author email. Email: malyonbimler@gmail.com}
+\affil[2]{Second affiliation address}
+\affil[3]{Third affiliation address}
+
+\begin{document}
+\maketitle  
+\newpage
+% \linenumbers
+
+
+
+    \section{Abstract}
+    
+\begin{enumerate}
+    \item Understanding ecological communities requires an understanding of how the different species within it relate to each other. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species). 
+    \item We describe a general framework which allows us to estimate all pair-wise interactions in complex plant communities from empirical data and population dynamics models. This framework requires a multi-tiered approach to resolve all interactions. We first apply individual fitness models to each species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting interactions to approximate interactions which were not observed using a different set of assumptions. 
+
+    %Interactions between species which rarely co-occurred are then categorised as forbidden (true 0) or unrealised. Forbidden interactions are declared on the basis of spatial, phenological or physiological mismatches. Unrealised interactions are approximated using a response-effect model.
+    \item This approach can be modelled using a Bayesian statistical framework which allows us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix. We discuss how the flexibility afforded by the Bayesian framework may also allow us to improve interaction estimates through the inclusion of environmental, phylogenetic and funtional trait data. 
+    \item We suggest this approach be used for....
+\end{enumerate}
+
+    
+
+
+    \section{Introduction}
+
+    \textit{How do we estimate interactions between plants in natural and complex communities ?}
+ 
+    \paragraph{}
+    Understanding coexistence (it's important) faces some challenges. Diversity of species and interaction types. Scaling from pairwise outcomes to community-level patterns of diversity.
+    
+    Integrating more species = 
+    \begin{itemize}
+        \item Kokkoris2002 =  Competition / species interactions can contribute to diversity (read more)
+        \item Levine2017 - beyond pairwise mechanisms of species coexistence in complex communities (read for intro)
+    \end{itemize}
+
+    \paragraph{}
+    We need networks to face these challenges. Why? Tool for integrating more species (multispecies) and look at community-level outcomes based on what's happening at a population level (= scaling up). Here's some examples of what networks have taught us about coexistence. Here's some examples of people of theoretical developments from network theory (e.g. structural stability). Empirical networks can help us verify these theories in natural communities. Maybe I can even throw in a line about hypergraphs and future developments.
+    \begin{itemize}
+        \item  Montoya2006a = Ecological networks are complex (interactions too) but useful for ecological mechanisms and understanding stability. [refhole?]
+        \item Kefi2015 = 'non-random patterning of non-trophic interactions suggests a path forward for developing a more comprehensive ecological network theory to rpedict the functions and resilience of ecological communities'
+    \end{itemize}
+
+    \paragraph{}
+    In particular, networks for annual plant communities have been requested, in part because of how much coexistence work is done on these systems. However, building networks for plant communities is challenging: they don't interact visibly, so we need to deduce interaction strengths from growing them at different densities and in different combinations of species. Even for a species-poor community grown in a greenhouse, this is very consuming in time, money and hours. Alternatively, we can estimate interactions from field observations which record fitness e.g. seed production (refs to Godoy, Wainwright, and others who have used this method). This has the advantage of allowing us to sample very diverse communities in 'natural' conditions. However, with the problem of adding many species comes the statistical/computing difficulty of estimating this many interactions.
+    \begin{itemize}
+        \item Losapio2019= methods and results of plant-plant networks [refhole]
+        \item Godoy2014b = field parameterised models of competitor dynamics with pairs of 18 annual plant species
+    \end{itemize}
+
+    \paragraph{}
+    Some methods are making headway. Discuss the individual fitness model. However there are further difficulties: the IFM usually forces interactions to be competitive. We have a lot of evidence that facilitation is prevalent in plant systems and can have wide-reaching impacts on the community (e.g. cooperative loops can destabilise systems, priority effects can prevent establishment of successive species). Though current frameworks of coexistence do not incorporate facilitative interactions, network theory approaches can deal with multiple interaction types. 
+    
+    \paragraph{}
+    We propose a general framework to estimate interactions between plants (or other single-trophic systems) in natural and complex communities. We allow for facilitative and competitive interactions both between and within species. 
+    This framework merges multiple approaches (ifm, rem) and is implemented with Bayesian stats which allows us to estimate interactions between many species. 
+    We suggest avenues for applications that make use of the rich information provided by interaction networks e.g. identifying key-stone species, exploring species strategies (motifs?), looking at how invasive species affect the rest of the network, identifying species at risk of population explosion (or extinction), etc...
+
+    % Because of how much work is required to infer interaction strengths, some people have turned to cooccurrence networks as an alternative. This means using observational data (who is abundant where) and correlation/covariance/probabilistic methods to derive positive or negative associations between species, which is argued to be a proxy for the effect of one species on another (especially if environment is taken into account?). This approach is much quicker and cheaper, and is often used to infer species interactions in species distribution models for examples (?). However, recent works suggests that co-occurrence does not acurately reflect interactions, so their usefulness in understanding coexistence between species may be limited. 
+
+    % \begin{itemize}
+    %     \item Thurman2019 = 'co-occurrence methods are generally inaccurate when estimating trophic interactions'
+    %     \item Zhu2019 = co-occurrence inadequate vs DNA barcodes on gut contents (plant-herbivore)
+    %     \item Sander2017 = presence-absence data doesn't allow models to consistently identify species interactions in trophic and non-trophic networks
+    % \end{itemize}
+
+    % Co-occurrence networks also suffer from not being able to measure the effect (or rather association) of a species with itself. Yet these intraspecifc interactions are key to maintaining negative density-dependence, which is a vital component of coexistence theory. It would be nice if a reference exists which also says that co-occurrence methods underestimate facilitation, which is increasingly being recognised as an important force in communities which we have yet to integrate into theoretical frameworks of coexistence (another challenge!).  
+    % \citep{Verdu2010} facilitation turns to competition between plants over time. Examines the phylogenetic structure of the network. Complexity of ecological interactions and complex network approaches - examine methods?
+    
+  
+    
+    \section{Methods}
+    
+    This framework can be applied to any dataset of interacting species which meets the following criteria: 
+    \begin{itemize}
+        \item observations of focal individuals record a proxy for lifetime reproductive success (e.g. seed production, stem diameter growth, above-ground biomass)
+        \item these observations also record the identity and abundance of neighbours within the interaction neighbourhood of each focal individual
+        \item observations are replicated across several individuals of each focal species with varying neighbourhoods
+    \end{itemize}
+    In addition to these requirements, any experimental design or data which may reduce confounding effects between environment and competition will provide more accurate estimates of interaction strengths (e.g. thinning certain plots, recording environmental data known to affect reproductive success). 
+    
+    
+    This framework also depends on an appropriate model of population dynamics for the system in question. The population dynamics model may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival). These rates are necessary in order to scale interaction coefficients such that they are comparable between species. 
+    
+    
+        \subsection{IFM}
+        
+        We begin by implementing an individual fitness model to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $F_{i}$:
+        
+        \begin{equation}
+        F_{i} = \beta_{i0} - \sum_{i}^{j} \beta_{ij} N_{j}
+        \label{ifm}
+        \end{equation}
+        
+        The intercept $\beta_{i0}$ represents intrinsic fitness, a species' fitness in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ represent the species-specific effect of each neighbour $j$ on $i$. Note that neighbours can include conspecifics, in which case intraspecific interactions are denoted as $\beta_{ii}$.
+        
+        
+        \subsection{Filling in the gaps}
+        
+        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the IFM above will not be able to estimate all potential interactions ($\beta$) between species. This is especially true for rare species. In order to estimate the interactions missing from the IFM, we must separate those interaction which did not occur due to chance alone (\textit{unrealised links}) from those which cannot occur due to mismatches between species (\textit{forbidden links}). 
+        
+        \subsubsection{Forbidden links}
+        
+        \textit{Forbidden links} are those where two species cannot interact, because they cannot co-occur or are physiologically mismatched. An example from the food web literature would be a bird which cannot eat fruit which are too big for its beak. In plants, forbidden links can occur when species are spatially or temporally mismatched, due to different environmental requirements or varying phenologies. Forbidden links may also occur between species which have vastly different resource requirements such that the presence of one species does not affect the other, though in plants these require a great detail of physiological knowledge. In this paper, we limit ourselves to estimating forbidden links from spatial mismatches. \\
+        
+        \textbf{Note: I dropped the section above as very very few interactions were 'forbidden' but I can bring it back?}
+
+
+        \subsubsection{Unrealised links}
+        
+        Because sampling a community is not an exhaustive process, interactions between certain species may not have been observed even though the species in question are capable of interacting. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the IFMs. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
+        
+        \begin{equation}
+        F_{i} = \beta_{i0} - \sum_{i}^{j} r_{i} e_{j} N_{j}
+        \label{rem1}
+        \end{equation}
+        
+        Pairwise interactions which are missing from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. In order to allow both the IFM and REM interaction estimates to contribute to the likelihood, we first used the IFM to quantify observed interactions and then used those to estimate species-specific $r$ and $e$ parameters such that: 
+    
+        \begin{equation}
+        r_i e_j \sim logistic \left ( \alpha_{ij}, \sigma \right )
+        \label{unrealised}
+        \end{equation}
+    
+    where $\sigma$ is a community-level scale parameter for the logistic distribution. 
+        
+        \subsection{Scaling the interactions}
+        
+        After applying the IFMs, identifying forbidden links and estimating the remaining \textit{unrealised} interactions, the interactions effects returned by Eq. 1 and 2 must be scaled with appropriate demographic parameters determined by the system-specific model of population dynamics. This transformation puts interactions on the same scale, returning per-capita effects which are directly comparable between species. 
+        
+        In order to determine the appropriate scaling, the population dynamics model must first be transformed into a form equivalent to a Lotka-Volterra competition model. \textit{Figure out how to describe this in a general way, mention that the case study gives an explicit example.}
+        
+        \subsection{Analysis}
+        
+        The IFMs (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters, and in case the data is insufficient we can get better estimates by using data from past experiments to constrain parameter priors. Readers familiar with STAN will note that it returns each parameter as a series of samples drawn from it's estimated distribution. This is important because ...
+    
+        \textit{Alternative paragraph to explain STAN ...}
+        Stan is a probabilistic programming language used for Bayesian statistical inference which allows us to fit complex models even when the data is limited. Parameters are estimated as distributions which maximise the likelihood, and are conditioned by the data and priors which describe the distribution of plausible values which these parameters may take. The resulting parameter estimates are termed posterior distributions, and samples from the posterior are drawn for analysis.
+        
+        Whereas the IFMs are applied to each focal species, the response-effect model can be applied to to the dataset as a whole, with a different intercept ($\beta_{i0}$) for each focal species. \textit{Discuss how to verify that the rem will give good estimates: comparing model fit and estimates of $\beta_{i0}$ ...}
+
+        The file used to specify and set the model in STAN is available in S.I. XX. 
+    
+        
+
+    \section{Results}
+
+    Suggestiions for validation tests I can do are welcome. 
+
+
+    \section{Discussion}
+    
+
+    \section{Supplementary Information}
+
+        \subsection{STAN model code}
+
+       % \lstset{language=STAN}
+        \begin{lstlisting}
+
+/* 2018_CompNet
+model
+
+code to run a joint IF and RE model on 
+all focal species at once
+*/ 
+  
+  
+  data {
+    int<lower=1> S;          // number of species 
+    int<lower=1> N;          // number of observations
+    int<lower=0> K;          // number of neighbours 
+    int<lower=0> I;          // number of interactions observed
+    
+    int<lower=0> species_ID[N];   // species index for observations
+    int<lower=0> seeds[N];        // response variable 
+    
+    // indices matching species to interactions:
+    int<lower=0> istart[S];  
+    int<lower=0> iend[S];
+    int<lower=0> icol[I];
+    int<lower=0> irow[I];
+    
+    matrix[N,K] X;         // neighbour abundances, the model matrix
+  
+  } 
+
+parameters {
+  
+  vector[S] a;    // species-specific intercept
+  vector<lower=0>[S] disp_dev; // species-specific parameter for 
+  //dispersion deviation (for a negative binomial model)
+  
+  
+  vector[I] interactions;     // vector of observed interactions
+  vector[K] effect;            // competitive effect of neighbours
+  // same across all focals, can be facilitative or competitive
+  vector<lower=0>[S] response; // species-specific competitive 
+  // response parameter. > 0 to avoid bimodality in response and effect  
+
+  real<lower=0> sigma_alph; // variance for the ifm alphas
+} 
+
+transformed parameters {
+  
+  // transformed parameters constructed from params above
+  vector[N] mu;              // the linear predictor
+  matrix[S, K] ifm_alpha;    // community matrix 
+  vector[I] re;              // interactions as calculated 
+  //by the RE model
+  
+  // fill the community matrix with 0 (instead of NA):
+  ifm_alpha = rep_matrix(0, S, K);   
+  
+  // match observed interactions parameters to the correct position 
+  // in the community matrix
+  for(s in 1:S) {
+    for(i in istart[s]:iend[s]) {
+      ifm_alpha[irow[i], icol[i]] = interactions[i];
+    }
+  }
+  
+  // individual fitness model 
+  for(n in 1:N) {
+       mu[n] = exp(a[species_ID[n]] - dot_product(X[n], ifm_alpha[species_ID[n], ]));  
+  }
+  
+  // build a vector of interaction parameters based on the RE approach
+  for (i in 1:I) {
+    re[i] = response[irow[i]]*effect[icol[i]];
+  }
+  
+} 
+
+model {
+
+  // priors
+  a ~ cauchy(0,10); // prior for the intercept following Gelman 2008
+  disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev
+  
+  response ~ normal(0, 1);   
+  effect ~ normal(0, 1);
+  sigma_alph ~ cauchy(0, 1);
+
+  // seed production 
+  for(n in 1:N) {
+    seeds[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
+  }
+
+  // response-effect interactions
+  for (i in 1:I) {
+    target += logistic_lpdf(re[i] | interactions[i], sigma_alph);
+  }
+  
+} 
+
+
+
+        \end{lstlisting}
+
+
+\end{document}
