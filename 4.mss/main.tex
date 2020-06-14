@@ -54,19 +54,22 @@
     \section{Introduction}
 
     \textit{How do we estimate interactions between plants in natural and complex communities ?}
+
+    There is a growing demand for plant networks because they're 1) useful to understand ecosys functioning and 2) plants are important systems to know more about. Multiple species.    
+
+    Building plant networks is difficult, and a major challenge to understand how plant networks influence biodiversity is characterising interactions as they can't be directly observed. A popular way around this is to build cooccurrence networks. 
+
+    Though cooc networks may be useful for understanding association patterns, they are not proxies for interaction networks. 
+
+    'Real' interactions can be measured from growth rate / fecundity / growth data. That can be complicated when there's a lot of species involved. 
+
+    We propose a model framework that makes this easier.
  
-    \paragraph{}
-    Understanding coexistence (it's important) faces some challenges. Diversity of species and interaction types. Scaling from pairwise outcomes to community-level patterns of diversity.
-    
-    Integrating more species = 
+  
+
     \begin{itemize}
         \item Kokkoris2002 =  Competition / species interactions can contribute to diversity (read more)
         \item Levine2017 - beyond pairwise mechanisms of species coexistence in complex communities (read for intro)
-    \end{itemize}
-
-    \paragraph{}
-    We need networks to face these challenges. Why? Tool for integrating more species (multispecies) and look at community-level outcomes based on what's happening at a population level (= scaling up). Here's some examples of what networks have taught us about coexistence. Here's some examples of people of theoretical developments from network theory (e.g. structural stability). Empirical networks can help us verify these theories in natural communities. Maybe I can even throw in a line about hypergraphs and future developments.
-    \begin{itemize}
         \item  Montoya2006a = Ecological networks are complex (interactions too) but useful for ecological mechanisms and understanding stability. [refhole?]
         \item Kefi2015 = 'non-random patterning of non-trophic interactions suggests a path forward for developing a more comprehensive ecological network theory to rpedict the functions and resilience of ecological communities'
     \end{itemize}
@@ -78,8 +81,7 @@
         \item Godoy2014b = field parameterised models of competitor dynamics with pairs of 18 annual plant species
     \end{itemize}
 
-    \paragraph{}
-    Some methods are making headway. Discuss the individual fitness model. However there are further difficulties: the IFM usually forces interactions to be competitive. We have a lot of evidence that facilitation is prevalent in plant systems and can have wide-reaching impacts on the community (e.g. cooperative loops can destabilise systems, priority effects can prevent establishment of successive species). Though current frameworks of coexistence do not incorporate facilitative interactions, network theory approaches can deal with multiple interaction types. 
+
     
     \paragraph{}
     We propose a general framework to estimate interactions between plants (or other single-trophic systems) in natural and complex communities. We allow for facilitative and competitive interactions both between and within species. 
@@ -129,11 +131,11 @@
         
         In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the IFM above will not be able to estimate all potential interactions ($\beta$) between species. This is especially true for rare species. In order to estimate the interactions missing from the IFM, we must separate those interaction which did not occur due to chance alone (\textit{unrealised links}) from those which cannot occur due to mismatches between species (\textit{forbidden links}). 
         
-        \subsubsection{Forbidden links}
+        % \subsubsection{Forbidden links}
         
-        \textit{Forbidden links} are those where two species cannot interact, because they cannot co-occur or are physiologically mismatched. An example from the food web literature would be a bird which cannot eat fruit which are too big for its beak. In plants, forbidden links can occur when species are spatially or temporally mismatched, due to different environmental requirements or varying phenologies. Forbidden links may also occur between species which have vastly different resource requirements such that the presence of one species does not affect the other, though in plants these require a great detail of physiological knowledge. In this paper, we limit ourselves to estimating forbidden links from spatial mismatches. \\
+        % \textit{Forbidden links} are those where two species cannot interact, because they cannot co-occur or are physiologically mismatched. An example from the food web literature would be a bird which cannot eat fruit which are too big for its beak. In plants, forbidden links can occur when species are spatially or temporally mismatched, due to different environmental requirements or varying phenologies. Forbidden links may also occur between species which have vastly different resource requirements such that the presence of one species does not affect the other, though in plants these require a great detail of physiological knowledge. In this paper, we limit ourselves to estimating forbidden links from spatial mismatches. \\
         
-        \textbf{Note: I dropped the section above as very very few interactions were 'forbidden' but I can bring it back?}
+        % \textbf{Note: I dropped the section above as very very few interactions were 'forbidden' but I can bring it back?}
 
 
         \subsubsection{Unrealised links}
@@ -160,9 +162,11 @@
         
         In order to determine the appropriate scaling, the population dynamics model must first be transformed into a form equivalent to a Lotka-Volterra competition model. \textit{Figure out how to describe this in a general way, mention that the case study gives an explicit example.}
         
-        \subsection{Analysis}
+        \subsection{Model fitting}
         
         The IFMs (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters, and in case the data is insufficient we can get better estimates by using data from past experiments to constrain parameter priors. Readers familiar with STAN will note that it returns each parameter as a series of samples drawn from it's estimated distribution. This is important because ...
+
+        We recommend that you group species that are too rare to make good estimates from - species which only have a handful of interactions. (Unless that goes to the case study section)
     
         \textit{Alternative paragraph to explain STAN ...}
         Stan is a probabilistic programming language used for Bayesian statistical inference which allows us to fit complex models even when the data is limited. Parameters are estimated as distributions which maximise the likelihood, and are conditioned by the data and priors which describe the distribution of plausible values which these parameters may take. The resulting parameter estimates are termed posterior distributions, and samples from the posterior are drawn for analysis.
@@ -171,14 +175,95 @@
 
         The file used to specify and set the model in STAN is available in S.I. XX. 
     
+        \subsection{Case study}
+
+        We implemented this framework on data from ...
         
 
     \section{Results}
 
-    Suggestiions for validation tests I can do are welcome. 
+
+    This model framework quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities than co-occurrence networks. 
+
+    Interaction strengths are given as posterior distributions, which can be sampled to recreate a range of probable networks representing the community, thus capturing some measure of uncertainty around interaction values. 
+
+    The resulting species interaction networks are fundamentally different to co-occurrence networks as they reflect per-capita effects on species' growth rates, rather than spatial association patterns. 
+    Co-occurrence networks however, benefit from being easy to implement and can naturally handle a large number of species. There are in fact many  packages available in R to calculate these networks, with methods ranging from simple (cooccur package) to extremely complex (e.g. D Harris). 
+    There are few however, published plant population dynamic models which are explicitely developped to include many species. Two features of our framework make this possible: the joint model, and our Bayesian implementation.
+    joint model - unobserved interactions 
+    bayesian - many params + measure of uncertainty
+
+    Our method also breaks from traditional plant pop dyn models by allowing facilitation, which is important but not explicitely recognised.
+
+    With our method, -> way for empiricists to estimate interaction networks and have access to a bunch of network theory tools to better understand their community and the species within it. 
+
+
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    We fit a model on.. present results for the full com. We estimated so many interactions with the IFM and so many with the REM. What about doing one with only 10 plots, to show how little data you need? Or is this too much extra work? I could do 10, 20, 60 and 100 plots?
+
+    We built an interactio nmatrix for .... whole comm only. We estiamted so many interactions with the IFM and so many with the REM. So many interactions were competitive, whereas so many were facilitative. We estimated so many intraspecific interactions. Species node distribution followed an xx distribution. 
+
+    Suc hand such species are likely candidates for keystone species. Whearas x or y are connector species. Invasive species Arca and xx were not well embedded in the network, indicating that .... 
+
+    Our network differs remarquebly from a species association network, which would lead us to assume that x species is actually .. . Furthermore .... 
 
 
     \section{Discussion}
+
+    
+    The model framework presented here allows the estimation of species-rich interaction matrices from plant community data. 
+
+    Make it easier for empiricists to characterise species interactions in their system
+    Typically experimenters who want to build measure these things need to come up with complex models to resolve all interactions. If your data is plant annuals you can just plug your data right in. If it's a different type of species, you just need to adapt the population model and scaling of the interactions to work with your particular system. 
+
+    - deals with many species + measure of uncertainty
+    - deals with some unobserved interactions
+    - derived from pop dynamic models so direct consequences on pop abundances
+    - deals with facilitation 
+
+    -> better representation of complexity of real plant communities
+        
+        In turn, this complex picture allows us to do a bunch of cool stuff. In other systems for examples, networks ahve allowed us to do ...... Here for example, we can identify species which occupy important roles in the community. For example keystone species, foundation species, etc, mabe describe exactly how? Keystone species have wide effects so species that have really strong competitive or facilitative effects. Some species would be important because they connect really widely to others ? (I don't remember their name). 
+
+    Why do we want to do that? 
+    1. to learn more about plant communities in general 
+    interaction networks (many species, pop dyn models, facilitation) tie in with diversity and stability. Characterise how species tend to interact (network motifs). Many opportunities, this list is not exhaustive
+
+    Quantifying the interaction networks of plant communities allows us to explore how the mechanisms maintaining diversity and stability operate across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability (Barabas 2017 NEE) and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive of facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species: weak interactions between species indicates they are not sharing or competing for many resources, and occupy different niche spaces in the community (ref??). Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to continued coexistence in plant communities.
+
+    A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised (Bruno Callaway 2003) but there is still little consensus on how they may affect coexistence between species. Recent work suggests facilitation may be common (ref) and may harm or benefit species diversity and stability depending on the circumstances (ref). Our framework provides a mean to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity. 
+
+
+    Quantifying plant interaction networks opens us up to using tools from network theory to better understand our systems. 
+
+
+
+    2) to learn more about your plant community specifically 
+    application for ecosystem management: 
+    - identifying important species e.g. keystone, foundation, connector
+    - integration of invasive species
+
+           Network approach also allows us to determine niche overlap between species, as weak interactions indicae low resource sharing. This can be useful to evaluate the impact of invasive species for axample - are they stongly affecting the whole community, only one or two species, or are they making use of 'empty' niche space? 
+
+    - strategies for managing threatened species especially rares (often facilitate with other rares) 
+
+        If the network is build with certain species in mind, then we can see which species most strongly affect them - which benefit them for example, or which species exhert competitive pressure on our species of interest. This has direct applications to management. Especially for conservation of rare species - recent work suggests that rare species benefit disproportionally from facilitation, and that facilitative loops between friendly neighbours help maintain rare species - which also has direct conservation implications. 
+
+
+    Limitations: 
+    - REM inference works less and less the fewer alphas are estimated by IFM
+    - dependant on the pop dyn model used
+    - still recquires lots of data - but the kind of people who have this data might benefit from some very real applications!
+
+    It requires a lot of data, but actually has many practical applications which could benefit anyone trying to manage a certain plant systems - e.g. conservation land or whatever, which regularly collects data monitoring their ecosystem anyway. 
+
+    Future stuff: 
+    - adding trait or phylogeny data, for example by informing priors with trait or phylogeny distance matrix
+
     
 
     \section{Supplementary Information}
