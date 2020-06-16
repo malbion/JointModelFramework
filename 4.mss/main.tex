@@ -179,7 +179,7 @@
 \section{Results}
 
 
-    The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities than co-occurrence networks. 
+    The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities compared to co-occurrence networks. 
 
     Interaction strengths are given as posterior distributions, which can be sampled to recreate a range of probable networks representing the community, thus capturing some measure of uncertainty around interaction values. 
 
@@ -227,7 +227,7 @@
     % 1. to learn more about plant communities in general 
     % interaction networks (many species, pop dyn models, facilitation) tie in with diversity and stability. Characterise how species tend to interact (network motifs). Many opportunities, this list is not exhaustive
 
-    \subsection{Community diversity and stability}
+    \subsection{Understanding community diversity and stability}
 
         Quantifying the interaction networks of plant communities allows us to explore how the mechanisms maintaining diversity and stability operate across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability (Barabas 2017 NEE) and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive of facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species: weak interactions between species indicates they are not sharing or competing for many resources, and occupy different niche spaces in the community (ref??). Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to continued coexistence in plant communities.
 
@@ -255,15 +255,20 @@
 
 
     \subsection{Limitations}
-    Limitations: 
-    - REM inference works less and less the fewer alphas are estimated by IFM
-    - dependant on the pop dyn model used
-    - still recquires lots of data - but the kind of people who have this data might benefit from some very real applications!
+        
+        Though our framework does provide a way of estimating interactions between species which are not observed to cooccur, care should be taken that these unobserved interactions do not dominate the network. The method we propose uses observed interactions to then estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones. \\
 
-    It requires a lot of data, but actually has many practical applications which could benefit anyone trying to manage a certain plant systems - e.g. conservation land or whatever, which regularly collects data monitoring their ecosystem anyway. 
+        Our model framework is aimed to helping empiricists who want to estimate interactions for non-trophic communities - but these empiricists will still require lare amounts of data. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify the full parameter space is sampled. I wouldn't recommend fewer than 20 observations per focal species, and I still recommend grouping species which appear very very rarely. More data will also give more precise estimates of interaction strengths. 
 
-    Future stuff: 
+        The kind of people or organisations who this paper might be useful for though are perhaps more likely than most to have access to this kind of data, given that many conservation or ecosystem management initiatives involve regular monitoring of the abundances of different species in the system. 
+
+
+    \subsection{Future research directions}
+
     - adding trait or phylogeny data, for example by informing priors with trait or phylogeny distance matrix
+    ie improving our estimates 
+    - improving our knowledge of networks, developing tools for plant networks and tools that can deal with non-sparse networks, competitive and facilitative interactions 
+    - integrate with trophic networks (which appear to be sensitive to producer/plant network structure!)
 
     
 
@@ -271,108 +276,6 @@
 
     \subsection{STAN model code}
 
-           % \lstset{language=STAN}
-            \begin{lstlisting}
-
-            /* 2018_CompNet
-            model
-
-            code to run a joint IF and RE model on 
-            all focal species at once
-            */ 
-              
-              
-              data {
-                int<lower=1> S;          // number of species 
-                int<lower=1> N;          // number of observations
-                int<lower=0> K;          // number of neighbours 
-                int<lower=0> I;          // number of interactions observed
-                
-                int<lower=0> species_ID[N];   // species index for observations
-                int<lower=0> seeds[N];        // response variable 
-                
-                // indices matching species to interactions:
-                int<lower=0> istart[S];  
-                int<lower=0> iend[S];
-                int<lower=0> icol[I];
-                int<lower=0> irow[I];
-                
-                matrix[N,K] X;         // neighbour abundances, the model matrix
-              
-              } 
-
-            parameters {
-              
-              vector[S] a;    // species-specific intercept
-              vector<lower=0>[S] disp_dev; // species-specific parameter for 
-              //dispersion deviation (for a negative binomial model)
-              
-              
-              vector[I] interactions;     // vector of observed interactions
-              vector[K] effect;            // competitive effect of neighbours
-              // same across all focals, can be facilitative or competitive
-              vector<lower=0>[S] response; // species-specific competitive 
-              // response parameter. > 0 to avoid bimodality in response and effect  
-
-              real<lower=0> sigma_alph; // variance for the ifm alphas
-            } 
-
-            transformed parameters {
-              
-              // transformed parameters constructed from params above
-              vector[N] mu;              // the linear predictor
-              matrix[S, K] ifm_alpha;    // community matrix 
-              vector[I] re;              // interactions as calculated 
-              //by the RE model
-              
-              // fill the community matrix with 0 (instead of NA):
-              ifm_alpha = rep_matrix(0, S, K);   
-              
-              // match observed interactions parameters to the correct position 
-              // in the community matrix
-              for(s in 1:S) {
-                for(i in istart[s]:iend[s]) {
-                  ifm_alpha[irow[i], icol[i]] = interactions[i];
-                }
-              }
-              
-              // individual fitness model 
-              for(n in 1:N) {
-                   mu[n] = exp(a[species_ID[n]] - dot_product(X[n], ifm_alpha[species_ID[n], ]));  
-              }
-              
-              // build a vector of interaction parameters based on the RE approach
-              for (i in 1:I) {
-                re[i] = response[irow[i]]*effect[icol[i]];
-              }
-              
-            } 
-
-            model {
-
-              // priors
-              a ~ cauchy(0,10); // prior for the intercept following Gelman 2008
-              disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev
-              
-              response ~ normal(0, 1);   
-              effect ~ normal(0, 1);
-              sigma_alph ~ cauchy(0, 1);
-
-              // seed production 
-              for(n in 1:N) {
-                seeds[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
-              }
-
-              // response-effect interactions
-              for (i in 1:I) {
-                target += logistic_lpdf(re[i] | interactions[i], sigma_alph);
-              }
-              
-            } s
-
-
-
-        \end{lstlisting}
-
+     
 
 \end{document}
