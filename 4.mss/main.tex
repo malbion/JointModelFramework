@@ -183,7 +183,7 @@
     \section{Results}
 
 
-    This model framework quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities than co-occurrence networks. 
+    The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities than co-occurrence networks. 
 
     Interaction strengths are given as posterior distributions, which can be sampled to recreate a range of probable networks representing the community, thus capturing some measure of uncertainty around interaction values. 
 
@@ -199,17 +199,15 @@
 
 
 
+    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    % We fit a model on.. present results for the full com. We estimated so many interactions with the IFM and so many with the REM. What about doing one with only 10 plots, to show how little data you need? Or is this too much extra work? I could do 10, 20, 60 and 100 plots?
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % We built an interactio nmatrix for .... whole comm only. We estiamted so many interactions with the IFM and so many with the REM. So many interactions were competitive, whereas so many were facilitative. We estimated so many intraspecific interactions. Species node distribution followed an xx distribution. 
 
-    We fit a model on.. present results for the full com. We estimated so many interactions with the IFM and so many with the REM. What about doing one with only 10 plots, to show how little data you need? Or is this too much extra work? I could do 10, 20, 60 and 100 plots?
+    % Suc hand such species are likely candidates for keystone species. Whearas x or y are connector species. Invasive species Arca and xx were not well embedded in the network, indicating that .... 
 
-    We built an interactio nmatrix for .... whole comm only. We estiamted so many interactions with the IFM and so many with the REM. So many interactions were competitive, whereas so many were facilitative. We estimated so many intraspecific interactions. Species node distribution followed an xx distribution. 
-
-    Suc hand such species are likely candidates for keystone species. Whearas x or y are connector species. Invasive species Arca and xx were not well embedded in the network, indicating that .... 
-
-    Our network differs remarquebly from a species association network, which would lead us to assume that x species is actually .. . Furthermore .... 
+    % Our network differs remarquebly from a species association network, which would lead us to assume that x species is actually .. . Furthermore .... 
 
 
     \section{Discussion}
@@ -270,104 +268,104 @@
 
         \subsection{STAN model code}
 
-       % \lstset{language=STAN}
-        \begin{lstlisting}
+           % \lstset{language=STAN}
+            \begin{lstlisting}
 
-/* 2018_CompNet
-model
+            /* 2018_CompNet
+            model
 
-code to run a joint IF and RE model on 
-all focal species at once
-*/ 
-  
-  
-  data {
-    int<lower=1> S;          // number of species 
-    int<lower=1> N;          // number of observations
-    int<lower=0> K;          // number of neighbours 
-    int<lower=0> I;          // number of interactions observed
-    
-    int<lower=0> species_ID[N];   // species index for observations
-    int<lower=0> seeds[N];        // response variable 
-    
-    // indices matching species to interactions:
-    int<lower=0> istart[S];  
-    int<lower=0> iend[S];
-    int<lower=0> icol[I];
-    int<lower=0> irow[I];
-    
-    matrix[N,K] X;         // neighbour abundances, the model matrix
-  
-  } 
+            code to run a joint IF and RE model on 
+            all focal species at once
+            */ 
+              
+              
+              data {
+                int<lower=1> S;          // number of species 
+                int<lower=1> N;          // number of observations
+                int<lower=0> K;          // number of neighbours 
+                int<lower=0> I;          // number of interactions observed
+                
+                int<lower=0> species_ID[N];   // species index for observations
+                int<lower=0> seeds[N];        // response variable 
+                
+                // indices matching species to interactions:
+                int<lower=0> istart[S];  
+                int<lower=0> iend[S];
+                int<lower=0> icol[I];
+                int<lower=0> irow[I];
+                
+                matrix[N,K] X;         // neighbour abundances, the model matrix
+              
+              } 
 
-parameters {
-  
-  vector[S] a;    // species-specific intercept
-  vector<lower=0>[S] disp_dev; // species-specific parameter for 
-  //dispersion deviation (for a negative binomial model)
-  
-  
-  vector[I] interactions;     // vector of observed interactions
-  vector[K] effect;            // competitive effect of neighbours
-  // same across all focals, can be facilitative or competitive
-  vector<lower=0>[S] response; // species-specific competitive 
-  // response parameter. > 0 to avoid bimodality in response and effect  
+            parameters {
+              
+              vector[S] a;    // species-specific intercept
+              vector<lower=0>[S] disp_dev; // species-specific parameter for 
+              //dispersion deviation (for a negative binomial model)
+              
+              
+              vector[I] interactions;     // vector of observed interactions
+              vector[K] effect;            // competitive effect of neighbours
+              // same across all focals, can be facilitative or competitive
+              vector<lower=0>[S] response; // species-specific competitive 
+              // response parameter. > 0 to avoid bimodality in response and effect  
 
-  real<lower=0> sigma_alph; // variance for the ifm alphas
-} 
+              real<lower=0> sigma_alph; // variance for the ifm alphas
+            } 
 
-transformed parameters {
-  
-  // transformed parameters constructed from params above
-  vector[N] mu;              // the linear predictor
-  matrix[S, K] ifm_alpha;    // community matrix 
-  vector[I] re;              // interactions as calculated 
-  //by the RE model
-  
-  // fill the community matrix with 0 (instead of NA):
-  ifm_alpha = rep_matrix(0, S, K);   
-  
-  // match observed interactions parameters to the correct position 
-  // in the community matrix
-  for(s in 1:S) {
-    for(i in istart[s]:iend[s]) {
-      ifm_alpha[irow[i], icol[i]] = interactions[i];
-    }
-  }
-  
-  // individual fitness model 
-  for(n in 1:N) {
-       mu[n] = exp(a[species_ID[n]] - dot_product(X[n], ifm_alpha[species_ID[n], ]));  
-  }
-  
-  // build a vector of interaction parameters based on the RE approach
-  for (i in 1:I) {
-    re[i] = response[irow[i]]*effect[icol[i]];
-  }
-  
-} 
+            transformed parameters {
+              
+              // transformed parameters constructed from params above
+              vector[N] mu;              // the linear predictor
+              matrix[S, K] ifm_alpha;    // community matrix 
+              vector[I] re;              // interactions as calculated 
+              //by the RE model
+              
+              // fill the community matrix with 0 (instead of NA):
+              ifm_alpha = rep_matrix(0, S, K);   
+              
+              // match observed interactions parameters to the correct position 
+              // in the community matrix
+              for(s in 1:S) {
+                for(i in istart[s]:iend[s]) {
+                  ifm_alpha[irow[i], icol[i]] = interactions[i];
+                }
+              }
+              
+              // individual fitness model 
+              for(n in 1:N) {
+                   mu[n] = exp(a[species_ID[n]] - dot_product(X[n], ifm_alpha[species_ID[n], ]));  
+              }
+              
+              // build a vector of interaction parameters based on the RE approach
+              for (i in 1:I) {
+                re[i] = response[irow[i]]*effect[icol[i]];
+              }
+              
+            } 
 
-model {
+            model {
 
-  // priors
-  a ~ cauchy(0,10); // prior for the intercept following Gelman 2008
-  disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev
-  
-  response ~ normal(0, 1);   
-  effect ~ normal(0, 1);
-  sigma_alph ~ cauchy(0, 1);
+              // priors
+              a ~ cauchy(0,10); // prior for the intercept following Gelman 2008
+              disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev
+              
+              response ~ normal(0, 1);   
+              effect ~ normal(0, 1);
+              sigma_alph ~ cauchy(0, 1);
 
-  // seed production 
-  for(n in 1:N) {
-    seeds[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
-  }
+              // seed production 
+              for(n in 1:N) {
+                seeds[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
+              }
 
-  // response-effect interactions
-  for (i in 1:I) {
-    target += logistic_lpdf(re[i] | interactions[i], sigma_alph);
-  }
-  
-} 
+              // response-effect interactions
+              for (i in 1:I) {
+                target += logistic_lpdf(re[i] | interactions[i], sigma_alph);
+              }
+              
+            } 
 
 
 
