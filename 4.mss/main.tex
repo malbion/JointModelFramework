@@ -37,21 +37,19 @@
 
 \tableofcontents
 
-    \section{Abstract}
+\section{Abstract}
     
-\begin{enumerate}
+    \begin{enumerate}
     \item Understanding ecological communities requires an understanding of how the different species within it relate to each other. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species). 
     \item We describe a general framework which allows us to estimate all pair-wise interactions in complex plant communities from empirical data and population dynamics models. This framework requires a multi-tiered approach to resolve all interactions. We first apply individual fitness models to each species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting interactions to approximate interactions which were not observed using a different set of assumptions. 
 
     %Interactions between species which rarely co-occurred are then categorised as forbidden (true 0) or unrealised. Forbidden interactions are declared on the basis of spatial, phenological or physiological mismatches. Unrealised interactions are approximated using a response-effect model.
     \item This approach can be modelled using a Bayesian statistical framework which allows us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix. We discuss how the flexibility afforded by the Bayesian framework may also allow us to improve interaction estimates through the inclusion of environmental, phylogenetic and funtional trait data. 
     \item We suggest this approach be used for....
-\end{enumerate}
-
-    
+    \end{enumerate}
 
 
-    \section{Introduction}
+\section{Introduction}
 
     \textit{How do we estimate interactions between plants in natural and complex communities ?}
 
@@ -66,6 +64,7 @@
     We propose a model framework that makes this easier.
  
   
+    Non trophic interactions are usually neglected in ecological networks or lumped into compartments representing other primary producers of basal resources (Baiser et al., 2013; van der Zee et al., 2016; Borst et al., 2018 - in Ellison 2019).   
 
     \begin{itemize}
         \item Kokkoris2002 =  Competition / species interactions can contribute to diversity (read more)
@@ -99,9 +98,8 @@
     % Co-occurrence networks also suffer from not being able to measure the effect (or rather association) of a species with itself. Yet these intraspecifc interactions are key to maintaining negative density-dependence, which is a vital component of coexistence theory. It would be nice if a reference exists which also says that co-occurrence methods underestimate facilitation, which is increasingly being recognised as an important force in communities which we have yet to integrate into theoretical frameworks of coexistence (another challenge!).  
     % \citep{Verdu2010} facilitation turns to competition between plants over time. Examines the phylogenetic structure of the network. Complexity of ecological interactions and complex network approaches - examine methods?
     
-  
     
-    \section{Methods}
+\section{Methods}
     
     This framework can be applied to any dataset of interacting species which meets the following criteria: 
     \begin{itemize}
@@ -115,7 +113,7 @@
     This framework also depends on an appropriate model of population dynamics for the system in question. The population dynamics model may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival). These rates are necessary in order to scale interaction coefficients such that they are comparable between species. 
     
     
-        \subsection{IFM}
+    \subsection{IFM}
         
         We begin by implementing an individual fitness model to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $F_{i}$:
         
@@ -125,9 +123,8 @@
         \end{equation}
         
         The intercept $\beta_{i0}$ represents intrinsic fitness, a species' fitness in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ represent the species-specific effect of each neighbour $j$ on $i$. Note that neighbours can include conspecifics, in which case intraspecific interactions are denoted as $\beta_{ii}$.
-        
-        
-        \subsection{Filling in the gaps}
+              
+    \subsection{Filling in the gaps}
         
         In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the IFM above will not be able to estimate all potential interactions ($\beta$) between species. This is especially true for rare species. In order to estimate the interactions missing from the IFM, we must separate those interaction which did not occur due to chance alone (\textit{unrealised links}) from those which cannot occur due to mismatches between species (\textit{forbidden links}). 
         
@@ -137,8 +134,7 @@
         
         % \textbf{Note: I dropped the section above as very very few interactions were 'forbidden' but I can bring it back?}
 
-
-        \subsubsection{Unrealised links}
+    \subsubsection{Unrealised links}
         
         Because sampling a community is not an exhaustive process, interactions between certain species may not have been observed even though the species in question are capable of interacting. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the IFMs. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
         
@@ -154,15 +150,15 @@
         \label{unrealised}
         \end{equation}
     
-    where $\sigma$ is a community-level scale parameter for the logistic distribution. 
+        where $\sigma$ is a community-level scale parameter for the logistic distribution. 
         
-        \subsection{Scaling the interactions}
+    \subsection{Scaling the interactions}
         
         After applying the IFMs, identifying forbidden links and estimating the remaining \textit{unrealised} interactions, the interactions effects returned by Eq. 1 and 2 must be scaled with appropriate demographic parameters determined by the system-specific model of population dynamics. This transformation puts interactions on the same scale, returning per-capita effects which are directly comparable between species. 
         
         In order to determine the appropriate scaling, the population dynamics model must first be transformed into a form equivalent to a Lotka-Volterra competition model. \textit{Figure out how to describe this in a general way, mention that the case study gives an explicit example.}
         
-        \subsection{Model fitting}
+    \subsection{Model fitting}
         
         The IFMs (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters, and in case the data is insufficient we can get better estimates by using data from past experiments to constrain parameter priors. Readers familiar with STAN will note that it returns each parameter as a series of samples drawn from it's estimated distribution. This is important because ...
 
@@ -175,12 +171,12 @@
 
         The file used to specify and set the model in STAN is available in S.I. XX. 
     
-        \subsection{Case study}
+    \subsection{Case study}
 
         We implemented this framework on data from ...
         
 
-    \section{Results}
+\section{Results}
 
 
     The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities than co-occurrence networks. 
@@ -210,7 +206,7 @@
     % Our network differs remarquebly from a species association network, which would lead us to assume that x species is actually .. . Furthermore .... 
 
 
-    \section{Discussion}
+\section{Discussion}
 
     
     The model framework presented here allows the estimation of species-rich interaction matrices from plant community data. 
@@ -227,31 +223,38 @@
         
         In turn, this complex picture allows us to do a bunch of cool stuff. In other systems for examples, networks ahve allowed us to do ...... Here for example, we can identify species which occupy important roles in the community. For example keystone species, foundation species, etc, mabe describe exactly how? Keystone species have wide effects so species that have really strong competitive or facilitative effects. Some species would be important because they connect really widely to others ? (I don't remember their name). 
 
-    Why do we want to do that? 
-    1. to learn more about plant communities in general 
-    interaction networks (many species, pop dyn models, facilitation) tie in with diversity and stability. Characterise how species tend to interact (network motifs). Many opportunities, this list is not exhaustive
+    % Why do we want to do that? 
+    % 1. to learn more about plant communities in general 
+    % interaction networks (many species, pop dyn models, facilitation) tie in with diversity and stability. Characterise how species tend to interact (network motifs). Many opportunities, this list is not exhaustive
 
-    Quantifying the interaction networks of plant communities allows us to explore how the mechanisms maintaining diversity and stability operate across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability (Barabas 2017 NEE) and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive of facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species: weak interactions between species indicates they are not sharing or competing for many resources, and occupy different niche spaces in the community (ref??). Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to continued coexistence in plant communities.
+    \subsection{Community diversity and stability}
 
-    A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised (Bruno Callaway 2003) but there is still little consensus on how they may affect coexistence between species. Recent work suggests facilitation may be common (ref) and may harm or benefit species diversity and stability depending on the circumstances (ref). Our framework provides a mean to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity. 
+        Quantifying the interaction networks of plant communities allows us to explore how the mechanisms maintaining diversity and stability operate across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability (Barabas 2017 NEE) and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive of facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species: weak interactions between species indicates they are not sharing or competing for many resources, and occupy different niche spaces in the community (ref??). Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to continued coexistence in plant communities.
 
-
-    Quantifying plant interaction networks opens us up to using tools from network theory to better understand our systems. 
-
-
-
-    2) to learn more about your plant community specifically 
-    application for ecosystem management: 
-    - identifying important species e.g. keystone, foundation, connector
-    - integration of invasive species
-
-           Network approach also allows us to determine niche overlap between species, as weak interactions indicae low resource sharing. This can be useful to evaluate the impact of invasive species for axample - are they stongly affecting the whole community, only one or two species, or are they making use of 'empty' niche space? 
-
-    - strategies for managing threatened species especially rares (often facilitate with other rares) 
-
-        If the network is build with certain species in mind, then we can see which species most strongly affect them - which benefit them for example, or which species exhert competitive pressure on our species of interest. This has direct applications to management. Especially for conservation of rare species - recent work suggests that rare species benefit disproportionally from facilitation, and that facilitative loops between friendly neighbours help maintain rare species - which also has direct conservation implications. 
+        A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised (Bruno Callaway 2003) but there is still little consensus on how they may affect coexistence between species. Recent work suggests facilitation may be common (ref) and may harm or benefit species diversity and stability depending on the circumstances (ref). Our framework provides a mean to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity. 
+     
+        Ultimately, quantifying plant interaction networks allows us to apply tools from network theory which will help us understand not only how plants interact, but also how these interactions drive community-level patterns of abundance and diversity. Several metrics already exist for describing network structure such as weighted connectance or relative intransitivity, though these are fewer than for trophic or bipartite networks. Adapting measures of nestedness or modularity for example to non-sparse networks (as plant communties typically are) would allow us to further characterise how interactions and species are organised. These metrics all relate to different aspects of stability and could greatly inform us on how diversity is maintained between plants. 
+        Further avenues also exist to characterise how species tend to interact. Network motifs for example are the units which makes up a network, such as a three species food chain or an intransitive interaction loop. These motifs have important biological meaning. We could extend the network motif approach to signle-trophic networks to characterise the kind of roles that species can occupy in relation to the wider plant community (Cirtwill ref!)
 
 
+    % 2) to learn more about your plant community specifically 
+    % application for ecosystem management: 
+    % - identifying important species e.g. keystone, foundation, connector
+    % - integration of invasive species
+    % - strategies for managing threatened species especially rares (often facilitate with other rares) 
+
+    \subsection{Applications to ecosystem management}
+
+        Interaction networks provide a unique lense with which to examine an ecological community. Specifically, interaction networks allows us to determine important species which have particular effects on the wider community, as well as examine how species of interest are affected by the whole community. These two aspects are particularly important to ecosystem management and conservation because they allow us to establish management strategies which are adapted to the community and species involved, and which acknowledge the interlinkedness of species and their effects on one another. 
+
+        Certain species play important roles in the community which can be deduced from their position in the interaction network. Keystone species for example are both crucial to maintaining the organisation and diversity of their community, and have exceptionally strong effects on other species (Mills et al. 1993), often leading to secondary extinctions when they are removed from a network. In single-trophic systems, keystone species could be identified by their high in-strength ... Foundation species on the other hand ... Foundation species can be identified by high abundance, connectedness and predominantly facilitative interactions.  
+
+        Network approaches can also be used to determine how specific species are integrated within the community. We can determine whether invasive species are competing with or impacting many of the native species, or if they are disproportionally affecting a handful of species. Weak interactions between invasive and native species would indicate low resource sharing, such that the invasive species are probably exploiting 'empty' niche space rather taking over the niche space of natives. Threatened species would also benefit from this type of analysis, as we could deduce which other community members are hindering or helping their recovery. This is especially relevant for rare species, as recent work suggests they are the prime emitters and beneficiaries of facilitative interactions, forming mutualistic refuges from competitive dominants. If that is indeed the case, quantifying the interaction networks would help us identify which other species may be involved in 'proping up' the species of interest. 
+
+        Overall, quantifying the community interaction network allows us to direct conservation and management efforts in ways which work with the community, rather than against it.
+
+
+    \subsection{Limitations}
     Limitations: 
     - REM inference works less and less the fewer alphas are estimated by IFM
     - dependant on the pop dyn model used
@@ -264,9 +267,9 @@
 
     
 
-    \section{Supplementary Information}
+\section{Supplementary Information}
 
-        \subsection{STAN model code}
+    \subsection{STAN model code}
 
            % \lstset{language=STAN}
             \begin{lstlisting}
@@ -365,7 +368,7 @@
                 target += logistic_lpdf(re[i] | interactions[i], sigma_alph);
               }
               
-            } 
+            } s
 
 
 
