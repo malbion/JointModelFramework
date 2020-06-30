@@ -187,8 +187,12 @@
     
     \subsection{Case study}
 
-        We implemented this framework on data from ...
-        
+        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitered over the length of the full field season, from July to October. The resulting dataset contains from 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of the focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species. Neighbouring species which were recorded less than 10 times overall were grouped into a 'rare' category. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and did not target any particular species.\\
+
+        Species demographic rates (seed and germination) for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability. The remaining species were assigned mean demographic rates from these experiments. \\
+
+        We applied the model using R and STAN and ran it with 4 chains and 5000 iterations per chain, discarding the first 1000. Models were checked for convergence and traceplots were visually inspected to verify good chain behaviour and mixing. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our interaction estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
+
 
 \section{Results}
 
@@ -203,6 +207,8 @@
 
 
     % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Of the 484 focal x focal interactions, 85\% were estimated using the IFM and 15\% using the REM. Including non-focal neighbours, the number of interactiosn to be estimated was 1144 and 60\% were estimated by the REM.
 
     % We built an interactio nmatrix for .... whole comm only. We estiamted so many interactions with the IFM and so many with the REM. So many interactions were competitive, whereas so many were facilitative. We estimated so many intraspecific interactions. Species node distribution followed an xx distribution. 
 
