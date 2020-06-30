@@ -1,8 +1,8 @@
 
 
-setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/2.analyses/')
+setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 
-load('../../2018_Compnet/stormland/model/transformed/0/scaled_alpha_matrices.Rdata')
+load('3.case_study/model/transformed/scaled_alpha_matrices.Rdata')
 
 alpha_mat <- apply(scaled_alphas, c(1, 2), mean)
 
@@ -14,10 +14,10 @@ require(reshape2)
 # 1. Build a cooccurrence network
 data_folder <- '~/Dropbox/Work/Projects/2018_Compnet/1.data/clean/'
 input_folder <- '~/Dropbox/Work/Projects/2018_Compnet/3.results/1.joint_model'
-
-fecundities <- read.csv(paste0('../../2018_Compnet/stormland/clean_data/fecundities', comm, '.csv'), stringsAsFactors = F)
-key_speciesID <- unlist(read.csv(paste0('../../2018_Compnet/stormland/clean_data/key_speciesID', comm, '.csv'), stringsAsFactors = F))
-key_neighbourID <- unlist(read.csv(paste0('../../2018_Compnet/stormland/clean_data/key_neighbourID', comm, '.csv'), stringsAsFactors = F))
+comm <- 0
+fecundities <- read.csv(paste0('3.case_study/data/fecundities', comm, '.csv'), stringsAsFactors = F)
+key_speciesID <- unlist(read.csv(paste0('3.case_study/data/key_speciesID', comm, '.csv'), stringsAsFactors = F))
+key_neighbourID <- unlist(read.csv(paste0('3.case_study/data/key_neighbourID', comm, '.csv'), stringsAsFactors = F))
 
 # each observation is a neighbourhood, hence a 'plot'
 for(i in unique(fecundities$focal)) {
@@ -28,7 +28,7 @@ spp.site <- t(fecundities[ , -c(1:4)])
 
 # this function applies the probabilistic model of species cooccurrence (Veech 2013)
 cooc.site.sp <- cooccur(spp.site, spp_names = T,  
-                        thresh = F, #if TRUE cooc < 1 are removed
+                        thresh = F #if TRUE cooc < 1 are removed
 )
 
 # 2. Extract the community matrix
@@ -55,9 +55,9 @@ assocs <- as.matrix(assocs)
 # return intra-sp associations as NAs (cooccur can't estimate thos)
 diag(assocs) <- NA
 
-write.csv(assocs, paste0(comm, '_cooc.csv'))
+write.csv(assocs, paste0('2.analyses/', comm, '_cooc.csv'))
 
-png(paste0('../../2020_Methods_for_compnet/cooc_compare_figs/subntwk', x, '.png'), 
+png(paste0('cooc_compare_figs/subntwk', x, '.png'), 
     width = 900, height = 720, units = 'px')
 par(mfrow = c(2, 1))
 qgraph((-alpha_mat[ , 1:nrow(alpha_mat)]))
