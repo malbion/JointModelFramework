@@ -11,6 +11,7 @@
     \usepackage{booktabs}
     \usepackage[skip=2.5\baselineskip]{caption} % to give more space between figs and captions
     \usepackage{listings} % allows me to insert code 
+    \usepackage{natbib}
 
 % GRAPHICS
     \usepackage{graphicx} % More advanced figure inclusion
@@ -196,21 +197,76 @@
 
 \section{Results}
 
+    \paragraph{}
+    The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities compared to co-occurrence networks. Like co-occurrence networks, our framework is flexible to the inclusion of many species. Unlike co-occurrence networks, however, interactions in our model are estimated from species effects on each other's growth rates.  This allows us to capture how interactions may directly affect species abundances, rather than spatial association patterns. Two features make this possible: the response-effect model to estimate unobserved interactions, and a Bayesian implementation to deal with many parameters. 
 
-    The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities compared to co-occurrence networks. Like co-occurrence networks, our framework is flexible to the inclusion of many species. Unlike co-occurrence networks, however, interactions in our model are estimated from species effects on each other's growth rates.  This allows us to capture how interactions may directly affect species abundances, rather than spatial association patterns. Two features make this possible: the response-effect model to estimate unobserved interactions, and a Bayesian implementation to deal with many parameters. The response-effect model allows us to deal with a small number of unobserved interactions by relaxing assumptions for those cases and estimating more general 'effect' and 'response' parameters from the pair-wise interactions that are observed. The Bayesian implementation means that parameters are estimated using MCMC algorithms, which can estimate more parameters than with more commonly used frequentist approaches (add REFs – find in Masters??). This approach also returns parameter estimates as posterior distributions rather than simple mean and standard deviations. By having access to the full distribution of likely values for every interaction, we can draw samples of likely networks from these distributions and thus incorporate some measure of variation and uncertainty around interaction values pretty easily.  \\
+    \paragraph{}
+    The response-effect model allows us to deal with a small number of unobserved interactions by relaxing assumptions for those cases and estimating more general 'effect' and 'response' parameters from the pair-wise interactions that are observed. Being estimated from observed interactions previously quantified by the IFM, the response and effect parameters are constrained such that their product follows a similar distribution to that of the observed interactions (Figure \ref{fig:adist}). In our case study, 15\% of interactions between focal species were estimated using the REM (out of 484), 40\% when taking all neighbouring species into account (out of 1144). 
 
 
-    Another way in which our method breaks from traditional plant population dynamic models is by allowing for facilitation. Associational networks and other approaches to interaction-based networks allow for competition alone (That’s not true, so qualify that statement – may talk a bit more about pop dyn approaches, and then also association?). Facilitation is well-known to be very important to community dynamics but is not explicitly measured or recognised by these approaches. Thus, our method allows us to investigate the effects of competition and facilitation at the same time, and across many species.   \\
+    \paragraph{}
+    The Bayesian implementation means that parameters are estimated using MCMC algorithms, which can estimate more parameters than with more commonly used frequentist approaches (add REFs – find in Masters??). This approach also returns parameter estimates as posterior distributions rather than simple mean and standard deviations. By having access to the full distribution of likely values for every interaction, we can draw samples of likely networks from these distributions and thus easily incorporate some measure of variation and uncertainty around interaction values. % This is expecially useful given how weak interactions are, and that estimates often overlap with 0...
 
-     Our methods make it simpler for empiricists to estimate diverse interaction networks by providing an alternative to co-occurrence methods. Overall, our framework paints a more realistic picture of plant communities and their interactions: diversity is included, multiple interaction types can occur and unobserved interactions are not simply assigned to '0'. In turn, this allows empiricists to access network tools to better understand the plant communities and ecosystems they study, as well as non-trophic communities in general. \\
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{../2.analyses/figures/alpha_est_distr.png}
+        \caption{Distribution of interaction estimates from our case study. Top panel shows the distribution of observed interactions as estimated by the IFM. Second panel shows those same interactions, but estimated with the REM. Bottom panel shows the distribution of unobserved interactions estimated by the REM. Interaction estimates are given as unscaled \(\alpha\)'s.}
+        \label{fig:adist}
+    \end{figure}
+
+
+    \paragraph{}
+    The resulting networks are non-symmetrical and can include both positive and negative interactions (Figure \ref{fig:netwks}), features which makes them qualitatively different to association networks as well as different to traditional plant population ecology approaches. By allowing for non-symmetry, the effect of species 1 on species 2 does not need to match the effect of species 2 on species 1. In our case study, 40\% of interactions between a pair of species were asymmetrical in type, that is of opposing signs.
+    Our method also breaks from traditional plant population dynamic models by allowing for facilitation, whereas interactions are typically forced to be competitive in other approaches.     Facilitation is well-known to be very important to community dynamics but is not explicitly measured or recognised by these approaches, despite rising evidence that it is a common feature of plant-plant communities (REF). In our case study, 35\% of all focal x neighbour interactions were facilitative, and xx \% between focals only.
+
+    \begin{figure}[H]
+        \hspace*{-2cm}
+        \includegraphics[width=1.2\textwidth]{../2.analyses/figures/together.png}
+        \caption{Competitive (A) and facilitative (B) interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package. Interactions estimated for (A) and (B) are given as the mean over 1000 samples. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together.}
+        \label{fig:netwks}
+    \end{figure}    
+
+    \paragraph{} 
+    Our interaction networks can be used to identify species of particular important to the healthy functioning of the community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on ohter species population dynamics. Table 
+
+
+
+    Remove POCA from table?
+    Identifying keystone species. .. GITE and HAOD rel. abund < 0.01, two highest sumaji. Maybe GOBE  too? Keystone species are identified as ... can be identified by having relatively low biomass in comparison to the structuring effects they have on food webs \citep{Libralato2006}. 
+    Keystone species affect the communities of which they are part in a manner disproportionate to their abundance (Power et al., 1996). Keystone species strongly influence the abundances of other species and the ecosystem dynamic (Piraino et al., 2002). Therefore, it is important to identify keystone species, notably to maintain ecosystem integrity, and biological diversity in the face of exploitation and other stresses (Naeem and Li, 1997, Tilman, 2000).
+    Invasives...
+
+    Foundation species: locally abundant and control associated biodiversity / ecosystem processes \citep{Baiser2013}. In addition, foundation species differ from dominant species in that the former are thought to be irreplaceable in terms of their control on population and community dynamics and ecosystem processes, whereas the latter are considered replaceable (Ellison et al. 2005b). \citep{Ellison2005}. Foundation species: VERO, maybe POCA ? Also well connected! 
+
+    PLDE : fairly common, strong facilitative effects
+
+    Dominant species are locally abundant but replaceable. 
+
+    Invasives: ARCA
+
+    TRCY and TROR - very different strategies!
+
+    EROD: outcompeted by many species, weak effects on others, received lots of facilitation
+
+ - abundance - sum of comp effects - sum of facil effects
+
+    \begin{figure}[H]
+        \hspace*{-1cm}
+        \includegraphics[width=1.2\textwidth]{../2.analyses/figures/spceffects.png}
+        \caption{Focal species net effects on neighbours, according to their abundance. On the x axis, values over 0 indicate a net competitive effect whereas values below 0 indicate a net facilitative effect on neighbouring species. Diamonds are species means across all network samples, black lines cover the 50\% quantile and grey dots indicate the full range of out-strength values as calculated from 1000 sampled networks. Dashed lines represent the median value for focals.}
+        \label{fig:species}
+    \end{figure} 
+
+   
+
+    %Our methods make it simpler for empiricists to estimate diverse interaction networks by providing an alternative to co-occurrence methods. Overall, our framework paints a more realistic picture of plant communities and their interactions: diversity is included, multiple interaction types can occur and unobserved interactions are not simply assigned to '0'. In turn, this allows empiricists to access network tools to better understand the plant communities and ecosystems they study, as well as non-trophic communities in general. \\
 
 
 
     % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    Of the 484 focal x focal interactions, 85\% were estimated using the IFM and 15\% using the REM. Including non-focal neighbours, the number of interactions to be estimated was 1144 and 60\% were estimated by the IFM
+    
 
-    Across all focal neighbour interaction, 65\% were competitive.
+    
 
     % We built an interactio nmatrix for .... whole comm only. We estiamted so many interactions with the IFM and so many with the REM. So many interactions were competitive, whereas so many were facilitative. We estimated so many intraspecific interactions. Species node distribution followed an xx distribution. 
 
@@ -218,6 +274,26 @@
 
     % Our network differs remarquebly from a species association network, which would lead us to assume that x species is actually .. . Furthermore .... 
 
+    % Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+
+% \begin{table}[H]
+% \centering
+%     \begin{tabular}{lccc}
+%     \multicolumn{1}{c}{}                    & Abundance                    & Net Competitive effects     & Net Facilitative effects    \\ \hline
+%     {\color[HTML]{000000} Community median} & {\color[HTML]{000000} 358.5} & {\color[HTML]{000000} 0.42} & {\color[HTML]{000000} 0.11} \\ \hline
+%     GITE                                    & {\color[HTML]{656565} 96}    & 2.06                        & {\color[HTML]{656565} 0.00} \\
+%     HAOD                                    & 193                          & 1.45                        & {\color[HTML]{656565} 0.03} \\
+%     GOBE                                    & 374                          & 0.79                        & {\color[HTML]{656565} 0.07} \\
+%     POCA                                    & 2510                         & 0.71                        & {\color[HTML]{656565} 0.11} \\
+%     VERO                                    & 8676                         & 0.50                        & {\color[HTML]{656565} 0.03} \\
+%     PLDE                                    & 1309                         & {\color[HTML]{656565} 0.18} & 0.25                        \\
+%     ARCA                                    & 3211                         & 0.74                        & {\color[HTML]{656565} 0.04}
+%     \end{tabular}
+%     \caption{Abundance and net interaction effects for a subset of focal species from our case study. Values given in grey lie below the community median.}
+%     \label{tab:species}
+% \end{table}
 
 \section{Discussion}
     
@@ -278,6 +354,9 @@
     - improving our knowledge of networks, developing tools for plant networks and tools that can deal with non-sparse networks, competitive and facilitative interactions \\
     - integrate with trophic networks (which appear to be sensitive to producer/plant network structure!)\\
 
+
+\bibliography{../../../BibTex_files/03_Chapter3}
+\bibliographystyle{plainnat}
     
 
 \section{Supplementary Information}
