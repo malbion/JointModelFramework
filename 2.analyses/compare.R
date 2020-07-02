@@ -57,9 +57,49 @@ diag(assocs) <- NA
 
 write.csv(assocs, paste0('2.analyses/', comm, '_cooc.csv'))
 
-png(paste0('cooc_compare_figs/subntwk', x, '.png'), 
-    width = 900, height = 720, units = 'px')
-par(mfrow = c(2, 1))
-qgraph((-alpha_mat[ , 1:nrow(alpha_mat)]))
-qgraph(assocs[rownames(alpha_mat), colnames(assocs) %in% rownames(alpha_mat)])
+library(qgraph)
+
+comp <- -alpha_mat[ , 1:nrow(alpha_mat)]
+comp[comp>0] <- 0
+facil <- -alpha_mat[ , 1:nrow(alpha_mat)]
+facil[facil<0] <- 0
+png('2.analyses/figures/inter_assoc.png', 
+    width = 900, height = 800, units = 'px')
+par(mfrow = c(3, 1))
+# qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], theme = th)
+qgraph(comp, posCol = 'royalblue4', negCol = 'plum')
+qgraph(facil, posCol = 'royalblue4', negCol = 'plum')
+# qgraph((-alpha_mat[ , 1:nrow(alpha_mat)]))
+qgraph(assocs[rownames(alpha_mat), colnames(assocs) %in% rownames(alpha_mat)],
+       posCol = 'royalblue4', negCol = 'plum')
 dev.off()
+
+png('2.analyses/figures/all_inter.png', width = 300, heigh = 240)
+qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], posCol = 'royalblue4', negCol = 'plum')
+dev.off()
+
+smm <- read.csv('2.analyses/smm.csv', stringsAsFactors = F)
+smmfoc <- smm[is.na(smm$aii) == F, ]
+mean(smmfoc$perc.coop)
+mean(smmfoc$perc.fullcomp)
+mean(smmfoc$perc.exploited)
+mean(smmfoc$perc.exploiter)
+
+
+p2 = mean(smmfoc$perc.coop)
+p1 = mean(smmfoc$perc.exploited) + mean(smmfoc$perc.exploiter)
+p3 = mean(smmfoc$perc.fullcomp)
+
+plot(NULL, xlim=c(0,1), ylim=c(0,1), xaxt="n",
+     xlab="", ylab="", bty='n', las = 3)
+polygon(c(0, 0.1, 0.1, 0), c(0, 0, p1, p1), col = 'orange', border = NA)
+polygon(c(0, 0.1, 0.1, 0), c(p1, p1, p1+p2, p1+p2), col = 'grey90', border = NA)
+polygon(c(0, 0.1, 0.1, 0), c(p1+p2, p1+p2, p1+p2+p3, p1+p2+p3), col = 'red', border = NA)
+polygon(c(0, 0.1, 0.1, 0), c(0, 0, 1, 1))
+text(c(0.15, 0.15, 0.15), y = c(0.8, 0.44, 0.2), c('-/-', '+/+', '-/+'), cex = 2, srt =90)
+
+
+
+
+
+
