@@ -1,0 +1,48 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Baiser et~al.(2013)Baiser, Whitaker, and Ellison]{Baiser2013}
+Benjamin Baiser, Nathaniel Whitaker, and Aaron~M. Ellison.
+\newblock {Modeling foundation species in food webs}.
+\newblock \emph{Ecosphere}, 4\penalty0 (12):\penalty0 1--14, 2013.
+\newblock ISSN 21508925.
+\newblock \doi{10.1890/ES13-00265.1}.
+
+\bibitem[Dorazio(2016)]{Dorazio2016}
+Robert~M. Dorazio.
+\newblock {Bayesian data analysis in population ecology: motivations, methods,
+  and benefits}.
+\newblock \emph{Population Ecology}, 58\penalty0 (1):\penalty0 31--44, 2016.
+\newblock ISSN 14383896.
+\newblock \doi{10.1007/s10144-015-0503-4}.
+
+\bibitem[Ellison et~al.(2005)Ellison, Bank, Clinton, Colburn, Elliott, Ford,
+  Foster, Kloeppel, Knoepp, Lovett, Mohan, Orwig, Rodenhouse, Sobczak, Stinson,
+  Stone, Swan, Thompson, {Von Holle}, and Webster]{Ellison2005}
+Aaron~M. Ellison, Michael~S. Bank, Barton~D. Clinton, Elizabeth~A. Colburn,
+  Katherine Elliott, Chelcy~R. Ford, David~R. Foster, Brian~D. Kloeppel,
+  Jennifer~D. Knoepp, Gary~M. Lovett, Jacqueline Mohan, David~A. Orwig,
+  Nicholas~L. Rodenhouse, William~V. Sobczak, Kristina~A. Stinson, Jeffrey~K.
+  Stone, Christopher~M. Swan, Jill Thompson, Betsy {Von Holle}, and Jackson~R.
+  Webster.
+\newblock {Loss of foundation species: Consequences for the structure and
+  dynamics of forested ecosystems}.
+\newblock \emph{Frontiers in Ecology and the Environment}, 3\penalty0
+  (9):\penalty0 479--486, 2005.
+\newblock ISSN 15409309.
+\newblock \doi{10.1890/1540-9295(2005)003[0479:LOFSCF]2.0.CO;2}.
+
+\bibitem[Libralato et~al.(2006)Libralato, Christensen, and
+  Pauly]{Libralato2006}
+Simone Libralato, Villy Christensen, and Daniel Pauly.
+\newblock {A method for identifying keystone species in food web models}.
+\newblock \emph{Ecological Modelling}, 195\penalty0 (3-4):\penalty0 153--171,
+  2006.
+\newblock ISSN 03043800.
+\newblock \doi{10.1016/j.ecolmodel.2005.11.029}.
+
+\end{thebibliography}
