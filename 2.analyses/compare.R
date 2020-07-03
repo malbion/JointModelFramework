@@ -63,19 +63,21 @@ comp <- -alpha_mat[ , 1:nrow(alpha_mat)]
 comp[comp>0] <- 0
 facil <- -alpha_mat[ , 1:nrow(alpha_mat)]
 facil[facil<0] <- 0
-png('2.analyses/figures/inter_assoc.png', 
-    width = 900, height = 800, units = 'px')
-par(mfrow = c(3, 1))
+png('2.analyses/figures/comp_facil.png', 
+    width = 900, height = 540, units = 'px')
+par( mfrow = c(2, 1))
 # qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], theme = th)
-qgraph(comp, posCol = 'royalblue4', negCol = 'plum')
-qgraph(facil, posCol = 'royalblue4', negCol = 'plum')
+qgraph(comp, posCol = 'royalblue4', negCol = 'orange')
+qgraph(facil, posCol = 'royalblue4', negCol = 'orange')
+dev.off()
 # qgraph((-alpha_mat[ , 1:nrow(alpha_mat)]))
+png('2.analyses/figures/inter.png', width = 600, height = 240, units = 'px')
 qgraph(assocs[rownames(alpha_mat), colnames(assocs) %in% rownames(alpha_mat)],
-       posCol = 'royalblue4', negCol = 'plum')
+       posCol = 'royalblue4', negCol = 'orangered')
 dev.off()
 
 png('2.analyses/figures/all_inter.png', width = 300, heigh = 240)
-qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], posCol = 'royalblue4', negCol = 'plum')
+qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], posCol = 'royalblue4', negCol = 'orange')
 dev.off()
 
 smm <- read.csv('2.analyses/smm.csv', stringsAsFactors = F)

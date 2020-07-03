@@ -21,6 +21,8 @@ length(scaled_alphas[scaled_alphas > 0])/length(scaled_alphas)*100
 length(scaled_alphas[scaled_alphas < 0])/length(scaled_alphas)*100
 
 foc_only <- apply(scaled_alphas, 3, function(smp){smp <- smp[1:22, 1:22]})
+length(foc_only[foc_only > 0])/length(foc_only)*100
+length(foc_only[foc_only < 0])/length(foc_only)*100
 
 # number of neighbour a focal competes with vs helps? 
 # total N they have a competitive effect on 
@@ -48,7 +50,7 @@ require(plyr)
 smm <- adply(smm, c(1, 3))
 write.csv(smm, '2.analyses/smm.csv', row.names = F)
 
-
+smm <- read.csv('2.analyses/smm.csv', stringsAsFactors = F)
 # Figure 3!!
 #-------------
 smmfoc <- smm[is.na(smm$aii) == F, ]
@@ -70,8 +72,12 @@ linedat <- cbind(spupp, splow, spmeans$com.abund)
 library(reshape2)
 linedat <- melt(linedat, id.vars = 'spmeans$com.abund')
 linedat <- split(linedat, as.factor(linedat$`spmeans$com.abund`))
+invasives <- spmeans[c('ARCA', 'PEAI', 'HYPO'), ]
+foundation <- spmeans[c('VERO', 'POCA'), ]
+keyst <- spmeans[c('GITE', 'TROR', 'HAOD'), ]
 # Plot!
-png('2.analyses/figures/spceffects.png', width = 600, height = 420)
+png('2.analyses/figures/spceffects.png', width = 800, height = 620)
+par(oma=c(0,0,0,0), cex = 1.2)
 plot(smmfoc$sum_aji, log(smmfoc$com.abund),
      xlab = 'Net effect on neighbours (Out-strength)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
@@ -81,15 +87,31 @@ points(smmfoc$sum_aji, log(smmfoc$com.abund),
        pch = 16, col = 'grey', cex = 1.5)
 # lines for the 50% CI
 lapply(linedat, function(foo){
-  lines(log(foo[ , 1]) ~ foo[ , 3], lwd = 1.5)
+  lines(foo[ , 1] ~ foo[ , 3], lwd = 1.5)
 })
 # points for species means
 points(spmeans$sum_aji, spmeans$com.abund, pch = 23, 
        bg = 'black', cex = 1.3)
-# points(spmeans$`75%`, log(spmeans$com.abund), pch = 8, cex = 0.5)
-# points(spmeans$`25%`, log(spmeans$com.abund), pch = 8, cex = 0.5)
+points(foundation$sum_aji, foundation$com.abund, pch = 23, 
+       bg = 'royalblue', cex = 1.3)
+points(keyst$sum_aji, keyst$com.abund, pch = 23, 
+       bg = 'orange', cex = 1.3)
+points(invasives$sum_aji, invasives$com.abund, pch = 23, 
+       bg = 'red', cex = 1.3)
 dev.off()
 
+png('2.analyses/figures/feefceef.png', width = 450, height = 320)
+par(oma=c(0,0,0,0))
+plot(smmfoc$C_sum_aji, -smmfoc$F_sum_aji, las = 1, bty = 'n', pch = 16, cex=0.7, col = 'grey',
+     xlab = 'Sum of competitive effects', ylab = 'Sum of facilitative effects')
+points(spmeans$C_sum_aji, -spmeans$F_sum_aji, pch = 23, cex=1.1, bg='black')
+points(foundation$C_sum_aji, -foundation$F_sum_aji, pch = 23, 
+       bg = 'royalblue', cex = 1.3)
+points(keyst$C_sum_aji, -keyst$F_sum_aji, pch = 23, 
+       bg = 'orange', cex = 1.3)
+points(invasives$C_sum_aji, -invasives$F_sum_aji, pch = 23, 
+       bg = 'red', cex = 1.3)
+dev.off()
 
 ################################################################
 lsf <- split(smmfoc, smmfoc$species)

@@ -11,6 +11,5 @@ metrics <- read.csv('2.analyses/species_metrics_mat.csv')
 met.sum <- apply(metrics, c(1,2), mean)
 
 
-source('../2018_Compnet/stormland/functions/analyses/calc_com_ntwk_metrics.R')
 
-
+\hspace*{-2cm}
