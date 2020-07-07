@@ -116,6 +116,7 @@
     
 \section{Methods}
     
+    \paragraph{}
     This framework can be applied to any dataset of interacting species which meets the following criteria: 
     \begin{itemize}
         \item observations of focal individuals record a proxy for lifetime reproductive success (e.g. seed production, stem diameter growth, above-ground biomass)
@@ -124,12 +125,13 @@
     \end{itemize}
     In addition to these requirements, any experimental design or data which may reduce confounding effects between environment and competition will provide more accurate estimates of interaction strengths (e.g. thinning certain plots, recording environmental data known to affect reproductive success). 
     
-    
+    \paragraph{}   
     This framework also depends on an appropriate model of population dynamics for the system in question. The population dynamics model may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival). These rates are necessary in order to scale interaction coefficients such that they are comparable between species. 
     
     
-    \subsection{IFM}
+    \subsection{Individual Fitness Model}
         
+        \paragraph{}
         We begin by implementing an individual fitness model to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $F_{i}$:
         
         \begin{equation}
@@ -139,9 +141,10 @@
         
         The intercept $\beta_{i0}$ represents intrinsic fitness, a species' fitness in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ represent the species-specific effect of each neighbour $j$ on $i$. Note that neighbours can include conspecifics, in which case intraspecific interactions are denoted as $\beta_{ii}$.
               
-    \subsection{Filling in the gaps}
-        
-        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the IFM above will not be able to estimate all potential interactions ($\beta$) between species. This is especially true for rare species. In order to estimate the interactions missing from the IFM, we must separate those interaction which did not occur due to chance alone (\textit{unrealised links}) from those which cannot occur due to mismatches between species (\textit{forbidden links}). 
+    \subsection{Unrealised links}
+    
+        \paragraph{}
+        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the IFM above will not be able to estimate all potential interactions ($\beta$) between species. This is especially true for rare species. %In order to estimate the interactions missing from the IFM, we must separate those interaction which did not occur due to chance alone (\textit{unrealised links}) from those which cannot occur due to mismatches between species (\textit{forbidden links}). 
         
         % \subsubsection{Forbidden links}
         
@@ -149,9 +152,10 @@
         
         % \textbf{Note: I dropped the section above as very very few interactions were 'forbidden' but I can bring it back?}
 
-    \subsubsection{Unrealised links}
+        %\subsubsection{Unrealised links}
         
-        Because sampling a community is not an exhaustive process, interactions between certain species may not have been observed even though the species in question are capable of interacting. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the IFMs. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
+        %Because sampling a community is not an exhaustive process, interactions between certain species may not have been observed even though the species in question are capable of interacting. 
+        These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the IFMs. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
         
         \begin{equation}
         F_{i} = \beta_{i0} - \sum_{i}^{j} r_{i} e_{j} N_{j}
@@ -169,30 +173,43 @@
         
     \subsection{Scaling the interactions}
         
-        After applying the IFMs, identifying forbidden links and estimating the remaining \textit{unrealised} interactions, the interactions effects returned by Eq. 1 and 2 must be scaled with appropriate demographic parameters determined by the system-specific model of population dynamics. This transformation puts interactions on the same scale, returning per-capita effects which are directly comparable between species. 
+        \paragraph{}
+        After applying the IFMs and estimating the remaining \textit{unrealised} interactions, the interactions effects returned by Eq. 1 and 2 must be scaled with appropriate demographic parameters determined by the system-specific model of population dynamics. This transformation puts interactions on the same scale, returning per-capita effects which are directly comparable between species (${\beta}''$) \citep{Godoy2014, Bimler2018a}. 
         
-        In order to determine the appropriate scaling, the population dynamics model must first be transformed into a form equivalent to a Lotka-Volterra competition model. \textit{Figure out how to describe this in a general way, mention that the case study gives an explicit example.}
+        In order to determine the appropriate scaling, the model must first be transformed into a form equivalent to a Lotka-Volterra competition model: 
+
+        \begin{equation}
+        F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
+        \label{LVform}
+        \end{equation}
+
+        This gives us the scaled interaction estimates: 
+ 
+        \begin{equation}
+        {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
+        \label{scaling}
+        \end{equation}
+
+        The exact form of the rescaled interactions will vary depending on the population dynamic model applied and may include other demographic rates wich reflect species-level differences in growth and mortality.
         
     \subsection{Model fitting}
-        
-        The IFMs (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters, and in case the data is insufficient we can get better estimates by using data from past experiments to constrain parameter priors. Readers familiar with STAN will note that it returns each parameter as a series of samples drawn from it's estimated distribution. This is important because ...
 
-        We recommend that you group species that are too rare to make good estimates from - species which only have a handful of interactions. (Unless that goes to the case study section)
-    
-        \textit{Alternative paragraph to explain STAN ...}
-        Stan is a probabilistic programming language used for Bayesian statistical inference which allows us to fit complex models even when the data is limited. Parameters are estimated as distributions which maximise the likelihood, and are conditioned by the data and priors which describe the distribution of plausible values which these parameters may take. The resulting parameter estimates are termed posterior distributions, and samples from the posterior are drawn for analysis.
-        
-        Whereas the IFMs are applied to each focal species, the response-effect model can be applied to to the dataset as a whole, with a different intercept ($\beta_{i0}$) for each focal species. \textit{Discuss how to verify that the rem will give good estimates: comparing model fit and estimates of $\beta_{i0}$ ...}
+        \paragraph{}        
+        The IFMs (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN \citep{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify \textit{realised} interactions which are then fed into the REM. We provide a working example of the STAN file used to specify and set the model for our annual plant case study (see below) in S.I. XX. From this file, only the form of the population dynamic model and the priors need to be modified in order to apply it to a different model or system. 
 
-        The file used to specify and set the model in STAN is available in S.I. XX. 
-    
+        \paragraph{}
+        STAN returns parameters as distributions which maximise the likelihood, and are conditioned by the data and priors. Priors describe the distribution of plausible values which these parameters may take. We recommend investigators experiment with setting different informed priors to both improve model convergence and verify the robustness of parameter estimates. The resulting parameters are termed posterior distributions, and samples from the posterior are drawn for analysis. 
+
     \subsection{Case study}
 
-        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitered over the length of the full field season, from July to October. The resulting dataset contains from 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of the focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species. Neighbouring species which were recorded less than 10 times overall were grouped into a 'rare' category. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and did not target any particular species.\\
+        \paragraph{}
+        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitered over the length of the full field season, from July to October. The resulting dataset contains from 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of the focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species. Neighbouring species which were recorded less than 10 times overall were grouped into a 'rare' category. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and did not target any particular species.
 
-        Species demographic rates (seed and germination) for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability. The remaining species were assigned mean demographic rates from these experiments. \\
+        \paragraph{}
+        We adapted the framework described here to work with a well-supported annual plant population model with a seed bank \citep{Bimler2018a}. Equations for the annual plant model are further described in Chapter 4. Species demographic rates (seed and germination) for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability. The remaining species were assigned mean demographic rates from these experiments. 
 
-        We applied the model using R and STAN, running 4 chains of 5000 iterations each and discarding the first 1000. Models were checked for convergence and traceplots were visually inspected to verify good chain behaviour and mixing. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our interaction estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
+        \paragraph{}
+        We applied the model using R version 3.6.3, STAN and the rstan package \citep{R2020, Carpenter2017, Rstan2020}, running 4 chains of 5000 iterations each and discarding the first 1000. Models were checked for convergence and traceplots were visually inspected to verify good chain behaviour and mixing. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our interaction estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
 
 
 \section{Results}
@@ -216,10 +233,10 @@
 
 
     \paragraph{}
-    The resulting networks are qualitatively different to association networks (Figure \ref{fig:netwks}.A-B, E). Interactions estimated on growth rates are directed, which means they have an associated direction such as going from species $i$ to species $j$ ($\alpha_{ij}$), or alternatively from $j$ to $i$ ($\alpha_{ji}$). This interaction pair does not need to be of the same sign or strength, which makes the resulting interaction networks non-symmetrical. Interaction pairs of opposing signs were common in our case study (Figure \ref{fig:netwks}.D), making up 40\% of all pairs and many more differed in strength. 
+    The resulting networks are qualitatively different to association networks (Figure \ref{fig:netwks}.A-B, E). Firstly, intraspecific interactions ($\alpha_{ii}$) are estimated for all focal species and allow us to quantify how much a species regulates itself. In our case study, 85\% of all species across all network samples showed intraspecific competition. Interactions estimated on growth rates are also directed, which means they have an associated direction such as going from species $i$ to species $j$ ($\alpha_{ij}$), or alternatively from $j$ to $i$ ($\alpha_{ji}$). This interaction pair does not need to be of the same sign or strength, which makes the resulting interaction networks non-symmetrical. Interaction pairs of opposing signs were common in our case study (Figure \ref{fig:netwks}.D), making up 40\% of all pairs and many more differed in strength. 
 
     \paragraph{}
-    In addition to explicitely allowing for many species interactions, including both competitive (Figure \ref{fig:netwks}.A) and facilitative (Figure \ref{fig:netwks}.B) interactions is another feature which distinguishes this framework from traditional approaches to plant community ecology. Plant population dynamic models typically force interactions to be competitive, despite rising evidence that facilitation is common and an important driver of plant community dynamics \citep{Brooker2008a}. In our case study, 35\% of all focal x neighbour interactions were facilitative, as were 26 \% of all focal x focal interactions.
+    In addition to explicitely allowing for many species interactions, including both competitive (Figure \ref{fig:netwks}.A) and facilitative (Figure \ref{fig:netwks}.B) interactions is another feature which distinguishes our framework from traditional approaches to plant community ecology. Plant population dynamic models typically force interactions to be competitive, despite rising evidence that facilitation is common and an important driver of plant community dynamics \citep{Brooker2008a}. In our case study, 35\% of all focal x neighbour interactions were facilitative, as were 26 \% of all focal x focal interactions.
 
 
 
@@ -228,7 +245,7 @@
     \begin{figure}[H]
         \hspace*{-2cm}
         \includegraphics[width=1.2\textwidth]{../2.analyses/figures/together.png}
-        \caption{Competitive (A) and facilitative (B) interaction networks estimated from our model framework, compared to an association network (E) estimated from the same data using the cooccur package. Focal species only are included. Species associations (E) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (C). (D) shows the proportion of interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-).}
+        \caption{Competitive (A) and facilitative (B) interaction networks estimated from our model framework, compared to an association network (E) estimated from the same data using the cooccur package. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (C). Focal species only are included. Species associations (E) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. (D) shows the proportion of interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-).}
         \label{fig:netwks}
     \end{figure}    
 
@@ -238,19 +255,12 @@
 
  %    Identifying keystone species. .. GITE and HAOD rel. abund < 0.01, two highest sumaji. Maybe GOBE  too? 
  %    Invasives...
-
  %     Foundation species: VERO, maybe POCA ? Also well connected! 
-
  %    PLDE : fairly common, strong facilitative effects
-
  %    Dominant species are locally abundant but replaceable. 
-
  %    Invasives: ARCA
-
  %    TRCY and TROR - very different strategies!
-
  %    EROD: outcompeted by many species, weak effects on others, received lots of facilitation
-
  % - abundance - sum of comp effects - sum of facil effects
 
     \begin{figure}[H]
@@ -260,29 +270,29 @@
         \label{fig:species}
     \end{figure} 
 
-   
-
-    %Our methods make it simpler for empiricists to estimate diverse interaction networks by providing an alternative to co-occurrence methods. Overall, our framework paints a more realistic picture of plant communities and their interactions: diversity is included, multiple interaction types can occur and unobserved interactions are not simply assigned to '0'. In turn, this allows empiricists to access network tools to better understand the plant communities and ecosystems they study, as well as non-trophic communities in general. \\
-
-
-
-
-    % Suc hand such species are likely candidates for keystone species. Whearas x or y are connector species. Invasive species Arca and xx were not well embedded in the network, indicating that .... 
-
-    % Our network differs remarquebly from a species association network, which would lead us to assume that x species is actually .. . Furthermore .... 
-
-
 
 \section{Discussion}
     
+    \paragraph{}
+    The framework presented here allows the estimation of species-rich interaction matrices from plant community data. Given individual observations of reproductive success and the identity of the local neighbourhood, our model uses Bayesian regression to quantify the competitive or facilitative effects of one species on another's growth rate. This method extends traditional plant population ecology approaches to quantifying interactions by explicitely allowing for many species and interactions, as well as being able to include and estimate facilitation. The resulting networks present some of the advantages of association networks (many species and interactions, facilitation included) but remain ... qualitatively different... 
 
- 
+
+    Given .. specific to annual plants .. We provide an annual plant population dynamic model 
+    - we present it with an annual plant population dynamic code and give the model code 
+    - we apply this method to a wildlfower case study
+    - this framework can be extended to other population dynamic models. 
+
+
+    Our paper makes it easier for empiricists to characterise species interactions in their systems, as usually they need to come up with complex models to resolve all interactions. We provide a model for annual plant systems  
+    Make it easier for empiricists to characterise species interactions in their system. Typically experimenters who want to build measure these things need to come up with complex models to resolve all interactions. If your data is plant annuals you can just plug your data right in.
+
+    a method which can be extended to any horizontal community for which there is a model of population dynamics - you will just need to adapt the model and scaling of interactions.  If it's a different type of species, you just need to adapt the population model and scaling of the interactions to work with your particular system. 
+
+    The resulting networks present some of the advantages of association networks (many species and interactions, facilitation included), which are a common alternative to estimating interactions in species-rich communities...
+
+    Our framework thus produces a better representation of the complexity of real plant communities and their interactions. This then allows us to do a bunch of cool stuff to a) better understand plant communities in general and b) better understand a specific plant system.  
+
     
-    The model framework presented here allows the estimation of species-rich interaction matrices from plant community data. Our paper makes it easier for empiricists to characterise species interactions in their systems, as usually they need to come up with complex models to resolve all interactions. We provide a model for annual plant systems and a method which can be extended to any horizontal community for which there is a model of population dynamics - you will just need to adapt the model and scaling of interactions. \\
-
-    The interaction matrices this model estimates are fundamentally different to association networks, which are a common alternative to estimating interactions in species-rich communities. Our estimates are direct per-capita effects of one species on another so have direct consequences on population abundances. Our model and it's implementation can estimate these interactions for many species, as well as include intraspecific interactions and facilitation. Our framework thus produces a better representation of the complexity of real plant communities and their interactions. This then allows us to do a bunch of cool stuff to a) better understand plant communities in general and b) better understand a specific plant system.  
-
-    Make it easier for empiricists to characterise species interactions in their system. Typically experimenters who want to build measure these things need to come up with complex models to resolve all interactions. If your data is plant annuals you can just plug your data right in. If it's a different type of species, you just need to adapt the population model and scaling of the interactions to work with your particular system. 
 
     % - deals with many species + measure of uncertainty
     % - deals with some unobserved interactions
@@ -295,16 +305,19 @@
     \subsection{Limitations}
         
         \paragraph{}
-        Though our framework does provide a way of estimating interactions between species which are not observed to cooccur, care should be taken that these unobserved interactions do not dominate a resulting network. The method we propose uses observed interactions to estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones. This method is not appropriate for datasets dominated by missing data on interactions (e.g. over 50\% 'unobserved' interactions). It is also important to consider the likely reasons for missing interactions.  For instance, species pairs known to lack overlapping environmental requirements likely do not occur together due to environmental filtering that precedes interaction between individuals of the species. It would not be appropriate to include such pairs in our framework. 
+        Though our framework does provide a way of estimating interactions between species which are not observed to cooccur, care should be taken that these unobserved interactions do not dominate a resulting network. The method we propose uses observed interactions to estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones. This method is not appropriate for datasets dominated by missing data on interactions (e.g. over 50\% 'unobserved' interactions). It is also important to consider the likely reasons for missing interactions.  For instance, species pairs occupying two very different abiotic niches likely do not occur together due to environmental filtering that precedes and prevents any interaction between individuals of these two species. It would not be appropriate to include an interaction between such pairs in our framework. We direct the reader towards the literature on forbidden interactions (REFS) for solving these cases. 
 
-        These interactions can be replaced with a 0... briefly bring up forbidden interactions, and how that framework (get a ref) could be helpful to people who have a lot of missing observations, or where there’s likely to be strong niche differences between species leading to no interactions. 
-
-        Our model framework is aimed to helping empiricists who want to estimate interactions for non-trophic horizontal communities - but these empiricists will still require large amounts of data. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify that the full parameter space is sampled. We wouldn't recommend fewer than 20 observations per focal species, and we do recommend grouping species which appear very very rarely (Give details, what criteria did I use? Can also say you can change that, especially if you know the system well...). More data will also give more precise estimates of interaction strengths.   
+        \paragraph{}
+        Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial as we do not recommend fewer than 20 observations per focal species. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times in each habitat type were grouped into a 'rares' category with its own interaction effect. If interactions with or between rare species are the object of interest however, data-collection can simply be focused on amassing observations of focal individuals from those rarer species as more data will also give more precise estimates of interaction strengths.   
 
 
     \subsection{Applications to ecosystem management}
 
-        Interaction networks provide a unique lens with which to examine an ecological community. Specifically, interaction networks allow us to determine important species which have particular effects on the wider community, as well as to examine how species of interest are affected by the whole community. These two aspects are particularly important to ecosystem management and conservation because they allow us to establish management strategies which are adapted to the community and species involved, and which acknowledge the interlinkedness of species and their effects on one another.  \\
+        \paragraph{}
+        Interaction networks provide a unique lens with which to examine an ecological community. Specifically, interaction networks allow us to determine how individual species affect and respond to community dynamics and how, in turn, community dynamics may be affected by the loss or removal of specific species (REF). This knowledge can be particularly important to ecosystem management and conservation because it can guide the establishment of management strategies which......... are adapted to the community and species involved and acknowledge the interlinkedness of species and their effects on one another. 
+
+
+
 
         Certain species play important roles in the community which can be deduced from their position in the interaction network. Keystone species for example are both crucial to maintaining the organisation and diversity of their community, and have exceptionally strong effects on other species (Mills et al. 1993), often leading to secondary extinctions when they are removed from a network. In single-trophic systems, keystone species could be identified by their high in-strength ... Foundation species on the other hand ... Foundation species can be identified by high abundance, connectedness and predominantly facilitative interactions. \\
 
@@ -320,6 +333,7 @@
       
     \subsection{Understanding community diversity and stability}
 
+        \paragraph{}
         Quantifying the interaction networks of plant communities allows us to explore how the mechanisms maintaining diversity and stability operate across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability (Barabas 2017 NEE) and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive and facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species: weak interactions between species indicate they are not sharing or competing for many resources, and occupy different niche spaces in the community (ref??). Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to continued coexistence in plant communities.\\
 
         A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised (Bruno Callaway 2003) but there is still little consensus on how they may affect biodiversity. % MMM comment on ‘coexistence’: Needs to be clear if you have a good way to make this link or not – Maybe use ‘biodiversity’ or synonym, not coex? 
