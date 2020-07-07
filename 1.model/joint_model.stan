@@ -32,8 +32,8 @@ parameters {
   
   
   vector[I] interactions;     // vector of interactions which have been observed
-  vector[K] effect;            // competitive effect of neighbours, same across all focals
-  // can be facilitative (-) or competitive (+)
+  vector[K] effect;            // competitive effect of neighbours, same across all 
+  // focals, can be facilitative (-) or competitive (+)
   vector<lower=0>[S] response; // species-specific competitive response parameter
   // >= 0 to avoid bimodality in response and effect  
 
@@ -47,7 +47,7 @@ transformed parameters {
   matrix[S, K] ifm_alpha; 	 // community matrix 
   vector[I] re;              // interactions as calculated by the re model
   
-  ifm_alpha = rep_matrix(0, S, K);   // fill the community matrix with 0 (instead of NA)
+  ifm_alpha = rep_matrix(0, S, K); // fill the community matrix with 0 (instead of NA)
   
   // match observed interactions parameters to the correct position in the community matrix
   for(s in 1:S) {
@@ -61,7 +61,7 @@ transformed parameters {
        mu[n] = exp(a[species_ID[n]] - dot_product(X[n], ifm_alpha[species_ID[n], ]));  
   }
   
-  // build a vector of interaction parameters based on the response effect model approach
+  // build a vector of interaction parameters based on the response effect model 
   for (i in 1:I) {
     re[i] = response[irow[i]]*effect[icol[i]];
   }

@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -12,6 +12,128 @@ Benjamin Baiser, Nathaniel Whitaker, and Aaron~M. Ellison.
 \newblock ISSN 21508925.
 \newblock \doi{10.1890/ES13-00265.1}.
 
+\bibitem[Barab{\'{a}}s et~al.(2017)Barab{\'{a}}s, Michalska-Smith, and
+  Allesina]{Barabas2017}
+Gy{\"{o}}rgy Barab{\'{a}}s, Matthew~J. Michalska-Smith, and Stefano Allesina.
+\newblock {Self-regulation and the stability of large ecological networks}.
+\newblock \emph{Nature Ecology and Evolution}, 1\penalty0 (12):\penalty0
+  1870--1875, 2017.
+\newblock ISSN 2397334X.
+\newblock \doi{10.1038/s41559-017-0357-6}.
+
+\bibitem[Bimler et~al.(2018)Bimler, Stouffer, Lai, and Mayfield]{Bimler2018a}
+Malyon~D. Bimler, Daniel~B. Stouffer, Hao~Ran Lai, and Margaret~M. Mayfield.
+\newblock {Accurate predictions of coexistence in natural systems require the
+  inclusion of facilitative interactions and environmental dependency}.
+\newblock \emph{Journal of Ecology}, 106\penalty0 (5):\penalty0 1839--1852,
+  2018.
+\newblock ISSN 00220477.
+\newblock \doi{10.1111/1365-2745.13030}.
+
+\bibitem[Blanchet et~al.(2020)Blanchet, Cazelles, and Gravel]{Blanchet2020}
+F.~Guillaume Blanchet, Kevin Cazelles, and Dominique Gravel.
+\newblock {Co-occurrence is not evidence of ecological interactions}.
+\newblock \emph{Ecology Letters}, 2020.
+\newblock \doi{10.1111/ele.13525}.
+
+\bibitem[Brooker et~al.(2008{\natexlab{a}})Brooker, Maestre, Callaway, Lortie,
+  Cavieres, Kunstler, Liancourt, Tielb{\"{o}}rger, Travis, Anthelme, Armas,
+  Coll, Corcket, Delzon, Forey, Kikvidze, Olofsson, Pugnaire, Quiroz, Saccone,
+  Schiffers, Seifan, Touzard, and Michalet]{Brooker2008a}
+Rob~W. Brooker, Fernando~T. Maestre, Ragan~M. Callaway, Christopher~L. Lortie,
+  Lohengrin~A. Cavieres, Georges Kunstler, Pierre Liancourt, Katja
+  Tielb{\"{o}}rger, Justin M~J Travis, Fabien Anthelme, Cristina Armas, Lluis
+  Coll, Emmanuel Corcket, Sylvain Delzon, Estelle Forey, Zaal Kikvidze, Johan
+  Olofsson, Francisco Pugnaire, Constanza~L. Quiroz, Patrick Saccone, Katja
+  Schiffers, Merav Seifan, Blaize Touzard, and Richard Michalet.
+\newblock {Facilitation in plant communities: The past, the present, and the
+  future}.
+\newblock \emph{Journal of Ecology}, 96\penalty0 (1):\penalty0 18--34,
+  2008{\natexlab{a}}.
+\newblock ISSN 00220477.
+\newblock \doi{10.1111/j.1365-2745.2007.01295.x}.
+
+\bibitem[Brooker et~al.(2008{\natexlab{b}})Brooker, Maestre, Callaway, Lortie,
+  Cavieres, Kunstler, Liancourt, Tielb{\"{o}}rger, Travis, Anthelme, Armas,
+  Coll, Corcket, Delzon, Forey, Kikvidze, Olofsson, Pugnaire, Quiroz, Saccone,
+  Schiffers, Seifan, Touzard, and Michalet]{Brooker2008}
+Rob~W. Brooker, Fernando~T. Maestre, Ragan~M. Callaway, Christopher~L. Lortie,
+  Lohengrin~A. Cavieres, Georges Kunstler, Pierre Liancourt, Katja
+  Tielb{\"{o}}rger, Justin~M.J. Travis, Fabien Anthelme, Cristina Armas, Lluis
+  Coll, Emmanuel Corcket, Sylvain Delzon, Estelle Forey, Zaal Kikvidze, Johan
+  Olofsson, Francisco Pugnaire, Constanza~L. Quiroz, Patrick Saccone, Katja
+  Schiffers, Merav Seifan, Blaize Touzard, and Richard Michalet.
+\newblock {Facilitation in plant communities: The past, the present, and the
+  future}.
+\newblock \emph{Journal of Ecology}, 96\penalty0 (1):\penalty0 18--34,
+  2008{\natexlab{b}}.
+\newblock ISSN 13652745.
+\newblock \doi{10.1111/j.1365-2745.2007.01295.x}.
+
+\bibitem[Bruno et~al.(2003)Bruno, Stachowicz, and Bertness]{Bruno2003}
+John~F. Bruno, John~J. Stachowicz, and Mark~D. Bertness.
+\newblock {Inclusion of facilitation into ecological theory}.
+\newblock \emph{Trends in Ecology and Evolution}, 18\penalty0 (3):\penalty0
+  119--125, 2003.
+\newblock ISSN 01695347.
+\newblock \doi{10.1016/S0169-5347(02)00045-9}.
+
+\bibitem[Callaway et~al.(1997)Callaway, Walker, {Callaway 'and}, and
+  Walker2]{Callaway1997a}
+Ragan~M Callaway, Lawrence~R Walker, Ragan~M {Callaway 'and}, and Lawrence~R
+  Walker2.
+\newblock {Competition and Facilitation: A Synthetic Approach to Interactions
+  in Plant Communities}.
+\newblock \emph{Source: Ecology Ecology}, 7812514473\penalty0 (787):\penalty0
+  1958--1965, 1997.
+\newblock ISSN 00129658.
+\newblock \doi{10.1890/0012-9658(1997)078[1958:CAFASA]2.0.CO;2}.
+\newblock URL
+  \url{http://www.jstor.org/stable/2265936{\%}5Cnhttp://www.jstor.org/stable/2265936?seq=1{\&}cid=pdf-reference{\#}references{\_}tab{\_}contents{\%}5Cnhttp://www.jstor.org/page/}.
+
+\bibitem[Carpenter et~al.(2017)Carpenter, Gelman, Hoffman, Lee, Goodrich,
+  Betancourt, Brubaker, Guo, Li, and Riddell]{Carpenter2017}
+Bob Carpenter, Andrew Gelman, Matthew~D. Hoffman, Daniel Lee, Ben Goodrich,
+  Michael Betancourt, Marcus~A. Brubaker, Jiqiang Guo, Peter Li, and Allen
+  Riddell.
+\newblock {Stan: A probabilistic programming language}.
+\newblock \emph{Journal of Statistical Software}, 76\penalty0 (1), 2017.
+\newblock ISSN 15487660.
+\newblock \doi{10.18637/jss.v076.i01}.
+
+\bibitem[Chu and Adler(2015)]{Chu2015a}
+Chengjin Chu and Peter~B. Adler.
+\newblock {Large niche differences emerge at the recruitment stage to stabilize
+  grassland coexistence}.
+\newblock \emph{Ecological Monographs}, 85\penalty0 (3):\penalty0 ----, 2015.
+\newblock ISSN 0012-9615.
+\newblock \doi{10.1890/14-1741.1}.
+\newblock URL \url{http://dx.doi.org/10.1890/14-1741.1}.
+
+\bibitem[Cirtwill et~al.(2018)Cirtwill, Valentino, Riva, Gaiarsa, Bimler,
+  Cagua, Coux, and Matthias]{Cirtwill2018a}
+Alyssa~R Cirtwill, Giulio Valentino, Dalla Riva, Marilia~P Gaiarsa, Malyon~D
+  Bimler, E~Fernando Cagua, Camille Coux, and D~Matthias.
+\newblock {A review of species role concepts in food webs}.
+\newblock \emph{Food Webs}, page e00093, 2018.
+\newblock ISSN 23522496.
+\newblock \doi{10.1016/j.fooweb.2018.e00093}.
+\newblock URL \url{https://doi.org/10.1016/j.fooweb.2018.e00093}.
+
+\bibitem[Connell(1961)]{Connell1961}
+Joseph~H. Connell.
+\newblock {The influence of interspecific competi-tion and other factors on the
+  distribution of the barnacle Chthamalus stellatus}.
+\newblock \emph{Ecology}, 42:\penalty0 710--723, 1961.
+
+\bibitem[Coyte et~al.(2015)Coyte, Schluter, and Foster]{Coyte2015}
+Katharine~Z. Coyte, Jonas Schluter, and Kevin~R. Foster.
+\newblock {The ecology of the microbiome: Networks, competition, and
+  stability}.
+\newblock \emph{Science}, 350\penalty0 (6261):\penalty0 663--666, 2015.
+\newblock ISSN 10959203.
+\newblock \doi{10.1126/science.aad2602}.
+
 \bibitem[Dorazio(2016)]{Dorazio2016}
 Robert~M. Dorazio.
 \newblock {Bayesian data analysis in population ecology: motivations, methods,
@@ -19,6 +141,15 @@ Robert~M. Dorazio.
 \newblock \emph{Population Ecology}, 58\penalty0 (1):\penalty0 31--44, 2016.
 \newblock ISSN 14383896.
 \newblock \doi{10.1007/s10144-015-0503-4}.
+
+\bibitem[Ellison(2019)]{Ellison2019}
+Aaron~M. Ellison.
+\newblock {Foundation Species, Non-trophic Interactions, and the Value of Being
+  Common}.
+\newblock \emph{iScience}, 13:\penalty0 254--268, 2019.
+\newblock ISSN 25890042.
+\newblock \doi{10.1016/j.isci.2019.02.020}.
+\newblock URL \url{https://doi.org/10.1016/j.isci.2019.02.020}.
 
 \bibitem[Ellison et~al.(2005)Ellison, Bank, Clinton, Colburn, Elliott, Ford,
   Foster, Kloeppel, Knoepp, Lovett, Mohan, Orwig, Rodenhouse, Sobczak, Stinson,
@@ -36,6 +167,52 @@ Aaron~M. Ellison, Michael~S. Bank, Barton~D. Clinton, Elizabeth~A. Colburn,
 \newblock ISSN 15409309.
 \newblock \doi{10.1890/1540-9295(2005)003[0479:LOFSCF]2.0.CO;2}.
 
+\bibitem[Godoy and Levine(2014)]{Godoy2014}
+Oscar Godoy and Jonathan~M. Levine.
+\newblock {Phenology effects on invasion success: Insights from coupling field
+  experiments to coexistence theory}.
+\newblock \emph{Ecology}, 95\penalty0 (3):\penalty0 726--736, 2014.
+\newblock ISSN 00129658.
+\newblock \doi{10.1890/13-1157.1}.
+
+\bibitem[Grace and Tilman(1990)]{Grace1990}
+James~B. Grace and David Tilman.
+\newblock \emph{{Perspectives on plant competition}}.
+\newblock Academic Press, 1990.
+\newblock ISBN 9780122944529.
+
+\bibitem[Griffith et~al.(2016)Griffith, Veech, and Marsh]{Griffith2016}
+Daniel~M Griffith, Joseph~A Veech, and Charles~J Marsh.
+\newblock {cooccur: Probabilistic Species Co-Occurrence Analysis in R}.
+\newblock \emph{Journal of Statistical Software}, 69\penalty0
+  (February):\penalty0 1--17, 2016.
+\newblock \doi{10.18637/jss.v069.c02}.
+
+\bibitem[Gross et~al.(2015)Gross, Liancourt, Butters, Duncan, and
+  Hulme]{Gross2015}
+Nicolas Gross, Pierre Liancourt, Robyn Butters, Richard~P. Duncan, and
+  Philip~E. Hulme.
+\newblock {Functional equivalence, competitive hierarchy and facilitation
+  determine species coexistence in highly invaded grasslands}.
+\newblock \emph{New Phytologist}, 206\penalty0 (1):\penalty0 175--186, 2015.
+\newblock ISSN 14698137.
+\newblock \doi{10.1111/nph.13168}.
+
+\bibitem[Keil et~al.(2019)Keil, Wiegand, Toth, Mcglinn, and Chase]{Keil2019}
+Petr Keil, Thorsten Wiegand, Aniko~B. Toth, Daniel~J Mcglinn, and Jonathan~M
+  Chase.
+\newblock {Interspecific spatial associations as a facet of biodiversity , and
+  a review of approaches to measure them}.
+\newblock \emph{EcoEvoRxiv}, 2019.
+
+\bibitem[Laird and Schamp(2006)]{Laird2006a}
+Robert~A. Laird and Brandon~S. Schamp.
+\newblock {Competitive Intransitivity Promotes Species Coexistence}.
+\newblock \emph{The American Naturalist}, 168\penalty0 (2):\penalty0 182--193,
+  2006.
+\newblock ISSN 0003-0147.
+\newblock \doi{10.1086/506259}.
+
 \bibitem[Libralato et~al.(2006)Libralato, Christensen, and
   Pauly]{Libralato2006}
 Simone Libralato, Villy Christensen, and Daniel Pauly.
@@ -44,5 +221,67 @@ Simone Libralato, Villy Christensen, and Daniel Pauly.
   2006.
 \newblock ISSN 03043800.
 \newblock \doi{10.1016/j.ecolmodel.2005.11.029}.
+
+\bibitem[Losapio et~al.(2019)Losapio, Montesinos-Navarro, and
+  Saiz]{Losapio2019}
+Gianalberto Losapio, Alicia Montesinos-Navarro, and Hugo Saiz.
+\newblock {Perspectives for ecological networks in plant ecology}.
+\newblock \emph{Plant Ecology {\&} Diversity}, 12\penalty0 (2):\penalty0
+  87--102, 2019.
+\newblock ISSN 1755-0874.
+\newblock \doi{10.1080/17550874.2019.1626509}.
+\newblock URL \url{https://doi.org/10.1080/17550874.2019.1626509}.
+
+\bibitem[Picoche and Barraquand(2020)]{Picoche2020}
+Coralie Picoche and Fr{\'{e}}d{\'{e}}ric Barraquand.
+\newblock {Strong self-regulation and widespread facilitative interactions in
+  phytoplankton communities}.
+\newblock \emph{Journal of Ecology}, 00\penalty0 (March):\penalty0 1--11, 2020.
+\newblock \doi{10.1111/1365-2745.13410}.
+
+\bibitem[Power et~al.(1996)Power, Tilman, Estes, Menge, Bond, Mills, Daily,
+  Castilla, Lubchenco, and Paine]{Power1996}
+Mary~E. Power, David Tilman, James~A. Estes, Bruce~A. Menge, William~J. Bond,
+  L.~Scott Mills, Gretchen Daily, Juan~Carlos Castilla, Jane Lubchenco, and
+  Robert~T. Paine.
+\newblock {Challenges in the Quest for Keystones}.
+\newblock \emph{BioScience}, 46\penalty0 (8):\penalty0 609--620, 1996.
+\newblock ISSN 00063568.
+\newblock \doi{10.2307/1312990}.
+
+\bibitem[{R Core Team}(2020)]{R2020}
+{R Core Team}.
+\newblock {R: A Language and Environment for Statistical Computing}, 2020.
+\newblock URL \url{https://www.r-project.org/}.
+
+\bibitem[Sander et~al.(2017)Sander, Wootton, and Allesina]{Sander2017}
+Elizabeth~L. Sander, J.~Timothy Wootton, and Stefano Allesina.
+\newblock {Ecological Network Inference from Long-Term Presence-Absence Data}.
+\newblock \emph{Scientific Reports}, 7\penalty0 (1):\penalty0 1--12, 2017.
+\newblock ISSN 20452322.
+\newblock \doi{10.1038/s41598-017-07009-x}.
+\newblock URL \url{http://dx.doi.org/10.1038/s41598-017-07009-x}.
+
+\bibitem[{Stan Development Team}(2020)]{Rstan2020}
+{Stan Development Team}.
+\newblock {RStan: the R interface to Stan. R package version 2.19.3.}
+\newblock 2020.
+\newblock URL \url{http://mc-stan.org/}.
+
+\bibitem[Thurman et~al.(2019)Thurman, Barner, Garcia, and
+  Chestnut]{Thurman2019}
+Lindsey~L. Thurman, Allison~K. Barner, Tiffany~S. Garcia, and Tara Chestnut.
+\newblock {Testing the link between species interactions and co-occurrence in a
+  trophic network}.
+\newblock \emph{Ecography}, 2019.
+\newblock \doi{10.1111/ecog.04360}.
+
+\bibitem[Ulanowicz and Wolff(1991)]{Ulanowicz1991}
+Robert~E. Ulanowicz and Wilfried~F. Wolff.
+\newblock {Ecosystem flow networks: Loaded dice?}
+\newblock \emph{Mathematical Biosciences}, 103\penalty0 (1):\penalty0 45--68,
+  1991.
+\newblock ISSN 00255564.
+\newblock \doi{10.1016/0025-5564(91)90090-6}.
 
 \end{thebibliography}

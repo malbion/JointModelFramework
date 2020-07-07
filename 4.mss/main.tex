@@ -65,12 +65,10 @@
     Non-trophic interactions like competition or facilitation are mediated by shared resources, space, predators, disease, pollinators, etc... many different mechanisms and can't always be observed. 
     
     \paragraph{}
-    A common method of inferring plant interactions is by measuring positive and negative spatial associations between species, resulting in  co-occurrence networks which capture a variety of factors including biotic interactions \citep{Losapio2019}. This approach benefits from only requiring spatial distribution data and can naturally handle a large number of species. A wide range of packages are available in R to deduce association networks, alongside further tools and methods to better infer plant interactions from spatial distribution \citep{Keil2019}, for example by including environmental covariates. Spatial association networks however, have been found to remain poor predictors of species interactions \citep{Sander2017, Thurman2019, Blanchet2020}. 
+    A common method of inferring plant interactions is by measuring positive and negative spatial associations between species, resulting in  co-occurrence networks which capture a variety of factors including biotic interactions \citep{Losapio2019}. This approach benefits from only requiring spatial distribution data and can naturally handle a large number of species. A wide range of packages are available in R to deduce association networks, alongside further tools and methods to better infer plant interactions from spatial distribution patterns \citep{Keil2019}, for example by including environmental covariates. Spatial association networks however, have been found to remain poor predictors of species interactions \citep{Sander2017, Thurman2019, Blanchet2020}. 
 
     \paragraph{}
-    Plant interactions can otherwise be measured by quantifying the effects of neighbouring species on a proxy for lifetime reproductive success (e.g. fecundity, growth rate) \citep{Connell1961, Grace1990}
-
-    , resulting in per-capita interaction strengths which can be directly linked to changes in species abundances ...
+    Plant interactions can otherwise be measured by quantifying the effects of neighbouring species on a proxy for lifetime reproductive success (e.g. fecundity, growth rate) \citep{Connell1961, Grace1990}. This can be done for example by growing focal species with neighbours of different identities and at varying densities. The resulting interaction strengths are not dependant on any specific mechanism and can be directly linked to changes in species abundances through the use of population dynamic models. This approach can be useful in a wide variety of situations, from ... \citep{Godoy2014} to ... Wainwright ref? and other in the lab? However, this method is typically unable to resolve interactions between large numbers of species, because you need a lot of data (lots of replication) and complex models which run the danger of bering overparameterised aongst other things. 
 
 
     4. Another way is to estimate from growth data. This is the approach plant people take, using population dynamic models. (refs to Godoy, Wainwright, and others who have used this method) This is often done a low diversity scales (few species) because we need a lot of replication! 
@@ -78,7 +76,7 @@
         There are few however, published plant population dynamic models which are explicitely developped to include many species.
 
         \begin{itemize}
-            \item Losapio2019= methods and results of plant-plant networks [refhole]
+            \item Losapio2019= methods and results of plant-plant networks [refhole] <========================= 
             \item Godoy2014b = field parameterised models of competitor dynamics with pairs of 18 annual plant species
         \end{itemize}
 
@@ -225,7 +223,7 @@
     \begin{figure}[H]
         \hspace*{-2cm}
         \includegraphics[width=1.2\textwidth]{../2.analyses/figures/together.png}
-        \caption{Competitive (A) and facilitative (B) interaction networks estimated from our model framework, compared to an association network (E) estimated from the same data using the cooccur package. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (C). Focal species only are included. Species associations (E) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. (D) shows the proportion of interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-).}
+        \caption{Competitive (A) and facilitative (B) interaction networks estimated from our model framework, compared to an association network (E) estimated from the same data using the cooccur package \citep{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (C). Focal species only are included. Species associations (E) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. (D) shows the proportion of interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-).}
         \label{fig:netwks}
     \end{figure}    
 
