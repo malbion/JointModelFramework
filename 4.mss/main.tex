@@ -16,6 +16,7 @@
 % GRAPHICS
     \usepackage{graphicx} % More advanced figure inclusion
     \usepackage{float} % For specifying table/figure locations, i.e. [ht!]
+    \usepackage{changepage}
     \usepackage[table,xcdraw]{xcolor}
 
 \title{Estimating interaction networks for diverse, single-trophic communities}
@@ -274,47 +275,24 @@
 \section{Discussion}
     
     \paragraph{}
-    The framework presented here allows the estimation of species-rich interaction matrices from plant community data. Given individual observations of reproductive success and the identity of the local neighbourhood, our model uses Bayesian regression to quantify the competitive or facilitative effects of one species on another's growth rate. This method extends traditional plant population ecology approaches to quantifying interactions by explicitely allowing for many species and interactions, as well as being able to include and estimate facilitation. The resulting networks present some of the advantages of association networks (many species and interactions, facilitation included) but remain ... qualitatively different... 
-
-
-    Given .. specific to annual plants .. We provide an annual plant population dynamic model 
-    - we present it with an annual plant population dynamic code and give the model code 
-    - we apply this method to a wildlfower case study
-    - this framework can be extended to other population dynamic models. 
-
-
-    Our paper makes it easier for empiricists to characterise species interactions in their systems, as usually they need to come up with complex models to resolve all interactions. We provide a model for annual plant systems  
-    Make it easier for empiricists to characterise species interactions in their system. Typically experimenters who want to build measure these things need to come up with complex models to resolve all interactions. If your data is plant annuals you can just plug your data right in.
-
-    a method which can be extended to any horizontal community for which there is a model of population dynamics - you will just need to adapt the model and scaling of interactions.  If it's a different type of species, you just need to adapt the population model and scaling of the interactions to work with your particular system. 
-
-    The resulting networks present some of the advantages of association networks (many species and interactions, facilitation included), which are a common alternative to estimating interactions in species-rich communities...
-
-    Our framework thus produces a better representation of the complexity of real plant communities and their interactions. This then allows us to do a bunch of cool stuff to a) better understand plant communities in general and b) better understand a specific plant system.  
-
-    
-
-    % - deals with many species + measure of uncertainty
-    % - deals with some unobserved interactions
-    % - derived from pop dynamic models so direct consequences on pop abundances
-    % - deals with facilitation 
-    % - pairwise interactions (directional!)
-
-    % -> better representation of complexity of real plant communities
+    The framework presented here allows the estimation of species-rich interaction matrices from plant community data. Given individual observations of reproductive success and the identity of the local neighbourhood, our model uses Bayesian regression to quantify the competitive or facilitative effects of one species on another's growth rate. This method extends traditional plant population ecology approaches to quantifying interactions by explicitely allowing for many species and interactions, as well as being able to include and estimate facilitation. We showcase this framework with a case study on a diverse annual wildflower system and illustrate how the resulting networks differ qualitatively from association networks, a common alternative to estimating interactions in species-rich communities. Quantifying non-trophic interaction networks allows us to better characterise the inner workings of these communities and has strong applications for ecosystem management and conservation. 
 
     \subsection{Limitations}
         
         \paragraph{}
-        Though our framework does provide a way of estimating interactions between species which are not observed to cooccur, care should be taken that these unobserved interactions do not dominate a resulting network. The method we propose uses observed interactions to estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones. This method is not appropriate for datasets dominated by missing data on interactions (e.g. over 50\% 'unobserved' interactions). It is also important to consider the likely reasons for missing interactions.  For instance, species pairs occupying two very different abiotic niches likely do not occur together due to environmental filtering that precedes and prevents any interaction between individuals of these two species. It would not be appropriate to include an interaction between such pairs in our framework. We direct the reader towards the literature on forbidden interactions (REFS) for solving these cases. 
+        Though our framework does provide a way of estimating interactions between species which are not observed to cooccur, care should be taken that these unrealised interactions do not dominate a resulting network. The method we propose uses observed interactions to estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones. This method is not appropriate for datasets dominated by missing data on interactions (e.g. over 50\% unrealised interactions). It is also important to consider the likely reasons for missing interactions.  For instance, species pairs occupying two very different abiotic niches likely do not occur together due to environmental filtering that precedes and prevents any interaction between individuals of these two species. It would not be appropriate to include an interaction between such pairs in our framework. We direct the reader towards the literature on forbidden interactions (REFS) for solving these cases. 
 
         \paragraph{}
-        Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial as we do not recommend fewer than 20 observations per focal species. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times in each habitat type were grouped into a 'rares' category with its own interaction effect. If interactions with or between rare species are the object of interest however, data-collection can simply be focused on amassing observations of focal individuals from those rarer species as more data will also give more precise estimates of interaction strengths.   
+        Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial as we do not recommend fewer than 20 observations per focal species. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times in each habitat type were grouped into a 'rares' category with its own interaction effect. If interactions with or between rare species are the object of interest however, data-collection can simply be focused on amassing observations of focal individuals from those rarer species to be able to estimate these interaction strengths.   
 
 
     \subsection{Applications to ecosystem management}
 
         \paragraph{}
-        Interaction networks provide a unique lens with which to examine an ecological community. Specifically, interaction networks allow us to determine how individual species affect and respond to community dynamics and how, in turn, community dynamics may be affected by the loss or removal of specific species (REF). This knowledge can be particularly important to ecosystem management and conservation because it can guide the establishment of management strategies which......... are adapted to the community and species involved and acknowledge the interlinkedness of species and their effects on one another. 
+        Interaction networks provide a unique lens with which to examine an ecological community. Specifically, interaction networks allow us to determine how individual species affect and respond to community dynamics and how, in turn, community dynamics may be affected by the loss or removal of specific species (REF). This knowledge can be particularly important in guiding ecosystem management and conservation by encouraging  the establishment of management strategies which ...
+
+
+        ......... are adapted to the community and species involved and acknowledge the interlinkedness of species and their effects on one another. 
 
 
 
@@ -334,24 +312,25 @@
     \subsection{Understanding community diversity and stability}
 
         \paragraph{}
-        Quantifying the interaction networks of plant communities allows us to explore how the mechanisms maintaining diversity and stability operate across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability (Barabas 2017 NEE) and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive and facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species: weak interactions between species indicate they are not sharing or competing for many resources, and occupy different niche spaces in the community (ref??). Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to continued coexistence in plant communities.\\
+        Quantifying the interaction networks of plant communities allows us to explore how the mechanisms maintaining diversity and stability operate across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability \citep{Barabas2017} and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive and facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species (for an example, see \citet{Chu2015a}): weak interactions between species indicate they are not sharing or competing for many resources, and occupy different niche spaces in the community (ref??). Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to stability and diversity in plant communities.
 
-        A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised (Bruno Callaway 2003) but there is still little consensus on how they may affect biodiversity. % MMM comment on ‘coexistence’: Needs to be clear if you have a good way to make this link or not – Maybe use ‘biodiversity’ or synonym, not coex? 
-        Recent work suggests facilitation may be common (ref) and may harm or benefit species diversity and stability depending on the circumstances (ref). Our framework provides a means to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity.  \\
-     
-        Ultimately, quantifying plant interaction networks allows us to apply tools from network theory which will help us understand not only how plants interact, but also how these interactions drive community-level patterns of abundance and diversity. Several metrics already exist for describing network structure such as weighted connectance or relative intransitivity, though these are fewer than for trophic or bipartite networks. Adapting measures of nestedness or modularity for example to non-sparse networks (as plant communities typically are) would allow us to further characterise how interactions and species are organised. These metrics all relate to different aspects of stability and could greatly inform us on how diversity is maintained between plants.  
+        \paragraph{}
+        A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised \citep{Callaway1997a} but there is still little consensus on how they may affect biodiversity \citep{Bruno2003}. Recent work suggests facilitation may be more widespread than expected \citep{Gross2015, Picoche2020} and can  benefit species diversity and stability depending on the circumstances \citep{Coyte2015, Brooker2008}. Our framework provides a means to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity.  
+        
+        \paragraph{}
+        Ultimately, quantifying plant interaction networks allows us to apply tools from network theory which will help us understand not only how plants interact, but also how these interactions drive community-level patterns of abundance and diversity. Several metrics already exist for describing network structure such as weighted connectance \citep{Ulanowicz1991} or relative intransitivity \citep{Laird2006a}, though these are fewer than for trophic or bipartite networks. Adapting measures of nestedness or modularity for example to non-sparse networks (as plant communities typically are) would allow us to further characterise how interactions and species are organised. These metrics relate to various aspects of stability and could greatly inform us on how diversity is maintained between plants. Likewise, networks also provide several ways of measuring and describing species roles in their respective communities \citep{Cirtwill2018a} for example through the use of structural motifs, unique patterns of interacting species which together make up the whole network. Motifs have been found to have important biological meaning in food webs \citep{Bascompte2005a} but remain to be identified for single-trophic and bipartite networks. 
 
-        Further avenues also exist to characterise how species tend to interact. Network motifs for example are the units which makes up a network, such as a three species food chain or an intransitive interaction loop. These motifs have important biological meaning. We could extend the network motif approach to single-trophic networks to characterise the kind of roles that species can occupy in relation to the wider plant community (Cirtwill ref!). \\
+        \paragraph{}
+        Lastly
 
 
 
-    \subsection{Future research directions}
+    % \subsection{Future research directions}
 
-    
-    - adding trait or phylogeny data, for example by informing priors with trait or phylogeny distance matrix
-    ie. improving our estimates \\
-    - improving our knowledge of networks, developing tools for plant networks and tools that can deal with non-sparse networks, competitive and facilitative interactions \\
-    - integrate with trophic networks (which appear to be sensitive to producer/plant network structure!)\\
+    % - adding trait or phylogeny data, for example by informing priors with trait or phylogeny distance matrix
+    % ie. improving our estimates \\
+    % - improving our knowledge of networks, developing tools for plant networks and tools that can deal with non-sparse networks, competitive and facilitative interactions \\
+    % - integrate with trophic networks (which appear to be sensitive to producer/plant network structure!)\\
 
 
 \bibliography{../../../BibTex_files/03_Chapter3}
@@ -362,6 +341,100 @@
 
     \subsection{STAN model code}
 
-     
+\begin{adjustwidth}{-150pt}{}
+    %\lstset{language=Stan}
+    \begin{lstlisting}
+                /* 
+        code to run a joint IF and RE model on 
+        all focal species at once
+        */ 
+          
+          
+          data {
+            int<lower=1> S;          // number of species (rows in model matrix)
+            int<lower=1> N;          // number of observations
+            int<lower=0> K;          // number of neighbours (columns in model matrix)
+            int<lower=0> I;          // number of interactions observed
+            
+            int<lower=0> species_ID[N];   // species index for observations
+            int<lower=0> seeds[N];        // response variable 
+            
+            int<lower=0> istart[S];       // indices matching species to interactions
+            int<lower=0> iend[S];
+            int<lower=0> icol[I];
+            int<lower=0> irow[I];
+            
+            matrix[N,K] X;         // neighbour abundances, the model matrix
+          
+          } 
+
+        parameters {
+          
+          vector[S] a;    // species-specific intercept, i.e. log(lambda) (intrinsic fitness)
+          vector<lower=0>[S] disp_dev; // species-specific param for dispersion deviation, 
+          // disp_dev = 1/sqrt(phi) 
+          
+          
+          vector[I] interactions;     // vector of interactions which have been observed
+          vector[K] effect;            // competitive effect of neighbours, same across all 
+          // focals, can be facilitative (-) or competitive (+)
+          vector<lower=0>[S] response; // species-specific competitive response parameter
+          // >= 0 to avoid bimodality in response and effect  
+
+          real<lower=0> sigma_alph; // variance for the ifm alphas
+        } 
+
+        transformed parameters {
+          
+          // transformed parameters constructed from params above
+          vector[N] mu;              // the linear predictor
+          matrix[S, K] ifm_alpha;    // community matrix 
+          vector[I] re;              // interactions as calculated by the re model
+          
+          ifm_alpha = rep_matrix(0, S, K); // fill the community matrix with 0 (instead of NA)
+          
+          // match observed interactions parameters to the correct position in the community matrix
+          for(s in 1:S) {
+            for(i in istart[s]:iend[s]) {
+              ifm_alpha[irow[i], icol[i]] = interactions[i];
+            }
+          }
+          
+          // individual fitness model 
+          for(n in 1:N) {
+               mu[n] = exp(a[species_ID[n]] - dot_product(X[n], ifm_alpha[species_ID[n], ]));  
+          }
+          
+          // build a vector of interaction parameters based on the response effect model 
+          for (i in 1:I) {
+            re[i] = response[irow[i]]*effect[icol[i]];
+          }
+          
+        } 
+
+        model {
+
+          // priors
+          a ~ cauchy(0,10); // prior for the intercept following Gelman 2008
+          disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
+          
+          response ~ normal(0, 1);   // 
+          effect ~ normal(0, 1);
+          sigma_alph ~ cauchy(0, 1);
+
+          // seed production 
+          for(n in 1:N) {
+            seeds[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
+          }
+
+          // response-effect interactions
+          for (i in 1:I) {
+            target += logistic_lpdf(re[i] | interactions[i], sigma_alph);
+          }
+          
+        }
+    \end{lstlisting}
+
+\end{adjustwidth}
 
 \end{document}
