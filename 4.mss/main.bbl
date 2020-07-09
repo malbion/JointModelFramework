@@ -1,9 +1,16 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{67}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Adler et~al.(2010)Adler, Ellner, and Levine]{Adler2010}
+Peter~B. Adler, Stephen~P. Ellner, and Jonathan~M. Levine.
+\newblock {Coexistence of perennial plants: An embarrassment of niches}.
+\newblock \emph{Ecology Letters}, 13\penalty0 (8):\penalty0 1019--1029, 2010.
+\newblock ISSN 14610248.
+\newblock \doi{10.1111/j.1461-0248.2010.01496.x}.
 
 \bibitem[Baiser et~al.(2013)Baiser, Whitaker, and Ellison]{Baiser2013}
 Benjamin Baiser, Nathaniel Whitaker, and Aaron~M. Ellison.
@@ -20,6 +27,20 @@ Gy{\"{o}}rgy Barab{\'{a}}s, Matthew~J. Michalska-Smith, and Stefano Allesina.
   1870--1875, 2017.
 \newblock ISSN 2397334X.
 \newblock \doi{10.1038/s41559-017-0357-6}.
+
+\bibitem[Barner et~al.(2018)Barner, Coblentz, Hacker, and Menge]{Barner2018}
+Alison~K Barner, Kyle~E Coblentz, Sally~D Hacker, and Bruce~A Menge.
+\newblock {Fundamental contradictions among observational and experimental
+  estimates of non-trophic species interactions}.
+\newblock \emph{Ecology}, 0\penalty0 (0):\penalty0 1--10, 2018.
+\newblock \doi{10.1002/ecy.2133}.
+
+\bibitem[Bersier et~al.(2002)Bersier, Banasek-Richter, and Cattin]{Bersier2002}
+Louis-F{\'{e}}lix Bersier, Carolin Banasek-Richter, and Marie-France Cattin.
+\newblock {Quantitative descriptors of food-web matrices}.
+\newblock \emph{Ecology}, 83\penalty0 (9):\penalty0 2101--2117, 2002.
+\newblock URL
+  \url{http://www.mendeley.com/research/relationships-among-species-traits-separating-levels-response-identifying-linkages-abundances/}.
 
 \bibitem[Bimler et~al.(2018)Bimler, Stouffer, Lai, and Mayfield]{Bimler2018a}
 Malyon~D. Bimler, Daniel~B. Stouffer, Hao~Ran Lai, and Margaret~M. Mayfield.
@@ -78,6 +99,21 @@ John~F. Bruno, John~J. Stachowicz, and Mark~D. Bertness.
 \newblock ISSN 01695347.
 \newblock \doi{10.1016/S0169-5347(02)00045-9}.
 
+\bibitem[Calatayud et~al.(2019)Calatayud, Andivia, Escudero, Bernardo-madrid,
+  Meli{\'{a}}n, Stoffel, Aponte, Molina-venegas, Arnan, Luzuriaga, Medina,
+  Neuman, Alves-martins, Rosvall, Noriega, Pataro, Ballesteros-c{\'{a}}novas,
+  Morales-molino, and Ferrandis]{Calatayud2019}
+Joaqu{\'{i}}n Calatayud, Enrique Andivia, Adri{\'{a}}n Escudero, Rub{\'{e}}n
+  Bernardo-madrid, Carlos~J Meli{\'{a}}n, Markus Stoffel, Cristina Aponte,
+  Rafael Molina-venegas, Xavier Arnan, Arantzazu Luzuriaga, Nagore~G Medina,
+  Magnus Neuman, Fernanda Alves-martins, Martin Rosvall, Jorge~Ari Noriega,
+  Luciano Pataro, Antonio Ballesteros-c{\'{a}}novas, C{\'{e}}sar
+  Morales-molino, and Pablo Ferrandis.
+\newblock {Positive associations among rare species drive their persistence in
+  ecological assemblages}.
+\newblock \emph{Nature Ecology {\&} Evolution}, 2019.
+\newblock \doi{10.1038/s41559-019-1053-5}.
+
 \bibitem[Callaway et~al.(1997)Callaway, Walker, {Callaway 'and}, and
   Walker2]{Callaway1997a}
 Ragan~M Callaway, Lawrence~R Walker, Ragan~M {Callaway 'and}, and Lawrence~R
@@ -100,6 +136,14 @@ Bob Carpenter, Andrew Gelman, Matthew~D. Hoffman, Daniel Lee, Ben Goodrich,
 \newblock \emph{Journal of Statistical Software}, 76\penalty0 (1), 2017.
 \newblock ISSN 15487660.
 \newblock \doi{10.18637/jss.v076.i01}.
+
+\bibitem[Chesson(2000)]{Chesson2000b}
+Peter Chesson.
+\newblock {Mechanisms of maintenance of species diversity}.
+\newblock \emph{Annual Review of Ecology and Systematics}, 31:\penalty0
+  343--66, 2000.
+\newblock ISSN 0066-4162.
+\newblock \doi{10.1146/annurev.ecolsys.31.1.343}.
 
 \bibitem[Chu and Adler(2015)]{Chu2015a}
 Chengjin Chu and Peter~B. Adler.
@@ -134,6 +178,18 @@ Katharine~Z. Coyte, Jonas Schluter, and Kevin~R. Foster.
 \newblock ISSN 10959203.
 \newblock \doi{10.1126/science.aad2602}.
 
+\bibitem[Delmas et~al.(2019)Delmas, Besson, Brice, Burkle, {Dalla Riva},
+  Fortin, Gravel, Guimar{\~{a}}es, Hembry, Newman, Olesen, Pires, Yeakel, and
+  Poisot]{Delmas2019}
+Eva Delmas, Mathilde Besson, Marie~H{\'{e}}l{\`{e}}ne Brice, Laura~A. Burkle,
+  Giulio~V. {Dalla Riva}, Marie~Jos{\'{e}}e Fortin, Dominique Gravel, Paulo~R.
+  Guimar{\~{a}}es, David~H. Hembry, Erica~A. Newman, Jens~M. Olesen, Mathias~M.
+  Pires, Justin~D. Yeakel, and Timoth{\'{e}}e Poisot.
+\newblock {Analysing ecological networks of species interactions}.
+\newblock \emph{Biological Reviews}, 94\penalty0 (1):\penalty0 16--36, 2019.
+\newblock ISSN 1469185X.
+\newblock \doi{10.1111/brv.12433}.
+
 \bibitem[Dorazio(2016)]{Dorazio2016}
 Robert~M. Dorazio.
 \newblock {Bayesian data analysis in population ecology: motivations, methods,
@@ -141,6 +197,14 @@ Robert~M. Dorazio.
 \newblock \emph{Population Ecology}, 58\penalty0 (1):\penalty0 31--44, 2016.
 \newblock ISSN 14383896.
 \newblock \doi{10.1007/s10144-015-0503-4}.
+
+\bibitem[Dunne et~al.(2002)Dunne, Williams, and Martinez]{Dunne2002}
+Jennifer~a. Dunne, Richard~J. Williams, and Neo~D. Martinez.
+\newblock {Network structure and biodiversity loss in food webs: Robustness
+  increases with connectance}.
+\newblock \emph{Ecology Letters}, 5\penalty0 (4):\penalty0 558--567, 2002.
+\newblock ISSN 1461023X.
+\newblock \doi{10.1046/j.1461-0248.2002.00354.x}.
 
 \bibitem[Ellison(2019)]{Ellison2019}
 Aaron~M. Ellison.
@@ -167,6 +231,16 @@ Aaron~M. Ellison, Michael~S. Bank, Barton~D. Clinton, Elizabeth~A. Colburn,
 \newblock ISSN 15409309.
 \newblock \doi{10.1890/1540-9295(2005)003[0479:LOFSCF]2.0.CO;2}.
 
+\bibitem[Giling et~al.(2019)Giling, Ebeling, Eisenhauer, Meyer, Roscher,
+  Rzanny, Voigt, Weisser, and Hines]{Giling2019}
+Darren~P. Giling, Anne Ebeling, Nico Eisenhauer, Sebastian~T. Meyer, Christiane
+  Roscher, Michael Rzanny, Winfried Voigt, Wolfgang~W. Weisser, and Jes Hines.
+\newblock {Plant diversity alters the representation of motifs in food webs}.
+\newblock \emph{Nature Communications}, 10\penalty0 (1):\penalty0 1--7, 2019.
+\newblock ISSN 20411723.
+\newblock \doi{10.1038/s41467-019-08856-0}.
+\newblock URL \url{http://dx.doi.org/10.1038/s41467-019-08856-0}.
+
 \bibitem[Godoy and Levine(2014)]{Godoy2014}
 Oscar Godoy and Jonathan~M. Levine.
 \newblock {Phenology effects on invasion success: Insights from coupling field
@@ -174,6 +248,28 @@ Oscar Godoy and Jonathan~M. Levine.
 \newblock \emph{Ecology}, 95\penalty0 (3):\penalty0 726--736, 2014.
 \newblock ISSN 00129658.
 \newblock \doi{10.1890/13-1157.1}.
+
+\bibitem[Godoy et~al.(2018)Godoy, Bartomeus, Rohr, Saavedra, If, Bartomeus,
+  Rohr, and Saavedra]{Godoy2018c}
+Oscar Godoy, Ignasi Bartomeus, Rudolf~P. Rohr, Serguei Saavedra, T~D If, Ignasi
+  Bartomeus, Rudolf~P. Rohr, and Serguei Saavedra.
+\newblock {Towards the Integration of Niche and Network Theories}.
+\newblock \emph{Trends in Ecology {\&} Evolution}, 33\penalty0 (4):\penalty0
+  287--300, 2018.
+\newblock ISSN 01695347.
+\newblock \doi{10.1016/j.tree.2018.01.007}.
+\newblock URL
+  \url{http://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(18)30011-9
+  http://linkinghub.elsevier.com/retrieve/pii/S0169534718300119}.
+
+\bibitem[Gorman et~al.(2019)Gorman, Petchey, Faulkner, Gallo, Gordon,
+  Neto-cerejeira, {\'{O}}lafsson, Pichler, Thompson, and Woodward]{Gorman2019}
+Eoin J~O Gorman, Owen~L Petchey, Katy~J Faulkner, Bruno Gallo, Timothy A~C
+  Gordon, Joana Neto-cerejeira, J{\'{o}}n~S {\'{O}}lafsson, Doris~E Pichler,
+  Murray S~A Thompson, and Guy Woodward.
+\newblock {A simple model predicts how warming simplifies wild food webs}.
+\newblock \emph{Nature Climate Change}, 2019.
+\newblock \doi{10.1038/s41558-019-0513-x}.
 
 \bibitem[Grace and Tilman(1990)]{Grace1990}
 James~B. Grace and David Tilman.
@@ -198,12 +294,59 @@ Nicolas Gross, Pierre Liancourt, Robyn Butters, Richard~P. Duncan, and
 \newblock ISSN 14698137.
 \newblock \doi{10.1111/nph.13168}.
 
+\bibitem[Hammill et~al.(2015)Hammill, Kratina, Vos, Petchey, and
+  Anholt]{Hammill2015}
+Edd Hammill, Pavel Kratina, Matthijs Vos, Owen~L. Petchey, and Bradley~R.
+  Anholt.
+\newblock {Food web persistence is enhanced by non-trophic interactions}.
+\newblock \emph{Oecologia}, 178\penalty0 (2):\penalty0 549--556, 2015.
+\newblock ISSN 00298549.
+\newblock \doi{10.1007/s00442-015-3244-3}.
+\newblock URL \url{http://dx.doi.org/10.1007/s00442-015-3244-3}.
+
+\bibitem[Hines and Keil(2020)]{Hines2020}
+Jes Hines and Petr Keil.
+\newblock {Common competitors and rare friends}.
+\newblock \emph{Nature Ecology {\&} Evolution}, 4\penalty0 (January):\penalty0
+  8--9, 2020.
+\newblock ISSN 2397-334X.
+\newblock \doi{10.1038/s41559-019-1071-3}.
+
+\bibitem[Jordano(2016)]{Jordano2016}
+Pedro Jordano.
+\newblock {Sampling networks of ecological interactions}.
+\newblock \emph{Functional Ecology}, 30\penalty0 (12):\penalty0 1883--1893,
+  2016.
+\newblock ISSN 13652435.
+\newblock \doi{10.1111/1365-2435.12763}.
+
+\bibitem[K{\'{e}}fi et~al.(2015)K{\'{e}}fi, Berlow, Wieters, Joppa, Wood,
+  Brose, and Navarrete]{Kefi2015}
+Sonia K{\'{e}}fi, Eric~L. Berlow, Evie~A. Wieters, Lucas~N. Joppa, Spencer~A.
+  Wood, Ulrich Brose, and Sergio~A. Navarrete.
+\newblock {Network structure beyond food webs: Mapping non-trophic and trophic
+  interactions on Chilean rocky shores}.
+\newblock \emph{Ecology}, 96\penalty0 (1):\penalty0 291--303, 2015.
+\newblock ISSN 00129658.
+\newblock \doi{10.1890/13-1424.1}.
+
 \bibitem[Keil et~al.(2019)Keil, Wiegand, Toth, Mcglinn, and Chase]{Keil2019}
 Petr Keil, Thorsten Wiegand, Aniko~B. Toth, Daniel~J Mcglinn, and Jonathan~M
   Chase.
 \newblock {Interspecific spatial associations as a facet of biodiversity , and
   a review of approaches to measure them}.
 \newblock \emph{EcoEvoRxiv}, 2019.
+
+\bibitem[Kraft et~al.(2015)Kraft, Adler, Godoy, James, Fuller, and
+  Levine]{Kraft2015}
+Nathan J.B.~B. Kraft, Peter~B. Adler, Oscar Godoy, Emily~C. James, Steve
+  Fuller, and Jonathan~M. Levine.
+\newblock {Community assembly, coexistence and the environmental filtering
+  metaphor}.
+\newblock \emph{Functional Ecology}, 29\penalty0 (5):\penalty0 592--599, 2015.
+\newblock ISSN 02698463.
+\newblock \doi{10.1111/1365-2435.12345}.
+\newblock URL \url{http://doi.wiley.com/10.1111/1365-2435.12345}.
 
 \bibitem[Laird and Schamp(2006)]{Laird2006a}
 Robert~A. Laird and Brandon~S. Schamp.
@@ -213,6 +356,21 @@ Robert~A. Laird and Brandon~S. Schamp.
 \newblock ISSN 0003-0147.
 \newblock \doi{10.1086/506259}.
 
+\bibitem[Levine and HilleRisLambers(2009)]{Levine2009}
+Jonathan~M. Levine and Janneke HilleRisLambers.
+\newblock {The importance of niches for the maintenance of species diversity.}
+\newblock \emph{Nature}, 461\penalty0 (7261):\penalty0 254--257, 2009.
+\newblock ISSN 1476-4687.
+\newblock \doi{10.1038/nature08251}.
+
+\bibitem[Levine et~al.(2008)Levine, Adler, and HilleRisLambers]{Levine2008}
+Jonathan~M. Levine, Peter~B. Adler, and Janneke HilleRisLambers.
+\newblock {On testing the role of niche differences in stabilizing
+  coexistence}.
+\newblock \emph{Functional Ecology}, 22\penalty0 (5):\penalty0 934--936, 2008.
+\newblock ISSN 02698463.
+\newblock \doi{10.1111/j.1365-2435.2008.01462.x}.
+
 \bibitem[Libralato et~al.(2006)Libralato, Christensen, and
   Pauly]{Libralato2006}
 Simone Libralato, Villy Christensen, and Daniel Pauly.
@@ -221,6 +379,15 @@ Simone Libralato, Villy Christensen, and Daniel Pauly.
   2006.
 \newblock ISSN 03043800.
 \newblock \doi{10.1016/j.ecolmodel.2005.11.029}.
+
+\bibitem[Losapio and Sch{\"{o}}b(2017)]{Losapio2017}
+Gianalberto Losapio and Christian Sch{\"{o}}b.
+\newblock {Resistance of plant–plant networks to biodiversity loss and
+  secondary extinctions following simulated environmental changes}.
+\newblock \emph{Functional Ecology}, 31\penalty0 (5):\penalty0 1145--1152,
+  2017.
+\newblock ISSN 13652435.
+\newblock \doi{10.1111/1365-2435.12839}.
 
 \bibitem[Losapio et~al.(2019)Losapio, Montesinos-Navarro, and
   Saiz]{Losapio2019}
@@ -232,12 +399,87 @@ Gianalberto Losapio, Alicia Montesinos-Navarro, and Hugo Saiz.
 \newblock \doi{10.1080/17550874.2019.1626509}.
 \newblock URL \url{https://doi.org/10.1080/17550874.2019.1626509}.
 
+\bibitem[Mayfield and Levine(2010)]{Mayfield2010a}
+Margaret~M. Mayfield and Jonathan~M. Levine.
+\newblock {Opposing effects of competitive exclusion on the phylogenetic
+  structure of communities}.
+\newblock \emph{Ecology Letters}, 13\penalty0 (9):\penalty0 1085--1093, 2010.
+\newblock ISSN 1461023X.
+\newblock \doi{10.1111/j.1461-0248.2010.01509.x}.
+
+\bibitem[Miele et~al.(2019)Miele, Guill, Ramos-jiliberto, and Kefi]{Miele2019}
+Vincent Miele, Christian Guill, Rodrigo Ramos-jiliberto, and Sonia Kefi.
+\newblock {Non-trophic interactions strengthen the diversity — functioning
+  relationship in an ecological bioenergetic network model}.
+\newblock \emph{PLoS Computational Biology}, pages 1--20, 2019.
+
+\bibitem[Mills et~al.(1993)Mills, Soul{\'{e}}, and Doak]{Mills1993}
+L~S Mills, M~E Soul{\'{e}}, and D~F Doak.
+\newblock {The Keystone-Species concept in ecology and conservation}.
+\newblock \emph{BioScience}, Vol. 43, N\penalty0 (4):\penalty0 219--224, 1993.
+
+\bibitem[Naeem et~al.(2000)Naeem, Knops, Tilman, Howe, Kennedy, and
+  Gale]{Naeem2000}
+Shahid Naeem, Johannes M~H Knops, David Tilman, Katherine~M Howe, Theodore
+  Kennedy, and Samuel Gale.
+\newblock {Plant diversity increases resistance to invasion in the absence of
+  covarying extrinsic factors}.
+\newblock \emph{Oikos}, 91\penalty0 (1):\penalty0 97--108, 2000.
+
+\bibitem[Narwani et~al.(2019)Narwani, Reyes, Pereira, Penson, Dennis, Derrer,
+  Spaak, and Matthews]{Narwani2019}
+Anita Narwani, Marta Reyes, Aaron~Louis Pereira, Hannele Penson, Stuart~R
+  Dennis, Samuel Derrer, Piet Spaak, and Blake Matthews.
+\newblock {Interactive effects of foundation species on ecosystem functioning
+  and stability in response to disturbance}.
+\newblock \emph{Proceedings of the Royal Society B}, 286, 2019.
+
+\bibitem[Nyakatya and McGeoch(2008)]{Nyakatya2008}
+M.~J. Nyakatya and M.~A. McGeoch.
+\newblock {Temperature variation across Marion Island associated with a
+  keystone plant species (Azorella selago Hook. (Apiaceae))}.
+\newblock \emph{Polar Biology}, 31\penalty0 (2):\penalty0 139--151, 2008.
+\newblock ISSN 07224060.
+\newblock \doi{10.1007/s00300-007-0341-8}.
+
+\bibitem[Olesen et~al.(2011)Olesen, Bascompte, Dupont, Elberling, Rasmussen,
+  and Jordano]{Olesen2011}
+Jens~M. Olesen, Jordi Bascompte, Yoko~L. Dupont, Heidi Elberling, Claus
+  Rasmussen, and Pedro Jordano.
+\newblock {Missing and forbidden links in mutualistic networks}.
+\newblock \emph{Proceedings of the Royal Society B: Biological Sciences},
+  278\penalty0 (1706):\penalty0 725--732, 2011.
+\newblock ISSN 14712970.
+\newblock \doi{10.1098/rspb.2010.1371}.
+
+\bibitem[Orwin et~al.(2016)Orwin, Mason, Jordan, Lambie, Stevenson, and
+  Mudge]{Orwin2016}
+Kate~H Orwin, Norman W~H Mason, Olivia~M Jordan, Suzanne~M Lambie, Bryan~A
+  Stevenson, and Paul~L Mudge.
+\newblock {Season and dominant species effects on plant trait-ecosystem
+  function relationships in intensively grazed grassland}.
+\newblock \emph{Journal of Applied Ecology}, 55:\penalty0 236--245, 2016.
+\newblock \doi{10.1111/1365-2664.12939}.
+
 \bibitem[Picoche and Barraquand(2020)]{Picoche2020}
 Coralie Picoche and Fr{\'{e}}d{\'{e}}ric Barraquand.
 \newblock {Strong self-regulation and widespread facilitative interactions in
   phytoplankton communities}.
 \newblock \emph{Journal of Ecology}, 00\penalty0 (March):\penalty0 1--11, 2020.
 \newblock \doi{10.1111/1365-2745.13410}.
+
+\bibitem[Pimm and Lawton(1978)]{Pimm1978}
+S.~L. Pimm and J.~H. Lawton.
+\newblock {On feeding on more than one trophic level}, 1978.
+\newblock ISSN 0028-0836.
+
+\bibitem[Piraino et~al.(2002)Piraino, Fanelli, National, and
+  Boero]{Piraino2002}
+Stefano Piraino, Giovanni Fanelli, Italian National, and Ferdinando Boero.
+\newblock {Variability of species ' roles in marine communities : change of
+  paradigms for conservation priorities}.
+\newblock \emph{Marine Biology}, 140\penalty0 (5):\penalty0 1067--1074, 2002.
+\newblock \doi{10.1007/s00227-001-0769-2}.
 
 \bibitem[Power et~al.(1996)Power, Tilman, Estes, Menge, Bond, Mills, Daily,
   Castilla, Lubchenco, and Paine]{Power1996}
@@ -253,6 +495,47 @@ Mary~E. Power, David Tilman, James~A. Estes, Bruce~A. Menge, William~J. Bond,
 {R Core Team}.
 \newblock {R: A Language and Environment for Statistical Computing}, 2020.
 \newblock URL \url{https://www.r-project.org/}.
+
+\bibitem[Ramus et~al.(2017)Ramus, Silliman, Thomsen, and Long]{Ramus2017}
+Aaron~P Ramus, Brian~R Silliman, Mads~S Thomsen, and Zachary~T Long.
+\newblock {An invasive foundation species enhances multifunctionality in a
+  coastal ecosystem}.
+\newblock \emph{Pnas}, 114\penalty0 (32):\penalty0 1--6, 2017.
+\newblock \doi{10.1073/pnas.1700353114}.
+
+\bibitem[Riley et~al.(2008)Riley, Dybdahl, and Hall]{Riley2008}
+Leslie~A. Riley, Mark~F. Dybdahl, and Robert~O Hall.
+\newblock {Invasive species impact: Asymmetric interactions between invasive
+  and endemic freshwater snails}.
+\newblock \emph{Journal of North American Benthological Society}, 27\penalty0
+  (3):\penalty0 454--520, 2008.
+\newblock ISSN 08873593.
+\newblock \doi{10.1899/07}.
+
+\bibitem[Rodriguez(2006)]{Rodriguez2006}
+Laura~F. Rodriguez.
+\newblock {Can invasive species facilitate native species? Evidence of how,
+  when, and why these impacts occur}.
+\newblock \emph{Biological Invasions}, 8\penalty0 (4):\penalty0 927--939, 2006.
+\newblock ISSN 13873547.
+\newblock \doi{10.1007/s10530-005-5103-3}.
+
+\bibitem[Ross et~al.(2011)Ross, Axter, Onner, Arshall, Ennedy, All, Elly, and
+  Ogers]{Ross2011}
+W~Yatt F~C Ross, C~Olden V~B Axter, K~Evin C~D Onner, E~M M A J R O S~I
+  Arshall, T~Heodore A~K Ennedy, R~Obert O~H All, H~Olly A W Ellard~K Elly, and
+  R~S Cott~R Ogers.
+\newblock {Ecosystem ecology meets adaptive management : food web response to a
+  controlled flood on the Colorado River , Glen Canyon}.
+\newblock \emph{Ecological Applications}, 21\penalty0 (6):\penalty0 2016--2033,
+  2011.
+
+\bibitem[Saiz and Alados(2011)]{Saiz2011}
+Hugo Saiz and Concepcion~L. Alados.
+\newblock {Effect of Stipa tenacissima L . on the structure of plant
+  co-occurrence networks in a semi-arid community}.
+\newblock \emph{Ecological Research}, 26\penalty0 (3):\penalty0 595--603, 2011.
+\newblock \doi{10.1007/s11284-011-0818-3}.
 
 \bibitem[Sander et~al.(2017)Sander, Wootton, and Allesina]{Sander2017}
 Elizabeth~L. Sander, J.~Timothy Wootton, and Stefano Allesina.
@@ -276,6 +559,12 @@ Lindsey~L. Thurman, Allison~K. Barner, Tiffany~S. Garcia, and Tara Chestnut.
 \newblock \emph{Ecography}, 2019.
 \newblock \doi{10.1111/ecog.04360}.
 
+\bibitem[Tilman(1982)]{Tilman1982}
+David Tilman.
+\newblock \emph{{Resource competition and community structure}}.
+\newblock Princeton University Press, 1982.
+\newblock ISBN 9780691083025.
+
 \bibitem[Ulanowicz and Wolff(1991)]{Ulanowicz1991}
 Robert~E. Ulanowicz and Wilfried~F. Wolff.
 \newblock {Ecosystem flow networks: Loaded dice?}
@@ -283,5 +572,28 @@ Robert~E. Ulanowicz and Wilfried~F. Wolff.
   1991.
 \newblock ISSN 00255564.
 \newblock \doi{10.1016/0025-5564(91)90090-6}.
+
+\bibitem[Zhao et~al.(2019)Zhao, {Van den Brink}, Carpentier, Wang,
+  Rodr{\'{i}}guez-S{\'{a}}nchez, Xu, Vollbrecht, Gillissen, Vollebregt, Wang,
+  and {De Laender}]{Zhao2019}
+Qinghua Zhao, Paul~J. {Van den Brink}, Camille Carpentier, Yingying~X.G. Wang,
+  Pablo Rodr{\'{i}}guez-S{\'{a}}nchez, Chi Xu, Silke Vollbrecht, Frits
+  Gillissen, Marlies Vollebregt, Shaopeng Wang, and Frederik {De Laender}.
+\newblock {Horizontal and vertical diversity jointly shape food web stability
+  against small and large perturbations}.
+\newblock \emph{Ecology Letters}, 22\penalty0 (7):\penalty0 1152--1162, 2019.
+\newblock ISSN 14610248.
+\newblock \doi{10.1111/ele.13282}.
+
+\bibitem[Zheng et~al.(2015)Zheng, Feng, Valiente-Banuet, Li, Liao, Zhang, and
+  Chen]{Zheng2015}
+Yulong Zheng, Yulong Feng, Alfonso Valiente-Banuet, Yangping Li, Zhiyong Liao,
+  Jiaolin Zhang, and Yajun Chen.
+\newblock {Are invasive plants more competitive than native conspecifics ?
+  Patterns vary with competitors}.
+\newblock \emph{Scientific Reports}, 5\penalty0 (15622), 2015.
+\newblock ISSN 2045-2322.
+\newblock \doi{10.1038/srep15622}.
+\newblock URL \url{http://dx.doi.org/10.1038/srep15622}.
 
 \end{thebibliography}

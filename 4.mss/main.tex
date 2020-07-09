@@ -23,12 +23,14 @@
 
 
 \author[1]{Malyon D. Bimler}
-\author[2]{Daniel B. Stouffer}
-\author[4]{Margaret M. Mayfield}
+\author[1]{Margaret M. Mayfield}
+\author[2]{Trace E. Martyn}
+\author[3]{Daniel B. Stouffer}
 
-\affil[1]{First affiliation address, with corresponding author email. Email: malyonbimler@gmail.com}
-\affil[2]{Second affiliation address}
-\affil[3]{Third affiliation address}
+
+\affil[1]{School of Biological Sciences, The University of Queensland, St Lucia, Queensland, Australia.}
+\affil[2]{School of Natural Resources and the Enviornment, The University of Arizona, Tucson, USA}
+\affil[3]{Centre for Integrative Ecology, School of Biological Sciences, University of Canterbury, Christchurch, New Zealand}
 
 %\setcounter{page}{54}
 
@@ -41,45 +43,26 @@
 \section{Abstract}
     
     \begin{enumerate}
-    \item Understanding ecological communities requires an understanding of how the different species within it relate to each other. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species). 
-    \item We describe a general framework which allows us to estimate all pair-wise interactions in diverse plant communities from empirical data and population dynamics models. This framework requires a multi-tiered approach to resolve all interactions. We first apply individual fitness models to each species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting interactions to approximate interactions which were not observed using a different set of assumptions. 
-    \item This approach can be modelled using a Bayesian statistical framework which allows us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix. 
-    \item We suggest this approach be used for....
+    \item Understanding ecological communities requires an understanding of how the different species within it relate to one another. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other species interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species). 
+    \item We describe a general framework which allows us to estimate competitive and facilitative pair-wise interactions in diverse plant communities from empirical data and population dynamics models. This framework requires a multi-tiered approach to resolve all interactions. We first apply individual fitness models to each species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting interactions to approximate interactions which were not observed using a different set of assumptions. 
+    \item This approach is modelled using a Bayesian statistical framework which allows us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix. We provide the model code applied to an annual plant population dynamic model, and illustrate certain features of the resulting interaction networks with a case study on australian wildflowers.  
     \end{enumerate}
 
 
 \section{Introduction}
     
     \paragraph{}
-    Interactions between species can affect growth and population abundances, for example as a predator eats a prey or two plants compete for resources. Together, interactions between many species influence the dynamics of the whole community in ways which can determine patterns of species richness and abundance. In order to understand how community dynamics behave when many species are involved, ecologists can represent communities as networks \citep{Pimm1978} where species are nodes and linked by interactions. This approach provides a broad view of how multiple species relate to one another within a community \citep{Kefi2015}. As a result, ecological networks have been observed to typically differ from randomly-assembled networks in important and varied ways, thus informing us on the biological processes structuring these communities \citep{Dunne2002}. There is now a rich body of work describing the characteristics of food webs, plant-pollinator networks, and host-parasite interactions, but non-trophic interactions such as those occurring between plants are largely neglected \citep{Ellison2019} from such networks. This is unfortunate, as recent work indicates that non-trophic interactions and plant diversity alter food web structure, stability and diversity functioning relationships \citep{Hammill2015, Giling2019, Zhao2019, Miele2019}. Integrating plant and trophic networks remains a key challenge in improving our understanding of community dynamics and persistence \citep{Godoy2018c}. 
+    Interactions between species can affect growth rates and population abundances, for example as a predator eats a prey or two plants compete for resources. Together, interactions between many species influence the dynamics of the whole community in ways which can determine patterns of species richness and abundance. In order to understand how community dynamics behave when many species are involved, ecologists can represent communities as networks \citep{Pimm1978} where species are nodes and linked by interactions. This approach provides a broad view of how multiple species relate to one another within a community \citep{Kefi2015}. As a result, ecological networks have been observed to typically differ from randomly-assembled networks in important and varied ways, thus informing us on the biological processes structuring these communities \citep{Dunne2002}. There is now a rich body of work describing the characteristics of food webs, plant-pollinator networks, and host-parasite interactions, but non-trophic interactions such as those occurring between plants are largely neglected \citep{Ellison2019}. This is unfortunate, as recent work indicates that non-trophic interactions and plant diversity alter food web structure, stability and diversity functioning relationships \citep{Hammill2015, Giling2019, Zhao2019, Miele2019}. Integrating plant and trophic networks remains a key challenge in improving our understanding of community dynamics and persistence \citep{Godoy2018c}. 
 
     \paragraph{}
     Measuring non-trophic relationships in plant communities is difficult, in part because they cannot be directly observed as in food webs or other interaction networks, and must instead be inferred by other means. One approach to empirically quantifying interactions between a focal species and others involves measuring the effects of neighbours on a proxy for lifetime reproductive success (e.g. fecundity, growth rate) \citep{Connell1961, Grace1990}. This can be done for example by growing focal species with neighbours of different identities and at varying densities, in the field or laboratory. The resulting interaction strengths are not dependant on any specific mechanism and can be directly linked to changes in species abundances through the use of population dynamic models (for example with the Beverton-Holt model \citet{Beverton1957, Levine2009}). This approach has been widely applied and has greatly improved our understanding of competition and it's effects on biodiversity \citep{Tilman1982, Chesson2000b, Levine2008, Adler2010, Mayfield2010a, Kraft2015} but remains limited to investigating interactions between a few number of species, rather than a diverse community. The reason is two-fold: applying this method to a large number of species requires both large amounts of data and replication, as well as complex models which can be difficult to implement and run the danger of overparameterisation. Futhermore, the plant population models typically used force interactions to be competitive rather than allowing for facilitative interactions, which are both widespread and important for plant community dynamics \citep{}.
 
     \paragraph{} 
-    A common alternative which is less demanding and scalable to high-diversity systems is the use of association, or co-occurrence networks. Plant interactions are inferred by measuring positive and negative spatial associations between species (e.g. \citet{Saiz2011}), resulting in networks which capture a variety of factors including biotic interactions \citep{Losapio2019}. This approach requires data which is much more easily obtainable and can naturally handle a large number of species. A wide range of packages are available in R to deduce association networks, alongside further tools and methods to better infer plant interactions from spatial distribution patterns \citep{Keil2019}, for example by including environmental covariates. Spatial association networks however, caputre a wide range of other ecological processes (e.g. dispersal, habitat filtering) and have been found to remain poor predictors of species interactions,  rarely matching empirical estimates \citep{Sander2017,Barner2018, Thurman2019, Blanchet2020}.
+    A common alternative which is less demanding, and scalable to high-diversity systems is the use of association, or co-occurrence networks. Plant interactions are inferred by measuring positive and negative spatial associations between species (e.g. \citet{Saiz2011}), resulting in networks which capture a variety of factors including biotic interactions \citep{Losapio2019}. This approach requires data which is much more easily obtainable and can naturally handle a large number of species. A wide range of packages are available in R to deduce association networks, alongside further tools and methods to better infer plant interactions from spatial distribution patterns \citep{Keil2019}, for example by including environmental covariates. Spatial association networks however, have been found to remain poor predictors of species interactions and rarely match empirical estimates \citep{Sander2017,Barner2018, Thurman2019, Blanchet2020}.
 
-    % Furthermore, this method is typically unable to resolve interactions between large numbers of species, because you need a lot of data (lots of replication) and complex models which run the danger of bering overparameterised amongst other things.
-
-    %  This is often done a low diversity scales (few species) because we need a lot of replication! 
-    % You can use observation data but still need complex models for many interactions! Current models only estimate alphas between a few species and keep them competitive. 
-    %     There are few however, published plant population dynamic models which are explicitely developped to include many species.
-
-    % Non trophic interactions are usually neglected in ecological networks or lumped into compartments representing other primary producers of basal resources (Baiser et al., 2013; van der Zee et al., 2016; Borst et al., 2018 - in Ellison 2019).   
-    %        \begin{itemize}
-    %     \item Kokkoris2002 =  Competition / species interactions can contribute to diversity (read more)
-    %     \item Levine2017 - beyond pairwise mechanisms of species coexistence in complex communities (read for intro)
-    %     \item  Montoya2006a = Ecological networks are complex (interactions too) but useful for ecological mechanisms and understanding stability. [refhole?]
-    %     \item Kefi2015 = 'non-random patterning of non-trophic interactions suggests a path forward for developing a more comprehensive ecological network theory to rpedict the functions and resilience of ecological communities'
-    % \end{itemize}
 
     \paragraph{}
-    We propose a general framework to estimate interactions between plants (or other single-trophic systems) in natural and complex communities. Our method extends population dynamic approaches to quantifying interactions by allowing for facilitative interactions...
-    To deal with diversity, our method merges two population models and couches our framework in bayesiam ... to ... 
-
-    We allow for facilitative and competitive interactions both between and within species. This framework merges multiple approaches and is implemented with Bayesian statistics which allows us to estimate interactions between many species. 
-    We suggest avenues for applications that make use of the rich information provided by interaction networks e.g. identifying key-stone species, exploring species strategies (motifs?), looking at how invasive species affect the rest of the network, identifying species at risk of population explosion (or extinction), etc...
-
+    In this paper, we describe a framework to estimate non-trophic interactions within a diverse plant system, which can be extended to other horizontal communities. Our method extends traditional plant population dynamic approaches to quantifying interactions by explicitely dealing with many species and allowing for both competitive and facilitative interactions. To deal with diversity, we use a multi-tiered model which allows us to estimate interactions between common as well as rarer species and apply it with Bayesian parameter estimation methods which are flexible to greater model complexity. Our framework is applied to a case study of an annual wilflower plant community in Western Australia consisting of 22 focal species and up to 52 neighbouring species. We illustrate how the resulting interaction network differs from a co-occurrence network on the same data, and suggest potential applications that make use of the rich information provided by species interaction networks.
 
     
 \section{Methods}
@@ -185,6 +168,14 @@
     \paragraph{}
     The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities compared to co-occurrence networks as well as traditional plant population dynamic models. Like co-occurrence networks, our framework is flexible to the inclusion of many species. Unlike co-occurrence networks however, interactions in our model are estimated from species effects on each other's growth rates. This allows us to capture how interactions may directly affect species abundances, rather than spatial association patterns. Two features make this possible: the response-effect model to estimate unobserved interactions, and a Bayesian implementation to deal with many parameters. 
 
+    \paragraph{}
+    The response-effect model allows us to deal with a small number of unobserved interactions by relaxing assumptions for those cases and estimating more general 'effect' and 'response' parameters from the pair-wise interactions that are observed. Because they are estimated from observed interactions previously quantified by the IFM, the response and effect parameters are constrained such that their product follows a similar distribution to that of the observed interactions (Figure \ref{fig:adist}). In our case study, 15\% of interactions between focal species were estimated using the REM (out of 484), 40\% when taking all neighbouring species into account (out of 1144). 
+
+
+    \paragraph{}
+    The Bayesian implementation means that parameters are estimated using MCMC algorithms, which amongst many benefits can estimate more parameters than with more commonly used frequentist approaches \citep{Dorazio2016}. This approach also returns parameter estimates as posterior distributions rather than simple mean and standard deviations. By having access to the full distribution of likely values for every interaction, we can draw samples of likely networks from these distributions and thus easily incorporate some measure of variation and uncertainty around interaction values. % This is expecially useful given how weak interactions are, and that estimates often overlap with 0...
+
+
     \begin{figure}[H]
         \includegraphics[width=\textwidth]{../2.analyses/figures/alpha_est_distr.png}
         \caption{Distribution of interaction estimates from our case study. Top panel shows the distribution of observed interactions as estimated by the IFM. Second panel shows those same interactions, but estimated with the REM. Bottom panel shows the distribution of unobserved interactions estimated by the REM. Interaction estimates are given as unscaled \(\alpha\)'s.}
@@ -192,12 +183,6 @@
     \end{figure}
 
 
-    \paragraph{}
-    The response-effect model allows us to deal with a small number of unobserved interactions by relaxing assumptions for those cases and estimating more general 'effect' and 'response' parameters from the pair-wise interactions that are observed. Because they are estimated from observed interactions previously quantified by the IFM, the response and effect parameters are constrained such that their product follows a similar distribution to that of the observed interactions (Figure \ref{fig:adist}). In our case study, 15\% of interactions between focal species were estimated using the REM (out of 484), 40\% when taking all neighbouring species into account (out of 1144). 
-
-
-    \paragraph{}
-    The Bayesian implementation means that parameters are estimated using MCMC algorithms, which amongst many benefits can estimate more parameters than with more commonly used frequentist approaches \citep{Dorazio2016}. This approach also returns parameter estimates as posterior distributions rather than simple mean and standard deviations. By having access to the full distribution of likely values for every interaction, we can draw samples of likely networks from these distributions and thus easily incorporate some measure of variation and uncertainty around interaction values. % This is expecially useful given how weak interactions are, and that estimates often overlap with 0...
 
 
     \paragraph{}
@@ -207,6 +192,8 @@
     In addition to explicitely allowing for many species interactions, including both competitive (Figure \ref{fig:netwks}.A) and facilitative (Figure \ref{fig:netwks}.B) interactions is another feature which distinguishes our framework from traditional approaches to plant community ecology. Plant population dynamic models typically force interactions to be competitive, despite rising evidence that facilitation is common and an important driver of plant community dynamics \citep{Brooker2008a}. In our case study, 35\% of all focal x neighbour interactions were facilitative, as were 26 \% of all focal x focal interactions.
 
 
+    \paragraph{} 
+    The resulting interaction networks can be used to identify species of particular importance to the healthy functioning of the community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \citep{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \citep{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction networks can help us understand what roles specific species play within a community.  [This last sentence might be better in the discussion]
 
 
 
@@ -217,8 +204,6 @@
         \label{fig:netwks}
     \end{figure}    
 
-    \paragraph{} 
-    The resulting interaction networks can be used to identify species of particular importance to the healthy functioning of the community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \citep{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \citep{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction networks can help us understand what roles specific species play within a community.  [This last sentence might be better in the discussion]
 
 
  %    Identifying keystone species. .. GITE and HAOD rel. abund < 0.01, two highest sumaji. Maybe GOBE  too? 

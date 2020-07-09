@@ -3,46 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: plainnat.bst
 Database file #1: ../../../BibTex_files/03_Chapter3.bib
+Warning--I didn't find a database entry for "Beverton1957"
+Warning--I didn't find a database entry for ""
 Warning--empty journal in Rstan2020
-You've used 31 entries,
+You've used 67 entries,
             2773 wiz_defined-function locations,
-            872 strings with 13206 characters,
-and the built_in function-call counts, 19072 in all, are:
-= -- 1697
-> -- 1541
-< -- 12
-+ -- 518
-- -- 486
-* -- 1802
-:= -- 3091
-add.period$ -- 149
-call.type$ -- 31
-change.case$ -- 254
-chr.to.int$ -- 30
-cite$ -- 63
-duplicate$ -- 643
-empty$ -- 1172
-format.name$ -- 529
-if$ -- 3842
+            1175 strings with 23092 characters,
+and the built_in function-call counts, 41124 in all, are:
+= -- 3668
+> -- 3279
+< -- 24
++ -- 1100
+- -- 1032
+* -- 3906
+:= -- 6632
+add.period$ -- 313
+call.type$ -- 67
+change.case$ -- 543
+chr.to.int$ -- 66
+cite$ -- 135
+duplicate$ -- 1384
+empty$ -- 2577
+format.name$ -- 1125
+if$ -- 8298
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 31
-newline$ -- 219
-num.names$ -- 124
-pop$ -- 420
+missing$ -- 67
+newline$ -- 455
+num.names$ -- 268
+pop$ -- 892
 preamble$ -- 1
-purify$ -- 224
+purify$ -- 478
 quote$ -- 0
-skip$ -- 562
+skip$ -- 1198
 stack$ -- 0
-substring$ -- 590
-swap$ -- 45
-text.length$ -- 1
+substring$ -- 1397
+swap$ -- 86
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 336
+type$ -- 727
 warning$ -- 1
-while$ -- 140
+while$ -- 309
 width$ -- 0
-write$ -- 515
-(There was 1 warning)
+write$ -- 1091
+(There were 3 warnings)
