@@ -1,50 +1,39 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: main.aux
-The style file: plainnat.bst
-Database file #1: ../../../BibTex_files/03_Chapter3.bib
-Warning--I didn't find a database entry for "Beverton1957"
-Warning--I didn't find a database entry for ""
-Warning--empty journal in Rstan2020
-You've used 67 entries,
-            2773 wiz_defined-function locations,
-            1175 strings with 23092 characters,
-and the built_in function-call counts, 41124 in all, are:
-= -- 3668
-> -- 3279
-< -- 24
-+ -- 1100
-- -- 1032
-* -- 3906
-:= -- 6632
-add.period$ -- 313
-call.type$ -- 67
-change.case$ -- 543
-chr.to.int$ -- 66
-cite$ -- 135
-duplicate$ -- 1384
-empty$ -- 2577
-format.name$ -- 1125
-if$ -- 8298
-int.to.chr$ -- 2
-int.to.str$ -- 1
-missing$ -- 67
-newline$ -- 455
-num.names$ -- 268
-pop$ -- 892
-preamble$ -- 1
-purify$ -- 478
-quote$ -- 0
-skip$ -- 1198
-stack$ -- 0
-substring$ -- 1397
-swap$ -- 86
-text.length$ -- 2
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 727
-warning$ -- 1
-while$ -- 309
-width$ -- 0
-write$ -- 1091
-(There were 3 warnings)
+[0] Config.pm:340> INFO - This is Biber 2.4
+[0] Config.pm:343> INFO - Logfile is 'main.blg'
+[35] biber:287> INFO - === Sat Jul 25, 2020, 14:54:20
+[122] Biber.pm:348> INFO - Reading 'main.bcf'
+[257] Biber.pm:742> INFO - Found 68 citekeys in bib section 0
+[262] Biber.pm:3151> INFO - Processing section 0
+[291] Biber.pm:3308> INFO - Looking for bibtex format file '../../../BibTex_files/03_Chapter3.bib' for section 0
+[819] bibtex.pm:1113> INFO - Decoding LaTeX character macros into UTF-8
+[1263] bibtex.pm:974> INFO - Found BibTeX data source '../../../BibTex_files/03_Chapter3.bib'
+[1297] Utils.pm:147> WARN - ISBN '0028-0836' in entry 'Pimm1978' is invalid - run biber with '--validate_datamodel' for details.
+[1315] Utils.pm:147> WARN - ISBN '0012-9658' in entry 'Kefi2015' is invalid - run biber with '--validate_datamodel' for details.
+[1327] Utils.pm:147> WARN - ISBN '1461-023X' in entry 'Dunne2002' is invalid - run biber with '--validate_datamodel' for details.
+[1443] Utils.pm:147> WARN - ISBN '1476-4687 (Electronic)$\backslash$n0028-0836 (Linking)' in entry 'Levine2009' is invalid - run biber with '--validate_datamodel' for details.
+[1475] Utils.pm:147> WARN - ISBN '0269-8463' in entry 'Levine2008' is invalid - run biber with '--validate_datamodel' for details.
+[1486] Utils.pm:147> WARN - ISBN '1461-0248 (Electronic)$\backslash$n1461-023X (Linking)' in entry 'Adler2010' is invalid - run biber with '--validate_datamodel' for details.
+[1499] Utils.pm:147> WARN - ISBN '1461-023X' in entry 'Mayfield2010a' is invalid - run biber with '--validate_datamodel' for details.
+[1524] Utils.pm:147> WARN - ISBN '1128401108183' in entry 'Saiz2011' is invalid - run biber with '--validate_datamodel' for details.
+[1554] Utils.pm:147> WARN - ISBN '2045-2322' in entry 'Sander2017' is invalid - run biber with '--validate_datamodel' for details.
+[1590] Utils.pm:147> WARN - ISBN '0012-9658' in entry 'Godoy2014' is invalid - run biber with '--validate_datamodel' for details.
+[1654] Utils.pm:147> WARN - ISBN '1365-2745' in entry 'Brooker2008a' is invalid - run biber with '--validate_datamodel' for details.
+[1688] Utils.pm:147> WARN - ISBN '0962-8452' in entry 'Olesen2011' is invalid - run biber with '--validate_datamodel' for details.
+[1702] Utils.pm:147> WARN - ISBN '1365-2435' in entry 'Jordano2016' is invalid - run biber with '--validate_datamodel' for details.
+[1797] Utils.pm:147> WARN - ISBN '0722-4060' in entry 'Nyakatya2008' is invalid - run biber with '--validate_datamodel' for details.
+[1843] Utils.pm:147> WARN - ISBN '0887-3593' in entry 'Riley2008' is invalid - run biber with '--validate_datamodel' for details.
+[1864] Utils.pm:147> WARN - ISBN '1053000551033' in entry 'Rodriguez2006' is invalid - run biber with '--validate_datamodel' for details.
+[1919] Utils.pm:147> WARN - ISBN '0012-9615' in entry 'Chu2015a' is invalid - run biber with '--validate_datamodel' for details.
+[1931] Utils.pm:147> WARN - ISBN '0012-9658' in entry 'Callaway1997a' is invalid - run biber with '--validate_datamodel' for details.
+[1942] Utils.pm:147> WARN - ISBN '0169-5347' in entry 'Bruno2003' is invalid - run biber with '--validate_datamodel' for details.
+[1956] Utils.pm:147> WARN - ISBN '1469-8137' in entry 'Gross2015' is invalid - run biber with '--validate_datamodel' for details.
+[1997] Utils.pm:147> WARN - ISBN '1365-2745' in entry 'Brooker2008' is invalid - run biber with '--validate_datamodel' for details.
+[2016] Utils.pm:147> WARN - ISBN '0003-0147' in entry 'Laird2006a' is invalid - run biber with '--validate_datamodel' for details.
+[2046] Utils.pm:147> WARN - BibTeX subsystem: /tmp/wvlS0US6Sh/03_Chapter3.bib_2090.utf8, line 6, warning: 172 characters of junk seen at toplevel
+[2984] UCollate.pm:65> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2984] UCollate.pm:65> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2985] Biber.pm:3028> INFO - Sorting list 'nyt/global' of type 'entry' with scheme 'nyt' and locale 'en-US'
+[2985] Biber.pm:3032> INFO - No sort tailoring available for locale 'en-US'
+[3135] bbl.pm:519> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[3763] bbl.pm:615> INFO - Output to main.bbl
+[3763] Biber.pm:109> INFO - WARNINGS: 23
