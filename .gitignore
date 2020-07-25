@@ -7,3 +7,5 @@
 *.ods
 *.Rdata
 *.svg
+*.pdf
+*.Rhistory
