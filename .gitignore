@@ -9,3 +9,5 @@
 *.svg
 *.pdf
 *.Rhistory
+*.html
+/2.analyses/smm.csv
