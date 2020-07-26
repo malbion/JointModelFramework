@@ -1333,6 +1333,68 @@
       \endverb
       \keyw{Biodiversity,Connectance,Ecosystem function,Food web,Network structure,Robustness,Secondary extinctions,Species loss,Species richness,Topology}
     \endentry
+    \entry{Ellison1996}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=7efa58109950d6fafd6cb3159a47911a}{%
+           family={Ellison},
+           family_i={E\bibinitperiod},
+           given={Aaron\bibnamedelima M.},
+           given_i={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{7efa58109950d6fafd6cb3159a47911a}
+      \strng{fullhash}{7efa58109950d6fafd6cb3159a47911a}
+      \field{sortinit}{E}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelyear}{1996}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ecological Applications}
+      \field{number}{4}
+      \field{title}{{An introduction to Bayesian inference for ecological research and environmental decision-making}}
+      \field{volume}{6}
+      \field{year}{1996}
+      \field{pages}{1036\bibrangedash 1046}
+      \range{pages}{11}
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Monographs - 2016 - The Color of Light in Forests and Its Implications Author ( s ) John A . Endler Published by Wiley Stable URL http.pdf:pdf
+      \endverb
+      \keyw{color patterns,crypsis,forests,form,habitat choice,light environment,plant growth and,predation,sexual selection,visual signals}
+    \endentry
+    \entry{Ellison2004}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=7efa58109950d6fafd6cb3159a47911a}{%
+           family={Ellison},
+           family_i={E\bibinitperiod},
+           given={Aaron\bibnamedelima M.},
+           given_i={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{7efa58109950d6fafd6cb3159a47911a}
+      \strng{fullhash}{7efa58109950d6fafd6cb3159a47911a}
+      \field{sortinit}{E}
+      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
+      \field{labelyear}{2004}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Abstract Bayesian inference is an important statistical tool that is increasingly being used by ecologists. In a Bayesian analysis, information available before a study is conducted is summarized in a quantitative model or hypothesis: the prior probability distribution. Bayes' Theorem uses the prior probability distribution and the likelihood of the data to generate a posterior probability distribution. Posterior probability distributions are an epistemological alternative to P-values and provide a direct measure of the degree of belief that can be placed on models, hypotheses, or parameter estimates. Moreover, Bayesian information-theoretic methods provide robust measures of the probability of alternative models, and multiple models can be averaged into a single model that reflects uncertainty in model construction and selection. These methods are demonstrated through a simple worked example. Ecologists are using Bayesian inference in studies that range from predicting single-species population dynamics to understanding ecosystem processes. Not all ecologists, however, appreciate the philosophical underpinnings of Bayesian inference. In particular, Bayesians and frequentists differ in their definition of probability and in their treatment of model parameters as random variables or estimates of true values. These assumptions must be addressed explicitly before deciding whether or not to use Bayesian methods to analyse ecological data.}
+      \field{isbn}{1461-023X}
+      \field{issn}{1461023X}
+      \field{journaltitle}{Ecology Letters}
+      \field{number}{6}
+      \field{title}{{Bayesian inference in ecology}}
+      \field{volume}{7}
+      \field{year}{2004}
+      \field{pages}{509\bibrangedash 520}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1111/j.1461-0248.2004.00603.x
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Ellison - 2004 - Bayesian inference in ecology.pdf:pdf
+      \endverb
+      \keyw{Bayes' Theorem,Bayesian inference,Epistemology,Information criteria,Model averaging,Model selection}
+    \endentry
     \entry{Ellison2019}{article}{}
       \name{author}{1}{}{%
         {{uniquename=0,hash=7efa58109950d6fafd6cb3159a47911a}{%
@@ -1644,9 +1706,6 @@
       \endverb
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Godoy et al. - 2018 - Towards the Integration of Niche and Network Theories.pdf:pdf
-      \endverb
-      \verb{url}
-      \verb http://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(18)30011-9%20http://linkinghub.elsevier.com/retrieve/pii/S0169534718300119
       \endverb
       \keyw{Coexistence,feasibility,multi-trophic networks,species interactions,stability}
     \endentry
