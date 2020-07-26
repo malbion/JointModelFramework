@@ -63,21 +63,22 @@ comp <- -alpha_mat[ , 1:nrow(alpha_mat)]
 comp[comp>0] <- 0
 facil <- -alpha_mat[ , 1:nrow(alpha_mat)]
 facil[facil<0] <- 0
-png('2.analyses/figures/comp_facil.png', 
-    width = 900, height = 540, units = 'px')
-par( mfrow = c(2, 1))
-# qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], theme = th)
-qgraph(comp, posCol = 'royalblue4', negCol = 'orange')
-qgraph(facil, posCol = 'royalblue4', negCol = 'orange')
+png('2.analyses/figures/comp_facil.png', width = 1400, height = 1040, units = 'px')
+par(mfrow = c(2, 1))
+qgraph(comp, posCol = 'royalblue4', negCol = 'orange', layout = 'circle',
+       title = 'A', title.cex =5)
+qgraph(facil, posCol = 'royalblue4', negCol = 'orange', layout = 'circle',
+       title = 'B', title.cex =5)
 dev.off()
 # qgraph((-alpha_mat[ , 1:nrow(alpha_mat)]))
-png('2.analyses/figures/inter.png', width = 600, height = 240, units = 'px')
+png('2.analyses/figures/coocur.png', width = 1100, height = 520, units = 'px')
 qgraph(assocs[rownames(alpha_mat), colnames(assocs) %in% rownames(alpha_mat)],
-       posCol = 'royalblue4', negCol = 'orangered')
+       posCol = 'royalblue4', negCol = 'orangered', layout = 'circle',
+       title = 'C', title.cex =5)
 dev.off()
 
-png('2.analyses/figures/all_inter.png', width = 300, heigh = 240)
-qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], posCol = 'royalblue4', negCol = 'orange')
+png('2.analyses/figures/all_inter.png', width = 600, height = 240, units = 'px')
+qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], posCol = 'royalblue4', negCol = 'orange', layout = 'circle')
 dev.off()
 
 smm <- read.csv('2.analyses/smm.csv', stringsAsFactors = F)
@@ -93,13 +94,12 @@ p1 = mean(smmfoc$perc.exploited) + mean(smmfoc$perc.exploiter)
 p3 = mean(smmfoc$perc.fullcomp)
 
 plot(NULL, xlim=c(0,1), ylim=c(0,1), xaxt="n",
-     xlab="", ylab="", bty='n', las = 3)
+     xlab="", ylab="", bty='n', las = 1)
 polygon(c(0, 0.1, 0.1, 0), c(0, 0, p1, p1), col = 'orange', border = NA)
 polygon(c(0, 0.1, 0.1, 0), c(p1, p1, p1+p2, p1+p2), col = 'grey90', border = NA)
 polygon(c(0, 0.1, 0.1, 0), c(p1+p2, p1+p2, p1+p2+p3, p1+p2+p3), col = 'red', border = NA)
 polygon(c(0, 0.1, 0.1, 0), c(0, 0, 1, 1))
-text(c(0.15, 0.15, 0.15), y = c(0.8, 0.44, 0.2), c('-/-', '+/+', '-/+'), cex = 2, srt =90)
-
+text(c(0.15, 0.15, 0.15), y = c(0.8, 0.44, 0.2), c('-/-', '+/+', '-/+'), cex = 2)
 
 
 
