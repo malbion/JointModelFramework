@@ -50,6 +50,8 @@
 
 %\setcounter{page}{54}
 
+\setlength{\intextsep}{10ex}
+
 \begin{document}
 \maketitle  
 \newpage
@@ -188,7 +190,7 @@
     One potential use for translating interaction estimates into per-capita interaction strengths is to identify species of particular importance to the healthy functioning of the whole community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \parencite{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \parencite{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction matrices can help us understand what roles specific species play within a community. 
 
 
-    \begin{figure}[!h]
+    \begin{figure}[H]
        % \hspace*{-3.5cm}
         \includegraphics[width=\textwidth]{../2.analyses/figures/interaction_ests.png}
         \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the IFM ($\beta_{ij}$), which are then plotted against the corresponding REM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unobserved} (left) and observed interactions estimates returned by the REM. Interaction estimates are unscaled.}
@@ -213,7 +215,7 @@
 
 
 
-    \begin{figure}[!h]
+    \begin{figure}[H]
         \begin{centering}
         \includegraphics[width=0.9\textwidth]{../2.analyses/figures/spceffects_edited.png}
         \caption{Focal species net effects on neighbours, according to their abundance (A). On the x axis, values over 0 indicate a net competitive effect whereas values below 0 indicate a net facilitative effect on neighbouring species. Dashed lines represent the median value for focals. Diamonds are species means across all network samples, black lines cover the 50\% quantile and grey dots indicate the full range of out-strength values as calculated from 1000 sampled networks. Yellow, blue and red diamonds signify potential keystone or foundation species, and exotic species respectively. (B) Focal species effects on neighbours, split into competitive vs. facilitative. Axes refer to the absolute sum of competitive vs. facilitative interactions. As for (A), diamonds are species means across all network samples and grey dots indicate the full range of  values as calculated from 1000 sampled networks.(1) \textit{P. airoides}, (2) \textit{A. calendula}.}
@@ -237,9 +239,11 @@
     \newpage
 
     \begin{figure}[H]
-        \includegraphics[width=0.8\textwidth]{../2.analyses/figures/bigntwkfig.png}
+    	\begin{centering}
+        \includegraphics[width=0.9\textwidth]{../2.analyses/figures/bigntwkfig.png}
         \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (see Fig. \ref{fig:all_vs_rem}.A). Focal species only are included. Species associations (C) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. Line thickness denotes the strength of the interactions or association. (D) shows the proportion of pair-wise interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-) in our interaction matrix.}
         \label{fig:netwks}
+       \end{centering}
     \end{figure}    
 
 
