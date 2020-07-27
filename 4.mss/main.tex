@@ -2,11 +2,12 @@
     % Change "letterpaper" to "a4" if you use a4 paper size
     \documentclass[a4,12pt]{article}
     % Thesis formatting:  line spacing 1.5, Times New Roman or Arial 12 pt font, all four margins 20mm, A4 size.
-
-    \usepackage{titlesec} % Allows customization of titles
+	
+  %  \usepackage{titlesec} % Allows customization of titles
     \usepackage{authblk} % For multiple authors
     \usepackage{amsmath}
     \usepackage[utf8]{inputenc}
+        \usepackage[T1]{fontenc}
 	\usepackage{setspace} % See \doublespacing command at the top of content.tex
     \usepackage{lineno} 	% See \linenumbers at the top of content.tex
     \usepackage{booktabs}
@@ -44,7 +45,7 @@
 \begin{document}
 \maketitle  
 \newpage
-\setcounter{secnumdepth}{0} % sections are level 1
+\setcounter{secnumdepth}{3} % sections are level 1
 
 % \linenumbers
 
@@ -58,7 +59,7 @@
     \end{enumerate}
 
 % neighbour density-dependent performance models
-
+\newpage
 \section{Introduction}
     
     \paragraph{}
@@ -237,7 +238,7 @@
     \paragraph{}
     The framework presented here allows the estimation of species-rich interaction matrices from plant community data. Given individual observations of reproductive success and the identity of the local neighbourhood, our model uses Bayesian regression to quantify the competitive or facilitative effects of one species on another's intrinsic fitness. Scaling the resulting interaction estimates into per-capita interaction strengths can integrate these results into  population dynamic models, extending traditional plant ecology approaches to quantifying interactions by explicitly allowing for many species and interactions, as well as being able to include and estimate facilitation. We showcase this framework with a case study on a diverse annual wildflower system and illustrate how the resulting interaction networks allow us to better characterise the inner workings of these communities and has strong applications for ecosystem management and conservation.
 
-    \subsection{Estimating interactions in diverse communities}
+    \subsection{Interaction matrices for diverse communities}
 
     \paragraph{}
     The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities compared to co-occurrence networks as well as traditional plant population dynamic models. Like co-occurrence networks, our framework is flexible to the inclusion of many species. Unlike co-occurrence networks however, interactions in our model are estimated from species effects on each other's growth rates. This allows us to capture how interactions may directly affect species abundances, rather than spatial association patterns. Two features make this possible: the response-effect model to estimate unobserved interactions, and a Bayesian implementation to deal with many parameters. 
