@@ -65,9 +65,11 @@
     \begin{enumerate}
     \item Understanding ecological communities requires an understanding of how the different species within it relate to one another. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other species interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species).
 
-    \item We describe a general framework which allows us to estimate competitive and facilitative pair-wise interactions in diverse plant communities from empirical observations of performance (e.g. fecundity) and varying neighbour identities. This framework requires a multi-tiered approach to resolve all interactions. We first apply neighbour density-dependent performance models to each focal species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting 'observed' interactions to approximate interactions which were not observed using a different set of assumptions. This approach is designed to be implemented with Bayesian statistical methods which allow us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix.
+    \item We describe a general framework which allows us to estimate competitive and facilitative per capita pair-wise interactions in diverse plant communities from empirical observations of performance (e.g. fecundity) and varying neighbour identities. This framework requires a multi-tiered approach to resolve all interactions. We first apply neighbour density-dependent performance models to each focal species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting 'observed' interactions to approximate interactions which were not observed using a different set of assumptions. 
 
-    \item We provide the model code in the STAN programming language and apply it to seed production data from an annual wildflower survey. We illustrate how the resulting interaction strengths can be included into system-specific population dynamic models 
+    This approach is designed to be implemented with Bayesian statistical methods which allow us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix.
+
+    \item We provide the model code in the STAN programming language and apply it to seed production data from an annual wildflower survey. We show how the resulting interaction strengths can be integrated into models of population dynamics to return interaction effects of species abundances or growth rates. 
 
     system-specific demographic parameters can be included in
 
@@ -142,7 +144,7 @@
 
     \subsection{Returning per-capita interactions}
 
-    	The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of species $j$ on the proxy for lifetime reproductive fitness of species $i$. Differences in the magnitude of these interaction terms may thus reflect differences in reproductive fitness, which can vary widely between species. In order to make the effects of interactions comparable between species, the interaction terms returned by both models above can be transformed into \textit{per-capita} interaction strengths \parencite{Godoy2014, Bimler2018}. The appropriate scaling is determined by writing the neighbour density-dependant model (Eq. \ref{ifm}) into a form equivalent to a Lotka-Volterra competition model: 
+    	The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of species $j$ on the proxy for lifetime reproductive fitness of species $i$. Differences in the magnitude of these interaction terms may thus reflect differences in reproductive fitness, which can vary widely both between species and under different environmental conditions. In order to make the effects of interactions comparable between species, the interaction terms returned by both models above can be transformed into \textit{per-capita} interaction strengths \parencite{Godoy2014, Bimler2018}. The appropriate scaling is determined by writing the neighbour density-dependant model (Eq. \ref{ifm}) into a form equivalent to a Lotka-Volterra competition model: 
 
         \begin{equation}
         F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
@@ -158,9 +160,24 @@
 
         where $\beta_{ij}$ can be replaced with $r_i e_j$ when appropriate. Though this scaling step is not strictly necessary, per capita interaction strengths have the benefit of being directly comparable both across species and across environmental contexts where reproductive fitness may vary \parencite{Wootton2005}, leading to a wider range of potential applications.
 
-    \subsection{Integrating interaction strengths into models of population dynamics}
+    \subsection{Integrating species-level differences in demographic rates}
 
-    	As a further step,
+
+    	Due to inherent practical constraints with collecting empirical data, the variable chosen to measure the performance of focal individuals $F_i$ may not always directly translate into estimates of lifetime reproductive success. For example, certain life-history reproductive strategies may lead to measures of high seed production in the field which do not account for low seed or seedling survival rates post-observation. In these cases, population dynamics models can be used to relate ....
+    	Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success.
+
+    	If performance is measured by seed production for example, species-specific differences in seed germination and survival may confound...
+
+
+    	In the example of seed production, .. If for example, seed production is ch
+
+
+    	Species-level differences in the chosen measure of performance $F_i$ may also reflect other processes than ..
+
+    	Depending on the variable chosen to represent lifetime reproductive success, ...
+
+
+    	For example, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. Using an appropriate model of population dynamics, 
 
         Per capita interaction strength estimates thereby scale out differences in species’ population size. This makes estimates immediately comparable across species and environmental contexts when population abundances vary. Indeed, per capita interaction strengths underlie all other measures of interaction strength, including the species-level effect rates that empirical ecologists typically intend to com- pare (Wootton 1997, Laska and Wootton 1998).
 
