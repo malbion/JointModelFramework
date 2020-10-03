@@ -126,7 +126,7 @@
     \subsection{Unrealised links}
     
         \paragraph{}
-        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the NDD model above will not be able to estimate all potential interactions ($\beta_{ij}$) between species. This is especially true for rare species. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the NDDs. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
+        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the NDD model above will not be able to estimate all potential interactions ($\beta_{ij}$) between species. This is especially true for rare species. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the NDD model. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
         
         \begin{equation}
         F_{i} = \beta_{i0} - r_{i} \sum_{i}^{j} e_{j} N_{j}
@@ -162,22 +162,14 @@
 
     \subsection{Integrating species-level differences in demographic rates / Integrating interaction strengths into models of population dynamics}
 
+        \paragraph{}
     	In certain instances, models of population dynamics can be used to further extend the usefulness of the framework presented here. 
-    	Due to inherent practical constraints with collecting empirical data, the variable chosen to measure the performance of focal individuals $F_i$ may not always directly translate into estimates of lifetime reproductive success. For example, certain life-history reproductive strategies may lead to measures of high seed production in the field which do not account for low seed or seedling survival rates post-observation. In these cases, population dynamics models can be used to account for species-specific demographic rates into estimates of interaction effects.
+    	Due to inherent practical constraints with collecting empirical data, the variable chosen to measure the performance of focal individuals $F_i$ may not always directly translate into estimates of lifetime reproductive success. For example, certain life-history reproductive strategies may lead to measures of high seed production in the field which do not account for low seed or seedling survival rates post-observation. In these cases, population dynamics models can be used to account for species-specific demographic rates into estimates of interaction effects. Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. In this scenario, a population dynamic model can be used to translate interation effects on the measured variable into interaction strengths affecting the variable of interest.
 
+    	\paragraph{}
+        In both cases, an established population dynamic model ... This step is illustrated in our case study below, where an annual plant population dynamic model is used to transform effects on wildfower seed production (the measured proxy for lifetime reproductive success) into effects on ...., and include species-specific estimates of seed germination and surival rates. 
 
-    	Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success.
-
-    	In both cases, a model of population dynamics 
-
-    	Species-level differences in the chosen measure of performance $F_i$ may also reflect other processes than ..
-
-    	Depending on the variable chosen to represent lifetime reproductive success, ...
-
-
-    	For example, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. Using an appropriate model of population dynamics, 
-
-        Per capita interaction strength estimates thereby scale out differences in species’ population size. This makes estimates immediately comparable across species and environmental contexts when population abundances vary. Indeed, per capita interaction strengths underlie all other measures of interaction strength, including the species-level effect rates that empirical ecologists typically intend to com- pare (Wootton 1997, Laska and Wootton 1998).
+    
 
         \paragraph{}
         Though this rescaling is not necessary when interactions are quantified as effects on rates such as growth or biomass accumulation, it is particularly useful in cases where $F_i$ is captured by variables which are affected by r/K reproductive strategies, such as seed or fruit production. Species $i$ for example may produce a high number of seeds of which few are viable, whereas species $j$ produces very few seeds though these are much more likely to mature into reproductive adults. Scaling the interaction terms returned by the models allows us to compare how species $i$ and $j$ both respond to interactions, relative to 
