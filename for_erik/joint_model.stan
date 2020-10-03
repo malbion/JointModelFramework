@@ -60,6 +60,7 @@ transformed parameters {
   // individual fitness model 
   for(n in 1:N) {
        mu[n] = exp(a[species_ID[n]] - dot_product(X[n], inter_mat[species_ID[n], ]));  
+  // exponential so that mu >= 0 
   }
   
   // build a vector of interaction parameters based on the response effect model 
@@ -88,6 +89,7 @@ model {
   // response-effect interactions
   for (i in 1:I) {
     target += logistic_lpdf(re[i] | beta_ij[i], sigma);
+  // we tried weighting by the number of 'observations' for each beta_ij but couldn't get it to work 
   }
   
 }
