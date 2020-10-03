@@ -11,3 +11,4 @@
 *.Rhistory
 *.html
 /2.analyses/smm.csv
+*.zip
