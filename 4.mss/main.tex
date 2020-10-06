@@ -33,7 +33,7 @@
 
 \onehalfspacing % line spacing 1.5 for thesis formatting
 
-\title{Estimating interaction matrices for diverse, single-trophic communities}
+\title{Estimating interaction matrices for diverse, horizontal communities}
 
 
 \author[1]{Malyon D. Bimler}
@@ -61,25 +61,25 @@
 
 
 \section*{Abstract}
-    
-    \begin{enumerate}
-    \item Understanding ecological communities requires an understanding of how the different species within it relate to one another. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other species interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species).
 
-    \item We describe a general framework which allows us to estimate competitive and facilitative per capita pair-wise interactions in diverse plant communities from empirical observations of performance (e.g. fecundity) and varying neighbour identities. This framework requires a multi-tiered approach to resolve all interactions. We first apply neighbour density-dependent performance models to each focal species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting 'observed' interactions to approximate interactions which were not observed using a different set of assumptions. 
+% Submit to Nature Methods - very short abstract, 
 
-    This approach is designed to be implemented with Bayesian statistical methods which allow us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix.
-
-    \item We provide the model code in the STAN programming language and apply it to seed production data from an annual wildflower survey. We show how the resulting interaction strengths can be integrated into models of population dynamics to return interaction effects of species abundances or growth rates. 
-
-    system-specific demographic parameters can be included in
-
-    the resulting interactions strengths can 
+    Network theory allows us to understand complex systems by evaluating how their constituent components interact with one another. Estimating these interactions from empirical data can be difficult however, because the number of potential interactions increases non-linearly as more components are included in the system, and not all interactions may be observed when some components are rare. We present a novel modelling framework which estimates observed and unobserved interactions in diverse horizontal communities from measures of individual component performance in the absence and presence of their interaction partners. We apply this framework to an ecological dataset of an annual widlfower community 
 
 
-    We illustrate the potential uses of this method by applying it to a case study on australian wildflowers. We show how to scale the resulting interaction matrix into per-capita effects by integrating the above model framework into an annual plant population dynamic model. This particular application can be of wide use to both ecosystem management and towards improving our understanding of community diversity and stability.
-    \end{enumerate}
 
-% neighbour density-dependent performance models
+
+    % \begin{enumerate}
+    % \item Understanding ecological communities requires an understanding of how the different species within it relate to one another. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other species interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species).
+
+    % \item We describe a general framework which allows us to estimate competitive and facilitative per capita pair-wise interactions in diverse plant communities from empirical observations of performance (e.g. fecundity) and varying neighbour identities. This framework requires a multi-tiered approach to resolve all interactions. We first apply neighbour density-dependent performance models to each focal species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting 'observed' interactions to approximate interactions which were not observed using a different set of assumptions. 
+
+    % This approach is designed to be implemented with Bayesian statistical methods which allow us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix.
+
+    % \item We provide the model code in the STAN programming language and apply it to seed production data from an annual wildflower survey. We show how the resulting interaction strengths can be integrated into models of population dynamics to return interaction effects of species abundances or growth rates. .....
+    % We illustrate the potential uses of this method by applying it to a case study on australian wildflowers. We show how to scale the resulting interaction matrix into per-capita effects by integrating the above model framework into an annual plant population dynamic model. This particular application can be of wide use to both ecosystem management and towards improving our understanding of community diversity and stability.
+    % \end{enumerate}
+
 \newpage
 \section{Introduction}
     
