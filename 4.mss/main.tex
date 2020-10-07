@@ -103,168 +103,33 @@
     % A common alternative which is less demanding, and scalable to high-diversity systems is the use of association, or co-occurrence networks. Plant 'interactions' are inferred by measuring positive and negative spatial associations between species (e.g. \cite{Saiz2011}), resulting in networks which capture a variety of factors including biotic interactions \parencite{Losapio2019}. This approach requires data which is much more easily obtainable and can naturally handle a large number of species. A wide range of packages are available in R to deduce association networks, alongside further tools and methods to better infer plant interactions from spatial distribution patterns \parencite{Keil2019}, for example by including environmental covariates. Spatial association networks however, have been found to remain poor predictors of species interactions and rarely match empirical estimates \parencite{Sander2017,Barner2018, Thurman2019, Blanchet2020}.
 
 
-    
-\section{Methods}
-    
-    \paragraph{}
-    This framework can be applied to any dataset of interacting species which meets the following criteria: 
-    \begin{itemize}
-        \item observations of focal individuals record a proxy for lifetime reproductive success (e.g. seed production, stem diameter growth, above-ground biomass)
-        \item these observations also record the identity and abundance of neighbours within the interaction neighbourhood of each focal individual
-        \item observations are spatially replicated across several individuals of each focal species
-    \end{itemize}
-    In addition to these requirements, any experimental design or data which may reduce confounding effects between environment and competition will provide more accurate estimates of interaction strengths (e.g. thinning certain plots, recording environmental data known to affect reproductive success). 
-    
-    \subsection{Neighbour density-dependant model}
-        
-        \paragraph{}
-        We begin by implementing a neighbour density-dependant model to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $F_{i}$:
-        
-        \begin{equation}
-        F_{i} = \beta_{i0} - \sum_{i}^{j} \beta_{ij} N_{j}
-        \label{ifm}
-        \end{equation}
-        
-        The intercept $\beta_{i0}$ represents intrinsic fitness, a species' fitness in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ represent the species-specific effect of each neighbour $j$ on $i$. Note that neighbours can include conspecifics, in which case intraspecific interactions are denoted as $\beta_{ii}$.
-              
-    \subsection{Unrealised links}
-    
-        \paragraph{}
-        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the NDD model above will not be able to estimate all potential interactions ($\beta_{ij}$) between species. This is especially true for rare species. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the NDD model. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
-        
-        \begin{equation}
-        F_{i} = \beta_{i0} - r_{i} \sum_{i}^{j} e_{j} N_{j}
-        \label{rem1}
-        \end{equation}
-        
-        Pairwise interactions which are missing from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. In order to allow both the NDD and REM interaction estimates to contribute to the likelihood, we first used the NDD model to quantify observed interactions and then used those to estimate species-specific $r$ and $e$ parameters such that: 
-    
-        \begin{equation}
-        r_i e_j \sim logistic \left ( \beta_{ij}, \sigma \right )
-        \label{unrealised}
-        \end{equation}
-    
-        where $\sigma$ is a community-level scale parameter for the logistic distribution. We use a logistic distribution here because the heavier tails make it a slightly weaker informative prior than a normal distribution. $\sigma$ defines how widely the tails extend and can be expressed in terms of the standard deviation. 
-
-    \subsection{Returning per-capita interactions}
-
-    	The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of species $j$ on the proxy for lifetime reproductive fitness of species $i$. Differences in the magnitude of these interaction terms may thus reflect differences in reproductive fitness, which can vary widely both between species and under different environmental conditions. In order to make the effects of interactions comparable between species, the interaction terms returned by both models above can be transformed into \textit{per-capita} interaction strengths \parencite{Godoy2014, Bimler2018}. The appropriate scaling is determined by writing the neighbour density-dependant model (Eq. \ref{ifm}) into a form equivalent to a Lotka-Volterra competition model: 
-
-        \begin{equation}
-        F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
-        \label{LVform}
-        \end{equation}
-
-        This reveals that our interaction terms can be rescaled into per-capita interaction strengths by dividing them with the recipient species' intrinsic fitness:  
-
-    	\begin{equation}
-        {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
-        \label{scaling}
-        \end{equation}
-
-        where $\beta_{ij}$ can be replaced with $r_i e_j$ when appropriate. Though this scaling step is not strictly necessary, per capita interaction strengths have the benefit of being directly comparable both across species and across environmental contexts where reproductive fitness may vary \parencite{Wootton2005}, leading to a wider range of potential applications.
-
-    \subsection{Integrating species-level differences in demographic rates / Integrating interaction strengths into models of population dynamics}
-
-        \paragraph{}
-    	In certain instances, models of population dynamics can be used to further extend the usefulness of the framework presented here. We suggest two cases where such an application may be useful. Firtly, the variable chosen to measure the performance of focal individuals $F_i$ may not always directly translate into estimates of lifetime reproductive success due to inherent practical constraints with collecting empirical data. For example, certain life-history reproductive strategies may lead to measures of high seed production in the field which do not account for low seed or seedling survival rates post-observation. In these cases, population dynamics models can be used to account for species-specific demographic rates into estimates of interaction effects. Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. In this scenario, a population dynamic model can be used to translate interation effects on the measured variable into interaction strengths affecting the variable of interest.
-
-    	\paragraph{}
-        In both cases, an established population dynamic model is required as well as knowledge of any crucial demographic rates ..
-
-
-        ... This step is illustrated in our case study below, where an annual plant population dynamic model is used to transform effects on wildfower seed production (the measured proxy for lifetime reproductive success) into effects on ...., and include species-specific estimates of seed germination and surival rates. 
-
-    
-
-        \paragraph{}
-        Though this rescaling is not necessary when interactions are quantified as effects on rates such as growth or biomass accumulation, it is particularly useful in cases where $F_i$ is captured by variables which are affected by r/K reproductive strategies, such as seed or fruit production. Species $i$ for example may produce a high number of seeds of which few are viable, whereas species $j$ produces very few seeds though these are much more likely to mature into reproductive adults. Scaling the interaction terms returned by the models allows us to compare how species $i$ and $j$ both respond to interactions, relative to 
-
-		Depending on the nature of the proxy chosen, this between-species variation in $F_i$ may not capture true differences in the fitness of each species, but rather differences in reproductive strategies for example due to r/K tradeoffs. 
-
-        Species $i$ and $j$ may have equal effects on each other's lifetime reproductive success, but this will not be captured 
-
-
-        In these cases, differences in $F_i$ between species (and thus in the magnitude of the interaction terms) may be driven by differences in the amount of fruit or seed produced which do not account for 
-
-        \paragraph{} 
-        In certain cases, species differences in the proxy $F$ may only be translated into true fitness differences with the inclusion of species-specific demographic rates, such as seed survival or germination rate. In these cases, 
-
-
-        This step is not strictly necessary, but allows us to compare the ...
-
-
-
-	\subsection{Model fitting}
-
-        \paragraph{}        
-        The NDD model (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify \textit{realised} interactions which are then fed into the REM. We provide a working example of the STAN file used to specify and set this model to the case study below in the Supplementary Information, as well as a generalisable function in R which prepares the data and required indexing. From the model file, only the link function for $F_i$ and it's parameterisation need to be modified in order to apply it to a different model or system. In the code given, a negative binomial distribution is used to fit seed production ($F_i$) but a different distribution may be more appropriate when using other proxies for lifetime reproductive success.   
-
-        \paragraph{}
-        STAN returns parameters as distributions which maximise the likelihood, and are conditioned by the data and priors. Priors describe the distribution of plausible values which these parameters may take. For an introduction to Bayesian inference which relates the use of priors to frequentist hypothesis testing, see \textcite{Ellison1996}. We recommend investigators experiment with setting different informed priors to both improve model convergence and verify the robustness of parameter estimates. The resulting parameters are termed posterior distributions, and samples from the posterior are drawn for analysis. \textcite{Ellison2004} also provides an accessible review of parameter estimate and the use of posterior distributions using a worked example on ant species richness data.
-
-        %----------------------------------
-
-    \section{Case study}
-
-    	We applied the model framework described above to a case study of annual wildflower plants. After quantifying the interaction matrix, we scale all interaction samples using estimates of intrinsic fitness ($\beta_{i0}$) and experimentally-measured species demographic rates. The scaling is determined by a system-appropriate population dynamic model and allows us to translate the interaction matrix into per-capita effects on  abundance. This transformation places the resulting interaction strengths on the same scale and allows us to compare the community-wide effects of different species, amongst other potential applications further illustrated in the Results and Discussion. 
-        % Maybe add justification for applying it to plant data here -  possibly add that we assume all nodes 'perform' in the same way. (ie applicable to horizontal systems)
-
-
-    	\subsection{Data}
-
-        \paragraph{}
-        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season, from July to October. The resulting dataset contains from 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of the focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species. Total neighbourhood diversity was 71 wildlfower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and did not target any particular species.
-
-        \paragraph{} 
-        We required species demographic rates (seed and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability. The remaining species were assigned mean demographic rates from these experiments. 
-
-		\subsection{Model fitting}
-
-        \paragraph{}
-        We fit the model using R version 3.6.3, STAN and the rstan package \parencite{R2020, Carpenter2017, Rstan2020}. Estimates of seed production were fit with a negative binomial distribution. The model was run with 4 chains of 5000 iterations each, discarding the first 1000. Models were checked for convergence and traceplots were visually inspected to verify good chain behaviour and mixing. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
-
-        \subsection{Scaling interaction estimates into per-capita effects}
-
-        \paragraph{}
-        The above model framework returns species-specific estimates of intrinsic fitness ($\beta_{i0}$), as well as as a species x neighbour matrix of observed ($\beta_{ij}$) and unobserved ($r_i e_j$) interaction estimates which quantify the effects of one neighbour $j$ on the intrinsic fitness of a focal species $i$. Though useful as they are, these estimates can lead to a wider range of potential applications when integrated into models of population dynamics. For example, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. Using an appropriate model of population dynamics, the raw interaction estimates can be scaled into per-capita effects (${\beta}''$) which are directly comparable between species \parencite{Godoy2014, Bimler2018}. % Note that this step depends on a population dynamic model which can link species abundance to the chosen measure of fitness, and may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival) to scale the interactions.
-
-        \paragraph{}
-		In order to determine the appropriate scaling for the interaction estimates returned by our framework, we transform the model into a form equivalent to a Lotka-Volterra competition model: 
-
-        \begin{equation}
-        F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
-        \label{LVform}
-        \end{equation}
-
-        This gives us the scaled interaction strengths: 
- 
-        \begin{equation}
-        {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
-        \label{scaling}
-        \end{equation}
-
-        \paragraph{}
-		For this case study, we adapted the framework described here to work with a well-supported annual plant population model with a seed bank \parencite{Bimler2018}. The model describes changes in the rate of a focal species' seeds in the seed bank from one year to the next, which can be linked to $F_i$ through species-specific demographic rates (equations for the annual plant model are further described in Chapter 4). The exact form of the rescaled interactions can thus vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality.
-
-
-
 \section{Results}
 
-    \subsection{Implementation}
+    \subsection{Joint model framework}
 
     % 1 or 2 paragraphs explaining what we did (the 'method') applied to the data 
+
+    To estimate pairwise interactions in diverse, horizontal systems such as a plant community, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual performance in the absence and presence of neighbours. Realised interactions are those which can be directly measured from the collected data, for example two plant species are observed to co-occur, their performance is evaluated in each other's presence and the effect of the interaction can thus be directly quantified from the observed data. To do so, the performance of a component - a species, population or any chosen set of replicated individuals - is regressed against the abundance and identity of it's neighbouring components in a neighbour-density dependant model (NDD). Increases or decreases in the overall component's performance can thus be attributed to neighbouring components which were observed to co-occur. The resulting interaction effects can be competitive or facilitative, non-symmetrical (the effect of $i$ on $j$ does not necessarily match the effect of $j$ on $i$) and include intraspecific effects (the effect of $i$ on itself). 
+
+    Unrealised interactions are those which cannot be directly measured from the collected data. A rare component may not be observed to co-occur with many neighbours, because data sampling is limited in space and time and rare species are not as likely to be found. This rare component may still however potentially interact with many of the other components in the system if given the opportunity to do so. Rather than assigning a 0 value to this unknown interaction, we used the previously quantified realised interactions from the NDD model to estimate those unrealised interactions. To do so, we assume that unrealised interactions are the product of component $i$' effect and component $j$'s response.
+
+
+
 
     In order to estimate pair-wise interactions in a diverse community of annual wildflower species, we developed a multi-tiered model framework capable of .. Realised interactions (define) are first estimated by a neigbour-density dependant model which regresses the performance (here measured as seed production) of individual plants against the identity and abundance of neighbours. These realised interactions are then used to estimate unrealised interactions by .... The model is implemented in a Bayesian statistical framework which allows both models to contribute to the likelihood. This approach is also more robust to the inclsion / estimation of many interactions without running as much risk of overparameterisation. 
 
     % I probably need to mention something about the model output beign distributions here. 
 
-    \subsection{}
+    Standardisation: I can talk about the scaling here. 
 
-    I can talk about the scaling here. 
+    \subsection{Realised and unrealised interactions}
+
+    Give the basic results on the case study. 
+
+    Show how this present benefits (estimating unrealised interactions).
 
 
-
+    \subsection{Integration into models of population dynamics (component dynamics???)}
     
 
 
@@ -395,6 +260,151 @@
     % ie. improving our estimates \\
     % - improving our knowledge of networks, developing tools for plant networks and tools that can deal with non-sparse networks, competitive and facilitative interactions \\
     % - integrate with trophic networks (which appear to be sensitive to producer/plant network structure!)\\
+
+
+    
+\section{Methods}
+    
+    \paragraph{}
+    This framework can be applied to any dataset of interacting species which meets the following criteria: 
+    \begin{itemize}
+        \item observations of focal individuals record a proxy for lifetime reproductive success (e.g. seed production, stem diameter growth, above-ground biomass)
+        \item these observations also record the identity and abundance of neighbours within the interaction neighbourhood of each focal individual
+        \item observations are spatially replicated across several individuals of each focal species
+    \end{itemize}
+    In addition to these requirements, any experimental design or data which may reduce confounding effects between environment and competition will provide more accurate estimates of interaction strengths (e.g. thinning certain plots, recording environmental data known to affect reproductive success). 
+    
+    \subsection{Neighbour density-dependant model}
+        
+        \paragraph{}
+        We begin by implementing a neighbour density-dependant model to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $F_{i}$:
+        
+        \begin{equation}
+        F_{i} = \beta_{i0} - \sum_{i}^{j} \beta_{ij} N_{j}
+        \label{ifm}
+        \end{equation}
+        
+        The intercept $\beta_{i0}$ represents intrinsic fitness, a species' fitness in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ represent the species-specific effect of each neighbour $j$ on $i$. Note that neighbours can include conspecifics, in which case intraspecific interactions are denoted as $\beta_{ii}$.
+              
+    \subsection{Unrealised links}
+    
+        \paragraph{}
+        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the NDD model above will not be able to estimate all potential interactions ($\beta_{ij}$) between species. This is especially true for rare species. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the NDD model. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
+        
+        \begin{equation}
+        F_{i} = \beta_{i0} - r_{i} \sum_{i}^{j} e_{j} N_{j}
+        \label{rem1}
+        \end{equation}
+        
+        Pairwise interactions which are missing from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. In order to allow both the NDD and REM interaction estimates to contribute to the likelihood, we first used the NDD model to quantify observed interactions and then used those to estimate species-specific $r$ and $e$ parameters such that: 
+    
+        \begin{equation}
+        r_i e_j \sim logistic \left ( \beta_{ij}, \sigma \right )
+        \label{unrealised}
+        \end{equation}
+    
+        where $\sigma$ is a community-level scale parameter for the logistic distribution. We use a logistic distribution here because the heavier tails make it a slightly weaker informative prior than a normal distribution. $\sigma$ defines how widely the tails extend and can be expressed in terms of the standard deviation. 
+
+    \subsection{Standardising effects into per-capita interactions}
+
+        The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of species $j$ on the proxy for lifetime reproductive fitness of species $i$. Differences in the magnitude of these interaction terms may thus reflect differences in reproductive fitness, which can vary widely both between species and under different environmental conditions. In order to make the effects of interactions comparable between species, the interaction terms returned by both models above can be transformed into \textit{per-capita} interaction strengths \parencite{Godoy2014, Bimler2018}. The appropriate scaling is determined by writing the neighbour density-dependant model (Eq. \ref{ifm}) into a form equivalent to a Lotka-Volterra competition model: 
+
+        \begin{equation}
+        F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
+        \label{LVform}
+        \end{equation}
+
+        This reveals that our interaction terms can be rescaled into per-capita interaction strengths by dividing them with the recipient species' intrinsic fitness:  
+
+        \begin{equation}
+        {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
+        \label{scaling}
+        \end{equation}
+
+        where $\beta_{ij}$ can be replaced with $r_i e_j$ when appropriate. Though this scaling step is not strictly necessary, per capita interaction strengths have the benefit of being directly comparable both across species and across environmental contexts where reproductive fitness may vary \parencite{Wootton2005}, leading to a wider range of potential applications.
+
+    \subsection{Integrating species-level differences in demographic rates / Integrating interaction strengths into models of population dynamics}
+
+        \paragraph{}
+        In certain instances, models of population dynamics can be used to further extend the usefulness of the framework presented here. We suggest two cases where such an application may be useful. Firtly, the variable chosen to measure the performance of focal individuals $F_i$ may not always directly translate into estimates of lifetime reproductive success due to inherent practical constraints with collecting empirical data. For example, certain life-history reproductive strategies may lead to measures of high seed production in the field which do not account for low seed or seedling survival rates post-observation. In these cases, population dynamics models can be used to account for species-specific demographic rates into estimates of interaction effects. Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. In this scenario, a population dynamic model can be used to translate interation effects on the measured variable into interaction strengths affecting the variable of interest.
+
+        \paragraph{}
+        In both cases, an established population dynamic model is required as well as knowledge of any crucial demographic rates ..
+
+
+        ... This step is illustrated in our case study below, where an annual plant population dynamic model is used to transform effects on wildfower seed production (the measured proxy for lifetime reproductive success) into effects on ...., and include species-specific estimates of seed germination and surival rates. 
+
+    
+
+        \paragraph{}
+        Though this rescaling is not necessary when interactions are quantified as effects on rates such as growth or biomass accumulation, it is particularly useful in cases where $F_i$ is captured by variables which are affected by r/K reproductive strategies, such as seed or fruit production. Species $i$ for example may produce a high number of seeds of which few are viable, whereas species $j$ produces very few seeds though these are much more likely to mature into reproductive adults. Scaling the interaction terms returned by the models allows us to compare how species $i$ and $j$ both respond to interactions, relative to 
+
+        Depending on the nature of the proxy chosen, this between-species variation in $F_i$ may not capture true differences in the fitness of each species, but rather differences in reproductive strategies for example due to r/K tradeoffs. 
+
+        Species $i$ and $j$ may have equal effects on each other's lifetime reproductive success, but this will not be captured 
+
+
+        In these cases, differences in $F_i$ between species (and thus in the magnitude of the interaction terms) may be driven by differences in the amount of fruit or seed produced which do not account for 
+
+        \paragraph{} 
+        In certain cases, species differences in the proxy $F$ may only be translated into true fitness differences with the inclusion of species-specific demographic rates, such as seed survival or germination rate. In these cases, 
+
+
+        This step is not strictly necessary, but allows us to compare the ...
+
+
+
+    \subsection{Model fitting}
+
+        \paragraph{}        
+        The NDD model (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify \textit{realised} interactions which are then fed into the REM. We provide a working example of the STAN file used to specify and set this model to the case study below in the Supplementary Information, as well as a generalisable function in R which prepares the data and required indexing. From the model file, only the link function for $F_i$ and it's parameterisation need to be modified in order to apply it to a different model or system. In the code given, a negative binomial distribution is used to fit seed production ($F_i$) but a different distribution may be more appropriate when using other proxies for lifetime reproductive success.   
+
+        \paragraph{}
+        STAN returns parameters as distributions which maximise the likelihood, and are conditioned by the data and priors. Priors describe the distribution of plausible values which these parameters may take. For an introduction to Bayesian inference which relates the use of priors to frequentist hypothesis testing, see \textcite{Ellison1996}. We recommend investigators experiment with setting different informed priors to both improve model convergence and verify the robustness of parameter estimates. The resulting parameters are termed posterior distributions, and samples from the posterior are drawn for analysis. \textcite{Ellison2004} also provides an accessible review of parameter estimate and the use of posterior distributions using a worked example on ant species richness data.
+
+        %----------------------------------
+
+    \section{Case study}
+
+        We applied the model framework described above to a case study of annual wildflower plants. After quantifying the interaction matrix, we scale all interaction samples using estimates of intrinsic fitness ($\beta_{i0}$) and experimentally-measured species demographic rates. The scaling is determined by a system-appropriate population dynamic model and allows us to translate the interaction matrix into per-capita effects on  abundance. This transformation places the resulting interaction strengths on the same scale and allows us to compare the community-wide effects of different species, amongst other potential applications further illustrated in the Results and Discussion. 
+        % Maybe add justification for applying it to plant data here -  possibly add that we assume all nodes 'perform' in the same way. (ie applicable to horizontal systems)
+
+
+        \subsection{Data}
+
+        \paragraph{}
+        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season, from July to October. The resulting dataset contains from 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of the focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species. Total neighbourhood diversity was 71 wildlfower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and did not target any particular species.
+
+        \paragraph{} 
+        We required species demographic rates (seed and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability. The remaining species were assigned mean demographic rates from these experiments. 
+
+        \subsection{Model fitting}
+
+        \paragraph{}
+        We fit the model using R version 3.6.3, STAN and the rstan package \parencite{R2020, Carpenter2017, Rstan2020}. Estimates of seed production were fit with a negative binomial distribution. The model was run with 4 chains of 5000 iterations each, discarding the first 1000. Models were checked for convergence and traceplots were visually inspected to verify good chain behaviour and mixing. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
+
+        \subsection{Scaling interaction estimates into per-capita effects}
+
+        \paragraph{}
+        The above model framework returns species-specific estimates of intrinsic fitness ($\beta_{i0}$), as well as as a species x neighbour matrix of observed ($\beta_{ij}$) and unobserved ($r_i e_j$) interaction estimates which quantify the effects of one neighbour $j$ on the intrinsic fitness of a focal species $i$. Though useful as they are, these estimates can lead to a wider range of potential applications when integrated into models of population dynamics. For example, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. Using an appropriate model of population dynamics, the raw interaction estimates can be scaled into per-capita effects (${\beta}''$) which are directly comparable between species \parencite{Godoy2014, Bimler2018}. % Note that this step depends on a population dynamic model which can link species abundance to the chosen measure of fitness, and may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival) to scale the interactions.
+
+        \paragraph{}
+        In order to determine the appropriate scaling for the interaction estimates returned by our framework, we transform the model into a form equivalent to a Lotka-Volterra competition model: 
+
+        \begin{equation}
+        F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
+        \label{LVform}
+        \end{equation}
+
+        This gives us the scaled interaction strengths: 
+ 
+        \begin{equation}
+        {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
+        \label{scaling}
+        \end{equation}
+
+        \paragraph{}
+        For this case study, we adapted the framework described here to work with a well-supported annual plant population model with a seed bank \parencite{Bimler2018}. The model describes changes in the rate of a focal species' seeds in the seed bank from one year to the next, which can be linked to $F_i$ through species-specific demographic rates (equations for the annual plant model are further described in Chapter 4). The exact form of the rescaled interactions can thus vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality.
 
 
 % \bibliography{../../../BibTex_files/03_Chapter3}
