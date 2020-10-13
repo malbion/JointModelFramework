@@ -275,12 +275,14 @@
     \subsection{Neighbour density-dependant model}
         
         \paragraph{}
-        We begin by implementing a neighbour density-dependant model (NDDM) to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $F_{i}$:
+        We begin by implementing a neighbour density-dependant model (NDDM) to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $P_{i}$:
         
         \begin{equation}
-        F_{i} = \beta_{i0} - \sum_{i}^{j} \beta_{ij} N_{j}
+        P_{i} = \beta_{i0} - \sum_{i}^{j} \beta_{ij} N_{j}
         \label{nddm}
         \end{equation}
+
+        % This needs to be in an exponential form?! or is that only in the code??
         
         The intercept $\beta_{i0}$ represents intrinsic fitness, a species' fitness in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ represent the species-specific effect of each neighbour $j$ on $i$. Note that neighbours can include conspecifics, in which case intraspecific interactions are denoted as $\beta_{ii}$.
               
@@ -290,7 +292,7 @@
         In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the NDDM above will not be able to estimate all potential interactions ($\beta_{ij}$) between species. This is especially true for rare species. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the NDD model. This model is described as the response-effect model (here called the response-impact model or RIM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
         
         \begin{equation}
-        F_{i} = \beta_{i0} - r_{i} \sum_{i}^{j} e_{j} N_{j}
+        P_{i} = \beta_{i0} - r_{i} \sum_{i}^{j} e_{j} N_{j}
         \label{rim}
         \end{equation}
         
@@ -308,7 +310,7 @@
         The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of species $j$ on the proxy for lifetime reproductive fitness of species $i$. Differences in the magnitude of these interaction terms may thus reflect differences in reproductive fitness, which can vary widely both between species and under different environmental conditions. In order to make the effects of interactions comparable between species, the interaction terms returned by both models above can be transformed into \textit{per-capita} interaction strengths \parencite{Godoy2014, Bimler2018}. The appropriate scaling is determined by writing the neighbour density-dependant model (Eq. \ref{nddm}) into a form equivalent to a Lotka-Volterra competition model: 
 
         \begin{equation}
-        F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
+        P_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
         \label{LVform}
         \end{equation}
 
@@ -396,14 +398,14 @@
                 \label{ifm}
             \end{equation}
         
-        where \(F_{i,t}\) measures the number of viable seeds produced per germinated individual and is equivalent to Eq. \ref{nddm}, whilst \(g_{i}\) and \(s_{i}\) are the seed germination and seed survival rate, respectively. In a simplified case where the focal species \textit{i} interacts with only one other species \textit{j}, in this model of population dynamics \(F_{i,t}\) is given by:
+        where \(F_{i,t}\) measures the number of viable seeds produced per germinated individual whilst \(g_{i}\) and \(s_{i}\) are the seed germination and seed survival rate, respectively. In a simplified case where the focal species \textit{i} interacts with only one other species \textit{j}, in this model of population dynamics \(F_{i,t}\) is given by:
 
             \begin{equation}
                 F_{i,t} = \lambda_{i} e^{- \alpha_{ii} g_{i} N_{i, t} -  \alpha_{ij} g_{j} N_{j, t} }
                 \label{fecundity}   
             \end{equation}
 
-        where \(\lambda_{i}\) corresponds to seed number in the absence of competition, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. %Here it is \(\alpha_{ij} g_{j}\) and \(\alpha_{ii} g_{i}\) which are equivalent to \(\beta_{ij}\) in Eq. \ref{nddm}. 
+        where \(\lambda_{i}\) corresponds to seed number in the absence of competition, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij} g_{j}\) and \(\alpha_{ii} g_{i}\) which are equivalent to \(\beta_{ij}\) in Eq. \ref{nddm}. 
         We determine the scaled, per-capita interaction strengths ${\alpha}''$'s by including \(\lambda_{i}\), \(g_{i}\) and \(s_{i}\) in such a way that these variables are cancelled out when the ${\alpha}''$'s are substituted for the $\alpha$'s in our annual plant population model. 
 
         \begin{equation}
@@ -417,7 +419,7 @@
             \frac{N_{i, t+1}}{N_{i, t}} = (1 - \theta_{i}) + \theta_{i} \eta_{i} e^{-ln(\eta_{i})({\alpha_{ii}}'' N_{i, t} + {\alpha_{ij}}'' N_{j, t})}
         \end{equation}
 
-        where we can see that the ${\alpha}''$'s are directly proportional to the abundance of neighbours. Relating this population model to the joint model framework, we have: 
+        where we can see that the ${\alpha}''$'s are directly proportional to the abundance of neighbours. Relating this population model to the joint model framework, we recover the following: 
 
         \begin{equation}
         {\beta_{ij}}'' = {\alpha_{ij}}''
@@ -431,7 +433,13 @@
         \beta_{i0}  = ln(\eta_{i}) = ln(\frac{\lambda_{i} g_{i}}{\theta_{i}})
         \end{equation}
 
-        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. In our case, because seed production in the absence of neighbours is estimated by the model framework and not directly observed, we used the mean of the $\lambda_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
+        \begin{equation}
+        P_{i, t} = g_i F_{i, t} = ln(g_i F_{i, t})
+        \end{equation}
+
+        % which one is it - and how does it match the code?!
+
+        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\lambda_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
 
 
         % Using an appropriate model of population dynamics, the raw interaction estimates can be scaled into per-capita effects (${\beta}''$) which are directly comparable between species \parencite{Godoy2014, Bimler2018}. % Note that this step depends on a population dynamic model which can link species abundance to the chosen measure of fitness, and may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival) to scale the interactions.
