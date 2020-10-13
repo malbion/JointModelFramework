@@ -68,7 +68,7 @@
 % online Methods separate
 
     \paragraph{}
-    \textbf{Network theory allows us to understand complex systems by evaluating how their constituent components interact with one another. Estimating these interactions from empirical data can be difficult however, because the number of potential interactions increases non-linearly as more components are included in the system, and not all interactions may be realised when some components are rare. We present a novel modelling framework which estimates realised and unrealised interactions in diverse horizontal systems, using measures of individual component performance in the absence and presence of their potential interaction partners. We apply this framework to an ecological dataset of an annual wildflower community and quantify the competitive and facilitative effects of 52 neighbouring species on the viable seed production of 22 focal species. We illustrate how this method can be applied in an ecological context to better understand and manage plant communities, though potential applications of this framework extend well beyond biological systems.}
+    \textbf{Network theory allows us to understand complex systems by evaluating how their constituent components interact with one another. Quantifying these interactions from empirical data can be difficult however, because the number of potential interactions increases non-linearly as more components are included in the system, and not all interactions may be realised when some components are rare. We present a novel modelling framework which estimates realised and unrealised interactions in diverse horizontal systems, using measures of individual component performance in the absence and presence of their potential interaction partners. We apply this framework to an ecological dataset of an annual wildflower community and quantify the competitive and facilitative effects of 52 neighbouring species on the viable seed production of 22 focal species. We illustrate how this method can be applied in an ecological context to better understand and manage plant communities, though potential applications of this framework extend well beyond biological systems.}
 
 
 
@@ -105,36 +105,29 @@
 
 \section{Results}
 
-    \subsection{Joint model framework}
+    \subsection{Implementation of the joint model framework}
 
     % 1 or 2 paragraphs explaining what we did (the 'method') applied to the data 
+\paragraph{}
+    To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological community, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual component performance in the absence and presence of neighbours. Realised interactions are those which can be directly measured from the collected data, for example as two plant species are observed to co-occur, their performance is evaluated in each other's presence and the effect of the interaction can thus be directly quantified from the observed data. To do so, the performance of a component - a species, population or any chosen set of replicated individuals - is regressed against the abundance and identity of it's neighbouring components in a neighbour-density dependant model (NDDM). Increases or decreases in the overall component's performance can thus be attributed to neighbouring components which were observed to co-occur. The resulting interaction effects can be competitive or facilitative, non-symmetrical (the effect of $i$ on $j$ does not necessarily match the effect of $j$ on $i$) and include intraspecific effects (the effect of $i$ on itself). 
 
-    To estimate pairwise interactions in diverse, horizontal systems such as a plant community, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual performance in the absence and presence of neighbours. Realised interactions are those which can be directly measured from the collected data, for example two plant species are observed to co-occur, their performance is evaluated in each other's presence and the effect of the interaction can thus be directly quantified from the observed data. To do so, the performance of a component - a species, population or any chosen set of replicated individuals - is regressed against the abundance and identity of it's neighbouring components in a neighbour-density dependant model (NDD). Increases or decreases in the overall component's performance can thus be attributed to neighbouring components which were observed to co-occur. The resulting interaction effects can be competitive or facilitative, non-symmetrical (the effect of $i$ on $j$ does not necessarily match the effect of $j$ on $i$) and include intraspecific effects (the effect of $i$ on itself). 
-
-    Unrealised interactions are those which cannot be directly measured from the collected data. A rare component may not be observed to co-occur with many neighbours, because data sampling is limited in space and time and rare species are not as likely to be found. This rare component may still however potentially interact with many of the other components in the system if given the opportunity to do so. Rather than assigning a 0 value to this unknown interaction, we used the previously quantified realised interactions from the NDD model to estimate those unrealised interactions. To do so, we assume that unrealised interactions are the product of component $i$' effect and component $j$'s response.
-
-
-
-
-    In order to estimate pair-wise interactions in a diverse community of annual wildflower species, we developed a multi-tiered model framework capable of .. Realised interactions (define) are first estimated by a neigbour-density dependant model which regresses the performance (here measured as seed production) of individual plants against the identity and abundance of neighbours. These realised interactions are then used to estimate unrealised interactions by .... The model is implemented in a Bayesian statistical framework which allows both models to contribute to the likelihood. This approach is also more robust to the inclsion / estimation of many interactions without running as much risk of overparameterisation. 
-
-    % I probably need to mention something about the model output beign distributions here. 
-
-    Standardisation: I can talk about the scaling here. 
-
-    \subsection{Realised and unrealised interactions}
-
-    Give the basic results on the case study. 
-
-    Show how this present benefits (estimating unrealised interactions).
+\paragraph{}
+    Unrealised interactions on the other hand are those which cannot be directly measured from the collected data. A rare component may not be observed to co-occur with many neighbours, because data sampling is limited in space and time and rare species are not as likely to be found. This rare component may still however potentially interact with many of the other components in the system if given the opportunity to do so. Rather than assigning a 0 value to this unknown interaction, we used the previously quantified realised interactions from the NDDM to estimate those unrealised interactions. To do so, we assume that unrealised interactions can be simplified such that components typically have a singular impact on and a singular response to neighbours independant of neighbour identity. An unrealised interaction is therefore the product of two components impact and response parameters. Impact and response are calculated from the realised interactions provided by the NDDM and their estimation contributes directly to the overall joint model log-likelihood. Note that the NDDM estimates a unique parameter for each realised interaction independantly of each component's effects on other neighbours, whilst the response and impact model (RIM) applies only to those unrealised interactions. 
 
 
-    \subsection{Integration into models of population dynamics (component dynamics???)}
+\paragraph{}
+    In order to allow a seamless integration between the NDDM and RIM and for both models to contribute to the likelihood, the joint model framework was written in the STAN programming language which uses Bayesian estimation methods. This approach is also more robust to the inclusion of many interactions without running as much risk of overparameterisation, and returns parameter estimates as distributions rather than point estimates, allowing for easy inclusion of uncertainty in the analysis of results. The joint model was applied to simulated data to verify that the original interaction parameters could be recovered by this framework (Figure ?). We then tested this method on a dataset from an annual widflower community consisting of 22 focal species and 52 neighbouring species (including focals). Seed production was used as a measure of performance and modeled with a negative binomial distribution. Implementing the model in STAN allowed us to estimate all 1144 interactions between focal species and neighbour, of which 40\% were unrealised. When accounting for focal species only, 13.6\% of interactions were estimated by the RIM. NDDM and RIM estimates matched well and followed similar distributions (Figure \ref{fig:adist}) as enforced by the framework. [NOTE: I haven't done the simulated data yet but will asap]
+
+  
+
+    \subsection{Integration into models of component dynamics}
     
+    Standardisation: I can talk about the scaling here. 
 
 
 	\paragraph{} 
-	We applied our framework to estimate non-trophic interactions between 22 focal species and 52 neighbours in an annual wildflower community. In our case study, 13.6\% of interactions between focal species were estimated using the REM (out of 484), and 40\% when taking all neighbouring species into account (out of 1144). IFM and REM estimates matched well and followed similar distributions (Figure \ref{fig:adist}). Interactions estimates were scaled into per-capita effects and the resulting interaction network is illustrated in Figure \ref{fig:all_vs_rem}.A.
+
+ Interactions estimates were scaled into per-capita effects and the resulting interaction network is illustrated in Figure \ref{fig:all_vs_rem}.A.
 
 	    \paragraph{} 
     One potential use for translating interaction estimates into per-capita interaction strengths is to identify species of particular importance to the healthy functioning of the whole community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \parencite{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \parencite{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction matrices can help us understand what roles specific species play within a community. 
