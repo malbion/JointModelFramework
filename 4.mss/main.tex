@@ -79,6 +79,8 @@
     % define horizontal systems
     % in an ecological context... 
     % broad definition of performance? or definition of interaction - should be tied to definition of horizontal system. 
+
+    % Current = 580 words
     
     \paragraph{}
     In many biological systems, interactions between various components affect each other's performance and together determine the dynamics of the whole system. In order to understand how system dynamics behave when many components are involved, such complex systems can be represented as networks where the components are nodes and linked by interactions. These nodes can take on a wide array of identities, including cells, individuals, populations or species. Likewise, interactions or links can operate via many different mechanisms and have a wide range of effects on the nodes. Fundamentally, biological networks have been observed to typically differ from randomly-assembled networks in important and varied ways, thus informing us on the biological processes structuring these systems \parencite{Dunne2002}.
@@ -137,48 +139,56 @@
     \end{figure}
   
 
-    \subsection{Integration into models of component dynamics}
+    \subsection{Building an interaction matrix}
     
-    We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction matrix. The following results are given as averages over those 1000 samples 
+    \paragraph{}
+    We applied bootstrap sampling to each posterior interaction strength distribution to create 1000 samples of the community interaction matrix. This interaction matrix captures the likely effects of neighbours on the performance of focal components. Differences in the magnitude of these interaction terms may thus reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal species. In order to make interactions comparable between species, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance (here, seed production in the absence of neighbours). The resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:all_vs_rem}). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$ (REF APPROPRIATE FIGURE HERE - maybe Figure \ref{fig:all_vs_rem}.C or separate figure?). Furthermore, the elements of the diagonal (the effect of a component on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}.A-C) (KEEP FIGURE OR NOT?). 
 
-    Standardisation: I can talk about the scaling here - both the scaling to put them on the same scale, and to make predictions of dynamics. 
+    % \newpage
 
-    Interaction effects are returned by the model as distributions capturing the likely effects of neighbours on the performance of focal components. Differences in the magnitude of these interaction terms may thus reflect differences in baseline performance (performance in the absence of neighbours, either competitive or facilitative) of the focal components. The interaction terms returned by both models above can be rescaled .... 
+        \begin{figure}[H]
+        \begin{centering}
+        \includegraphics[width=0.7\textwidth]{../2.analyses/figures/all_vs_rem.png}
+        \caption{Interaction network between 22 focal species of wildflowers. (A) shows all observed and unrealised interactions whereas (B) shows those interactions estimated by the RIM only. Competitive interactions are shown in yellow and facilitative in blue, line thickness denotes interaction strength. Arrows point to species $i$. Interaction strengths here are given as per-capita values, averaged across all networks. [MAYBE MOVE FIG 5 D (proportion of asymetric interactions) HERE ??]}
+        \label{fig:all_vs_rem}
+        \end{centering}
+    \end{figure}
+
+
+        \newpage
+ 
+    % IDK if it's worth keeping this figure - probably n ot if I don't want to mention co-occurrence methods? but maybe...
+
+    \begin{figure}[H]
+        \begin{centering}
+        \includegraphics[width=0.9\textwidth]{../2.analyses/figures/bigntwkfig.png}
+        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (see Fig. \ref{fig:all_vs_rem}.A). Focal species only are included. Species associations (C) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. Line thickness denotes the strength of the interactions or association. (D) shows the proportion of pair-wise interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-) in our interaction matrix.}
+        \label{fig:netwks}
+       \end{centering}
+    \end{figure}    
+
+    \subsection{Effects on system behaviour: integration into models of component dynamics}
+
+    [THIS IS WHERE I BRING UP THE 'PROPER' SCALING - THOUGH THE NUMBERS PRESENTED PREVIOUSLY RELY ON THE pop dyn model alphas, I thought that bringing all of this up earlier wouldn't fit the results quite so well. FEEL FREE TO DISAGREE]
+
+    \paragraph{}
+
 
     Additionally, one may be interested in other things than lifetime reproductive success ...
+
+        Standardisation: I can talk about the scaling here - both the scaling to put them on the same scale, and to make predictions of dynamics. 
 
     And also to make predictions on other things like diversity... 
 
     Give estimates of effect sizes - eg effect of scaled alphas on growth as percentage ?
 
 
-	\paragraph{} 
-
- Interactions estimates were scaled into per-capita effects and the resulting interaction network is illustrated in Figure \ref{fig:all_vs_rem}.A.
-
-	    \paragraph{} % 
-    One potential use for translating interaction estimates into per-capita interaction strengths is to identify species of particular importance to the healthy functioning of the whole community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \parencite{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \parencite{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction matrices can help us understand what roles specific species play within a community. 
+    \paragraph{} 
+    % Case study specific results in the context of ecology 
+    % - Firstly, intraspecific interactions ($\alpha_{ii}$) are estimated for all focal species and allow us to quantify how much a species regulates itself. In our case study, 85\% of all species across all network samples showed intraspecific competition.
 
 
 
-
-    \newpage
-
-        \begin{figure}[H]
-        \begin{centering}
-        \includegraphics[width=0.7\textwidth]{../2.analyses/figures/all_vs_rem.png}
-        \caption{Mean per-capita interaction strengths between 22 focal species of wildflowers. (A) shows all observed and unobserved interactions whereas (B) shows those interactions estimated by the REM only. Competitive interactions are shown in yellow and facilitative in blue, line thickness denotes interaction strength. Arrows point to species $i$.}
-        \label{fig:all_vs_rem}
-        \end{centering}
-    \end{figure}
-
-
-
-        \paragraph{}
-    Our resulting networks also differ qualitatively to association networks (Figure \ref{fig:netwks}.A-C), a common alternative to inferring interactions in species-rich communities. Firstly, intraspecific interactions ($\alpha_{ii}$) are estimated for all focal species and allow us to quantify how much a species regulates itself. In our case study, 85\% of all species across all network samples showed intraspecific competition. Interactions estimated on growth rates are also directed, which means they have an associated direction such as going from species $i$ to species $j$ ($\alpha_{ij}$), or alternatively from $j$ to $i$ ($\alpha_{ji}$). This interaction pair does not need to be of the same sign or strength, which makes the resulting interaction networks non-symmetrical. Interaction pairs of opposing signs were common in our case study (Figure \ref{fig:netwks}.D), making up 40\% of all pairs and many more differed in strength. 
-
-    \paragraph{}
-    In addition to explicitely allowing for many species interactions, including both competitive (Figure \ref{fig:netwks}.A) and facilitative (Figure \ref{fig:netwks}.B) interactions is another feature which distinguishes our framework from traditional approaches to plant community ecology. Plant population dynamic models typically force interactions to be competitive, despite rising evidence that facilitation is common and an important driver of plant community dynamics \parencite{Brooker2008a}. In our case study, 35\% of all focal x neighbour interactions were facilitative, as were 26 \% of all focal x focal interactions.
 
 
 
@@ -203,15 +213,7 @@
 
 
 
-    \newpage
 
-    \begin{figure}[H]
-    	\begin{centering}
-        \includegraphics[width=0.9\textwidth]{../2.analyses/figures/bigntwkfig.png}
-        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (see Fig. \ref{fig:all_vs_rem}.A). Focal species only are included. Species associations (C) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. Line thickness denotes the strength of the interactions or association. (D) shows the proportion of pair-wise interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-) in our interaction matrix.}
-        \label{fig:netwks}
-       \end{centering}
-    \end{figure}    
 
 
 
@@ -246,6 +248,10 @@
         Interaction networks provide a unique lens with which to examine an ecological community. By describing how species are linked, networks can for example be used to evaluate ecosystem response to human-altered landscapes and guide future management decisions \parencite{Ross2011} or explore how communities may respond to global warming \parencite{Gorman2019}. Specifically, couching species-rich interaction matrices into models of population dynamics allow us to compare how community dynamics may affect and respond to individual species. This can direct ecosystem management efforts such as prioritising certain species to conserve, or eradicating invasives which are disruptful to native species community dynamics.
         % Because some species have stronger effects on other species abundances and are more crucial to the maintenance of biodiversity, management efforts can be prioritised towards their conservation. 
 
+                \paragraph{} % MOVED FROM RESULTS
+    One potential use for translating interaction estimates into per-capita interaction strengths is to identify species of particular importance to the healthy functioning of the whole community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \parencite{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \parencite{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction matrices can help us understand what roles specific species play within a community. 
+
+
         \paragraph{}
         Certain species play important roles in the community which can be deduced from their position in the interaction network \parencite{Cirtwill2018a}. Keystone species for example are both crucial to maintaining the organisation and diversity of their community, and have exceptionally strong effects on other species \parencite{Mills1993}, often leading to secondary extinctions when they are removed from a network. Their influence on the abundance of other species and wider community dynamics is disproportionately high compared to their biomass \parencite{Power1996, Piraino2002, Libralato2006}, which allows easy identification of potential keystone species from our network results (Fig. \ref{fig:species}) though further tests are recommended for validation. Foundation species also control local biodiversity but are widely connected, locally abundant and hold a unique position in regards to their effects on community dynamics \parencite{Ellison2005, Baiser2013, Ellison2019}. Though it can take many years of careful study to identify foundation species from abundant species which are not as crucial to community structure, our framework can help distinguish species which are abundant and interact weakly with neighbours from common species which have strong competitive and facilitative effects on the community. Identifying keystone, foundation and other important types of species roles is helpful for maintaining biological diversity, ecosystem integrity and functioning, especially in response to disturbances and other stresses \parencite{Nyakatya2008, Orwin2016, Losapio2017, Narwani2019}.
         % [The two species were \textit{Gilberta tenuifolia} and \textit{Haloragis odontocarpa} in case that's interesting.]
@@ -258,6 +264,9 @@
 
         \paragraph{}
         Quantifying the matrix of per-capita interaction strengths between species in horizontal communities allows us to explore how the mechanisms maintaining diversity and stability operate in these systems and across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability \parencite{Barabas2017} and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive and facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species (for an example, see \cite{Chu2015a}): weak interactions between species suggests they are not sharing or competing for many resources, and occupy different niche spaces in the community. Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to stability and diversity in plant communities.
+
+            \paragraph{} % MOVED FROM RESULTS
+    In addition to explicitely allowing for many species interactions, including both competitive (Figure \ref{fig:netwks}.A) and facilitative (Figure \ref{fig:netwks}.B) interactions is another feature which distinguishes our framework from traditional approaches to plant community ecology. Plant population dynamic models typically force interactions to be competitive, despite rising evidence that facilitation is common and an important driver of plant community dynamics \parencite{Brooker2008a}.
 
         \paragraph{}
         A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised \parencite{Callaway1997a} but there is still little consensus on how they may affect biodiversity \parencite{Bruno2003}. Recent work suggests facilitation may be more widespread than expected \parencite{Gross2015, Picoche2020} and can  benefit species diversity and stability depending on the circumstances \parencite{Coyte2015, Brooker2008}. Our framework provides a means to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity.  
