@@ -116,13 +116,30 @@
 
 
 \paragraph{}
-    In order to allow a seamless integration between the NDDM and RIM and for both models to contribute to the likelihood, the joint model framework was written in the STAN programming language which uses Bayesian estimation methods. This approach is also more robust to the inclusion of many interactions without running as much risk of overparameterisation, and returns parameter estimates as distributions rather than point estimates, allowing for easy inclusion of uncertainty in the analysis of results. The joint model was applied to simulated data to verify that the original interaction parameters could be recovered by this framework (Figure ?). We then tested this method on a dataset from an annual widflower community consisting of 22 focal species and 52 neighbouring species (including focals). Seed production was used as a measure of performance and modeled with a negative binomial distribution. Implementing the model in STAN allowed us to estimate all 1144 interactions between focal species and neighbour, of which 40\% were unrealised. When accounting for focal species only, 13.6\% of interactions were estimated by the RIM. NDDM and RIM estimates matched well and followed similar distributions (Figure \ref{fig:adist}) as enforced by the framework. [NOTE: I haven't done the simulated data yet but should because reviewers will ask for it]
+    The joint model was first applied to simulated data to verify that the original interaction parameters could be recovered by this framework (Figure ?). Applying it to the empirical wildflower dataset allowed us to provide estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which only 60\% were observed (realised).  When accounting for focal species only, 13.6\% of interactions were estimated by the RIM. NDDM and RIM estimates matched well and followed similar distributions (Figure \ref{fig:adist}) as enforced by the framework. [NOTE: I haven't done the simulated data yet but should because reviewers will ask for it]. 
 
+\paragraph{}
+    In order to allow a seamless integration between the NDDM and RIM and for both models to contribute to the likelihood, the joint model framework was written in the STAN programming language which uses Bayesian estimation methods. This approach is also more robust to the inclusion of many interactions without running as much risk of overparameterisation, and returns parameter estimates as distributions rather than point estimates, allowing for easy inclusion of uncertainty in the analysis of results. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We conducted a posterior predictive check comparing simulated seed density to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. 
+
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=\textwidth]{../2.analyses/figures/interaction_ests.png}
+        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and observed interactions estimates returned by the RIM. Interaction estimates are unscaled.}
+        \label{fig:adist}
+    \end{figure}
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=\textwidth]{../2.analyses/figures/pp_check0.png}
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (solid black line) to simulated seed production values (light grey). Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the dark grey dashed line shows simulated values using the mean of each parameter. [UPDATE FIGURE]}
+        \label{fig:ppcheck}
+    \end{figure}
   
 
     \subsection{Integration into models of component dynamics}
     
-
+    We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction matrix. The following results are given as averages over those 1000 samples 
 
     Standardisation: I can talk about the scaling here - both the scaling to put them on the same scale, and to make predictions of dynamics. 
 
@@ -139,16 +156,11 @@
 
  Interactions estimates were scaled into per-capita effects and the resulting interaction network is illustrated in Figure \ref{fig:all_vs_rem}.A.
 
-	    \paragraph{} 
+	    \paragraph{} % 
     One potential use for translating interaction estimates into per-capita interaction strengths is to identify species of particular importance to the healthy functioning of the whole community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \parencite{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \parencite{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction matrices can help us understand what roles specific species play within a community. 
 
 
-    \begin{figure}[H]
-       % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../2.analyses/figures/interaction_ests.png}
-        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the IFM ($\beta_{ij}$), which are then plotted against the corresponding REM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unobserved} (left) and observed interactions estimates returned by the REM. Interaction estimates are unscaled.}
-        \label{fig:adist}
-    \end{figure}
+
 
     \newpage
 
