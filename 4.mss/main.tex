@@ -74,16 +74,20 @@
 
 \section{Introduction}
 
-    % Things the intro needs to do: 
-    % general intro to network analysis 
-    % define horizontal systems
-    % in an ecological context... 
-    % broad definition of performance? or definition of interaction - should be tied to definition of horizontal system. 
+% Things the intro needs to do: 
+% general intro to network analysis 
+% define horizontal systems
+% in an ecological context... 
+% broad definition of performance? or definition of interaction - should be tied to definition of horizontal system. 
 
-    % Current = 580 words
+% Word count aim: 500-1000 
+% Current = 580 words
     
     \paragraph{}
     In many biological systems, interactions between various components affect each other's performance and together determine the dynamics of the whole system. In order to understand how system dynamics behave when many components are involved, such complex systems can be represented as networks where the components are nodes and linked by interactions. These nodes can take on a wide array of identities, including cells, individuals, populations or species. Likewise, interactions or links can operate via many different mechanisms and have a wide range of effects on the nodes. Fundamentally, biological networks have been observed to typically differ from randomly-assembled networks in important and varied ways, thus informing us on the biological processes structuring these systems \parencite{Dunne2002}.
+
+    \paragraph{}
+    Need a section here describing horizontal / single-trophic systems and what some of the difficulties are for these. 
 
     \paragraph{} 
     In many systems, interactions between nodes are not always easy to observe empirically and must instead be deduced through other means. One strategy is to look at associations between the nodes: nodes which are often found together are assumed to interact more strongly than nodes which rarely co-occur. This approach benefits from a wide range of packages available in R, requires fairly simple data (presence/absence of the nodes) and can deduce associations between large numbers of nodes. An important drawback remains: association networks cannot always distinguish between the multiple confounding factors which lead to co-occurrence, and in ecological communities have rarely been found to match empirical estimates of interactions \parencite{Sander2017,Barner2018, Thurman2019, Blanchet2020}.
@@ -106,6 +110,9 @@
 
 
 \section{Results}
+
+% word count aim: 1500? 
+% current word count = 1200
 
     \subsection{Implementation of the joint model framework}
 
@@ -227,22 +234,30 @@
 
 
 
-
-
-
-
 \section{Discussion}
     
-    % \paragraph{} % DELETE ?
-    % The framework presented here allows the estimation of species-rich interaction matrices from plant community data. Given individual observations of reproductive success and the identity of the local neighbourhood, our model uses Bayesian regression to quantify the competitive or facilitative effects of one species on another's intrinsic fitness. Scaling the resulting interaction estimates into per-capita interaction strengths can integrate these results into  population dynamic models, extending traditional plant ecology approaches to quantifying interactions by explicitly allowing for many species and interactions, as well as being able to include and estimate facilitation. We showcase this framework with a case study on a diverse annual wildflower system and illustrate how the resulting interaction networks allow us to better characterise the inner workings of these communities and has strong applications for ecosystem management and conservation.
+% word count aim: 500-1000
+
+
+    \paragraph{} 
+    The framework presented here allows the estimation of diverse interaction matrices from horizontal community data. Given individual observations of performance and the identity of the local neighbourhood, our model uses Bayesian regression to quantify the competitive or facilitative effects of one component on another and vice versa. This method opens possibilities for many types of applications depending on the system chosen.
+
+    \paragraph{}
+    In ecology, interactions within a single trophic level are often difficult to observe, which means they are often quantified through other means \parencite{}. Unfortunately, these often require... 
+
+    \paragraph{}
+    Application of this framework to ecological setting: understanding diversity, importance of certain nodes etc. 
+
+    \paragraph{}
+    The application of this framework is not limited to ecological systems however, and can be used to 
 
     % % PARAGRAPH MOVED FROM INTRODUCTION
     % There is now a rich body of work describing the characteristics of food webs, plant-pollinator networks, and host-parasite interactions, but non-trophic interactions such as those occurring between plants are largely neglected \parencite{Ellison2019}. This is unfortunate, as recent work indicates that non-trophic interactions and plant diversity alter food web structure, stability and diversity-functioning relationships \parencite{Hammill2015, Giling2019, Zhao2019, Miele2019}. Integrating plant and trophic networks remains a key challenge in improving our understanding of community dynamics and persistence \parencite{Godoy2018c}. 
 
     % \subsection{Interaction matrices for diverse communities}
 
-    % \paragraph{} % DELETE?
-    % The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities compared to co-occurrence networks as well as traditional plant population dynamic models. Like co-occurrence networks, our framework is flexible to the inclusion of many species. Unlike co-occurrence networks however, interactions in our model are estimated from species effects on each other's growth rates. This allows us to capture how interactions may directly affect species abundances, rather than spatial association patterns. Two features make this possible: the response-effect model to estimate unobserved interactions, and a Bayesian implementation to deal with many parameters. 
+    \paragraph{} % DELETE?
+    The model framework we present here quantifies pair-wise interaction strengths between components from diverse horizontal community data. Several aspects of our model and its implementation allow us to better capture complex features of ecological communities compared to co-occurrence networks. Like co-occurrence networks, our framework is flexible to the inclusion of many species. Unlike co-occurrence networks however, interactions in our model are estimated from species effects on each other's performance. By couching our results into a model of population dynamics, we can go even further and capture how interactions may directly affect species abundances, rather than spatial association patterns. 
 
     % \paragraph{} % MOVE TO RESULTS?
     % The response-effect model allows us to deal with a small number of unobserved interactions by relaxing assumptions for those cases and estimating more general 'effect' and 'response' parameters from the pair-wise interactions that are observed. Because they are estimated from observed interactions previously quantified by the IFM, the response and effect parameters are constrained such that their product follows a similar distribution to that of the observed interactions (Figure \ref{fig:adist}). The Bayesian implementation means that parameters are estimated using MCMC algorithms, which amongst many benefits can estimate more parameters than with more commonly used frequentist approaches \parencite{Dorazio2016}. This approach also returns parameter estimates as posterior distributions rather than simple mean and standard deviations. By having access to the full distribution of likely values for every interaction, we can draw samples of likely networks from these distributions and thus easily incorporate some measure of variation and uncertainty around interaction values. 
@@ -250,13 +265,13 @@
     % \paragraph{} % MAYBE? 
     % Discuss the scaling and wide potential uses for it? 
 
-    % \subsection{Limitations}
+    \subsection{Limitations}
         
-    %     \paragraph{}
-    %     Though our framework does provide a way of estimating interactions between species which are not observed to cooccur, care should be taken that these unrealised interactions do not dominate a resulting network. The method we propose uses observed interactions to estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones, and the more reliable those observed estimates are. It is also important to consider the likely reasons for missing interactions. Forbidden links are a subset of potential interactions which cannot be observed, often due to biological constraints or spatio-temporal uncoupling. For example, a pair of short-lived annual plants might have such opposing phenologies that their growing season never overlaps in the field. This type of interaction would be assigned a 0 value. We direct the reader towards the literature on forbidden interactions \parencite{Olesen2011, Jordano2016} for solving these cases. 
+        \paragraph{}
+        Though our framework does provide a way of estimating interactions between system components which are not observed to cooccur, care should be taken that these unrealised interactions do not dominate a resulting network. The method we propose uses observed interactions to estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones, and the more reliable those observed estimates are. It is also important to consider the likely reasons for missing interactions. Forbidden links are a subset of potential interactions which cannot be observed, often due to physical constraints (e.g. biological mismatch) or spatio-temporal uncoupling. For example, a pair of short-lived annual plants might have such opposing phenologies that their growing season never overlaps in the field. This type of interaction would be assigned a 0 value. We direct the reader towards the literature on forbidden interactions \parencite{Olesen2011, Jordano2016} for solving these cases. 
 
-    %     \paragraph{}
-    %     Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial as we do not recommend fewer than 20 observations per focal species. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times across all observations were grouped into an 'other' category with its own interaction effect. If interactions with or between very rare species are the explicit object of interest however, data-collection can simply be focused on amassing observations of focal individuals from those rarer species to be able to estimate these interaction strengths.   
+        \paragraph{}
+        Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial as we do not recommend fewer than 20 observations per focal species. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times across all observations were grouped into an 'other' category with its own interaction effect. If interactions with or between very rare species are the explicit object of interest however, data-collection can simply be focused on amassing observations of focal individuals from those rarer species to be able to estimate these interaction strengths.   
 
 
     % \subsection{Applications to ecosystem management}
