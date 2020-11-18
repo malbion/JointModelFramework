@@ -1,6 +1,5 @@
 # Running the joint model on simulated data 
 
-
 # set up R environment
 require(rstan)
 rstan_options(auto_write = TRUE)
@@ -12,20 +11,21 @@ library(reshape2)
 # load required functions
 source('data_prep.R')
 source('return_inter_array.R')
+source('simul_data.R')
 
 # load the data 
-df <- read.csv('simdata.csv', stringsAsFactors = F)
+df <- simul_data(S=10, K=10, p=0.25)
 
 # prepare the data into the format required by STAN and the model code
 stan.data <- data_prep(perform = 'seeds', 
                        focal = 'focal', 
-                       nonNcols = 4, 
+                       nonNcols = 2, 
                        df = df)
 
 # identify focal and neighbouring species to be matched to parameter estimates
 focalID <- unique(df$focal)  # this should return the names of unique focal groups in the order
 # in which they are encountered in the dataframe
-neighbourID <- colnames(df[ , -c(1:4)])
+neighbourID <- colnames(df[ , -c(1:2)])
 
 message(paste0('Data dimensions = ', dim(df)[1], ', ', dim(df)[2]))
 message(paste0('Number of focal groups = ', length(focalID)))
