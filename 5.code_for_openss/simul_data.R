@@ -43,7 +43,7 @@ for(s in 1:S){
 K_Nmat <- K_Nmat[-1, ]  # remove the NA row
 if (nrow(K_Nmat) != sum(S_obs)) message('Error in total number of observations!')
 if (sum(colSums(K_Nmat) != colSums(summedSK)) > 1) message('Error in neighbour abundances')
-
+colnames(K_Nmat) <- paste0('K', 1:K)
 
 
 # Parameters
@@ -66,15 +66,19 @@ sim_truealpha <- matrix(data = sample(customdist, S*K, replace = F),
 # Observed seed set
 #------------------
 seeds <- rep(NA, length = sum(S_obs))
+counter <- 0
 for(s in 1:S) {
-  if (s == 1) 
-    for (i in 1:S_obs[s]) {
-    seeds[i] <- round(exp(sim_a[s] - sum(K_Nmat[i, ] * sim_truealpha[s, ])))
-  } 
-  else
-    for (i in (S_obs[s-1] +1):(S_obs[s-1] + S_obs[s])) {
+    for (i in (counter+1):(counter + S_obs[s])) {
       seeds[i] <- round(exp(sim_a[s] - sum(K_Nmat[i, ] * sim_truealpha[s, ])))
     }
-} # NEED TO FIX THE COUNTER!! 
+  counter <- counter + S_obs[s]
+} 
 
-
+# Simulated dataset
+#------------------
+# focal identifier
+focal <- do.call('c', mapply(rep, 1:S, S_obs, SIMPLIFY = F))
+simdata <- cbind(focal, seeds, K_Nmat)
+  
+  
+  
