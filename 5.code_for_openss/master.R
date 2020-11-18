@@ -14,12 +14,15 @@ source('return_inter_array.R')
 source('simul_data.R')
 
 # load the data 
-df <- simul_data(S=10, K=10, p=0.25)
+simdat <- simul_data(S=10, K=10, p=0.25)
+df <- simdat[[1]]
+sim_a <- simdat[[2]]
+sim_interactions <- simdat[[3]]
 
 # prepare the data into the format required by STAN and the model code
 stan.data <- data_prep(perform = 'seeds', 
                        focal = 'focal', 
-                       nonNcols = 2, 
+                       nonNcols = 2, # number of columns that aren't neighbour abundances
                        df = df)
 
 # identify focal and neighbouring species to be matched to parameter estimates
@@ -37,9 +40,10 @@ fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 4,
             warmup = 1000,          # number of warmup iterations per chain
-            iter = 5000,            # total number of iterations per chain
+            iter = 3000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
-            control = list(max_treedepth = 10)
+            control = list(max_treedepth = 10,
+                           adapt_delta = 0.9)
 )
 
 # Get the full posteriors 
