@@ -50,7 +50,7 @@ simul_data <- function(
   # Parameters
   #-----------
   # log of species-specific intrinsic performance
-  sim_a <- runif(20, 2, 7)  
+  sim_a <- runif(S, 2, 7)  
   
   # 'true' interaction strengths 
   a <- rnorm( 8000, 0, .3 )
@@ -80,7 +80,7 @@ simul_data <- function(
   simdata <- cbind(focal, seeds, K_Nmat)
   simdata <- as.data.frame(simdata)
   
-  return(simdata)
+  return(list(simdata, sim_a, sim_truealpha))
   
 }
 
