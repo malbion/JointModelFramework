@@ -26,7 +26,7 @@ all focal species at once
 
 parameters {
   
-  vector[S] a;    // species-specific intercept, i.e. log(beta_i_0) 
+  vector[S] a;    // species-specific intercept 
   vector<lower=0>[S] disp_dev; // species-specific dispersion deviation parameter, 
   // defined for the negative binomial distribution used to reflect seed production (seeds)
   // disp_dev = 1/sqrt(phi) 
