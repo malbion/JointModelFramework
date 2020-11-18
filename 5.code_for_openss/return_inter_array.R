@@ -43,7 +43,7 @@ return_inter_array <- function(joint.post.draws, # posterior draws extracted usi
                      dim = c(nrow(all_inters), length(neighbourID), length(focalID)), 
                      dimnames = list('samples' = seq(1, nrow(all_inters)), 
                                      'neighbour' = neighbourID, 
-                                     'species' = key_speciesID))
+                                     'species' = focalID))
   inter_mat <- aperm(inter_mat, c(3,2,1))
   # inter_mat is now a 3 dimensional array, where rows = focals, columns = neighbours and 3rd dim = samples from the posterior
   # inter_mat[ , , 1] should return a matrix consisting of one sample for every interaction 
