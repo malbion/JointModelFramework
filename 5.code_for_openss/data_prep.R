@@ -40,7 +40,7 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   
   # vectors
   stan.data$species_ID <- as.numeric(as.factor(df[ , focal]))
-  stan.data$performance <- df[ , perform]
+  stan.data$perform <- df[ , perform]
   
   
   # set up indices to place observed interactions in the alpha matrix
