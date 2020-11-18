@@ -78,6 +78,7 @@ simul_data <- function(
   #------------------
   focal <- do.call('c', mapply(rep, 1:S, S_obs, SIMPLIFY = F))    # focal identifier
   simdata <- cbind(focal, seeds, K_Nmat)
+  simdata <- as.data.frame(simdata)
   
   return(simdata)
   
