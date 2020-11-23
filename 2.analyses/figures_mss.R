@@ -69,16 +69,67 @@ dev.off()
 # Figure 2: Posterior predictive check |
 #---------------------------------------
 
+# get real data
+seeds <- read.csv('3.case_study/data/fecundities0.csv', stringsAsFactors = F)
+seeds <- seeds$seeds
+
+# extract mu and phi
+mu <- p.samples$mu
+phi <- (p.samples$disp_dev^2)^(-1)
+
+# generating posterior predictions
+seed_pred <- matrix(nrow = dim(mu)[1], ncol = dim(mu)[2])
+for (i in 1:dim(mu)[1]) {     # for each posterior draw
+  for (j in 1:dim(mu)[2]) {    # for each observation 
+    # draw from the predicted distribution
+    seed_pred[i, j] <- rnbinom(1, mu = mu[i, j], size = phi[i])  
+  }
+}
+lower_pred <- apply(seed_pred, 2, quantile, 0.025)
+upper_pred <- apply(seed_pred, 2, quantile, 0.975)
+
+# make prediction from mean of parameters
+m.mu <- colMeans(mu)
+m.phi <- colMeans(phi)
+seed_mean_pred <- rnbinom(1, mu = mu[i, j], size = phi[i])  
+
+# get maximum density for plot limits
+max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}), 
+                     max(density(seeds)$y)))
+
+# dev.new(noRStudioGD = T)
+png(paste0(results_folder, '/postpredch.png'), width=800, height=800)
+# start a plot with the first draw 
+ppc.plot <- plot(density(seed_pred[1, ]), ylim = c(0, max.density), col = 'darkgrey',
+                 ylab = 'Seed density',
+                 main = 'Post. pred. check',
+                 sub = '(grey = predicted, black = observed)') 
+for (i in 2:dim(seed_pred)[1]) {
+  # add a line for each draw
+  ppc.plot <- lines(density(seed_pred[i, ]), col = 'darkgrey')
+}
+# add the actual data
+ppc.plot <- lines(density(stan.data$seeds), col = 'black', lwd = 2)  
+print(ppc.plot)
+dev.off()
 
 
 
 #-------------------------------
 # Figure 3: Response vs Impact |
 #-------------------------------
+S <- dim(p.samples$a)[[2]]
 
-
-
-
+png('2.analyses/figures_mss/response_impact2.png', width = 400, height = 700)
+plot(p.samples$response, p.samples$effect[ , 1:S], type = 'n',
+     xlab = expression(italic('response i')), ylab = expression(italic('impact i')))
+abline(h = 0, lty = 2)
+points(p.samples$response, p.samples$effect[ , 1:S],
+     pch = 16, 
+     col = rgb(red = 0.5, green = 0.5, blue = 0.5, alpha = 0.2))
+points(colMeans(p.samples$response), colMeans(p.samples$effect[ , 1:S]),
+       pch = 18, cex = 2)
+dev.off()
 
 #--------------------------------------
 # Figure 4: Pretty network vs cooccur |
