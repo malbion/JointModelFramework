@@ -70,8 +70,9 @@ dev.off()
 #---------------------------------------
 
 # get real data
-seeds <- read.csv('3.case_study/data/fecundities0.csv', stringsAsFactors = F)
-seeds <- seeds$seeds
+fecundities <- read.csv('3.case_study/data/fecundities0.csv', stringsAsFactors = F)
+seeds <- fecundities$seeds
+focalobs <- as.numeric(as.factor(fecundities$focal))
 
 # extract mu and phi
 mu <- p.samples$mu
@@ -82,34 +83,44 @@ seed_pred <- matrix(nrow = dim(mu)[1], ncol = dim(mu)[2])
 for (i in 1:dim(mu)[1]) {     # for each posterior draw
   for (j in 1:dim(mu)[2]) {    # for each observation 
     # draw from the predicted distribution
-    seed_pred[i, j] <- rnbinom(1, mu = mu[i, j], size = phi[i])  
+    seed_pred[i, j] <- rnbinom(1, mu = mu[i, j], size = phi[i, focalobs[j]])  
   }
 }
-lower_pred <- apply(seed_pred, 2, quantile, 0.025)
-upper_pred <- apply(seed_pred, 2, quantile, 0.975)
-
-# make prediction from mean of parameters
+# and using just the mean of the parameters
 m.mu <- colMeans(mu)
 m.phi <- colMeans(phi)
-seed_mean_pred <- rnbinom(1, mu = mu[i, j], size = phi[i])  
+mean_seed_pred <- sapply(1:length(m.mu) , function(x) {
+  rnbinom(1, mu = m.mu[x], size = m.phi[focalobs[x]])
+})
 
 # get maximum density for plot limits
 max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}), 
                      max(density(seeds)$y)))
 
-# dev.new(noRStudioGD = T)
-png(paste0(results_folder, '/postpredch.png'), width=800, height=800)
+
+png('2.analyses/figures_mss/postpredch_nolimit.png', width=800, height=800)
 # start a plot with the first draw 
-ppc.plot <- plot(density(seed_pred[1, ]), ylim = c(0, max.density), col = 'darkgrey',
+ppc.plot <- plot(density(seed_pred[1, ]), 
+               #  xlim = c(0, 1000), # this is only so we can zoom in
+                 ylim = c(0, max.density), 
+                 col = 'lightgrey',
                  ylab = 'Seed density',
                  main = 'Post. pred. check',
                  sub = '(grey = predicted, black = observed)') 
 for (i in 2:dim(seed_pred)[1]) {
   # add a line for each draw
-  ppc.plot <- lines(density(seed_pred[i, ]), col = 'darkgrey')
+  ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
 }
+
+polygon(c(density(seed_pred)$x, density(x2)$x),  # X-Coordinates of polygon
+        c(density(seed_pred)$y, density(x2)$y),  # Y-Coordinates of polygon
+        col = "#1b98e0") 
+
+
+# add the 'mean prediction'
+ppc.plot <- lines(density(mean_seed_pred), col = 'grey40', lwd = 1.5)  
 # add the actual data
-ppc.plot <- lines(density(stan.data$seeds), col = 'black', lwd = 2)  
+ppc.plot <- lines(density(seeds), col = 'black')  
 print(ppc.plot)
 dev.off()
 
