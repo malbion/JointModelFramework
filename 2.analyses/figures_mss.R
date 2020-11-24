@@ -93,28 +93,45 @@ mean_seed_pred <- sapply(1:length(m.mu) , function(x) {
   rnbinom(1, mu = m.mu[x], size = m.phi[focalobs[x]])
 })
 
+# get the seed density for each sample 
+seed_dens <- apply(seed_pred, 1, function(x) {list(density(x)$x, density(x)$y)})
+
+seed_densX <- apply(seed_pred, 1, function(x) {density(x)$x})
+seed_densY <- apply(seed_pred, 1, function(x) {density(x)$y})
+# get the minimum and maximum y for each row
+minY <- apply(seed_densY, 1, quantile, 0.025)
+maxY <- apply(seed_densY, 1, quantile, 0.975)
+
+sapply(1:nrow(seed_densY), function(x) {
+  temp1 <- quantile(seed_densY[x, ], 0.025)
+  temp2 <- seed_densX[x, ]
+})
+
+
 # get maximum density for plot limits
 max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}), 
                      max(density(seeds)$y)))
 
 
-png('2.analyses/figures_mss/postpredch_nolimit.png', width=800, height=800)
+png('2.analyses/figures_mss/postpredch_points.png', width=800, height=800)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
-               #  xlim = c(0, 1000), # this is only so we can zoom in
+                 type = 'n',
+                 xlim = c(0, 1000), # this is only so we can zoom in
                  ylim = c(0, max.density), 
                  col = 'lightgrey',
                  ylab = 'Seed density',
                  main = 'Post. pred. check',
                  sub = '(grey = predicted, black = observed)') 
-for (i in 2:dim(seed_pred)[1]) {
-  # add a line for each draw
-  ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
-}
-
-polygon(c(density(seed_pred)$x, density(x2)$x),  # X-Coordinates of polygon
-        c(density(seed_pred)$y, density(x2)$y),  # Y-Coordinates of polygon
-        col = "#1b98e0") 
+# for (i in 2:dim(seed_pred)[1]) {
+#   # add a line for each draw
+#   ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
+# }
+ppc.plot <- points(seed_densX, seed_densY, pch = 16, 
+                   col = rgb(red = 0.8, green = 0.8, blue = 0.8, alpha = 0.2))
+# polygon(c(meanX, rev(meanX)),  # X-Coordinates of polygon
+#         c(minY, rev(maxY)),  # Y-Coordinates of polygon
+#         col = "grey") 
 
 
 # add the 'mean prediction'
