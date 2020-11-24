@@ -248,26 +248,72 @@ sp.abunds <- log(sp.abunds)
 sp.abunds.rep <- matrix(data = rep(sp.abunds, dim(scaled_alphas)[3]), 
                         nrow = length(sp.abunds), ncol = dim(scaled_alphas)[3])
 
+# get the effects of species on themselves 
+intras <- apply(scaled_alphas, 3, diag)
+upper.intra <- apply(intras, 1, quantile, 0.75)
+lower.intra <- apply(intras, 1, quantile, 0.25)
+mean.intra <- apply(intras, 1, mean)
+
 # get the effects of species on others
 inters.out <- scaled_alphas[ , 1:nrow(scaled_alphas), ]
 sum.out <- apply(inters.out, c(2, 3), sum)
+sum.out <- sum.out - intras   # remove intraspecific interactions
 upper.sum.out <- apply(sum.out, 1, quantile, 0.75)
 lower.sum.out <- apply(sum.out, 1, quantile, 0.25)
 mean.sum.out <- apply(sum.out, 1, mean)
 
+# competitive effects only
 sum.comp <- apply(inters.out, c(2, 3), function(x) sum(x[x>0]))
+# remove competitive intraspecific interaction
+compintra <- intras
+compintra[compintra<0] <- 0
+sum.comp <- sum.comp - compintra   # remove intraspecific interactions
+# facilitative effects only 
 sum.faci <- apply(inters.out, c(2, 3), function(x) sum(x[x<0]))
+# remove facilitative intraspecies interactions
+faciintra <- intras
+faciintra[faciintra>0] <- 0
+sum.faci <- sum.faci - faciintra
 
 # get 'special' species
 invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
 keyst <- c('GITE', 'TROR', 'HAOD')
 
-# intra vs abundance
+# PLOT
+png('2.analyses/figures_mss/species_effects.png', 
+    width = 400, height = 1000, units = 'px')
+par(mfrow=c(3, 1), cex=1.2)
+
+# 1. intra vs abundance
+#-------------------
+plot(intras, sp.abunds.rep,
+     xlab = 'Intraspecific interactions (self-regulation)',
+     ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
+abline(v=median(intras), lty = 2)
+abline(h=median(sp.abunds), lty = 2)
+points(intras, sp.abunds.rep,
+       pch = 16, col = 'grey', cex = 1.5)
+# lines for the 50% CI
+sapply(1:length(sp.abunds), function(x) {
+  lines(x = c(lower.intra[x], upper.intra[x]), 
+        y = c(sp.abunds[x], sp.abunds[x]),
+        lwd = 1.5)
+}) 
+# points for species means
+points(mean.intra, sp.abunds, pch = 23, 
+       bg = 'black', cex = 1.3)
+points(mean.intra[foundation], sp.abunds[foundation], pch = 23, 
+       bg = 'royalblue', cex = 1.3)
+points(mean.intra[keyst], sp.abunds[keyst], pch = 23, 
+       bg = 'orange', cex = 1.3)
+points(mean.intra[invasives], sp.abunds[invasives], pch = 23, 
+       bg = 'red', cex = 1.3)
 
 
 
-# out-strength vs abundance 
+# 2. out-strength vs abundance 
+#-----------------------------
 plot(sum.out, sp.abunds.rep,
      xlab = 'Net effect on neighbours (Out-strength)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
@@ -292,7 +338,8 @@ points(mean.sum.out[invasives], sp.abunds[invasives], pch = 23,
        bg = 'red', cex = 1.3)
 
 
-# competitive vs facilitative effects
+# 3. competitive vs facilitative effects
+#-------------------------------------
 plot(sum.comp, -sum.faci, las = 1, bty = 'n', 
      pch = 16, cex=0.7, col = 'grey',
      xlab = 'Sum of competitive effects', 
@@ -305,3 +352,7 @@ points(rowMeans(sum.comp)[keyst], -rowMeans(sum.faci)[keyst],
        pch = 23, bg = 'orange', cex = 1.3)
 points(rowMeans(sum.comp)[invasives], -rowMeans(sum.faci)[invasives],  
        pch = 23, bg = 'red', cex = 1.3)
+
+
+dev.off()
+
