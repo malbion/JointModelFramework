@@ -238,5 +238,33 @@ dev.off()
 # Figure 5: Applications - species effects |
 #-------------------------------------------
 
+sp.abunds <- read.csv('3.case_study/data/plot_species_abundances.csv', stringsAsFactors = F)
+sp.abunds <- split(sp.abunds, as.factor(sp.abunds$species))
+sp.abunds <- do.call(rbind,
+                     lapply(sp.abunds, function(x) sum(x[ ,'Num_indivs'])))
+sp.abunds <- sp.abunds[rownames(alpha_means), ]
 
+# get the effects of species on others
+inters.out <- scaled_alphas[ , 1:nrow(scaled_alphas), ]
+sum.out <- apply(inters.out, c(2, 3), sum)
+upper.sum.out <- apply(sum.out, 1, quantile, 0.75)
+lower.sum.out <- apply(sum.out, 1, quantile, 0.25)
+
+sum.comp <- apply(inters.out, c(2, 3), function(x) sum(x[x>0]))
+sum.faci <- apply(inters.out, c(2, 3), function(x) sum(x[x<0]))
+
+# get 'special' species
+invasives <- c('ARCA', 'PEAI', 'HYPO')
+foundation <- c('VERO', 'POCA')
+keyst <- c('GITE', 'TROR', 'HAOD')
+
+# intra vs abundance
+
+
+
+# out-strength vs abundance 
+
+
+
+# competitive vs facilitative effects
 
