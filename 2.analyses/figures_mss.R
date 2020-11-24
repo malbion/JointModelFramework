@@ -7,8 +7,12 @@ setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 # Figures 1-3 use 'raw' parameters extracted from the model output 
 # Figures 4 and 5 used interaction estimates which have been rescaled with a pop dyn model
 
-# 1. Get raw quantities from model output
-#-----------------------------------------
+
+############################################################################################
+#                               PREP FOR FIGURES 1-3
+############################################################################################
+
+# Get raw quantities from model output
 load('../2018_Compnet/stormland/model/output/0/post_draws.Rdata')
 
 # 80% posterior of relevant parameters - vectors
@@ -20,7 +24,7 @@ p.samples <- sapply(param.vec, function(p) {
   }) 
 })
 # get ALL interaction estimates for IFM 
-ifm_mat <- as.data.frame(aperm(ifm_mat, perm = c(1, 3, 2)))
+ifm_mat <- as.data.frame(aperm(joint.post.draws$ifm_alpha, perm = c(1, 3, 2)))
 # take the 80% posterior interval
 ifm_mat <- apply(ifm_mat, 2, function(x) {
   inter <- x[x > quantile(x, 0.1) & x < quantile(x, 0.9)]
@@ -33,8 +37,6 @@ rim_mat <- lapply(c(1:dim(p.samples[['a']])[[2]]), function(x) {
   resp <- sample(resp, length(resp))  # randomly re-order the response vector
   return(resp*p.samples$effect)})
 rim_mat <- do.call(cbind, rim_mat)
-
-
 
 
 #---------------------------------
@@ -62,7 +64,6 @@ hist(rim_mat[ , apply(ifm_mat, 2, function(x) {all(x != 0)})],
      main = 'Observed interactions (REM)', 
      xlim = c(min(rim_mat), max(rim_mat)))
 dev.off()
-
 
 
 #---------------------------------------
@@ -142,10 +143,10 @@ print(ppc.plot)
 dev.off()
 
 
-
 #-------------------------------
 # Figure 3: Response vs Impact |
 #-------------------------------
+
 S <- dim(p.samples$a)[[2]]
 
 png('2.analyses/figures_mss/response_impact2.png', width = 400, height = 700)
@@ -159,12 +160,78 @@ points(colMeans(p.samples$response), colMeans(p.samples$effect[ , 1:S]),
        pch = 18, cex = 2)
 dev.off()
 
+
+
+
+rm(joint.post.draws)
+
+
+############################################################################################
+#                               PREP FOR FIGURES 4 & 5
+############################################################################################
+
+
+load('3.case_study/model/transformed/scaled_alpha_matrices.Rdata')
+
+
+
 #--------------------------------------
 # Figure 4: Pretty network vs cooccur |
 #--------------------------------------
 
+# get the mean and variance estimates for interactions
+alpha_means <- apply(scaled_alphas, c(1, 2), mean)
+alpha_means <- alpha_means[ , 1:nrow(alpha_means)]
+alpha_var <- apply(scaled_alphas, c(1, 2), var)
+alpha_var <- alpha_var[ , 1:nrow(alpha_var)]
+
+# getting the RIM alphas and variances only
+ifm_means <- colMeans(ifm_mat)
+ifm_means <- matrix(data = ifm_means, 
+                    nrow = dim(p.samples$response)[[2]],
+                    ncol = dim(p.samples$effect)[[2]],
+                    byrow = T))
+ifm_means <- ifm_means[ , 1:nrow(ifm_means)]
+
+alpha_rim <- alpha_means
+alpha_rim[which(ifm_means != 0, arr.ind = T)] <- 0
+alpha_var_rim <- alpha_var
+alpha_var_rim[which(ifm_means != 0, arr.ind = T)] <- 0
 
 
+# get the cooccurence matrix
+cooc <- read.csv('2.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
+cooc <- cooc[1:nrow(alpha_means), 1:nrow(alpha_means)]
+
+library(qgraph)
+
+png('2.analyses/figures_mss/networks_variance.png', 
+    width = 600, height = 1200, units = 'px')
+par(mfrow=c(3, 1))
+# plot all interactions
+qgraph(alpha_means,  # plot interaction means
+       edge.width = (alpha_var*100),  # set edge width to be equal to the variance
+       layout = 'circle',
+       negCol = 'royalblue4',   # facilitation = blue
+       posCol = 'orange',       # competition = orange
+       fade = T, directed = T,
+       title = 'A', title.cex =5)
+# plot those from the RIM only 
+qgraph(alpha_rim,  # plot interaction means
+       edge.width = (alpha_var_rim*100),  # set edge width to be equal to the variance
+       layout = 'circle',
+       negCol = 'royalblue4',   # facilitation = blue
+       posCol = 'orange',       # competition = orange
+       fade = T, directed = T,
+       title = 'B', title.cex =5)
+# plot from the cooccur package
+qgraph(cooc,
+       layout = 'circle', 
+       negCol = 'orange',   # swap the colours around
+       posCol = 'royalblue4',     
+       fade = T,
+       title = 'C', title.cex =5)
+dev.off()
 
 
 #-------------------------------------------
