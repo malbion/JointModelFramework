@@ -47,21 +47,21 @@ png('2.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 7
 par(mfrow=c(2,2), cex = 1.5)
 hist(ifm_mat[ , apply(ifm_mat, 2, function(x) {all(x != 0)})], 
      xlab = "", breaks = 30,
-     main = "Observed interactions (IFM)", 
+     main = "Observed interactions (NDDM)", 
      xlim = c(min(rim_mat), max(rim_mat)))
 plot(rim_mat[ifm_mat!=0], ifm_mat[ifm_mat!=0], 
-     ylab = 'IFM betas', xlab='Response*Effect estimates',
+     ylab = 'NDDM betas', xlab='Response*Impact estimates',
      xlim = c(min(rim_mat), max(rim_mat)), ylim = c(min(rim_mat), max(rim_mat)), 
      pch = 16, 
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
 abline(0,1)
 hist(rim_mat[ , apply(ifm_mat, 2, function(x) {all(x == 0)})],  
      xlab = "", breaks = 30,
-     main = 'Unrealised interactions (REM)', 
+     main = 'Unrealised interactions (RIM)', 
      xlim = c(min(rim_mat), max(rim_mat)))
 hist(rim_mat[ , apply(ifm_mat, 2, function(x) {all(x != 0)})],  
      xlab = "", breaks = 30,
-     main = 'Observed interactions (REM)', 
+     main = 'Observed interactions (RIM)', 
      xlim = c(min(rim_mat), max(rim_mat)))
 dev.off()
 
@@ -190,7 +190,7 @@ ifm_means <- colMeans(ifm_mat)
 ifm_means <- matrix(data = ifm_means, 
                     nrow = dim(p.samples$response)[[2]],
                     ncol = dim(p.samples$effect)[[2]],
-                    byrow = T))
+                    byrow = T)
 ifm_means <- ifm_means[ , 1:nrow(ifm_means)]
 
 alpha_rim <- alpha_means
@@ -282,8 +282,8 @@ keyst <- c('GITE', 'TROR', 'HAOD')
 
 # PLOT
 png('2.analyses/figures_mss/species_effects.png', 
-    width = 400, height = 1000, units = 'px')
-par(mfrow=c(3, 1), cex=1.2)
+    width = 1200, height = 400, units = 'px')
+par(mfrow=c(1, 3), cex=1.2)
 
 # 1. intra vs abundance
 #-------------------
