@@ -151,13 +151,6 @@
         \caption{Posterior predictive check showing the density distribution of observed seed production values (solid black line) to simulated seed production values (light grey). Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the dark grey dashed line shows simulated values using the mean of each parameter. [UPDATE FIGURE]}
         \label{fig:ppcheck}
     \end{figure}
-
-    \begin{figure}[H]
-       % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../../2020_Thesis/reviewer_comments/figures_for_oral_exam/correlation_re.png}
-        \caption{POTENTIAL FIGURE - Correlation between species estimates of response and impact parameters. Black triangles are species means across all samples. Note that response parameter values are constrained to be positive - this serves to prevent ... WORDING.}
-        \label{fig:corrRE}
-    \end{figure} 
   
 
     \subsection{Building an interaction matrix}
@@ -517,12 +510,23 @@
 
 \newpage 
 
-\section{Supplementary Information}
+\section{Supplementary Methods}
 
     \subsection{STAN model code}
 
     The following code specifies the joint model framework used to estimate the interaction matrix described in the Methods. It can be copied into a text editor and saved with a .stan extension for use with STAN. 
 
     \includepdf[pages=-]{../1.model/model_stan.pdf}
+
+
+\section{Supplementary Results}
+
+        \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=\textwidth]{../../2020_Thesis/reviewer_comments/figures_for_oral_exam/correlation_re.png}
+        \caption{POTENTIAL FIGURE - Correlation between species estimates of response and impact parameters. Black triangles are species means across all samples. Note that response parameter values are constrained to be positive - this serves to prevent ... WORDING.}
+        \label{fig:corrRE}
+    \end{figure} 
+
 
 \end{document}
