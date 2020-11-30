@@ -207,23 +207,23 @@ library(qgraph)
 
 png('2.analyses/figures_mss/networks_variance.png', 
     width = 600, height = 1200, units = 'px')
-par(mfrow=c(3, 1))
+par(mfrow=c(2, 1))
 # plot all interactions
 qgraph(alpha_means,  # plot interaction means
-       edge.width = (alpha_var*100),  # set edge width to be equal to the variance
+     #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
        layout = 'circle',
        negCol = 'royalblue4',   # facilitation = blue
        posCol = 'orange',       # competition = orange
        fade = T, directed = T,
        title = 'A', title.cex =5)
-# plot those from the RIM only 
-qgraph(alpha_rim,  # plot interaction means
-       edge.width = (alpha_var_rim*100),  # set edge width to be equal to the variance
-       layout = 'circle',
-       negCol = 'royalblue4',   # facilitation = blue
-       posCol = 'orange',       # competition = orange
-       fade = T, directed = T,
-       title = 'B', title.cex =5)
+# # plot those from the RIM only 
+# qgraph(alpha_rim,  # plot interaction means
+#        edge.width = (alpha_var_rim*100),  # set edge width to be equal to the variance
+#        layout = 'circle',
+#        negCol = 'royalblue4',   # facilitation = blue
+#        posCol = 'orange',       # competition = orange
+#        fade = T, directed = T,
+#        title = 'B', title.cex =5)
 # plot from the cooccur package
 qgraph(cooc,
        layout = 'circle', 
