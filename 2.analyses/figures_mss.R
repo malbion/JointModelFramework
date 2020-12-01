@@ -87,26 +87,28 @@ for (i in 1:dim(mu)[1]) {     # for each posterior draw
     seed_pred[i, j] <- rnbinom(1, mu = mu[i, j], size = phi[i, focalobs[j]])  
   }
 }
+# log transform seed predictions
+seed_pred <- log(seed_pred)
 # and using just the mean of the parameters
 m.mu <- colMeans(mu)
 m.phi <- colMeans(phi)
 mean_seed_pred <- sapply(1:length(m.mu) , function(x) {
   rnbinom(1, mu = m.mu[x], size = m.phi[focalobs[x]])
 })
+mean_seed_pred <- log(mean_seed_pred)
+# # get the seed density for each sample 
+# seed_dens <- apply(seed_pred, 1, function(x) {list(density(x)$x, density(x)$y)})
+# 
+# seed_densX <- apply(seed_pred, 1, function(x) {density(x)$x})
+# seed_densY <- apply(seed_pred, 1, function(x) {density(x)$y})
+# # get the minimum and maximum y for each row
+# minY <- apply(seed_densY, 1, quantile, 0.025)
+# maxY <- apply(seed_densY, 1, quantile, 0.975)
 
-# get the seed density for each sample 
-seed_dens <- apply(seed_pred, 1, function(x) {list(density(x)$x, density(x)$y)})
-
-seed_densX <- apply(seed_pred, 1, function(x) {density(x)$x})
-seed_densY <- apply(seed_pred, 1, function(x) {density(x)$y})
-# get the minimum and maximum y for each row
-minY <- apply(seed_densY, 1, quantile, 0.025)
-maxY <- apply(seed_densY, 1, quantile, 0.975)
-
-sapply(1:nrow(seed_densY), function(x) {
-  temp1 <- quantile(seed_densY[x, ], 0.025)
-  temp2 <- seed_densX[x, ]
-})
+# sapply(1:nrow(seed_densY), function(x) {
+#   temp1 <- quantile(seed_densY[x, ], 0.025)
+#   temp2 <- seed_densX[x, ]
+# })
 
 
 # get maximum density for plot limits
@@ -118,12 +120,13 @@ png('2.analyses/figures_mss/postpredch.png', width=500, height=500)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
                  type = 'n',
-                  xlim = c(0, 400), # this is only so we can zoom in
+            #      xlim = c(0, 400), # this is only so we can zoom in
                  ylim = c(0, max.density), 
                  col = 'lightgrey',
                  ylab = 'Seed density',
+                 xlab = 'Log seed production',
                  main = 'Post. pred. check',
-                 sub = '(grey = predicted, black = observed)') 
+                 sub = '(grey = predicted, red = observed)') 
 for (i in 1:dim(seed_pred)[1]) {
   # add a line for each draw
   ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
@@ -138,7 +141,7 @@ for (i in 1:dim(seed_pred)[1]) {
 # add the 'mean prediction'
 ppc.plot <- lines(density(mean_seed_pred), col = 'black', lwd = 1)  
 # add the actual data
-ppc.plot <- lines(density(seeds), col = 'red', lwd = 1)  
+ppc.plot <- lines(density(log(seeds)), col = 'red', lwd = 1)  
 print(ppc.plot)
 dev.off()
 
@@ -258,7 +261,7 @@ qgraph(cooc,
        negCol = 'orange',   # swap the colours around
        posCol = 'royalblue4',     
        fade = T,
-       title = 'B', title.cex =5)
+       title = 'C', title.cex =5)
 dev.off()
 
 #-------------------------------------------
