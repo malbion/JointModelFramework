@@ -114,31 +114,31 @@ max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}),
                      max(density(seeds)$y)))
 
 
-png('2.analyses/figures_mss/postpredch_points.png', width=800, height=800)
+png('2.analyses/figures_mss/postpredch_nolimit.png', width=800, height=800)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
                  type = 'n',
-                 xlim = c(0, 1000), # this is only so we can zoom in
+                 # xlim = c(0, 600), # this is only so we can zoom in
                  ylim = c(0, max.density), 
                  col = 'lightgrey',
                  ylab = 'Seed density',
                  main = 'Post. pred. check',
                  sub = '(grey = predicted, black = observed)') 
-# for (i in 2:dim(seed_pred)[1]) {
-#   # add a line for each draw
-#   ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
-# }
-ppc.plot <- points(seed_densX, seed_densY, pch = 16, 
-                   col = rgb(red = 0.8, green = 0.8, blue = 0.8, alpha = 0.2))
+for (i in 1:dim(seed_pred)[1]) {
+  # add a line for each draw
+  ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
+}
+# ppc.plot <- points(seed_densX, seed_densY, pch = 16, 
+#                    col = rgb(red = 0.8, green = 0.8, blue = 0.8, alpha = 0.2))
 # polygon(c(meanX, rev(meanX)),  # X-Coordinates of polygon
 #         c(minY, rev(maxY)),  # Y-Coordinates of polygon
 #         col = "grey") 
 
 
 # add the 'mean prediction'
-ppc.plot <- lines(density(mean_seed_pred), col = 'grey40', lwd = 1.5)  
+ppc.plot <- lines(density(mean_seed_pred), col = 'black', lwd = 1)  
 # add the actual data
-ppc.plot <- lines(density(seeds), col = 'black')  
+ppc.plot <- lines(density(seeds), col = 'red', lwd = 1)  
 print(ppc.plot)
 dev.off()
 
@@ -205,7 +205,7 @@ cooc <- cooc[1:nrow(alpha_means), 1:nrow(alpha_means)]
 
 library(qgraph)
 
-png('2.analyses/figures_mss/networks_variance.png', 
+png('2.analyses/figures_mss/networks_strengths.png', 
     width = 600, height = 1200, units = 'px')
 par(mfrow=c(2, 1))
 # plot all interactions
