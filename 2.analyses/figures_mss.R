@@ -114,11 +114,11 @@ max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}),
                      max(density(seeds)$y)))
 
 
-png('2.analyses/figures_mss/postpredch_nolimit.png', width=800, height=800)
+png('2.analyses/figures_mss/postpredch.png', width=500, height=500)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
                  type = 'n',
-                 # xlim = c(0, 600), # this is only so we can zoom in
+                  xlim = c(0, 400), # this is only so we can zoom in
                  ylim = c(0, max.density), 
                  col = 'lightgrey',
                  ylab = 'Seed density',
@@ -206,7 +206,7 @@ cooc <- cooc[1:nrow(alpha_means), 1:nrow(alpha_means)]
 library(qgraph)
 
 png('2.analyses/figures_mss/networks_strengths.png', 
-    width = 600, height = 1200, units = 'px')
+    width = 600, height = 800, units = 'px')
 par(mfrow=c(2, 1))
 # plot all interactions
 qgraph(alpha_means,  # plot interaction means
@@ -230,7 +230,7 @@ qgraph(cooc,
        negCol = 'orange',   # swap the colours around
        posCol = 'royalblue4',     
        fade = T,
-       title = 'C', title.cex =5)
+       title = 'B', title.cex =5)
 dev.off()
 
 
