@@ -140,15 +140,15 @@
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../2.analyses/figures/interaction_ests.png}
+        \includegraphics[width=\textwidth]{../2.analyses/figures_mss/interaction_estimates.png}
         \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and observed interactions estimates returned by the RIM. Interaction estimates are unscaled.}
         \label{fig:adist}
     \end{figure}
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../2.analyses/figures/pp_check0.png}
-        \caption{Posterior predictive check showing the density distribution of observed seed production values (solid black line) to simulated seed production values (light grey). Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the dark grey dashed line shows simulated values using the mean of each parameter. [UPDATE FIGURE]}
+        \includegraphics[width=.6\textwidth]{../2.analyses/figures_mss/postpredch.png}
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey), on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the mean of each parameter. [COULD BE MOVED TO SUPPS?]}
         \label{fig:ppcheck}
     \end{figure}
   
@@ -158,25 +158,12 @@
     \paragraph{}
     We applied bootstrap sampling to each posterior interaction strength distribution to create 1000 samples of the community interaction matrix. This interaction matrix captures the likely effects of neighbours on the performance of focal components. Differences in the magnitude of these interaction terms may thus reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal species. In order to make interactions comparable between species, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance (here, seed production in the absence of neighbours). The resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:all_vs_rem}). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$ (REF APPROPRIATE FIGURE HERE - maybe Figure \ref{fig:all_vs_rem}.C or separate figure?). Furthermore, the elements of the diagonal (the effect of a component on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}.A-C). 
 
-    % \newpage
-
-        \begin{figure}[H]
-        \begin{centering}
-        \includegraphics[width=0.7\textwidth]{../2.analyses/figures/all_vs_rem.png}
-        \caption{Interaction network between 22 focal species of wildflowers. (A) shows all observed and unrealised interactions whereas (B) shows those interactions estimated by the RIM only. Competitive interactions are shown in yellow and facilitative in blue, line thickness denotes interaction strength. Arrows point to species $i$. Interaction strengths here are given as per-capita values, averaged across all networks. [MAYBE MOVE FIG 5 D (proportion of asymetric interactions) HERE ??]}
-        \label{fig:all_vs_rem}
-        \end{centering}
-    \end{figure}
-
-
-        \newpage
- 
-    % IDK if it's worth keeping this figure - probably n ot if I don't want to mention co-occurrence methods? but maybe...
 
     \begin{figure}[H]
         \begin{centering}
-        \includegraphics[width=0.9\textwidth]{../2.analyses/figures/bigntwkfig.png}
-        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (see Fig. \ref{fig:all_vs_rem}.A). Focal species only are included. Species associations (C) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. Line thickness denotes the strength of the interactions or association. (D) shows the proportion of pair-wise interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-) in our interaction matrix.}
+        \includegraphics[width=0.5\textwidth]{../2.analyses/figures_mss/networks_C_F_cooc.png}
+        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together. Focal species only are included, arrows point to species $i$ and line thickness denotes interaction strength. Interaction strengths for (A) and (B) are given as the mean over 1000 samples. Species associations (C) were all negative. 
+        Purple coloured nodes correspond to highly abundant native species, whereas green nodes indicate potential keystone species, as further described in Figure \ref{fig:species}. }
         \label{fig:netwks}
        \end{centering}
     \end{figure}    
@@ -198,18 +185,18 @@
     We calculated .... 
 
 
-    \begin{figure}[H]
-       % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../../2020_Thesis/reviewer_comments/figures_for_oral_exam/intras_abundance_ch3.png}
-        \caption{POTENTIAL FIGURE - Relationship between species abundance and how much it regulates itself (strength of per-capita intraspecific interactions). }
-        \label{fig:aii_abund}
-    \end{figure} 
+    % \begin{figure}[H]
+    %    % \hspace*{-3.5cm}
+    %     \includegraphics[width=\textwidth]{../../2020_Thesis/reviewer_comments/figures_for_oral_exam/intras_abundance_ch3.png}
+    %     \caption{POTENTIAL FIGURE - Relationship between species abundance and how much it regulates itself (strength of per-capita intraspecific interactions). }
+    %     \label{fig:aii_abund}
+    % \end{figure} 
 
 
     \begin{figure}[H]
         \begin{centering}
-        \includegraphics[width=0.9\textwidth]{../2.analyses/figures/spceffects_edited.png}
-        \caption{Focal species net effects on neighbours, according to their abundance (A). On the x axis, values over 0 indicate a net competitive effect whereas values below 0 indicate a net facilitative effect on neighbouring species. Dashed lines represent the median value for focals. Diamonds are species means across all network samples, black lines cover the 50\% quantile and grey dots indicate the full range of out-strength values as calculated from 1000 sampled networks. Yellow, blue and red diamonds signify potential keystone or foundation species, and exotic species respectively. (B) Focal species effects on neighbours, split into competitive vs. facilitative. Axes refer to the absolute sum of competitive vs. facilitative interactions. As for (A), diamonds are species means across all network samples and grey dots indicate the full range of  values as calculated from 1000 sampled networks.(1) \textit{P. airoides}, (2) \textit{A. calendula}.}
+        \includegraphics[width=0.4\textwidth]{../2.analyses/figures_mss/species_effects.png}
+        \caption{[UPDATE CAPTION] Focal species net effects on neighbours, according to their abundance (A). On the x axis, values over 0 indicate a net competitive effect whereas values below 0 indicate a net facilitative effect on neighbouring species. Dashed lines represent the median value for focals. Diamonds are species means across all network samples, black lines cover the 50\% quantile and grey dots indicate the full range of out-strength values as calculated from 1000 sampled networks. Yellow, blue and red diamonds signify potential keystone or foundation species, and exotic species respectively. (B) Focal species effects on neighbours, split into competitive vs. facilitative. Axes refer to the absolute sum of competitive vs. facilitative interactions. As for (A), diamonds are species means across all network samples and grey dots indicate the full range of  values as calculated from 1000 sampled networks.(1) \textit{P. airoides}, (2) \textit{A. calendula}.}
         \label{fig:species}
         \end{centering}
     \end{figure} 
