@@ -233,6 +233,33 @@ qgraph(cooc,
        title = 'B', title.cex =5)
 dev.off()
 
+png('2.analyses/figures_mss/networks_C_F_cooc.png', 
+    width = 600, height = 1200, units = 'px')
+par(mfrow=c(3, 1))
+# plot competition only
+qgraph(alpha_means,  # plot interaction means
+       #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
+       layout = 'circle',
+       negCol = rgb(red = 0, green = 0, blue = 0, alpha = 0),   # facilitation = transaprent
+       posCol = 'orange',       # competition = orange
+       fade = T, directed = T,
+       title = 'A', title.cex =5)
+# plot facilitation only
+qgraph(alpha_means,  # plot interaction means
+       #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
+       layout = 'circle',
+       negCol = 'royalblue4',   # facilitation = transaprent
+       posCol = rgb(red = 0, green = 0, blue = 0, alpha = 0),       # competition = orange
+       fade = T, directed = T,
+       title = 'B', title.cex =5)
+# plot from the cooccur package
+qgraph(cooc,
+       layout = 'circle', 
+       negCol = 'orange',   # swap the colours around
+       posCol = 'royalblue4',     
+       fade = T,
+       title = 'B', title.cex =5)
+dev.off()
 
 #-------------------------------------------
 # Figure 5: Applications - species effects |
