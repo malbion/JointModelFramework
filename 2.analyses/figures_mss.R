@@ -201,6 +201,18 @@ alpha_rim[which(ifm_means != 0, arr.ind = T)] <- 0
 alpha_var_rim <- alpha_var
 alpha_var_rim[which(ifm_means != 0, arr.ind = T)] <- 0
 
+# set up colours for nodes (linking to next figure)
+invasives <- c('ARCA', 'PEAI', 'HYPO')
+foundation <- c('VERO', 'POCA')
+keyst <- c('GITE', 'TROR', 'HAOD')
+all.sp <- rep('white', length(dimnames(alpha_means)$species))
+names(all.sp) <- dimnames(alpha_means)$species
+all.sp[invasives] <- 'tomato'
+all.sp[foundation] <- 'plum'
+all.sp[keyst] <- 'seagreen2'
+# node.outline.width <- rep(1, length(dimnames(alpha_means)$species))
+# names(node.outline.width) <- dimnames(alpha_means)$species
+# node.outline.width[ c(invasives, foundation, keyst)] <- 3
 
 # get the cooccurence matrix
 cooc <- read.csv('2.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
@@ -217,6 +229,8 @@ qgraph(alpha_means,  # plot interaction means
        layout = 'circle',
        negCol = 'royalblue4',   # facilitation = blue
        posCol = 'orange',       # competition = orange
+       color = all.sp,
+       labels = dimnames(alpha_means)$species,
        fade = T, directed = T,
        title = 'A', title.cex =5)
 # # plot those from the RIM only 
@@ -232,6 +246,8 @@ qgraph(cooc,
        layout = 'circle', 
        negCol = 'orange',   # swap the colours around
        posCol = 'royalblue4',     
+       color = all.sp,
+       labels = dimnames(alpha_means)$species,
        fade = T,
        title = 'B', title.cex =5)
 dev.off()
@@ -245,6 +261,9 @@ qgraph(alpha_means,  # plot interaction means
        layout = 'circle',
        negCol = rgb(red = 0, green = 0, blue = 0, alpha = 0),   # facilitation = transaprent
        posCol = 'orange',       # competition = orange
+       color = all.sp,
+      # border.width = node.outline.width,
+       labels = dimnames(alpha_means)$species,
        fade = T, directed = T,
        title = 'A', title.cex =5)
 # plot facilitation only
@@ -253,6 +272,8 @@ qgraph(alpha_means,  # plot interaction means
        layout = 'circle',
        negCol = 'royalblue4',   # facilitation = transaprent
        posCol = rgb(red = 0, green = 0, blue = 0, alpha = 0),       # competition = orange
+       color = all.sp,
+       labels = dimnames(alpha_means)$species,
        fade = T, directed = T,
        title = 'B', title.cex =5)
 # plot from the cooccur package
@@ -260,6 +281,8 @@ qgraph(cooc,
        layout = 'circle', 
        negCol = 'orange',   # swap the colours around
        posCol = 'royalblue4',     
+       color = all.sp,
+       labels = dimnames(alpha_means)$species,
        fade = T,
        title = 'C', title.cex =5)
 dev.off()
