@@ -207,7 +207,7 @@ foundation <- c('VERO', 'POCA')
 keyst <- c('GITE', 'TROR', 'HAOD')
 all.sp <- rep('white', length(dimnames(alpha_means)$species))
 names(all.sp) <- dimnames(alpha_means)$species
-all.sp[invasives] <- 'tomato'
+# all.sp[invasives] <- 'tomato'
 all.sp[foundation] <- 'plum'
 all.sp[keyst] <- 'seagreen2'
 # node.outline.width <- rep(1, length(dimnames(alpha_means)$species))
