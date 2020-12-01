@@ -310,10 +310,10 @@ invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
 keyst <- c('GITE', 'TROR', 'HAOD')
 
-# PLOT
+###### PLOT
 png('2.analyses/figures_mss/species_effects.png', 
-    width = 1200, height = 400, units = 'px')
-par(mfrow=c(1, 3), cex=1.2)
+    width = 500, height = 1500, units = 'px')
+par(mfrow=c(3,1), cex=1.2)
 
 # 1. intra vs abundance
 #-------------------
@@ -332,14 +332,16 @@ sapply(1:length(sp.abunds), function(x) {
 }) 
 # points for species means
 points(mean.intra, sp.abunds, pch = 23, 
-       bg = 'black', cex = 1.3)
-points(mean.intra[foundation], sp.abunds[foundation], pch = 23, 
-       bg = 'royalblue', cex = 1.3)
-points(mean.intra[keyst], sp.abunds[keyst], pch = 23, 
-       bg = 'orange', cex = 1.3)
-points(mean.intra[invasives], sp.abunds[invasives], pch = 23, 
-       bg = 'red', cex = 1.3)
-
+       bg = 'black', cex = 1)
+points(mean.intra[foundation], sp.abunds[foundation], pch = 24,
+       bg = 'purple', cex = 1.3)
+# points(mean.intra[keyst], sp.abunds[keyst], pch = 23, 
+#        bg = 'orange', cex = 1.3)
+# points(mean.intra[invasives], sp.abunds[invasives], pch = 23, 
+#        bg = 'red', cex = 1.3)
+text(mean.intra[foundation], sp.abunds[foundation], 
+     labels = names(mean.intra[foundation]), 
+     pos = 4, col = 'darkorchid4', offset = 1)
 
 
 # 2. out-strength vs abundance 
@@ -359,30 +361,39 @@ sapply(1:length(sp.abunds), function(x) {
 }) 
 # points for species means
 points(mean.sum.out, sp.abunds, pch = 23, 
-       bg = 'black', cex = 1.3)
-points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
-       bg = 'royalblue', cex = 1.3)
-points(mean.sum.out[keyst], sp.abunds[keyst], pch = 23, 
-       bg = 'orange', cex = 1.3)
-points(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
-       bg = 'red', cex = 1.3)
+       bg = 'black', cex = 1)
+# points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
+#        bg = 'royalblue', cex = 1.3)
+points(mean.sum.out[keyst], sp.abunds[keyst], pch = 24, 
+       bg = 'chartreuse3', cex = 1.3)
+# ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
+#        bg = 'red', cex = 1.3)
+text(mean.sum.out[keyst], sp.abunds[keyst], 
+     labels = names(mean.sum.out[keyst]), pos = 3, col = 'chartreuse4')
 
 
 # 3. competitive vs facilitative effects
 #-------------------------------------
 plot(sum.comp, -sum.faci, las = 1, bty = 'n', 
+     # type = 'n',
      pch = 16, cex=0.7, col = 'grey',
      xlab = 'Sum of competitive effects', 
      ylab = 'Sum of facilitative effects')
+abline(v=median(sum.comp), lty = 2)
+abline(h=median(-sum.faci), lty = 2)
+# points(sum.comp, -sum.faci, las = 1, bty = 'n', 
+#        pch = 16, cex=0.7, col = 'grey')
 points(rowMeans(sum.comp), -rowMeans(sum.faci), 
-       pch = 23, cex=1.1, bg='black')
-points(rowMeans(sum.comp)[foundation], -rowMeans(sum.faci)[foundation], 
-       pch = 23, bg = 'royalblue', cex = 1.3)
-points(rowMeans(sum.comp)[keyst], -rowMeans(sum.faci)[keyst], 
-       pch = 23, bg = 'orange', cex = 1.3)
+       pch = 23, cex=1, bg='black')
+# points(rowMeans(sum.comp)[foundation], -rowMeans(sum.faci)[foundation], 
+#        pch = 23, bg = 'royalblue', cex = 1.3)
+# points(rowMeans(sum.comp)[keyst], -rowMeans(sum.faci)[keyst], 
+#        pch = 23, bg = 'orange', cex = 1.3)
 points(rowMeans(sum.comp)[invasives], -rowMeans(sum.faci)[invasives],  
-       pch = 23, bg = 'red', cex = 1.3)
-
+       pch = 24, bg = 'red', cex = 1.3)
+text(rowMeans(sum.comp)[invasives], -rowMeans(sum.faci)[invasives], 
+     labels = names(rowMeans(sum.comp)[invasives]), 
+     pos = 4, col = 'darkred', offset = 1)
 
 dev.off()
 
