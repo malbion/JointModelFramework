@@ -134,7 +134,7 @@
     \paragraph{}
         Jacopo made a few comments which I could also address here: 
         \begin{itemize}
-            \item explore the values of r and e, e.g. whether they are correlated across species (they aren't) (Figure \ref{fig:corrRE})
+            \item explore the values of r and e, e.g. whether they are correlated across species (they aren't) - can be included in Supps
             \item interaction estimates for the REM peak around 0 - which can only occur if $r_i$ or $e_j$ are 0 - can discuss when this might occur (1. there exists true 0's such that some species have no effects on others - 2. some species might have both positive and negative effects so averages to 0 - 3. prior is centered on 0 and signal is too weak to be picked up)
 
 
@@ -156,7 +156,7 @@
     \subsection{Building an interaction matrix}
     
     \paragraph{}
-    We applied bootstrap sampling to each posterior interaction strength distribution to create 1000 samples of the community interaction matrix. This interaction matrix captures the likely effects of neighbours on the performance of focal components. Differences in the magnitude of these interaction terms may thus reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal species. In order to make interactions comparable between species, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance (here, seed production in the absence of neighbours). The resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:all_vs_rem}). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$ (REF APPROPRIATE FIGURE HERE - maybe Figure \ref{fig:all_vs_rem}.C or separate figure?). Furthermore, the elements of the diagonal (the effect of a component on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}.A-C). 
+    We applied bootstrap sampling to each posterior interaction strength distribution to create 1000 samples of the community interaction matrix. This interaction matrix captures the likely effects of neighbours on the performance of focal components. Differences in the magnitude of these interaction terms may thus reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal species. In order to make interactions comparable between species, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance (here, seed production in the absence of neighbours). The resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}. A \& B). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. Furthermore, the elements of the diagonal (the effect of a component on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}. C). 
 
 
     \begin{figure}[H]
@@ -177,12 +177,25 @@
     In order to understand how the returned interaction matrix may affect system-wide behaviour, it may be necessary to couch interaction estimates into models of component dynamics. In the wildflower case study illustrated here, models of plant population dynamics are necessary to translate interaction effects on seed production (what is measured) to interaction effects on growth rates and thus future abundance patterns. Using a system-appropriate population dynamic model to guide us, we incorporated key species-specific demographic rates (seed survival and germination rate) into the rescaling of the interaction effects to return \textit{per-capita} interaction strengths. We showcase this process in the Methods, but the exact steps and rescaling needed will vary according to the model chosen. [DISCUSS BENEFITS OF THIS FURTHER IN THE DISCUSSION] 
 
     \paragraph{}
-    These per-capita interaction strengths allow us to draw inferrences about how components may affect each other's growth rather than performance. On average, an individual of a different species decreased a focal individual's growth rate by X\% (+- give min and max), wheras an individual of the same species decreased a focal individual's growth rate by X\% (+- give min and max). Overall, 85\% of all wildlfower species across all network samples were found to compete with themselves and therefore regulate their own population abundance, though the strength of per-capita intraspecific interactions was not correlated to abundance (Figure \ref{fig:aii_abund}. Figure further \ref{fig:species} illustrates how the use of per-capita interaction strengths can allow us to draw conclusions about how different species integrate into and affect other components of the system.  
-
+    Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. Basically scaling into per-capita is necessary if we want to make inferrences about diversity maintenance or stability. \\
+    We calculated .... 
 
     \paragraph{}
-    Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. \\
-    We calculated .... 
+    These per-capita interaction strengths allow us to draw inferrences about how components may affect each other's growth rather than performance. On average, an individual of a different species decreased a focal individual's growth rate by X\% (+- give min and max), wheras an individual of the same species decreased a focal individual's growth rate by X\% (+- give min and max). Overall, 85\% of all wildlfower species across all network samples were found to compete with themselves and therefore regulate their own population abundance, though the strength of per-capita intraspecific interactions was not correlated to abundance (Figure \ref{fig:aii_abund}. Figure further \ref{fig:species} illustrates how the use of per-capita interaction strengths can allow us to draw conclusions about how different species integrate into and affect other components of the system.  
+
+    \paragraph{}
+    Got into ecological questions here (and EDIT/REMOVE previous paragraph)
+        \begin{itemize}
+            \item Do abundant natives under-regulate their population density compared to rarer natives? \\
+            Answer: No, POCA and VERO are very close to the median value for self-regulation
+            \item Which species take on keystone roles aka low abundance but high impact on others? \\
+            Answer: TROR (facilitative), HAOD, GITE (extreme competitor)
+            \item Though exotic species are typically thought to compete with natives, there are also reports of facilitative exotics. Is this the case in our system? \\
+            Answer: PEIA facilitates more and competes less than the median species 
+        \end{itemize}
+
+
+
 
 
     % \begin{figure}[H]
