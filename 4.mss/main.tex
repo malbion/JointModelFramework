@@ -127,35 +127,32 @@
     \paragraph{}
         Unrealised interactions on the other hand are those which cannot be directly measured from the collected data. As is common in ecological communities, rare elements may not be observed to co-occur with many neighbours, because data sampling is limited in space and time and rare species are not as likely to be found. This species may still, however, potentially interact with many of the other species in the system if given the opportunity to do so. Rather than assigning a 0 value to these unknown interactions, we used the previously quantified realised interactions from the NDDM to estimate those unrealised interactions. To do so, we assume that unrealised interactions can be simplified such that elements typically have a singular impact on and a singular response to neighbours independant of neighbour identity. An unrealised interaction is therefore the product of two elements' impact and response parameters. Impact and response are calculated from the realised interactions provided by the NDDM and their estimation contributes directly to the overall joint model log-likelihood. Note that the NDDM estimates a unique parameter for each realised interaction independantly of each elements's effects on other neighbours, whilst the response and impact model (RIM) applies only to those unrealised interactions. 
 
+
     \subsection{Parameter estimation and validation}
 
-    \paragraph{}
-        This model was applied to a dataset of a diverse annual wildflower community, where components consisted of 22 focal species and up to 52 neighbouring species (including focals). Seed production was used as a measure of performance and modeled with a negative binomial distribution.
-
-    \paragraph{}
-        The joint model was first applied to simulated data to verify that the original interaction parameters could be recovered by this framework. Applying it to the empirical wildflower dataset allowed us to provide estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which only 60\% were observed (realised).  When accounting for focal species only, 13.6\% of interactions were estimated by the RIM. NDDM and RIM estimates matched well and followed similar distributions (Figure \ref{fig:adist}) as enforced by the framework. 
-
-    \paragraph{}
-        In order to allow a seamless integration between the NDDM and RIM and for both models to contribute to the likelihood, the joint model framework was written in the STAN programming language which uses Bayesian estimation methods. This approach is also more robust to the inclusion of many interactions without running as much risk of overparameterisation, and returns parameter estimates as distributions rather than point estimates, allowing for easy inclusion of uncertainty in the analysis of results. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We conducted a posterior predictive check comparing simulated seed density to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. [MOVE THIS PARAGRAPH? or restructure this and previous paragraph]
-
-    \paragraph{}
-        Jacopo made a few comments which I could also address here: 
-        \begin{itemize}
-            \item explore the values of r and e, e.g. whether they are correlated across species (they aren't) - can be included in Supps
-            \item interaction estimates for the REM peak around 0 - which can only occur if $r_i$ or $e_j$ are 0 - can discuss when this might occur (1. there exists true 0's such that some species have no effects on others - 2. some species might have both positive and negative effects so averages to 0 - 3. prior is centered on 0 and signal is too weak to be picked up)
+        \paragraph{}
+        In order to allow a seamless integration between the NDDM and RIM and for both models to contribute to the likelihood, the joint model framework was written in the STAN programming language which uses Bayesian estimation methods. This approach is also more robust to the inclusion of many interactions without running as much risk of overparameterisation, and returns parameter estimates as distributions rather than point estimates, allowing for easy inclusion of uncertainty in the analysis of results. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We conducted a posterior predictive check comparing simulated seed density to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. 
 
 
-    \begin{figure}[H]
-       % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../2.analyses/figures_mss/interaction_estimates.png}
-        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and observed interactions estimates returned by the RIM. Interaction estimates are unscaled.}
-        \label{fig:adist}
-    \end{figure}
+
+    \subsection{Application to case study data}
+
+        The joint model was first applied to simulated data to verify that the original interaction parameters could be recovered by this framework. We then applied this model to a case study dataset of a diverse annual wildflower community, where elements consisted of 22 focal species and up to 52 neighbouring species (including focals). Seed production was used as a measure of performance and modeled with a negative binomial distribution. The model returned estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which 60\% were observed (realised).  When accounting for focal species only, 86.4\% of interactions were observed and estimated by the NDDM. NDDM and RIM estimates matched well and followed similar distributions (S.I. Figure \ref{fig:adist}) as enforced by the framework. 
+    
+
+
+
+    % \paragraph{}
+    %     Jacopo made a few comments which I could also address here: 
+    %     \begin{itemize}
+    %         \item explore the values of r and e, e.g. whether they are correlated across species (they aren't) - can be included in Supps
+    %         \item interaction estimates for the REM peak around 0 - which can only occur if $r_i$ or $e_j$ are 0 - can discuss when this might occur (1. there exists true 0's such that some species have no effects on others - 2. some species might have both positive and negative effects so averages to 0 - 3. prior is centered on 0 and signal is too weak to be picked up)
+
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
         \includegraphics[width=.6\textwidth]{../2.analyses/figures_mss/postpredch.png}
-        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey), on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the mean of each parameter. [COULD BE MOVED TO SUPPS?]}
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey), on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the mean of each parameter. }
         \label{fig:ppcheck}
     \end{figure}
   
@@ -163,13 +160,19 @@
     \subsection{Building an interaction matrix}
     
     \paragraph{}
-    We applied bootstrap sampling to each posterior interaction strength distribution to create 1000 samples of the community interaction matrix. This interaction matrix captures the likely effects of neighbours on the performance of focal components. Differences in the magnitude of these interaction terms may thus reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal species. In order to make interactions comparable between species, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance (here, seed production in the absence of neighbours). The resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}. A \& B). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. Furthermore, the elements of the diagonal (the effect of a component on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}. C). 
+    We applied bootstrap sampling to each posterior interaction strength distribution to create 1000 samples of the community interaction matrix. This interaction matrix captures the likely effects of neighbours on the performance of focal elements. Differences in the magnitude of these interaction terms reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal species. In order to make interactions comparable between species, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance. 
+
+
+    In our example, this would be seed production in the absence of neighbours, but could equally be biomass, height for example. For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}. A \& B). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. 
+
+
+    Furthermore, the elements of the diagonal (the effect of a component on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}. C). 
 
 
     \begin{figure}[H]
         \begin{centering}
         \includegraphics[width=0.5\textwidth]{../2.analyses/figures_mss/networks_C_F_cooc.png}
-        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together. Focal species only are included, arrows point to species $i$ and line thickness denotes interaction strength. Interaction strengths for (A) and (B) are given as the mean over 1000 samples. Species associations (C) were all negative. 
+        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package in R \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together. Focal species only are included, arrows point to species $i$ and line thickness denotes interaction strength. Interaction strengths for (A) and (B) are given as the mean over 1000 samples. Species associations (C) were all negative. 
         Purple coloured nodes correspond to highly abundant native species, whereas green nodes indicate potential keystone species, as further described in Figure \ref{fig:species}. }
         \label{fig:netwks}
        \end{centering}
@@ -527,6 +530,14 @@
 
 
 \section{Supplementary Results}
+
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=\textwidth]{../2.analyses/figures_mss/interaction_estimates.png}
+        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and observed interactions estimates returned by the RIM. Interaction estimates are unscaled.}
+        \label{fig:adist}
+    \end{figure}
 
         \begin{figure}[H]
        % \hspace*{-3.5cm}
