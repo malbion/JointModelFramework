@@ -157,12 +157,12 @@
     \subsection{Building an interaction matrix}
     
     \paragraph{}
-	The interaction matrix resulting from the joint model captures the likely effects of neighbours on the performance of focal elements. Differences in the magnitude of these interaction terms reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal species. In order to make interactions comparable between species, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance. 
+	The interaction matrix resulting from the joint model captures the likely effects of neighbours on the performance of focal elements. Differences in the magnitude of these interaction terms reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal elements. In order to make interactions comparable between elements which may have very different vaseline values of performance, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance. 
 
 
     \paragraph{}
     In order to understand how the returned interaction matrix may affect system-wide behaviour, it is useful to also integrate interaction estimates into an overarching model describing the dynamics of the elements in the community. In the wildflower case study illustrated here, models of plant population dynamics are necessary to translate interaction effects on performance to interaction effects on growth rates and thus future patterns of abundance and diversity. 
-
+These per-capita interaction strengths allow us to draw inferrences about how elements may affect each other's growth rather than performance. 
 
     In our example, seed production serves as a measure of performance but other variables which can be linked to population growth such as biomass or height are also appropriate. By introducing key species-specific demographic rates (seed survival and germination rate) into the rescaling of the interaction effects
 
@@ -170,23 +170,18 @@
     Using a system-appropriate population dynamic model to guide us, we incorporated key species-specific demographic rates (seed survival and germination rate) into the rescaling of the interaction effects to return \textit{per-capita} interaction strengths. We showcase this process in the Methods, but the exact steps and rescaling needed will vary according to the model chosen. 
 
 
+    \subsection{Case study results}
 
-
+    \paragraph{}
      For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}. A \& B). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. 
+    }
 
 
     Furthermore, the elements of the diagonal (the effect of a component on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}. C). 
 
 
-    \subsection{Effects on system behaviour: integration into models of component dynamics}
-
-
     \paragraph{}
-    Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. Basically scaling into per-capita is necessary if we want to make inferrences about diversity maintenance or stability. \\
-    We calculated .... 
-
-    \paragraph{}
-    These per-capita interaction strengths allow us to draw inferrences about how elements may affect each other's growth rather than performance. On average, an individual of a different species decreased a focal individual's growth rate by X\% (+- give min and max), wheras an individual of the same species decreased a focal individual's growth rate by X\% (+- give min and max). Overall, 85\% of all wildlfower species across all network samples were found to compete with themselves and therefore regulate their own population abundance, though the strength of per-capita intraspecific interactions was not correlated to abundance (Figure \ref{fig:aii_abund}. Figure further \ref{fig:species} illustrates how the use of per-capita interaction strengths can allow us to draw conclusions about how different species integrate into and affect other elements of the system.  
+    On average, an individual of a different species decreased a focal individual's growth rate by X\% (+- give min and max), wheras an individual of the same species decreased a focal individual's growth rate by X\% (+- give min and max). Overall, 85\% of all wildlfower species across all network samples were found to compete with themselves and therefore regulate their own population abundance, though the strength of per-capita intraspecific interactions was not correlated to abundance (Figure \ref{fig:aii_abund}. Figure further \ref{fig:species} illustrates how the use of per-capita interaction strengths can allow us to draw conclusions about how different species integrate into and affect other elements of the system.  
 
     \paragraph{}
     Got into ecological questions here (and EDIT/REMOVE previous paragraph)
@@ -200,6 +195,9 @@
         \end{itemize}
 
 
+    \paragraph{}
+    Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. Basically scaling into per-capita is necessary if we want to make inferrences about diversity maintenance or stability. \\
+    We calculated .... 
 
 
     \begin{figure}[H]
