@@ -169,8 +169,8 @@
      For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}. A \& B). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. 
      Furthermore, the elements of the diagonal (the effect of an element on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}. C). 
 
-    \paragraph{}
-    [FLOATING PARAGRAPH, EDIT/DELETE/MOVE] On average, an individual of a different species decreased a focal individual's growth rate by X\% (+- give min and max), wheras an individual of the same species decreased a focal individual's growth rate by X\% (+- give min and max). Overall, 85\% of all wildlfower species across all network samples were found to compete with themselves and therefore regulate their own population abundance [REPHRASE - self-facilitation may also regulate pop abundance!], though the strength of per-capita intraspecific interactions was not correlated to abundance (Figure \ref{fig:aii_abund}. Figure further \ref{fig:species} illustrates how the use of per-capita interaction strengths can allow us to draw conclusions about how different species integrate into and affect other elements of the system. 
+    % \paragraph{}
+    % [FLOATING PARAGRAPH, EDIT/DELETE/MOVE] On average, an individual of a different species decreased a focal individual's growth rate by X\% (+- give min and max), wheras an individual of the same species decreased a focal individual's growth rate by X\% (+- give min and max). Overall, 85\% of all wildlfower species across all network samples were found to compete with themselves and therefore regulate their own population abundance [REPHRASE - self-facilitation may also regulate pop abundance!], though the strength of per-capita intraspecific interactions was not correlated to abundance (Figure \ref{fig:aii_abund}. Figure further \ref{fig:species} illustrates how the use of per-capita interaction strengths can allow us to draw conclusions about how different species integrate into and affect other elements of the system. 
 
     \paragraph{}
     We now illustrate potential uses of this framework by examining ecological questions important to species management and how the interaction matrix derived from our case study data may help us better understand the system in question. 
@@ -188,21 +188,21 @@
     Exotic species may have a wide range of effects on native species, both competitive and facilitative. By defining per-capita interaction strengths between species in a system, we can determine which exotics are harmful or beneficial to natives. Figure \ref{fig:species} plots the sum of a species competitive effects on neighbours against the sum of it's facilitative effects on neighbours. Exotic species are identified in red. \textit{Hypochaeris glabra} (HYPO) and \textit{Arctotheca calendula} (ARCA) both have a lower-than-median facilitative effect on neighbours but a higher-than-median competitive effect, these two species fit the narrative of potentially harmful exotic species which compete with natives. \textit{Pentameris aroides} (PEAI) on the other hand has a slightly lower-than-median competitive effect and higher-than-median facilitative effect: it competes more weakly and facilitates more strongly than the median species in the system. In this instance, \textit{P. aroides} is an exotic species which nevertheless facilitates some native species.
 
 
-    \paragraph{}
-    Got into ecological questions here (and EDIT/REMOVE previous paragraph)
-        \begin{itemize}
-            \item Do abundant natives under-regulate their population density compared to rarer natives? \\
-            Answer: No, POCA and VERO are very close to the median value for self-regulation
-            \item Which species take on keystone roles aka low abundance but high impact on others? \\
-            Answer: TROR (facilitative), HAOD, GITE (extreme competitor)
-            \item Though exotic species are typically thought to compete with natives, there are also reports of facilitative exotics. Is this the case in our system? \\
-            Answer: PEIA facilitates more and competes less than the median species 
-        \end{itemize}
+    % \paragraph{}
+    % Got into ecological questions here (and EDIT/REMOVE previous paragraph)
+    %     \begin{itemize}
+    %         \item Do abundant natives under-regulate their population density compared to rarer natives? \\
+    %         Answer: No, POCA and VERO are very close to the median value for self-regulation
+    %         \item Which species take on keystone roles aka low abundance but high impact on others? \\
+    %         Answer: TROR (facilitative), HAOD, GITE (extreme competitor)
+    %         \item Though exotic species are typically thought to compete with natives, there are also reports of facilitative exotics. Is this the case in our system? \\
+    %         Answer: PEIA facilitates more and competes less than the median species 
+    %     \end{itemize}
 
 
-    \paragraph{}
-    Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. Basically scaling into per-capita is necessary if we want to make inferrences about diversity maintenance or stability. \\
-    We calculated .... 
+    % \paragraph{}
+    % Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. Basically scaling into per-capita is necessary if we want to make inferrences about diversity maintenance or stability. \\
+    % We calculated .... 
 
 
     \begin{figure}[H]
@@ -326,15 +326,11 @@
     
 \section{Methods}
 
-\textbf{Note: I've left the species / fitness nomenclature throughout and added a little sentence explaining why as I'm not sure that switching to elements/performance will make it any clearer - happy to take advice on which makes more sense though}
+%\textbf{Note: I've left the species / fitness nomenclature throughout and added a little sentence explaining why as I'm not sure that switching to elements/performance will make it any clearer - happy to take advice on which makes more sense though}
     
     \paragraph{}
-    The joint model framework was initially developed for an ecological dataset where interacting species affect each other's lifetime reproductive success. As such we refer to network elements or nodes as 'species' and node performance as 'lifetime reproductive success' or 'fitness' however this framework is not limited to ecological datasets and can be applied to data from interacting elements (e.g. populations or groups of individuals) which meet the following criteria: 
-    \begin{itemize}
-        \item observations of focal individuals record a proxy for performance, for example seed production, biomass or stem diameter growth as a proxies for lifetime reproductive success
-        \item these observations also record the identity and abundance of neighbours within the interaction neighbourhood of each focal individual
-        \item observations are spatially replicated across several individuals for each focal component or species
-    \end{itemize}
+    The joint model framework was initially developed for an ecological dataset where interacting species affect each other's lifetime reproductive success. As such we refer to network elements or nodes as 'species' and node performance as 'lifetime reproductive success' or 'fitness' however this framework is not limited to ecological datasets and can be applied to data from interacting elements (e.g. populations or groups of individuals) which meet the following criteria. First,   observations of focal individuals must record a proxy for performance, for example seed production, biomass or stem diameter growth as a proxies for lifetime reproductive success. Second,  these observations must also record the identity and abundance of neighbours within the interaction neighbourhood of each focal individual. Lastly, observations should be spatially replicated across several individuals for each focal component or species.
+
 
     In addition to these requirements, any experimental design or data which may reduce confounding effects between environment and competition will provide more accurate estimates of interaction effects (e.g. thinning certain plots, recording environmental data known to affect performance). 
     
@@ -538,7 +534,7 @@
     %\includepdf[pages=-]{../1.model/model_stan.pdf}
 
 
-\section{Supplementary Results}
+% \section{Supplementary Results}
 
 
     \begin{figure}[H]
