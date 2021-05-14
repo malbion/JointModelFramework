@@ -19,50 +19,6 @@
 
 \refsection{0}
   \sortlist[entry]{nyt/global}
-    \entry{Adler2010}{article}{}
-      \name{author}{3}{}{%
-        {{uniquename=0,hash=6ed16f4f98f35ae9a2268706bac19023}{%
-           family={Adler},
-           family_i={A\bibinitperiod},
-           given={Peter\bibnamedelima B.},
-           given_i={P\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{uniquename=0,hash=01e2a52ba641162d43120b3abbbe3b5b}{%
-           family={Ellner},
-           family_i={E\bibinitperiod},
-           given={Stephen\bibnamedelima P.},
-           given_i={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{uniquename=0,hash=c60758812665ef8561071eca0e2f2a41}{%
-           family={Levine},
-           family_i={L\bibinitperiod},
-           given={Jonathan\bibnamedelima M.},
-           given_i={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-      }
-      \strng{namehash}{04f9dd50c58e3cfa4b2938c295f7750a}
-      \strng{fullhash}{04f9dd50c58e3cfa4b2938c295f7750a}
-      \field{sortinit}{A}
-      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
-      \field{labelyear}{2010}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Despite decades of research documenting niche differences between species, we lack a quantitative understanding of their effect on coexistence in natural communities. We perturbed an empirical sagebrush steppe community model to remove the demographic effect of niche differences and quantify their impact on coexistence. With stabilizing mechanisms operating, all species showed positive growth rates when rare, generating stable coexistence. Fluctuation-independent mechanisms contributed more than temporal variability to coexistence and operated more strongly on recruitment than growth or survival. As expected, removal of stabilizing niche differences led to extinction of all inferior competitors. However, complete exclusion required 300– 400 years, indicating small fitness differences among species. Our results show an ÔexcessÕ of niche differences: stabilizing mechanisms were not only strong enough to maintain diversity but were much stronger than necessary given the small fitness differences. The diversity of this community cannot be understood without consider-ation of niche differences.}
-      \field{isbn}{1461-0248 (Electronic)$\backslash$n1461-023X (Linking)}
-      \field{issn}{14610248}
-      \field{journaltitle}{Ecology Letters}
-      \field{number}{8}
-      \field{title}{{Coexistence of perennial plants: An embarrassment of niches}}
-      \field{volume}{13}
-      \field{year}{2010}
-      \field{pages}{1019\bibrangedash 1029}
-      \range{pages}{11}
-      \verb{doi}
-      \verb 10.1111/j.1461-0248.2010.01496.x
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Adler, Ellner, Levine - 2010 - Coexistence of perennial plants An embarrassment of niches.pdf:pdf
-      \endverb
-      \keyw{Community ecology,Competition,Demography,Extinction,Individual-based model,Integral projection model,Niche,Population dynamics}
-    \endentry
     \entry{Baiser2013}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=e620ddbe6d9aca8a47a5a19d5b96eb3c}{%
@@ -137,7 +93,7 @@
       \field{labeltitlesource}{title}
       \field{abstract}{The stability of complex ecological networks depends both on the interactions between species and the direct effects of the species on themselves. These self-effects are known as 'self-regulation' when an increase in a species' abundance decreases its per-capita growth rate. Sources of self-regulation include intraspecific interference, cannibalism, time-scale separation between consumers and their resources, spatial heterogeneity and nonlinear functional responses coupling predators with their prey. The influence of self-regulation on network stability is understudied and in addition, the empirical estimation of self-effects poses a formidable challenge. Here, we show that empirical food web structures cannot be stabilized unless the majority of species exhibit substantially strong self-regulation. We also derive an analytical formula predicting the effect of self-regulation on network stability with high accuracy and show that even for random networks, as well as networks with a cascade structure, stability requires negative self-effects for a large proportion of species. These results suggest that the aforementioned potential mechanisms of self-regulation are probably more important in contributing to the stability of observed ecological networks than was previously thought.}
       \field{issn}{2397334X}
-      \field{journaltitle}{Nature Ecology and Evolution}
+      \field{journaltitle}{Nature Ecology {\&} Evolution}
       \field{number}{12}
       \field{title}{{Self-regulation and the stability of large ecological networks}}
       \field{volume}{1}
@@ -195,6 +151,42 @@
       \endverb
       \keyw{assembly,checkerboard patterns,co-occurrence,competition,joint species distribution,models,null models,pairwise dissimilarity,species associations}
     \endentry
+    \entry{Bascompte2005a}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=b71c47fff97792c37706210243e23ae5}{%
+           family={Bascompte},
+           family_i={B\bibinitperiod},
+           given={Jordi},
+           given_i={J\bibinitperiod}}}%
+        {{uniquename=0,hash=be14c8bf57c9eedc64d7c43e3f115037}{%
+           family={Melian},
+           family_i={M\bibinitperiod},
+           given={Carlos\bibnamedelima J},
+           given_i={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{4647d807fe72cb39acc98272d9dfcf7d}
+      \strng{fullhash}{4647d807fe72cb39acc98272d9dfcf7d}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelyear}{2005}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ecology}
+      \field{number}{11}
+      \field{title}{{Simple trophic modules for complex food webs}}
+      \field{volume}{86}
+      \field{year}{2005}
+      \field{pages}{2868\bibrangedash 2873}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1890/05-0101
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Bascompte, Melian - 2005 - Simple trophic modules for complex food webs.pdf:pdf
+      \endverb
+      \keyw{apparent competition,complex networks,food webs,food-web models,intraguild,network motifs,omnivory,predation}
+    \endentry
     \entry{Bersier2002}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=9a11783b60e5ff051450e61624adbfbc}{%
@@ -234,41 +226,6 @@
       \endverb
       \verb{url}
       \verb http://www.mendeley.com/research/relationships-among-species-traits-separating-levels-response-identifying-linkages-abundances/
-      \endverb
-    \endentry
-    \entry{Beverton1957}{book}{}
-      \name{author}{2}{}{%
-        {{uniquename=0,hash=7082effb9b6196411bbf078ce761d8e1}{%
-           family={Beverton},
-           family_i={B\bibinitperiod},
-           given={Raymond\bibnamedelimb J.\bibnamedelimi H.},
-           given_i={R\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-        {{uniquename=0,hash=cb28c7dfc8dbdfb890f2c74ff0daa8eb}{%
-           family={Holt},
-           family_i={H\bibinitperiod},
-           given={Sidney\bibnamedelima J.},
-           given_i={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Dordrecht}%
-      }
-      \list{publisher}{1}{%
-        {Springer Science+Business Media}%
-      }
-      \strng{namehash}{0eeaa3734e230c00466798c9f5471ae8}
-      \strng{fullhash}{0eeaa3734e230c00466798c9f5471ae8}
-      \field{sortinit}{B}
-      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
-      \field{labelyear}{1957}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{1993}
-      \field{isbn}{9789401049344}
-      \field{title}{{On the Dynamics of Exploited Fish Populations}}
-      \field{year}{1957}
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Beverton, Holt - 1957 - On the Dynamics of Exploited Fish Populations.pdf:pdf
       \endverb
     \endentry
     \entry{Bimler2018}{article}{}
@@ -944,40 +901,6 @@
       \endverb
       \keyw{Algorithmic differentiation,Bayesian inference,Probabilistic program,Stan}
     \endentry
-    \entry{Chesson2000b}{article}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=db6b43699dc16ed26ca5592cbdebda43}{%
-           family={Chesson},
-           family_i={C\bibinitperiod},
-           given={Peter},
-           given_i={P\bibinitperiod}}}%
-      }
-      \strng{namehash}{db6b43699dc16ed26ca5592cbdebda43}
-      \strng{fullhash}{db6b43699dc16ed26ca5592cbdebda43}
-      \field{sortinit}{C}
-      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
-      \field{labelyear}{2000}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{The focus of most ideas on diversity maintenance is species coexis- tence, which may be stable or unstable. Stable coexistence can be quantified by the long-term rates at which community members recover from low density. Quantifica- tion shows that coexistence mechanisms function in two major ways: They may be (a) equalizing because they tend to minimize average fitness differences between species, or (b) stabilizing because they tend to increase negative intraspecific inter- actions relative to negative interspecific interactions. Stabilizing mechanisms are es- sential for species coexistence and include traditional mechanisms such as resource partitioning and frequency-dependent predation, as well as mechanisms that depend on fluctuations in population densities and environmental factors in space and time. Equalizing mechanisms contribute to stable coexistence because they reduce large average fitness inequalities which might negate the effects of stabilizing mechanisms. Models of unstable coexitence, in which species diversity slowly decays over time, have focused almost exclusively on equalizing mechanisms. These models would be more robust if they also included stabilizing mechanisms, which arise in many and varied ways but need not be adequate for full stability of a system. Models of unstable coex- istence invite a broader view of diversity maintenance incorporating species turnover}
-      \field{annotation}{definition of r(i) as long-term low-density growth rate how it can be used to quanitify species coexistence explanation of Lotka-Volterra model of competition with alpha}
-      \field{isbn}{0309051908}
-      \field{issn}{0066-4162}
-      \field{journaltitle}{Annual Review of Ecology and Systematics}
-      \field{title}{{Mechanisms of maintenance of species diversity}}
-      \field{volume}{31}
-      \field{year}{2000}
-      \field{pages}{343\bibrangedash 66}
-      \range{pages}{24}
-      \verb{doi}
-      \verb 10.1146/annurev.ecolsys.31.1.343
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Chesson - 2000 - Mechanisms of maintenance of species diversity.pdf:pdf
-      \endverb
-      \keyw{Coevolution,Competition,Niches,coexistence,competition,niche,predation,spatial and}
-    \endentry
     \entry{Chu2015a}{article}{}
       \name{author}{2}{}{%
         {{uniquename=0,hash=7e92dda566e04cab33d35b72cb175196}{%
@@ -1020,8 +943,48 @@
       \endverb
       \keyw{biodiversity maintenance,community ecology,demography,fitness differences,grassland,individual-based model,integral projection model,interactions,invasion growth rate,niche differences,positive,species coexistence,western united states}
     \endentry
+    \entry{Cirtwill2015a}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=4454420fa626b55ced5e5dcd0f17eebc}{%
+           family={Cirtwill},
+           family_i={C\bibinitperiod},
+           given={Alyssa\bibnamedelima R},
+           given_i={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{uniquename=0,hash=963e1d1713fb08ec312a29b5e1d51b99}{%
+           family={Stouffer},
+           family_i={S\bibinitperiod},
+           given={Daniel\bibnamedelima B},
+           given_i={D\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{ba10834057dc151e2236e5fd7bc16ae5}
+      \strng{fullhash}{ba10834057dc151e2236e5fd7bc16ae5}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelyear}{2015}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Aim MacArthur and Wilson's original formulation of the theory of island biogeography (TIB) included the corollary hypothesis that species richness might affect immigration and extinction rates. Building on this, other researchers have suggested additional top-down and bottom-up effects. We compare these hypotheses to identify the strongest candidates for inclusion in a ‘trophic TIB'. Location Six mangrove islands in the Florida Keys, USA Methods We studied a classic island biogeography time series featuring lists of species observed on six mangrove islands during roughly 16 censuses each across 700 days. We first used this time series to determine the number of opportunities for species to immigrate to an island for the first time (n = 18,420), to go locally extinct (n = 1943) or to re-immigrate to an island after having previously gone extinct (n = 1813). We then leveraged information on the predators and prey of those species to estimate the potential for top-down and bottom-up interactions during each census period. Finally, we constructed statistical models to test for species richness, top-down, and bottom-up effects on per-species immigration and extinction probabilities and validated them by comparing each model with a similar model based on the classic TIB. Results We found that models including bottom-up effects gave the greatest improvement over the classic TIB models. Extinction probability in particular decreased sharply for species with both basal resources and animal prey available. Species richness and top-down effects had far weaker impacts on per-species probabilities of immigration and extinction. Main conclusions Our findings suggest that incorporating information on the trophic structure of island communities – particularly the species-specific availability of resources – can substantially alter predictions of extinction probabilities. Immigration probability, on the contrary, appeared largely stochastic. Incorporating trophic information into predictions of extinction rates therefore represents the most promising and best-supported way to extend the TIB.}
+      \field{isbn}{1466-8238}
+      \field{issn}{1466822X}
+      \field{journaltitle}{Global Ecology and Biogeography}
+      \field{title}{{Knowledge of predator–prey interactions improves predictions of immigration and extinction in island biogeography}}
+      \field{year}{2015}
+      \field{pages}{n/a\bibrangedash n/a}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1111/geb.12332
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Cirtwill, Stouffer - 2015 - Knowledge of predator–prey interactions improves predictions of immigration and extinction in island bioge.pdf:pdf
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1111/geb.12332%7B%5C%%7D5Cnhttp://onlinelibrary.wiley.com/store/10.1111/geb.12332/asset/geb12332.pdf?v=1%7B%5C&%7Dt=icbx419n%7B%5C&%7Ds=3111110ca750521353aaf5c25281fd89e41c6c7e
+      \endverb
+      \keyw{Bottom-up effects,community assembly,food web,predator–prey interactions,species richness,theory of island biogeography,top-down effects}
+    \endentry
     \entry{Cirtwill2018a}{article}{}
-      \name{author}{8}{}{%
+      \name{author}{8}{uniquelist=2}{%
         {{uniquename=0,hash=4454420fa626b55ced5e5dcd0f17eebc}{%
            family={Cirtwill},
            family_i={C\bibinitperiod},
@@ -1066,7 +1029,7 @@
       \list{publisher}{1}{%
         {Elsevier Inc}%
       }
-      \strng{namehash}{88d68ba56c1e56b83cc3834ad58e084d}
+      \strng{namehash}{96eb3675c49e0d0ccc018558ab38125c}
       \strng{fullhash}{c8a81bb423aad05beda85281a76ecab5}
       \field{sortinit}{C}
       \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
@@ -1089,29 +1052,6 @@
       \verb{url}
       \verb https://doi.org/10.1016/j.fooweb.2018.e00093
       \endverb
-    \endentry
-    \entry{Connell1961}{article}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=9337ea9e676fc4de09b74829ed4cd2c5}{%
-           family={Connell},
-           family_i={C\bibinitperiod},
-           given={Joseph\bibnamedelima H.},
-           given_i={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-      }
-      \strng{namehash}{9337ea9e676fc4de09b74829ed4cd2c5}
-      \strng{fullhash}{9337ea9e676fc4de09b74829ed4cd2c5}
-      \field{sortinit}{C}
-      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
-      \field{labelyear}{1961}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Ecology}
-      \field{title}{{The influence of interspecific competi-tion and other factors on the distribution of the barnacle Chthamalus stellatus}}
-      \field{volume}{42}
-      \field{year}{1961}
-      \field{pages}{710\bibrangedash 723}
-      \range{pages}{14}
     \endentry
     \entry{Coyte2015}{article}{}
       \name{author}{3}{}{%
@@ -1253,41 +1193,108 @@
       \endverb
       \keyw{biogeography,community ecology,ecological networks,graph theory,interactions}
     \endentry
-    \entry{Dorazio2016}{article}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=fb9ba07d6a10382fbf246c5be502be46}{%
-           family={Dorazio},
+    \entry{Dunne2013}{article}{}
+      \name{author}{14}{uniquelist=2}{%
+        {{uniquename=0,hash=779496138a1d56d06b52be8c972eabc8}{%
+           family={Dunne},
            family_i={D\bibinitperiod},
-           given={Robert\bibnamedelima M.},
-           given_i={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+           given={Jennifer\bibnamedelima a},
+           given_i={J\bibinitperiod\bibinitdelim a\bibinitperiod}}}%
+        {{uniquename=0,hash=e7eafa5fb1ce45c02d7639904fc28b8f}{%
+           family={Lafferty},
+           family_i={L\bibinitperiod},
+           given={Kevin\bibnamedelima D.},
+           given_i={K\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{uniquename=0,hash=ad0498a92f4bb15e01493ce7ac860848}{%
+           family={Dobson},
+           family_i={D\bibinitperiod},
+           given={Andrew\bibnamedelima P},
+           given_i={A\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{uniquename=0,hash=e92aee174f68359fcf4fec0c73ea977c}{%
+           family={Hechinger},
+           family_i={H\bibinitperiod},
+           given={Ryan\bibnamedelima F},
+           given_i={R\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{uniquename=0,hash=0d18ca1faf0844e8e6011049bf4f01db}{%
+           family={Kuris},
+           family_i={K\bibinitperiod},
+           given={Armand\bibnamedelima M},
+           given_i={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=551fc8785b03f1244d2f94bb3957ac05}{%
+           family={Martinez},
+           family_i={M\bibinitperiod},
+           given={Neo\bibnamedelima D.},
+           given_i={N\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{uniquename=0,hash=e7db15d7f175fe27d65f6c096193dcab}{%
+           family={McLaughlin},
+           family_i={M\bibinitperiod},
+           given={John\bibnamedelima P},
+           given_i={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{uniquename=0,hash=488847bf2d0593f467c9ddc87a89240d}{%
+           family={Mouritsen},
+           family_i={M\bibinitperiod},
+           given={Kim\bibnamedelima N},
+           given_i={K\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{uniquename=0,hash=d026b77266ea82f2e3f83aa27ca89195}{%
+           family={Poulin},
+           family_i={P\bibinitperiod},
+           given={Robert},
+           given_i={R\bibinitperiod}}}%
+        {{uniquename=0,hash=f117b4e92d0e0db895fe40615cd55ecc}{%
+           family={Reise},
+           family_i={R\bibinitperiod},
+           given={Karsten},
+           given_i={K\bibinitperiod}}}%
+        {{uniquename=0,hash=2d34516dadecbb5a2c968af61b12949c}{%
+           family={Stouffer},
+           family_i={S\bibinitperiod},
+           given={Daniel\bibnamedelima B.},
+           given_i={D\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=c83602a73e07a84fdd63f0b459856fe9}{%
+           family={Thieltges},
+           family_i={T\bibinitperiod},
+           given={David\bibnamedelima W},
+           given_i={D\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{uniquename=0,hash=7f8123cf5e619b351609ba83abb43335}{%
+           family={Williams},
+           family_i={W\bibinitperiod},
+           given={Richard\bibnamedelima J},
+           given_i={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{uniquename=0,hash=b5823f642661e7f807211df9be2194e3}{%
+           family={Zander},
+           family_i={Z\bibinitperiod},
+           given={Claus\bibnamedelima Dieter},
+           given_i={C\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {Springer Japan}%
-      }
-      \strng{namehash}{fb9ba07d6a10382fbf246c5be502be46}
-      \strng{fullhash}{fb9ba07d6a10382fbf246c5be502be46}
+      \strng{namehash}{432c4430030a10a9b7cdc02c5c7312c0}
+      \strng{fullhash}{39637c9f935a50c3af5fde0bdc847619}
       \field{sortinit}{D}
       \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
-      \field{labelyear}{2016}
+      \field{labelyear}{2013}
+      \field{labelmonth}{01}
       \field{datelabelsource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{During the 20th century ecologists largely relied on the frequentist system of inference for the anal- ysis of their data. However, in the past few decades ecol- ogists have become increasingly interested in the use of Bayesian methods of data analysis. In this article I provide guidance to ecologists who would like to decide whether Bayesian methods can be used to improve their conclusions and predictions. I begin by providing a concise summary of Bayesian methods of analysis, including a comparison of differences between Bayesian and frequentist approaches to inference when using hierarchical models. Next I pro- vide a list of problems where Bayesian methods of analysis may arguably be preferred over frequentist methods. These problems are usually encountered in analyses based on hierarchical models of data. I describe the essentials required for applying modern methods of Bayesian com- putation, and I use real-world examples to illustrate these methods. I conclude by summarizing what I perceive to be the main strengths and weaknesses of using Bayesian methods to solve ecological inference problems.}
-      \field{issn}{14383896}
-      \field{journaltitle}{Population Ecology}
-      \field{number}{1}
-      \field{title}{{Bayesian data analysis in population ecology: motivations, methods, and benefits}}
-      \field{volume}{58}
-      \field{year}{2016}
-      \field{pages}{31\bibrangedash 44}
-      \range{pages}{14}
+      \field{abstract}{Comparative research on food web structure has revealed generalities in trophic organization, produced simple models, and allowed assessment of robustness to species loss. These studies have mostly focused on free-living species. Recent research has suggested that inclusion of parasites alters structure. We assess whether such changes in network structure result from unique roles and traits of parasites or from changes to diversity and complexity. We analyzed seven highly resolved food webs that include metazoan parasite data. Our analyses show that adding parasites usually increases link density and connectance (simple measures of complexity), particularly when including concomitant links (links from predators to parasites of their prey). However, we clarify prior claims that parasites "dominate" food web links. Although parasites can be involved in a majority of links, in most cases classic predation links outnumber classic parasitism links. Regarding network structure, observed changes in degree distributions, 14 commonly studied metrics, and link probabilities are consistent with scale-dependent changes in structure associated with changes in diversity and complexity. Parasite and free-living species thus have similar effects on these aspects of structure. However, two changes point to unique roles of parasites. First, adding parasites and concomitant links strongly alters the frequency of most motifs of interactions among three taxa, reflecting parasites' roles as resources for predators of their hosts, driven by trophic intimacy with their hosts. Second, compared to free-living consumers, many parasites' feeding niches appear broader and less contiguous, which may reflect complex life cycles and small body sizes. This study provides new insights about generic versus unique impacts of parasites on food web structure, extends the generality of food web theory, gives a more rigorous framework for assessing the impact of any species on trophic organization, identifies limitations of current food web models, and provides direction for future structural and dynamical models.}
+      \field{issn}{1545-7885}
+      \field{journaltitle}{PLoS biology}
+      \field{month}{01}
+      \field{number}{6}
+      \field{title}{{Parasites affect food web structure primarily through increased diversity and complexity.}}
+      \field{volume}{11}
+      \field{year}{2013}
+      \field{pages}{e1001579}
+      \range{pages}{-1}
       \verb{doi}
-      \verb 10.1007/s10144-015-0503-4
+      \verb 10.1371/journal.pbio.1001579
       \endverb
       \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Dorazio - 2016 - Bayesian data analysis in population ecology motivations, methods, and benefits.pdf:pdf
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Dunne et al. - 2013 - Parasites affect food web structure primarily through increased diversity and complexity.pdf:pdf
       \endverb
-      \keyw{Frequentist inference,Hierarchical modeling,Missing data,Occupancy model,Spatial analysis,State-space modeling}
+      \verb{url}
+      \verb http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3679000%7B%5C&%7Dtool=pmcentrez%7B%5C&%7Drendertype=abstract
+      \endverb
+      \keyw{Animals,Biodiversity,Biological,Food Chain,Linear Models,Models,Parasites,Parasites: physiology,Probability,Species Specificity,Stoufferlab}
     \endentry
     \entry{Dunne2002}{article}{}
       \name{author}{3}{}{%
@@ -1819,37 +1826,6 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Gorman et al. - 2019 - A simple model predicts how warming simplifies wild food webs.pdf:pdf
       \endverb
     \endentry
-    \entry{Grace1990}{book}{}
-      \name{author}{2}{}{%
-        {{uniquename=0,hash=77dcf844c5be65c74a5156a65e6629f7}{%
-           family={Grace},
-           family_i={G\bibinitperiod},
-           given={James\bibnamedelima B.},
-           given_i={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{uniquename=0,hash=56e145e8f70192e123c180987985ea9b}{%
-           family={Tilman},
-           family_i={T\bibinitperiod},
-           given={David},
-           given_i={D\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Academic Press}%
-      }
-      \strng{namehash}{7fb4456bef80244887d4f24a2acc75c2}
-      \strng{fullhash}{7fb4456bef80244887d4f24a2acc75c2}
-      \field{sortinit}{G}
-      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
-      \field{labelyear}{1990}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Perspectives on the determinants of competitive success. Perspectives on plant competition : some introductory remarks / James Grace, David Tilman -- Apparent versus "real" competition in plants / Joseph H. Connell -- Components of resource competition in plant communities / Deborah E. Goldberg -- On the relationship between plant traits and competitive ability / James B. Grace -- The application of plant population dynamic models to understanding plant competition / John A. Silander, Jr., Stephen W. Pacala -- Competition and nutrient availability in heathland and grassland ecosystems / Frank Berendse, Wim Th. Elberse -- Mechanisms of plant competition for nutrients : the elements of a predictive theory of competition / David Tilman -- Allelopathy, Koch's postulates, and the neck riddle / G. Bruce Williamson -- The role of competition in community structure. On the effects of competition : from monocultures to mixtures / L.G. Firbank, A.R. Watkinson -- Phytoplankton nutrient competition-- from laboratory to lake / U. Sommer. (cont.) Community theory and competition in vegetation / M.P. Austin -- Plant-plant interactions in successional environments / F.A. Bazzaz -- Competitive hierarchies and centrifugal organization in plant communities / Paul A. Keddy -- Disorderliness in plant communities : comparisons, causes, and consequences / Norma L. Fowler -- The role of competition in structuring pasture communities / Roy Turkington, Loyal A. Mehrhoff -- The role of competition in agriculture / S.R. Radosevich, M.L. Roush -- The impact of herbivores, parasites, and symbionts on competition. The mediation of competition by mycorrhizae in successional and patchy environments / Edith B. Allen, Michael F. Allen -- The impact of parasitic and mutualistic fungi on competitive interactions among plants / Keith Clay -- Herbivore influences on plant performance and competitive interactions / Svaťa M. Louda, Kathleen H. Keeler, Robert D. Holt -- Predation, herbivory, and plant strategies along gradients of primary productivity / Lauri Oksanen.}
-      \field{isbn}{9780122944529}
-      \field{title}{{Perspectives on plant competition}}
-      \field{year}{1990}
-      \field{pages}{484}
-      \range{pages}{1}
-    \endentry
     \entry{Griffith2016}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=b47c892ba8cf7364f5a0e3d4b810ec34}{%
@@ -2078,175 +2054,124 @@
       \endverb
       \keyw{complex networks,food webs,forbidden links,frugivory,mutualism,network,plant–animal interactions,pollination,seed dispersal}
     \endentry
-    \entry{Kefi2015}{article}{}
-      \name{author}{7}{}{%
-        {{uniquename=0,hash=909b9b7ea670424fc122710e7f9727cb}{%
-           family={Kéfi},
-           family_i={K\bibinitperiod},
-           given={Sonia},
-           given_i={S\bibinitperiod}}}%
-        {{uniquename=0,hash=952892863471684a6d081d29d9052709}{%
-           family={Berlow},
-           family_i={B\bibinitperiod},
-           given={Eric\bibnamedelima L.},
-           given_i={E\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{uniquename=0,hash=157a51c6c0654cf352c423e6801a7574}{%
-           family={Wieters},
-           family_i={W\bibinitperiod},
-           given={Evie\bibnamedelima A.},
-           given_i={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{uniquename=0,hash=57bc27bd01bceb203e0fff528322be91}{%
-           family={Joppa},
-           family_i={J\bibinitperiod},
-           given={Lucas\bibnamedelima N.},
-           given_i={L\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
-        {{uniquename=0,hash=4b53a4f418b94666082f08b42271002f}{%
-           family={Wood},
-           family_i={W\bibinitperiod},
-           given={Spencer\bibnamedelima A.},
-           given_i={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{uniquename=0,hash=39ca3a19ab48aa9f09001ea80b9fd10c}{%
-           family={Brose},
-           family_i={B\bibinitperiod},
-           given={Ulrich},
-           given_i={U\bibinitperiod}}}%
-        {{uniquename=0,hash=842d0df0f7ae7b6caa7adae2c5d2d1ad}{%
-           family={Navarrete},
-           family_i={N\bibinitperiod},
-           given={Sergio\bibnamedelima A.},
-           given_i={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-      }
-      \strng{namehash}{d679c8c3e8973c5a9efd810356a48f26}
-      \strng{fullhash}{9b6079cd2854e1bf8bdb16d80c8dead4}
-      \field{sortinit}{K}
-      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
-      \field{labelyear}{2015}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{How multiple types of non-trophic interactions map onto trophic networks in real communities remains largely unknown. We present the first effort, to our knowledge, describing a comprehensive ecological network that includes all known trophic and diverse non-trophic links among {>}100 coexisting species for the marine rocky intertidal community of the central Chilean coast. Our results suggest that non-trophic interactions exhibit highly nonrandom structures both alone and with respect to food web structure. The occurrence of different types of interactions, relative to all possible links, was well predicted by trophic structure and simple traits of the source and target species. In this community, competition for space and positive interactions related to habitat/refuge provisioning by sessile and/or basal species were by far the most abundant non-trophic interactions. If these patterns are corroborated in other ecosystems, they may suggest potentially important dynamic constraints on the combined architec...}
-      \field{isbn}{0012-9658}
-      \field{issn}{00129658}
-      \field{journaltitle}{Ecology}
-      \field{number}{1}
-      \field{title}{{Network structure beyond food webs: Mapping non-trophic and trophic interactions on Chilean rocky shores}}
-      \field{volume}{96}
-      \field{year}{2015}
-      \field{pages}{291\bibrangedash 303}
-      \range{pages}{13}
-      \verb{doi}
-      \verb 10.1890/13-1424.1
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Kéfi et al. - 2015 - Network structure beyond food webs Mapping non-trophic and trophic interactions on Chilean rocky shores.pdf:pdf
-      \endverb
-      \keyw{Competition,Ecological communities,Ecological networks,Facilitation,Food webs,Multiplex networks,Mutualism,Negative interaction,Positive interaction,Rocky intertidal}
-    \endentry
-    \entry{Keil2019}{article}{}
-      \name{author}{5}{}{%
-        {{uniquename=0,hash=a805575904e1477166956502aa6979e2}{%
-           family={Keil},
-           family_i={K\bibinitperiod},
-           given={Petr},
-           given_i={P\bibinitperiod}}}%
-        {{uniquename=0,hash=fc6d0b75ef26e66b7a3e177f167815ad}{%
-           family={Wiegand},
-           family_i={W\bibinitperiod},
-           given={Thorsten},
-           given_i={T\bibinitperiod}}}%
-        {{uniquename=0,hash=2f064904dc6c5e7ed83d0d7584d430ce}{%
-           family={Toth},
-           family_i={T\bibinitperiod},
-           given={Aniko\bibnamedelima B.},
-           given_i={A\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{uniquename=0,hash=d00e2167f88fbf6a3879ad263bb78c1a}{%
-           family={Mcglinn},
-           family_i={M\bibinitperiod},
-           given={Daniel\bibnamedelima J},
-           given_i={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{uniquename=0,hash=0f961e152c074f1ef6032eabda042180}{%
-           family={Chase},
-           family_i={C\bibinitperiod},
-           given={Jonathan\bibnamedelima M},
-           given_i={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-      }
-      \strng{namehash}{2e0a43563a64849f54a81119c4eddbe9}
-      \strng{fullhash}{3feddd3e965412a4994c5d6db30a1072}
-      \field{sortinit}{K}
-      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
-      \field{labelyear}{2019}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{EcoEvoRxiv}
-      \field{title}{{Interspecific spatial associations as a facet of biodiversity , and a review of approaches to measure them}}
-      \field{year}{2019}
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Keil et al. - 2019 - Interspecific spatial associations as a facet of biodiversity , and a review of approaches to measure them.pdf:pdf
-      \endverb
-      \keyw{c-score,conspecific,cramér 1924,degree of dependence,general measure of the,geostatistics,grain,heterospecific,interspecific,intraspecific,kruskal 1979,point process,quoted by goodman and,quoted by hubálek 1982,scale,semivariogram,spatial,there is no absolutely}
-    \endentry
-    \entry{Kraft2015}{article}{}
-      \name{author}{6}{}{%
-        {{uniquename=0,hash=360b3282bf33aa923677e08c3df2ec7d}{%
-           family={Kraft},
-           family_i={K\bibinitperiod},
-           given={Nathan\bibnamedelimb J.B.\bibnamedelimi B.},
-           given_i={N\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{uniquename=0,hash=6ed16f4f98f35ae9a2268706bac19023}{%
-           family={Adler},
-           family_i={A\bibinitperiod},
-           given={Peter\bibnamedelima B.},
-           given_i={P\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{uniquename=0,hash=4447b83dfbd0d6b5d830b2cd28d530b7}{%
-           family={Godoy},
-           family_i={G\bibinitperiod},
-           given={Oscar},
-           given_i={O\bibinitperiod}}}%
-        {{uniquename=0,hash=4c290819e5e066d0a3ab78ec71b26042}{%
-           family={James},
-           family_i={J\bibinitperiod},
-           given={Emily\bibnamedelima C.},
-           given_i={E\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{uniquename=0,hash=9c30194028b945ccaf26beb114516077}{%
-           family={Fuller},
-           family_i={F\bibinitperiod},
-           given={Steve},
-           given_i={S\bibinitperiod}}}%
-        {{uniquename=0,hash=c60758812665ef8561071eca0e2f2a41}{%
-           family={Levine},
+    \entry{Lafferty2008}{article}{}
+      \name{author}{18}{}{%
+        {{uniquename=0,hash=e7eafa5fb1ce45c02d7639904fc28b8f}{%
+           family={Lafferty},
            family_i={L\bibinitperiod},
-           given={Jonathan\bibnamedelima M.},
-           given_i={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+           given={Kevin\bibnamedelima D.},
+           given_i={K\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{uniquename=0,hash=3b4c526ad3828396cf670adc9f4f608d}{%
+           family={Allesina},
+           family_i={A\bibinitperiod},
+           given={Stefano},
+           given_i={S\bibinitperiod}}}%
+        {{uniquename=0,hash=561195d55652badedb89e3bafdfc729b}{%
+           family={Arim},
+           family_i={A\bibinitperiod},
+           given={Matias},
+           given_i={M\bibinitperiod}}}%
+        {{uniquename=0,hash=602f95430aee32f490f7aa067454d809}{%
+           family={Briggs},
+           family_i={B\bibinitperiod},
+           given={Cherie\bibnamedelima J.},
+           given_i={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{uniquename=0,hash=f585e13bc7c1b6a44bbf8854c1c27a8d}{%
+           family={{De\bibnamedelimb Leo}},
+           family_i={D\bibinitperiod},
+           given={Giulio},
+           given_i={G\bibinitperiod}}}%
+        {{uniquename=0,hash=38fbb9ea0afd55879e7e983c18b6d350}{%
+           family={Dobson},
+           family_i={D\bibinitperiod},
+           given={Andrew\bibnamedelima P.},
+           given_i={A\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{uniquename=0,hash=5ba7d0405aa7a44267d3aafa9c57a1ac}{%
+           family={Dunne},
+           family_i={D\bibinitperiod},
+           given={Jennifer\bibnamedelima A.},
+           given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{uniquename=0,hash=b70ba514889e45870593b17009a3e08e}{%
+           family={Johnson},
+           family_i={J\bibinitperiod},
+           given={Pieter\bibnamedelimb T\bibnamedelima J},
+           given_i={P\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{uniquename=0,hash=c5319ab524fdc10cbf5aaea6c33acec5}{%
+           family={Kuris},
+           family_i={K\bibinitperiod},
+           given={Armand\bibnamedelima M.},
+           given_i={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=74f1d93a3d2cffd0d4442622906c78e7}{%
+           family={Marcogliese},
+           family_i={M\bibinitperiod},
+           given={David\bibnamedelima J.},
+           given_i={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{uniquename=0,hash=551fc8785b03f1244d2f94bb3957ac05}{%
+           family={Martinez},
+           family_i={M\bibinitperiod},
+           given={Neo\bibnamedelima D.},
+           given_i={N\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{uniquename=0,hash=31513becf86a77e466d85745d0461633}{%
+           family={Memmott},
+           family_i={M\bibinitperiod},
+           given={Jane},
+           given_i={J\bibinitperiod}}}%
+        {{uniquename=0,hash=265d8c70f5ed97f1d6b1c3a26fefdb8e}{%
+           family={Marquet},
+           family_i={M\bibinitperiod},
+           given={Pablo\bibnamedelima A.},
+           given_i={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{uniquename=0,hash=a837cd972a57e7ce1c458fcaf8d1e22b}{%
+           family={McLaughlin},
+           family_i={M\bibinitperiod},
+           given={John\bibnamedelima P.},
+           given_i={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{uniquename=0,hash=17b0eb18af046887984c70f50eaa6fab}{%
+           family={Mordecai},
+           family_i={M\bibinitperiod},
+           given={Erin\bibnamedelima A.},
+           given_i={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{uniquename=0,hash=511515d1b6bcc900e4bb269c41a4dee5}{%
+           family={Pascual},
+           family_i={P\bibinitperiod},
+           given={Mercedes},
+           given_i={M\bibinitperiod}}}%
+        {{uniquename=0,hash=d026b77266ea82f2e3f83aa27ca89195}{%
+           family={Poulin},
+           family_i={P\bibinitperiod},
+           given={Robert},
+           given_i={R\bibinitperiod}}}%
+        {{uniquename=0,hash=efa00e6cc016e83cff2e922334923924}{%
+           family={Thieltges},
+           family_i={T\bibinitperiod},
+           given={David\bibnamedelima W.},
+           given_i={D\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
       }
-      \strng{namehash}{36d25e7b7e2e7670ac8ebe77998201b8}
-      \strng{fullhash}{e144f4da4bb0e4a8f32f5c97b75466f8}
-      \field{sortinit}{K}
-      \field{sortinithash}{a7d5b3aec5a0890aae7baf85a209abfc}
-      \field{labelyear}{2015}
+      \strng{namehash}{499c1c21fd53a4b99005b0b1dc8f831f}
+      \strng{fullhash}{42b160b437652c9fcbb22e302c55949c}
+      \field{sortinit}{L}
+      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
+      \field{labelyear}{2008}
       \field{datelabelsource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{1. One of the most pervasive concepts in the study of community assembly is the metaphor of the environmental filter, which refers to abiotic factors that prevent the establishment or persis- tence of species in a particular location. The metaphor has its origins in the study of commu- nity change during succession and in plant community dynamics, although it has gained considerable attention recently as part of a surge of interest in functional trait and phylo- genetic-based approaches to the study of communities. 2. While the filtering metaphor has clear utility in some circumstances, it has been challenging to reconcile the environmental filtering concept with recent developments in ecological theory related to species coexistence. These advances suggest that the evidence used in many studies to assess environmental filtering is insufficient to distinguish filtering from the outcome of bio- tic interactions. 3. We re-examine the environmental filtering metaphor from the perspective of coexistence theory. In an effort to move the discussion forward, we present a simple framework for consid- ering the role of the environment in shaping community membership, review the literature to document the evidence typically used in environmental filtering studies and highlight research challenges to address in coming years. 4. The current usage of the environmental filtering term in empirical studies likely overstates the role abiotic tolerances play in shaping community structure. We recommend that the term ‘environmental filtering' only be used to refer to cases where the abiotic environment prevents establishment or persistence in the absence of biotic interactions, although only 15{\%} of the studies in our review presented such evidence. Finally, we urge community ecologists to con- sider additional mechanisms aside from environmental filtering by which the abiotic environ- ment can shape community pattern. Key-words:}
-      \field{annotation}{From Duplicate 1 (Community assembly, coexistence and the environmental filtering metaphor - Kraft, Nathan J.B.; Adler, Peter B.; Godoy, Oscar; James, Emily C.; Fuller, Steve; Levine, Jonathan M.) Part of a Special issue in TREE on community phylogenetics Criticism of envirnmental filtering concept esp. in light of developments in coexistence theory. Environmental filtering usually inferred from pattern of community, but these patterns can also arise from biotic interactions (competition)}
-      \field{issn}{02698463}
-      \field{journaltitle}{Functional Ecology}
-      \field{number}{5}
-      \field{title}{{Community assembly, coexistence and the environmental filtering metaphor}}
-      \field{volume}{29}
-      \field{year}{2015}
-      \field{pages}{592\bibrangedash 599}
-      \range{pages}{8}
+      \field{abstract}{Parasitism is the most common consumer strategy among organisms, yet only recently has there been a call for the inclusion of infectious disease agents in food webs. The value of this effort hinges on whether parasites affect food-web properties. Increasing evidence suggests that parasites have the potential to uniquely alter food-web topology in terms of chain length, connectance and robustness. In addition, parasites might affect food-web stability, interaction strength and energy flow. Food-web structure also affects infectious disease dynamics because parasites depend on the ecological networks in which they live. Empirically, incorporating parasites into food webs is straightforward. We may start with existing food webs and add parasites as nodes, or we may try to build food webs around systems for which we already have a good understanding of infectious processes. In the future, perhaps researchers will add parasites while they construct food webs. Less clear is how food-web theory can accommodate parasites. This is a deep and central problem in theoretical biology and applied mathematics. For instance, is representing parasites with complex life cycles as a single node equivalent to representing other species with ontogenetic niche shifts as a single node? Can parasitism fit into fundamental frameworks such as the niche model? Can we integrate infectious disease models into the emerging field of dynamic food-web modelling? Future progress will benefit from interdisciplinary collaborations between ecologists and infectious disease biologists.}
+      \field{isbn}{Thompson, R.M., Mouritsen, K.N. {\&} Poulin, R. ( 2005 ). Importance of parasites and their life cycle characteristics in determining the structure of a large marine food web. J. Anim. Ecol., 74, 77 – 85.}
+      \field{issn}{1461023X}
+      \field{journaltitle}{Ecology Letters}
+      \field{number}{6}
+      \field{title}{{Parasites in food webs: The ultimate missing links}}
+      \field{volume}{11}
+      \field{year}{2008}
+      \field{pages}{533\bibrangedash 546}
+      \range{pages}{14}
       \verb{doi}
-      \verb 10.1111/1365-2435.12345
+      \verb 10.1111/j.1461-0248.2008.01174.x
       \endverb
       \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Kraft et al. - 2015 - Community assembly, coexistence and the environmental filtering metaphor.pdf:pdf
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Lafferty et al. - 2008 - Parasites in food webs The ultimate missing links.pdf:pdf
       \endverb
-      \verb{url}
-      \verb http://doi.wiley.com/10.1111/1365-2435.12345
-      \endverb
-      \keyw{Community ecology,Competition,Environmental filtering,Masters,Phylogeny}
+      \keyw{Disease,Food web network,Parasite}
     \endentry
     \entry{Laird2006a}{article}{}
       \name{author}{2}{}{%
@@ -2287,49 +2212,6 @@
       \endverb
       \keyw{biodiversity,cellular automaton,competition,ecology,explaining species coexistence is,impor-,intransitiv-,ity,one of the greatest,one of the most,species coexistence,tant problems in community,transitivity}
     \endentry
-    \entry{Levine2008}{article}{}
-      \name{author}{3}{}{%
-        {{uniquename=0,hash=c60758812665ef8561071eca0e2f2a41}{%
-           family={Levine},
-           family_i={L\bibinitperiod},
-           given={Jonathan\bibnamedelima M.},
-           given_i={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{uniquename=0,hash=6ed16f4f98f35ae9a2268706bac19023}{%
-           family={Adler},
-           family_i={A\bibinitperiod},
-           given={Peter\bibnamedelima B.},
-           given_i={P\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{uniquename=0,hash=b12bed0831eb93636bcffebd5c07dc16}{%
-           family={HilleRisLambers},
-           family_i={H\bibinitperiod},
-           given={Janneke},
-           given_i={J\bibinitperiod}}}%
-      }
-      \strng{namehash}{d3ae964fa836cb865c162408464ae6fc}
-      \strng{fullhash}{d3ae964fa836cb865c162408464ae6fc}
-      \field{sortinit}{L}
-      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
-      \field{labelyear}{2008}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Replacement series designs have been criticized because they may inaccurately predict the outcome of competition, particularly when species' vital rates respond to competitor density in strongly nonlinear ways. Here we explain that despite this concern, experiments manipulating frequency can still effectively quantify the strength of niche differences in stabilizing coexistence, the goal of an experiment we proposed in an earlier paper. Niche differences cause species to have greater per capita growth rates when rare than when common, and we demonstrate that this result is robust to variation in total density. We also emphasize that our proposed experimental design does not call for fixing density across species' frequency gradients, thus differing from a traditional replacement series design. We show that our approach and the more labor-intensive response surface design share the same theoretical foundation and both are apppropriate for quantifying the role of niche differences in stabilizing the dynamics of coexisting species.}
-      \field{isbn}{0269-8463}
-      \field{issn}{02698463}
-      \field{journaltitle}{Functional Ecology}
-      \field{number}{5}
-      \field{title}{{On testing the role of niche differences in stabilizing coexistence}}
-      \field{volume}{22}
-      \field{year}{2008}
-      \field{pages}{934\bibrangedash 936}
-      \range{pages}{3}
-      \verb{doi}
-      \verb 10.1111/j.1365-2435.2008.01462.x
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Levine, Adler, HilleRisLambers - 2008 - On testing the role of niche differences in stabilizing coexistence.pdf:pdf
-      \endverb
-    \endentry
     \entry{Levine2009}{article}{}
       \name{author}{2}{}{%
         {{uniquename=0,hash=c60758812665ef8561071eca0e2f2a41}{%
@@ -2355,9 +2237,9 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Ecological communities characteristically contain a wide diversity of species with important functional, economic and aesthetic value. Ecologists have long questioned how this diversity is maintained. Classic theory shows that stable coexistence requires competitors to differ in their niches; this has motivated numerous investigations of ecological differences presumed to maintain diversity. That niche differences are key to coexistence, however, has recently been challenged by the neutral theory of biodiversity, which explains coexistence with the equivalence of competitors. The ensuing controversy has motivated calls for a better understanding of the collective importance of niche differences for the diversity observed in ecological communities. Here we integrate theory and experimentation to show that niche differences collectively stabilize the dynamics of experimental communities of serpentine annual plants. We used field-parameterized population models to develop a null expectation for community dynamics without the stabilizing effects of niche differences. The population growth rates predicted by this null model varied by several orders of magnitude between species, which is sufficient for rapid competitive exclusion. Moreover, after two generations of community change in the field, Shannon diversity was over 50 per cent greater in communities stabilized by niche differences relative to those exhibiting dynamics predicted by the null model. Finally, in an experiment manipulating species' relative abundances, population growth rates increased when species became rare--the demographic signature of niche differences. Our work thus provides strong evidence that species differences have a critical role in stabilizing species diversity.}
-      \field{annotation}{From Duplicate 2 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 2 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates From Duplicate 3 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates From Duplicate 3 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 2 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates From Duplicate 3 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates}
+      \field{annotation}{From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 2 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 2 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates From Duplicate 3 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates From Duplicate 3 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 2 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) From Duplicate 1 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates From Duplicate 3 (The importance of niches for the maintenance of species diversity. - Levine, Jonathan M.; HilleRisLambers, Janneke) Used field parametrised population model to simulate community growing with stabilising effect of niche differences. Found effect of niche differences to be very strong (as opposed to neutral theory) Used maximum likelihood to compare models for annual plant populations with a seed bank. Used Law {\&} Watkinson analysis of models to provide the candidates}
       \field{isbn}{1476-4687 (Electronic)$\backslash$n0028-0836 (Linking)}
-      \field{issn}{1476-4687}
+      \field{issn}{0028-0836}
       \field{journaltitle}{Nature}
       \field{number}{7261}
       \field{title}{{The importance of niches for the maintenance of species diversity.}}
@@ -2416,54 +2298,6 @@
       \endverb
       \keyw{Ecopath with Ecosim,Ecosystem model,Impacts of species,Interaction strength,Keystone species}
     \endentry
-    \entry{Losapio2019}{article}{}
-      \name{author}{3}{}{%
-        {{uniquename=0,hash=824b0e7dbe4661830ee72bca00bf1db1}{%
-           family={Losapio},
-           family_i={L\bibinitperiod},
-           given={Gianalberto},
-           given_i={G\bibinitperiod}}}%
-        {{uniquename=0,hash=9e21ccda9d2b0bd003c53ba742427168}{%
-           family={Montesinos-Navarro},
-           family_i={M\bibinithyphendelim N\bibinitperiod},
-           given={Alicia},
-           given_i={A\bibinitperiod}}}%
-        {{uniquename=0,hash=c54dc2e3e286ea6551500eef691a6e13}{%
-           family={Saiz},
-           family_i={S\bibinitperiod},
-           given={Hugo},
-           given_i={H\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Taylor {\&} Francis}%
-      }
-      \strng{namehash}{ce63b403d1f26c837a57c16b19ca58af}
-      \strng{fullhash}{ce63b403d1f26c837a57c16b19ca58af}
-      \field{sortinit}{L}
-      \field{sortinithash}{872351f18d0f736066eda0bf18bfa4f7}
-      \field{labelyear}{2019}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{1755-0874}
-      \field{journaltitle}{Plant Ecology {\&} Diversity}
-      \field{number}{2}
-      \field{title}{{Perspectives for ecological networks in plant ecology}}
-      \field{volume}{12}
-      \field{year}{2019}
-      \field{pages}{87\bibrangedash 102}
-      \range{pages}{16}
-      \verb{doi}
-      \verb 10.1080/17550874.2019.1626509
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Losapio, Montesinos-Navarro, Saiz - 2019 - Perspectives for ecological networks in plant ecology.pdf:pdf
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1080/17550874.2019.1626509
-      \endverb
-      \keyw{Biodiversity,Grubb-Reviews,biodiversity,commensalism,competition,ecological,ecological networks,facilitation,interaction chains,networks,parasitism,plant community}
-    \endentry
     \entry{Losapio2017}{article}{}
       \name{author}{2}{}{%
         {{uniquename=0,hash=824b0e7dbe4661830ee72bca00bf1db1}{%
@@ -2502,49 +2336,44 @@
       \endverb
       \keyw{biodiversity loss,drought,ecological networks,facilitation,foundation species,nitrogen deposition,plant–plant interactions,trait-based extinction model}
     \endentry
-    \entry{Mayfield2010a}{article}{}
+    \entry{Mayfield2017}{article}{}
       \name{author}{2}{}{%
-        {{uniquename=0,hash=08e1f7b19b2a3e3d7612fe4d6b73b209}{%
+        {{uniquename=0,hash=d68104c222c8d174e0dfcda8c0e555e8}{%
            family={Mayfield},
            family_i={M\bibinitperiod},
-           given={Margaret\bibnamedelima M.},
+           given={Margaret\bibnamedelima M},
            given_i={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{uniquename=0,hash=c60758812665ef8561071eca0e2f2a41}{%
-           family={Levine},
-           family_i={L\bibinitperiod},
-           given={Jonathan\bibnamedelima M.},
-           given_i={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=963e1d1713fb08ec312a29b5e1d51b99}{%
+           family={Stouffer},
+           family_i={S\bibinitperiod},
+           given={Daniel\bibnamedelima B},
+           given_i={D\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
       }
-      \strng{namehash}{5add65a4060990c338a08bf121305f1c}
-      \strng{fullhash}{5add65a4060990c338a08bf121305f1c}
+      \list{publisher}{1}{%
+        {Macmillan Publishers Limited, part of Springer Nature.}%
+      }
+      \strng{namehash}{c6991e43a2ed0af698a0bf7e48ccb235}
+      \strng{fullhash}{c6991e43a2ed0af698a0bf7e48ccb235}
       \field{sortinit}{M}
       \field{sortinithash}{2684bec41e9697b92699b46491061da2}
-      \field{labelyear}{2010}
+      \field{labelyear}{2017}
       \field{datelabelsource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Though many processes are involved in determining which species coexist and assemble into communities, competition is among the best studied. One hypothesis about competition's contribution to community assembly is that more closely related species are less likely to coexist. Though empirical evidence for this hypothesis is mixed, it remains a common assumption in certain phylogenetic approaches for inferring the effects of environmental filtering and competitive exclusion. Here, we relate modern coexistence theory to phylogenetic community assembly approaches to refine expectations for how species relatedness influences the outcome of competition. We argue that two types of species differences determine competitive exclusion with opposing effects on relatedness patterns. Importantly, this means that competition can sometimes eliminate more different and less related taxa, even when the traits underlying the relevant species differences are phylogenetically conserved. Our argument leads to a reinterpretation of the assembly processes inferred from community phylogenetic structure.}
-      \field{annotation}{28/12/15 Challenge the idea that phylogenetic approaches can distinguish effects of competition vs. environmental filtering in community assembly based on overdispersion / clustering of traits. Argue that competition can lead to both overdispersion AND clustering of traits (when intermediate traits are outcompeted).}
-      \field{eprinttype}{arXiv}
-      \field{isbn}{1461-023X}
-      \field{issn}{1461023X}
-      \field{journaltitle}{Ecology Letters}
-      \field{number}{9}
-      \field{title}{{Opposing effects of competitive exclusion on the phylogenetic structure of communities}}
-      \field{volume}{13}
-      \field{year}{2010}
-      \field{pages}{1085\bibrangedash 1093}
-      \range{pages}{9}
+      \field{abstract}{Natural communities are well known to be maintained by many complex processes. Despite this, the practical aspects of study-ing them often require some simplification, such as the widespread assumption that direct, additive competition captures the important details about how interactions between species impact community diversity. More complex non-additive 'higher-order' interactions are assumed to be negligible or absent. Notably, these assumptions are poorly supported and have major consequences for the accuracy with which patterns of natural diversity are modelled and explained. We present a mathemati-cally simple framework for incorporating biologically meaningful complexity into models of diversity by including non-additive higher-order interactions. We further provide empirical evidence that such higher-order interactions strongly influence spe-cies' performance in natural plant communities, with variation in seed production (as a proxy for per capita fitness) explained dramatically better when at least some higher-order interactions are considered. Our study lays the groundwork for a long-overdue shift in how species interactions are used to study the diversity of natural communities.}
+      \field{issn}{2397-334X}
+      \field{journaltitle}{Nature Ecology {\&} Evolution}
+      \field{title}{{Higher-order interactions capture unexplained complexity in diverse communities}}
+      \field{volume}{1}
+      \field{year}{2017}
+      \field{pages}{1\bibrangedash 7}
+      \range{pages}{7}
       \verb{doi}
-      \verb 10.1111/j.1461-0248.2010.01509.x
-      \endverb
-      \verb{eprint}
-      \verb 225
+      \verb 10.1038/s41559-016-0062
       \endverb
       \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Mayfield, Levine - 2010 - Opposing effects of competitive exclusion on the phylogenetic structure of communities.pdf:pdf
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Mayfield, Stouffer - 2017 - Higher-order interactions capture unexplained complexity in diverse communities.pdf:pdf
       \endverb
-      \keyw{Assembly,Coexistence,Community assembly,Community ecology,Competition,Competitive ability/fitness differences,Competitive exclusion,Niches,Phylogenetics,Phylogeny,Regional species pool}
     \endentry
     \entry{Miele2019}{article}{}
       \name{author}{4}{}{%
@@ -2925,45 +2754,6 @@
       \endverb
       \keyw{1,c ti o n,coexistence,facilitation,genera can coexist together,how species or close,i ntro d u,in spite of com,mutualism,networks,niche theory,phytoplankton,time series}
     \endentry
-    \entry{Pimm1978}{misc}{}
-      \name{author}{2}{}{%
-        {{uniquename=0,hash=1041f1c5f635658e6ec7186c1f5f47b0}{%
-           family={Pimm},
-           family_i={P\bibinitperiod},
-           given={S.\bibnamedelimi L.},
-           given_i={S\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{uniquename=0,hash=257993e414d533db362c3086c9678110}{%
-           family={Lawton},
-           family_i={L\bibinitperiod},
-           given={J.\bibnamedelimi H.},
-           given_i={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-      }
-      \strng{namehash}{4f0ccb7adb61e92a7add7d079d143923}
-      \strng{fullhash}{4f0ccb7adb61e92a7add7d079d143923}
-      \field{sortinit}{P}
-      \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
-      \field{labelyear}{1978}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{In trying to understand the structure of ecological communities, ecologists usually pay particular attention to the interactions between pairs, or small groups of species1. Questions about the 'shape' of the food webs within which these species are embedded are much more rarely asked2−4. For example, what happens when a population feeds at more than one trophic level (omnivory)? In some real food webs there seem to be no omnivores (Fig. 1a)5; in others omnivores are common6,7 (Fig. 1c)8. In this note we attack the problem of omnivory using simple, linear Lotka−Volterra models of food webs9, and show that certain patterns are much more likely to persist on an evolutionary time scale than others. We then compare the model predictions with real food webs.}
-      \field{booktitle}{Nature}
-      \field{isbn}{0028-0836}
-      \field{issn}{0028-0836}
-      \field{number}{5680}
-      \field{title}{{On feeding on more than one trophic level}}
-      \field{volume}{275}
-      \field{year}{1978}
-      \field{pages}{542\bibrangedash 544}
-      \range{pages}{3}
-      \verb{doi}
-      \verb 10.1038/275542a0
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Pimm, Lawton - 1978 - On feeding on more than one trophic level.pdf:pdf
-      \endverb
-      \keyw{Food webs,Omnivory,Parasitism,Trophic}
-    \endentry
     \entry{Piraino2002}{article}{}
       \name{author}{4}{}{%
         {{uniquename=0,hash=42729a37ff10575e8b745e25ce7c8277}{%
@@ -3196,7 +2986,7 @@
       \verb 10.1899/07
       \endverb
       \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Benstead et al. - 2009 - Biodiversity and ecosystem function in species-poor communities community structure and leaf litter breakdown i.pdf:pdf
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised//Riley, Dybdahl, Hall - 2008 - Invasive species impact Asymmetric interactions between invasive and endemic freshwater snails.pdf:pdf
       \endverb
       \keyw{MZB,Sediment}
     \endentry
@@ -3297,42 +3087,6 @@
       \endverb
       \keyw{Ecosystem ecology,Food webs,Management,Phd,dam,high-flow experiment,organic matter flows,regulated river,secondary production,species interactions,trophic basis of production}
     \endentry
-    \entry{Saiz2011}{article}{}
-      \name{author}{2}{}{%
-        {{uniquename=0,hash=c54dc2e3e286ea6551500eef691a6e13}{%
-           family={Saiz},
-           family_i={S\bibinitperiod},
-           given={Hugo},
-           given_i={H\bibinitperiod}}}%
-        {{uniquename=0,hash=8ab060e5ea3f2b2f7dc0e30cee2e2a43}{%
-           family={Alados},
-           family_i={A\bibinitperiod},
-           given={Concepcion\bibnamedelima L.},
-           given_i={C\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-      }
-      \strng{namehash}{b07c9a4342ffda93bd872e1888ef6fcc}
-      \strng{fullhash}{b07c9a4342ffda93bd872e1888ef6fcc}
-      \field{sortinit}{S}
-      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
-      \field{labelyear}{2011}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{isbn}{1128401108183}
-      \field{journaltitle}{Ecological Research}
-      \field{number}{3}
-      \field{title}{{Effect of Stipa tenacissima L . on the structure of plant co-occurrence networks in a semi-arid community}}
-      \field{volume}{26}
-      \field{year}{2011}
-      \field{pages}{595\bibrangedash 603}
-      \range{pages}{9}
-      \verb{doi}
-      \verb 10.1007/s11284-011-0818-3
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Saiz, Alados - 2011 - Effect of Stipa tenacissima L . on the structure of plant co-occurrence networks in a semi-arid community.pdf:pdf
-      \endverb
-    \endentry
     \entry{Sander2017}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=fdf62a5b6676e1a8d04a5f5613d3dd4d}{%
@@ -3402,6 +3156,153 @@
       \verb http://mc-stan.org/
       \endverb
     \endentry
+    \entry{Stouffer2014}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=2d34516dadecbb5a2c968af61b12949c}{%
+           family={Stouffer},
+           family_i={S\bibinitperiod},
+           given={Daniel\bibnamedelima B.},
+           given_i={D\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=259b2bd8bba968b62348cd29339410ab}{%
+           family={Cirtwill},
+           family_i={C\bibinitperiod},
+           given={Alyssa\bibnamedelima R.},
+           given_i={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{uniquename=0,hash=b71c47fff97792c37706210243e23ae5}{%
+           family={Bascompte},
+           family_i={B\bibinitperiod},
+           given={Jordi},
+           given_i={J\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=d74974ea9d7271bf92b480b88abf2d81}{%
+           family={Bartomeus},
+           family_i={B\bibinitperiod},
+           given={Ignasi},
+           given_i={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{c1b0f3cbc970786c11031e8dd7943a4d}
+      \strng{fullhash}{c1b0f3cbc970786c11031e8dd7943a4d}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelyear}{2014}
+      \field{labelmonth}{09}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00220477}
+      \field{journaltitle}{Journal of Ecology}
+      \field{month}{09}
+      \field{number}{102}
+      \field{title}{{How exotic plants integrate into pollination networks}}
+      \field{year}{2014}
+      \field{pages}{1442\bibrangedash 1450}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1111/1365-2745.12310
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Stouffer, Cirtwill, Bascompte - 2014 - How exotic plants integrate into pollination networks.pdf:pdf
+      \endverb
+      \verb{url}
+      \verb http://doi.wiley.com/10.1111/1365-2745.12310
+      \endverb
+      \keyw{Exotic species,Invasive species,Macroecology,Network theory,Pollination,Stoufferlab}
+    \endentry
+    \entry{Thompson2012}{article}{}
+      \name{author}{11}{}{%
+        {{uniquename=0,hash=151639f667b36002169b7f737d8e1487}{%
+           family={Thompson},
+           family_i={T\bibinitperiod},
+           given={Ross\bibnamedelima M},
+           given_i={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{uniquename=0,hash=39ca3a19ab48aa9f09001ea80b9fd10c}{%
+           family={Brose},
+           family_i={B\bibinitperiod},
+           given={Ulrich},
+           given_i={U\bibinitperiod}}}%
+        {{uniquename=0,hash=d8bd9d6ede58c3085d77c4bbfa3d44b3}{%
+           family={Dunne},
+           family_i={D\bibinitperiod},
+           given={Jennifer\bibnamedelima A},
+           given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{uniquename=0,hash=4d056f3ed5ca27c6cee5bb8c971f8a80}{%
+           family={Hall},
+           family_i={H\bibinitperiod},
+           given={Robert\bibnamedelima O},
+           given_i={R\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{uniquename=0,hash=7898aaf7a1c3f1b4ce57043ffb40397c}{%
+           family={Hladyz},
+           family_i={H\bibinitperiod},
+           given={Sally},
+           given_i={S\bibinitperiod}}}%
+        {{uniquename=0,hash=c097e718e505ff44f83dce9a6c0e2309}{%
+           family={Kitching},
+           family_i={K\bibinitperiod},
+           given={Roger\bibnamedelima L},
+           given_i={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{uniquename=0,hash=551fc8785b03f1244d2f94bb3957ac05}{%
+           family={Martinez},
+           family_i={M\bibinitperiod},
+           given={Neo\bibnamedelima D.},
+           given_i={N\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{uniquename=0,hash=8937e41dcf5b622c97a08995ac30c9f9}{%
+           family={Rantala},
+           family_i={R\bibinitperiod},
+           given={Heidi},
+           given_i={H\bibinitperiod}}}%
+        {{uniquename=0,hash=b18ce4d6d52eb5126cb86eccaa279920}{%
+           family={Romanuk},
+           family_i={R\bibinitperiod},
+           given={Tamara\bibnamedelima N},
+           given_i={T\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{uniquename=0,hash=2d34516dadecbb5a2c968af61b12949c}{%
+           family={Stouffer},
+           family_i={S\bibinitperiod},
+           given={Daniel\bibnamedelima B.},
+           given_i={D\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=82c01e703f78c1c315e7fed1cf3ce76b}{%
+           family={Tylianakis},
+           family_i={T\bibinitperiod},
+           given={Jason\bibnamedelima M.},
+           given_i={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{6250ebb4de0a29548755dbd67c707de0}
+      \strng{fullhash}{7cd073307e6c6872303807d2ea6f88a0}
+      \field{sortinit}{T}
+      \field{sortinithash}{423d138a005a533b47e6475e39378bf2}
+      \field{labelyear}{2012}
+      \field{labelmonth}{12}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The global biodiversity crisis concerns not only unprecedented loss of species within communities, but also related consequences for ecosystem function. Community ecology focuses on patterns of species richness and community composition, whereas ecosystem ecology focuses on fluxes of energy and materials. Food webs provide a quantitative framework to combine these approaches and unify the study of biodiversity and ecosystem function. We summarise the progression of food-web ecology and the challenges in using the food-web approach. We identify five areas of research where these advances can continue, and be applied to global challenges. Finally, we describe what data are needed in the next generation of food-web studies to reconcile the structure and function of biodiversity.}
+      \field{issn}{1872-8383}
+      \field{journaltitle}{Trends in ecology {\&} evolution}
+      \field{month}{12}
+      \field{number}{12}
+      \field{title}{{Food webs: reconciling the structure and function of biodiversity.}}
+      \field{volume}{27}
+      \field{year}{2012}
+      \field{pages}{689\bibrangedash 97}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/j.tree.2012.08.005
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Thompson et al. - 2012 - Food webs reconciling the structure and function of biodiversity.pdf:pdf
+      \endverb
+      \verb{url}
+      \verb http://www.cell.com/article/S0169534712002005/fulltext
+      \endverb
+      \keyw{Animals,Biodiversity,Biological,Community ecology,Ecosystem ecology,Food Chain,Food webs,Modeling,Models,Phd,Plants,Review,Stoufferlab,Synthesis ecology}
+    \endentry
     \entry{Thurman2019}{article}{}
       \name{author}{4}{}{%
         {{uniquename=0,hash=8aad0aca1400285eca00f6fc2e6e41e7}{%
@@ -3443,32 +3344,6 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Thurman et al. - 2019 - Testing the link between species interactions and co-occurrence in a trophic network.pdf:pdf
       \endverb
     \endentry
-    \entry{Tilman1982}{book}{}
-      \name{author}{1}{}{%
-        {{uniquename=0,hash=56e145e8f70192e123c180987985ea9b}{%
-           family={Tilman},
-           family_i={T\bibinitperiod},
-           given={David},
-           given_i={D\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Princeton University Press}%
-      }
-      \strng{namehash}{56e145e8f70192e123c180987985ea9b}
-      \strng{fullhash}{56e145e8f70192e123c180987985ea9b}
-      \field{sortinit}{T}
-      \field{sortinithash}{423d138a005a533b47e6475e39378bf2}
-      \field{labelyear}{1982}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Includes indexes. 1. Introduction -- 2. What are resources -- 3. Competition for a single resource -- 4. Competition for two resources -- 5. Spatial heterogeneity, resource richness, and species diversity -- 6. Resource ratios and the species composition of plant communities -- 7. A comparison with classical competition theory -- 8. Space as a resource, disturbance, and community structure -- 9. Concluding questions and speculations.}
-      \field{isbn}{9780691083025}
-      \field{title}{{Resource competition and community structure}}
-      \field{year}{1982}
-      \field{pages}{296}
-      \range{pages}{1}
-    \endentry
     \entry{Ulanowicz1991}{article}{}
       \name{author}{2}{}{%
         {{uniquename=0,hash=b5c8e59f348d62bd18f47a3a4882c72c}{%
@@ -3505,6 +3380,48 @@
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Ulanowicz, Wolff - 1991 - Ecosystem flow networks Loaded dice.pdf:pdf
       \endverb
+    \endentry
+    \entry{Wootton2005}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=8ef27cfb778742e80b2dc51b0c640334}{%
+           family={Wootton},
+           family_i={W\bibinitperiod},
+           given={J.\bibnamedelimi Timothy},
+           given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{uniquename=0,hash=3fe483d6189de38057b44ec29a1e4720}{%
+           family={Emmerson},
+           family_i={E\bibinitperiod},
+           given={Mark},
+           given_i={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{09506b4e34ef0fc0f8dc818934c34f92}
+      \strng{fullhash}{09506b4e34ef0fc0f8dc818934c34f92}
+      \field{sortinit}{W}
+      \field{sortinithash}{99e3ba1b3f78bb6f073e7fa7ac11636b}
+      \field{labelyear}{2005}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Understanding and predicting the dynamics of multispecies systems generally require estimates of interaction strength among species. Measuring interaction strength is difficult because of the large number of interactions in any natural system, long-term feedback, multiple pathways of effects between species pairs, and possible nonlinearities in interaction-strength functions. Presently, the few studies thatextensively estimate interaction strength suggest that distributions of interaction strength tend to be skewed toward few strong and many weak interactions. Modelling studies indicate that such skewed patterns tend to promote system stability and arise during assumbly of persistent communities. Methods for estimating interactions trength efficitenly from traits of organisms, such as allometric relationships, show some promise. Methods for estimating community response to environmental perturbations without an estimate of interaction strength may also be of use. Spatial and temporal scale may affect patterns of interaction strength, but these effects require further investigation and new multispecies modeling frameworks. Future progress will be aided by development of long-term multispecies time series of natural communities, by experimental tests of different methods for estimating interaction strength, and by increased understanding of nonlinear functional forms.}
+      \field{isbn}{1543-592X}
+      \field{issn}{1543-592X}
+      \field{journaltitle}{Annual Review of Ecology, Evolution, and Systematics}
+      \field{number}{1}
+      \field{title}{{Measurement of Interaction Strength in Nature}}
+      \field{volume}{36}
+      \field{year}{2005}
+      \field{pages}{419\bibrangedash 444}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1146/annurev.ecolsys.36.091704.175535
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised//Wootton, Emmerson - 2005 - Measurement of interaction strength in nature.pdf:pdf
+      \endverb
+      \verb{url}
+      \verb http://www.annualreviews.org/doi/abs/10.1146/annurev.ecolsys.36.091704.175535
+      \endverb
+      \keyw{abstract understanding and predicting,allometry,energy flow,food web,generally require estimates of,interaction strength among species,measuring inter-,modeling,scale,systems,the dynamics of multispecies}
     \endentry
     \entry{Zhao2019}{article}{}
       \name{author}{11}{}{%
