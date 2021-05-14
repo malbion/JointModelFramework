@@ -19,6 +19,53 @@
 
 \refsection{0}
   \sortlist[entry]{nyt/global}
+    \entry{Araujo2011}{article}{}
+      \name{author}{4}{}{%
+        {{uniquename=0,hash=522e43650371da3fb99d5d5b73fce113}{%
+           family={Araújo},
+           family_i={A\bibinitperiod},
+           given={Miguel\bibnamedelima B.},
+           given_i={M\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=68208a680081f81a35a1c7d9ac02bc75}{%
+           family={Rozenfeld},
+           family_i={R\bibinitperiod},
+           given={Alejandro},
+           given_i={A\bibinitperiod}}}%
+        {{uniquename=0,hash=fb5bc36df5dcfbc457d32d0354351b22}{%
+           family={Rahbek},
+           family_i={R\bibinitperiod},
+           given={Carsten},
+           given_i={C\bibinitperiod}}}%
+        {{uniquename=0,hash=265d8c70f5ed97f1d6b1c3a26fefdb8e}{%
+           family={Marquet},
+           family_i={M\bibinitperiod},
+           given={Pablo\bibnamedelima A.},
+           given_i={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{dccc647000ff9e5885e9d1c54f740de0}
+      \strng{fullhash}{b398abf099f2830120dd25f1346f7356}
+      \field{sortinit}{A}
+      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
+      \field{labelyear}{2011}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Viable populations of species occur in a given place if three conditions are met: the environment at the place is suitable; the species is able to colonize it; co-occurrence is possible despite or because of interactions with other species. Studies investigating the effects of climate change on species have mainly focused on measuring changes in climate suitability. Complex interactions among species have rarely been explored in such studies. We extend network theory to the analysis of complex patterns of co-occurrence among species. The framework is used to explore the robustness of networks under climate change. With our data, we show that networks describing the geographic pattern of co-occurrence among species display properties shared by other complex networks, namely that most species are poorly connected to other species in the network and only a few are highly connected. In our example, species more exposed to climate change tended to be poorly connected to other species within the network, while species more connected tended to be less exposed. Such high connectance would make the co-occurrence networks more robust to climate change. The proposed framework illustrates how network analysis could be used, together with co-occurrence data, to help addressing the potential consequences of species interactions in studies of climate change and biodiversity. However, more research is needed to test for links between co-occurrence and network interactions. {©} 2011 The Authors.}
+      \field{issn}{09067590}
+      \field{journaltitle}{Ecography}
+      \field{number}{6}
+      \field{title}{{Using species co-occurrence networks to assess the impacts of climate change}}
+      \field{volume}{34}
+      \field{year}{2011}
+      \field{pages}{897\bibrangedash 908}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1111/j.1600-0587.2011.06919.x
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Araújo et al. - 2011 - Using species co-occurrence networks to assess the impacts of climate change.pdf:pdf
+      \endverb
+    \endentry
     \entry{Baiser2013}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=e620ddbe6d9aca8a47a5a19d5b96eb3c}{%
@@ -1303,7 +1350,7 @@
            family_i={D\bibinitperiod},
            given={Jennifer\bibnamedelima a.},
            given_i={J\bibinitperiod\bibinitdelim a\bibinitperiod}}}%
-        {{uniquename=0,hash=059d0be004fab66f4ac829a376f992aa}{%
+        {{uniquename=1,hash=059d0be004fab66f4ac829a376f992aa}{%
            family={Williams},
            family_i={W\bibinitperiod},
            given={Richard\bibnamedelima J.},
@@ -1565,6 +1612,48 @@
       \endverb
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Ellison et al. - 2005 - Loss of foundation species Consequences for the structure and dynamics of forested ecosystems.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Fisher1943}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=0ad07b6e0c3f0b372cfe0b72e9c60c69}{%
+           family={Fisher},
+           family_i={F\bibinitperiod},
+           given={R.\bibnamedelimi A.},
+           given_i={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{uniquename=0,hash=438dbff2c6a9b6319edf6becfb9af7b8}{%
+           family={Corbet},
+           family_i={C\bibinitperiod},
+           given={A.\bibnamedelimi Steven},
+           given_i={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{uniquename=1,hash=91a8b34509b5b3678ee32e8213ac98c9}{%
+           family={Williams},
+           family_i={W\bibinitperiod},
+           given={C.\bibnamedelimi B.},
+           given_i={C\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{61632f2d01ab25a0759e4ff642a92e70}
+      \strng{fullhash}{61632f2d01ab25a0759e4ff642a92e70}
+      \field{sortinit}{F}
+      \field{sortinithash}{c6a7d9913bbd7b20ea954441c0460b78}
+      \field{labelyear}{1943}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Part 1. It is shown that in a large collection of Lepidoptera captured in Malaya the frequency of the number of species represented by different numbers of individuals fitted somewhat closely to a hyperbola type of curve, so long as only the rarer species were considered. The data for the commoner species was not so strictly `randomized', but the whole series could be closely fitted by a series of the logarithmic type as described by Fisher in Part 3. Other data for random collections of insects in the field were also shown to fit fairly well to this series. Part 2. Extensive data on the capture of about 1500 Macrolepidoptera of about 240 species in a light-trap at Harpenden is analysed in relation to Fisher's mathematical theory and is shown to fit extremely closely to the calculations. The calculations are applied first to the frequency of occurrence of species represented by different numbers of individuals--and secondly to the number of species in samples of different sizes from the same population. The parameter ` alpha ', which it is suggested should be called the `index of diversity', is shown to have a regular seasonal change in the case of the Macrolepidoptera in the trap. In addition, samples from two traps which overlooked somewhat different vegetation are shown to have ` alpha ' values which are significantly different. It is shown that, provided the samples are not small, ` alpha ' is the increase in the number of species obtained by increasing the size of a sample by e (2.718). A diagram is given (Fig. 8) from which any one of the values, total number of species, total number of individuals and index of diversity (alpha), can be obtained approximately if the other two are known. The standard error of alpha is also indicated on the same diagram. Part 3. A theoretical distribution is developed which appears to be suitable for the frequencies with which different species occur in a random collection, in the common case in which many species are so rare that their chance of inclusion is small. The relationships of the new distribution with the negative binomial and the Poisson series are established. Numerical processes are exhibited for fitting the series to observations containing given numbers of species and individuals, and for estimating the parameter alpha representing the richness in species of the material sampled; secondly, for calculating the standard error of alpha, and thirdly, for testing whether the series exhibits a significant deviation from the limiting form used. Special tables are presented for facilitating these calculations.}
+      \field{issn}{00218790}
+      \field{journaltitle}{The Journal of Animal Ecology}
+      \field{number}{1}
+      \field{title}{{The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Animal Population}}
+      \field{volume}{12}
+      \field{year}{1943}
+      \field{pages}{42}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.2307/1411
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Fisher, Corbet, Williams - 1943 - The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Anim.pdf:pdf
       \endverb
     \endentry
     \entry{Giling2019}{article}{}
@@ -2565,6 +2654,45 @@
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Narwani et al. - 2019 - Interactive effects of foundation species on ecosystem functioning and stability in response to disturbance.pdf:pdf
       \endverb
+    \endentry
+    \entry{Novak2010}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=f0349b6ecec405963c9d9112034a8608}{%
+           family={Novak},
+           family_i={N\bibinitperiod},
+           given={Mark},
+           given_i={M\bibinitperiod}}}%
+        {{uniquename=0,hash=8ef27cfb778742e80b2dc51b0c640334}{%
+           family={Wootton},
+           family_i={W\bibinitperiod},
+           given={J.\bibnamedelimi Timothy},
+           given_i={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b8f217cf67dea3f5b007ab7ad140c50}
+      \strng{fullhash}{4b8f217cf67dea3f5b007ab7ad140c50}
+      \field{sortinit}{N}
+      \field{sortinithash}{925374ca63e7594de7fafdb83e64d41d}
+      \field{labelyear}{2010}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Here we clarify some of the assumptions made in the application of the two most commonly used indices for measuring the strengths of species interactions with manipulative removal/addition experiments: Paine's index and the dynamic index. We explain how the values these indices are intended to measure - the per capita interaction strength between two species - are typically not estimated in common currencies. We then introduce extensions to these indices that alleviate a subset of previously made assumptions and limitations. These include a reformulation of Paine's index appropriate for an open-recruitment system, and an extension of the dynamic index applicable to interactions of a particular nonlinear form. While we focus our language on predator-prey interactions, our discussions are pertinent to the measurement of species effects in other types of interactions as well (Mitchell and Wass 1996, Freckleton et al. 2009).}
+      \field{isbn}{0030-1299}
+      \field{issn}{00301299}
+      \field{journaltitle}{Oikos}
+      \field{number}{7}
+      \field{title}{{Using experimental indices to quantify the strength of species interactions}}
+      \field{volume}{119}
+      \field{year}{2010}
+      \field{pages}{1057\bibrangedash 1063}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1111/j.1600-0706.2009.18147.x
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Novak, Wootton - 2010 - Using experimental indices to quantify the strength of species interactions.pdf:pdf
+      \endverb
+      \keyw{Competition indices,Interactions,Network theory}
     \endentry
     \entry{Nyakatya2008}{article}{}
       \name{author}{2}{}{%
