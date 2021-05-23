@@ -1,0 +1,45 @@
+May 23rd 2021
+
+
+INTRODUCTION
+More references: intro of networks / interactions
+                 throughout
+Make the first two paragraphs meatier / more engaging (restructure sentences? active voice?...)
+~700 words, reasonable length
+
+RESULTS
+~ 1700 words, too long?
+Better explain why we don't compare results to association network
+Add references to case study results (questions)
+Place question 1 at the end??
+
+
+DISCUSSION
+~ 1500 words, too long?
+Make first paragraph mroe relevant / interesting / tighter
+Remove talk of foudnation species
+Condense the two paragraphs on keystone / exotics in to one paragraph 
+Improve link from question 1 -> diversity & stability, network tools -> facilitation - and figure out the best order for that! 
+Lots of repition from results, not very interesting.. cut repeats / banalitudes, maybe push a bit further on some things? 
+Conclusion is good - check it to refocus discussion
+
+-- For Nature Methods, main text should be 2500-3500 words long
+currently 400 words > 
+-- For MEE, 6000-7000 total
+
+METHODS -- solid (?)
+~2170 words, good length
+Rewrite to make more general to elements, not species / ecology?
+REM -> RIM (for consistency with Compnet)
+
+SUPPS
+- Seed rate methods
+
+FIGURES
+- Figure 1 - black line to show median
+- Figure 3 - add A/B/C
+
+
+
+
+=> Once all of these have been done, send to Trace and Daniel for comments(?)
