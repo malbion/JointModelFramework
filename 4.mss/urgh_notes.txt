@@ -4,8 +4,8 @@ May 23rd 2021
 INTRODUCTION
 More references: intro of networks / interactions
                  throughout
-Make the first two paragraphs meatier / more engaging (restructure sentences? active voice?...)
-~700 words, reasonable length
+<!-- Make the first two paragraphs meatier / more engaging (restructure sentences? active voice?...) -->
+~600 words, reasonable length
 
 RESULTS
 ~ 1700 words, too long?
@@ -16,6 +16,7 @@ Place question 1 at the end??
 
 DISCUSSION
 ~ 1500 words, too long?
+--> Cut 3 paragraphs
 Make first paragraph more relevant / interesting / tighter
 Remove talk of foudnation species
 Condense the two paragraphs on keystone / exotics in to one paragraph 
@@ -25,7 +26,6 @@ Conclusion is good - check it to refocus discussion
 
 -- For Nature Methods, main text should be 2500-3500 words long
 currently 400 words > 
--- For MEE, 6000-7000 total
 
 METHODS -- solid (?)
 ~2170 words, good length
