@@ -19,96 +19,6 @@
 
 \refsection{0}
   \sortlist[entry]{nyt/global}
-    \entry{Araujo2011}{article}{}
-      \name{author}{4}{}{%
-        {{uniquename=0,hash=522e43650371da3fb99d5d5b73fce113}{%
-           family={Araújo},
-           family_i={A\bibinitperiod},
-           given={Miguel\bibnamedelima B.},
-           given_i={M\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{uniquename=0,hash=68208a680081f81a35a1c7d9ac02bc75}{%
-           family={Rozenfeld},
-           family_i={R\bibinitperiod},
-           given={Alejandro},
-           given_i={A\bibinitperiod}}}%
-        {{uniquename=0,hash=fb5bc36df5dcfbc457d32d0354351b22}{%
-           family={Rahbek},
-           family_i={R\bibinitperiod},
-           given={Carsten},
-           given_i={C\bibinitperiod}}}%
-        {{uniquename=0,hash=265d8c70f5ed97f1d6b1c3a26fefdb8e}{%
-           family={Marquet},
-           family_i={M\bibinitperiod},
-           given={Pablo\bibnamedelima A.},
-           given_i={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-      }
-      \strng{namehash}{dccc647000ff9e5885e9d1c54f740de0}
-      \strng{fullhash}{b398abf099f2830120dd25f1346f7356}
-      \field{sortinit}{A}
-      \field{sortinithash}{b685c7856330eaee22789815b49de9bb}
-      \field{labelyear}{2011}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Viable populations of species occur in a given place if three conditions are met: the environment at the place is suitable; the species is able to colonize it; co-occurrence is possible despite or because of interactions with other species. Studies investigating the effects of climate change on species have mainly focused on measuring changes in climate suitability. Complex interactions among species have rarely been explored in such studies. We extend network theory to the analysis of complex patterns of co-occurrence among species. The framework is used to explore the robustness of networks under climate change. With our data, we show that networks describing the geographic pattern of co-occurrence among species display properties shared by other complex networks, namely that most species are poorly connected to other species in the network and only a few are highly connected. In our example, species more exposed to climate change tended to be poorly connected to other species within the network, while species more connected tended to be less exposed. Such high connectance would make the co-occurrence networks more robust to climate change. The proposed framework illustrates how network analysis could be used, together with co-occurrence data, to help addressing the potential consequences of species interactions in studies of climate change and biodiversity. However, more research is needed to test for links between co-occurrence and network interactions. {©} 2011 The Authors.}
-      \field{issn}{09067590}
-      \field{journaltitle}{Ecography}
-      \field{number}{6}
-      \field{title}{{Using species co-occurrence networks to assess the impacts of climate change}}
-      \field{volume}{34}
-      \field{year}{2011}
-      \field{pages}{897\bibrangedash 908}
-      \range{pages}{12}
-      \verb{doi}
-      \verb 10.1111/j.1600-0587.2011.06919.x
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Araújo et al. - 2011 - Using species co-occurrence networks to assess the impacts of climate change.pdf:pdf
-      \endverb
-    \endentry
-    \entry{Baiser2013}{article}{}
-      \name{author}{3}{}{%
-        {{uniquename=0,hash=e620ddbe6d9aca8a47a5a19d5b96eb3c}{%
-           family={Baiser},
-           family_i={B\bibinitperiod},
-           given={Benjamin},
-           given_i={B\bibinitperiod}}}%
-        {{uniquename=0,hash=2a9e0f919a37faf5417d304e1d2ebb55}{%
-           family={Whitaker},
-           family_i={W\bibinitperiod},
-           given={Nathaniel},
-           given_i={N\bibinitperiod}}}%
-        {{uniquename=0,hash=7efa58109950d6fafd6cb3159a47911a}{%
-           family={Ellison},
-           family_i={E\bibinitperiod},
-           given={Aaron\bibnamedelima M.},
-           given_i={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-      }
-      \strng{namehash}{9fd904f2729519b94a29d8dbf2a229cd}
-      \strng{fullhash}{9fd904f2729519b94a29d8dbf2a229cd}
-      \field{sortinit}{B}
-      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
-      \field{labelyear}{2013}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Foundation species are basal species that play an important role in determining community composition by physically structuring ecosystems and modulating ecosystem processes. Foundation species largely operate via non-trophic interactions, presenting a challenge to incorporating them into food web models. Here, we used non-linear, bioenergetic predator-prey models to explore the role of foundation species and their non-trophic effects. We explored four types of models in which the foundation species reduced the metabolic rates of species in a specific trophic position. We examined the outcomes of each of these models for six metabolic rate ''treatments'' in which the foundation species altered the metabolic rates of associated species by one-tenth to ten times their allometric baseline metabolic rates. For each model simulation, we looked at how foundation species influenced food web structure during community assembly and the subsequent change in food web structure when the foundation species was removed. When a foundation species lowered the metabolic rate of only basal species, the resultant webs were complex, species-rich, and robust to foundation species removals. On the other hand, when a foundation species lowered the metabolic rate of only consumer species, all species, or no species, the resultant webs were species-poor and the subsequent removal of the foundation species resulted in the further loss of species and complexity. This suggests that in nature we should look for foundation species to predominantly facilitate basal species. Copyright {©} 2013 Baiser et al.}
-      \field{issn}{21508925}
-      \field{journaltitle}{Ecosphere}
-      \field{number}{12}
-      \field{title}{{Modeling foundation species in food webs}}
-      \field{volume}{4}
-      \field{year}{2013}
-      \field{pages}{1\bibrangedash 14}
-      \range{pages}{14}
-      \verb{doi}
-      \verb 10.1890/ES13-00265.1
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Baiser, Whitaker, Ellison - 2013 - Modeling foundation species in food webs.pdf:pdf
-      \endverb
-      \keyw{Food web modeling,Foundation species,Metabolic rate,Network,Non-linear dynamics}
-    \endentry
     \entry{Barabas2017}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=95265fff5586e8e16d7ac99edc581f2e}{%
@@ -704,122 +614,6 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Bruno, Stachowicz, Bertness - 2003 - Inclusion of facilitation into ecological theory.pdf:pdf
       \endverb
     \endentry
-    \entry{Calatayud2019}{article}{}
-      \name{author}{19}{}{%
-        {{uniquename=0,hash=500d1efcaf8679b6677b125d3ce2b260}{%
-           family={Calatayud},
-           family_i={C\bibinitperiod},
-           given={Joaquín},
-           given_i={J\bibinitperiod}}}%
-        {{uniquename=0,hash=5e01a25f9d71b8067c14a95db317543f}{%
-           family={Andivia},
-           family_i={A\bibinitperiod},
-           given={Enrique},
-           given_i={E\bibinitperiod}}}%
-        {{uniquename=0,hash=37b737984464d48548098965ffe19dc3}{%
-           family={Escudero},
-           family_i={E\bibinitperiod},
-           given={Adrián},
-           given_i={A\bibinitperiod}}}%
-        {{uniquename=0,hash=b3a7ef41aaa15b96a4465c9154b345ee}{%
-           family={Bernardo-madrid},
-           family_i={B\bibinithyphendelim m\bibinitperiod},
-           given={Rubén},
-           given_i={R\bibinitperiod}}}%
-        {{uniquename=0,hash=b449c3f43141debb21d0863447925c69}{%
-           family={Melián},
-           family_i={M\bibinitperiod},
-           given={Carlos\bibnamedelima J},
-           given_i={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{uniquename=0,hash=178915d50522c2a92140a30201f0ea29}{%
-           family={Stoffel},
-           family_i={S\bibinitperiod},
-           given={Markus},
-           given_i={M\bibinitperiod}}}%
-        {{uniquename=0,hash=b2e5c9e874e94c4941eac6a51260e330}{%
-           family={Aponte},
-           family_i={A\bibinitperiod},
-           given={Cristina},
-           given_i={C\bibinitperiod}}}%
-        {{uniquename=0,hash=9c15ef6e769afee021149d469587c21c}{%
-           family={Molina-venegas},
-           family_i={M\bibinithyphendelim v\bibinitperiod},
-           given={Rafael},
-           given_i={R\bibinitperiod}}}%
-        {{uniquename=0,hash=327e3b368235f2c0f096945819348c44}{%
-           family={Arnan},
-           family_i={A\bibinitperiod},
-           given={Xavier},
-           given_i={X\bibinitperiod}}}%
-        {{uniquename=0,hash=ed48475df7fd4e505566362dbd545934}{%
-           family={Luzuriaga},
-           family_i={L\bibinitperiod},
-           given={Arantzazu},
-           given_i={A\bibinitperiod}}}%
-        {{uniquename=0,hash=70dd459b3d9d3fe3ef884f4d66328324}{%
-           family={Medina},
-           family_i={M\bibinitperiod},
-           given={Nagore\bibnamedelima G},
-           given_i={N\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-        {{uniquename=0,hash=d1a704de0926e759337293745de9d5d2}{%
-           family={Neuman},
-           family_i={N\bibinitperiod},
-           given={Magnus},
-           given_i={M\bibinitperiod}}}%
-        {{uniquename=0,hash=212582f56bc454b3d29d4c5bee9eca8d}{%
-           family={Alves-martins},
-           family_i={A\bibinithyphendelim m\bibinitperiod},
-           given={Fernanda},
-           given_i={F\bibinitperiod}}}%
-        {{uniquename=0,hash=c4dd2419dfbbe40a99ed3f90f7a90f27}{%
-           family={Rosvall},
-           family_i={R\bibinitperiod},
-           given={Martin},
-           given_i={M\bibinitperiod}}}%
-        {{uniquename=0,hash=0eb7d944fe907edd3658e7e11c3b3821}{%
-           family={Noriega},
-           family_i={N\bibinitperiod},
-           given={Jorge\bibnamedelima Ari},
-           given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{uniquename=0,hash=d2a284c19bbed10c45269af1cd9f3efc}{%
-           family={Pataro},
-           family_i={P\bibinitperiod},
-           given={Luciano},
-           given_i={L\bibinitperiod}}}%
-        {{uniquename=0,hash=015b8df12bb5c566260d1b5e7491da03}{%
-           family={Ballesteros-cánovas},
-           family_i={B\bibinithyphendelim c\bibinitperiod},
-           given={Antonio},
-           given_i={A\bibinitperiod}}}%
-        {{uniquename=0,hash=bfe35bc609fdc8305966049b46fd2319}{%
-           family={Morales-molino},
-           family_i={M\bibinithyphendelim m\bibinitperiod},
-           given={César},
-           given_i={C\bibinitperiod}}}%
-        {{uniquename=0,hash=10e1f7b6d42bc45c7f09e57444055879}{%
-           family={Ferrandis},
-           family_i={F\bibinitperiod},
-           given={Pablo},
-           given_i={P\bibinitperiod}}}%
-      }
-      \strng{namehash}{c0751837dec9e5c90074903a12d0e1b6}
-      \strng{fullhash}{1f6d7d225cae33b407194ca6a3aaf172}
-      \field{sortinit}{C}
-      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
-      \field{labelyear}{2019}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature Ecology {\&} Evolution}
-      \field{title}{{Positive associations among rare species drive their persistence in ecological assemblages}}
-      \field{year}{2019}
-      \verb{doi}
-      \verb 10.1038/s41559-019-1053-5
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Calatayud et al. - 2019 - Positive associations among rare species drive their persistence in ecological assemblages.pdf:pdf
-      \endverb
-    \endentry
     \entry{Callaway1997a}{article}{}
       \name{author}{4}{}{%
         {{uniquename=0,hash=7c21daba239132d812c3a38fa937d2c6}{%
@@ -1099,6 +893,71 @@
       \verb{url}
       \verb https://doi.org/10.1016/j.fooweb.2018.e00093
       \endverb
+    \endentry
+    \entry{Connell1961}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=9337ea9e676fc4de09b74829ed4cd2c5}{%
+           family={Connell},
+           family_i={C\bibinitperiod},
+           given={Joseph\bibnamedelima H.},
+           given_i={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{9337ea9e676fc4de09b74829ed4cd2c5}
+      \strng{fullhash}{9337ea9e676fc4de09b74829ed4cd2c5}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelyear}{1961}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ecology}
+      \field{title}{{The influence of interspecific competi-tion and other factors on the distribution of the barnacle Chthamalus stellatus}}
+      \field{volume}{42}
+      \field{year}{1961}
+      \field{pages}{710\bibrangedash 723}
+      \range{pages}{14}
+    \endentry
+    \entry{Corbin2004}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=992b706de5adb2bb9db76f7580710e27}{%
+           family={Corbin},
+           family_i={C\bibinitperiod},
+           given={Jeffrey\bibnamedelima D.},
+           given_i={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{uniquename=0,hash=caa781c8b2879b79579e2718ee5aae37}{%
+           family={D'Antonio},
+           family_i={D\bibinitperiod},
+           given={Carla\bibnamedelima M.},
+           given_i={C\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{c1ae4713948b2b14a12a223d98791833}
+      \strng{fullhash}{c1ae4713948b2b14a12a223d98791833}
+      \field{sortinit}{C}
+      \field{sortinithash}{59f25d509f3381b07695554a9f35ecb2}
+      \field{labelyear}{2004}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Though established populations of invasive species can exert substantial competitive effects on native populations, exotic propagules may require disturbances that decrease competitive interference by resident species in order to become established. We compared the relative competitiveness of native perennial and exotic annual grasses in a California coastal prairie grassland to test whether the introduction of exotic propagules to coastal grasslands in the 19th century was likely to have been sufficient to shift community composition from native perennial to exotic annual grasses. Under experimental field conditions, we compared the aboveground productivity of native species alone to native species competing with exotics, and exotic species alone to exotic species competing with natives. Over the course of the four-year experiment, native grasses became increasingly dominant in the mixed-assemblage plots containing natives and exotics. Although the competitive interactions in the first growing season favored the exotics, over time the native grasses significantly reduced the productivity of exotic grasses. The number of exotic seedlings emerging and the biomass of dicot seedlings removed during weeding were also significantly lower in plots containing natives as compared to plots that did not contain natives. We found evidence that the ability of established native perennial species to limit space available for exotic annual seeds to germinate and to limit the light available to exotic seedlings reduced exotic productivity and shifted competitive interactions in favor of the natives. If interactions between native perennial and exotic annual grasses follow a similar pattern in other coastal grassland habitats, then the introduction of exotic grass propagules alone without changes in land use or climate, or both, was likely insufficient to convert the region's grasslands.}
+      \field{isbn}{0012-9658}
+      \field{issn}{00129658}
+      \field{journaltitle}{Ecology}
+      \field{number}{5}
+      \field{title}{{Competition between native perenial and exotic annual grasses:implications for an historical invasion}}
+      \field{volume}{85}
+      \field{year}{2004}
+      \field{pages}{1273\bibrangedash 1283}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1890/02-0744
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Corbin, D'Antonio - 2004 - Competition between native perenial and exotic annual grassesimplications for an historical invasion.pdf:pdf
+      \endverb
+      \verb{url}
+      \verb Corbin%20%7B%5C&%7D%20D'Antonio%202004%20Ecology.pdf
+      \endverb
+      \keyw{California grassland,Coastal prairie grassland,Exotic annual grasses,Grass competition,Invasive species,Native perennial grasses,Priority effects,coastal prairie grassland,exotic annual grasses,grass competition,invasive species,native perennial grasses,priority effects}
     \endentry
     \entry{Coyte2015}{article}{}
       \name{author}{3}{}{%
@@ -1487,133 +1346,6 @@
       \endverb
       \keyw{Ecology,Global Change,Nature Conservation}
     \endentry
-    \entry{Ellison2005}{article}{}
-      \name{author}{20}{uniquelist=1}{%
-        {{uniquename=0,hash=7efa58109950d6fafd6cb3159a47911a}{%
-           family={Ellison},
-           family_i={E\bibinitperiod},
-           given={Aaron\bibnamedelima M.},
-           given_i={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{uniquename=0,hash=b7ce466dbd140d8c2c83fbf2b80d1002}{%
-           family={Bank},
-           family_i={B\bibinitperiod},
-           given={Michael\bibnamedelima S.},
-           given_i={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{uniquename=0,hash=3b5443252f2b899fc686e03c6905dc05}{%
-           family={Clinton},
-           family_i={C\bibinitperiod},
-           given={Barton\bibnamedelima D.},
-           given_i={B\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{uniquename=0,hash=b90e0f774aae70f877eae77a29c014f7}{%
-           family={Colburn},
-           family_i={C\bibinitperiod},
-           given={Elizabeth\bibnamedelima A.},
-           given_i={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{uniquename=0,hash=47766505f9d71ef8faa6d29b4ecac7ce}{%
-           family={Elliott},
-           family_i={E\bibinitperiod},
-           given={Katherine},
-           given_i={K\bibinitperiod}}}%
-        {{uniquename=0,hash=0ee273aa1a7bd0c6d172120959ff9da4}{%
-           family={Ford},
-           family_i={F\bibinitperiod},
-           given={Chelcy\bibnamedelima R.},
-           given_i={C\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{uniquename=0,hash=e055c0b335296a23fa94b202d4c54863}{%
-           family={Foster},
-           family_i={F\bibinitperiod},
-           given={David\bibnamedelima R.},
-           given_i={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{uniquename=0,hash=9d725b313e8d7dc445eada2c9f059f97}{%
-           family={Kloeppel},
-           family_i={K\bibinitperiod},
-           given={Brian\bibnamedelima D.},
-           given_i={B\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{uniquename=0,hash=4aa13d8704b320c4721a7f4efd3d265a}{%
-           family={Knoepp},
-           family_i={K\bibinitperiod},
-           given={Jennifer\bibnamedelima D.},
-           given_i={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{uniquename=0,hash=8ca9b7abb0550b4946724439049092ba}{%
-           family={Lovett},
-           family_i={L\bibinitperiod},
-           given={Gary\bibnamedelima M.},
-           given_i={G\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{uniquename=0,hash=2a5e253ae8fb755b5af40325dda6d5b3}{%
-           family={Mohan},
-           family_i={M\bibinitperiod},
-           given={Jacqueline},
-           given_i={J\bibinitperiod}}}%
-        {{uniquename=0,hash=16c36e91a1c4374aa65d10ffe786ff69}{%
-           family={Orwig},
-           family_i={O\bibinitperiod},
-           given={David\bibnamedelima A.},
-           given_i={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{uniquename=0,hash=ea5f28631a1dbd56420e5d7a6ee3e916}{%
-           family={Rodenhouse},
-           family_i={R\bibinitperiod},
-           given={Nicholas\bibnamedelima L.},
-           given_i={N\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{uniquename=0,hash=5a4f3679d4abe2d9a2b9a423c646f321}{%
-           family={Sobczak},
-           family_i={S\bibinitperiod},
-           given={William\bibnamedelima V.},
-           given_i={W\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-        {{uniquename=0,hash=b678e05d3d335e3015b479fafdc3cc7b}{%
-           family={Stinson},
-           family_i={S\bibinitperiod},
-           given={Kristina\bibnamedelima A.},
-           given_i={K\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{uniquename=0,hash=e404c142f91bebb2ac336a07dfa4bfda}{%
-           family={Stone},
-           family_i={S\bibinitperiod},
-           given={Jeffrey\bibnamedelima K.},
-           given_i={J\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{uniquename=0,hash=1409c36f25123f230e9fec108aa0f677}{%
-           family={Swan},
-           family_i={S\bibinitperiod},
-           given={Christopher\bibnamedelima M.},
-           given_i={C\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{uniquename=0,hash=b94a380f6f2446fd741dbe98147c4754}{%
-           family={Thompson},
-           family_i={T\bibinitperiod},
-           given={Jill},
-           given_i={J\bibinitperiod}}}%
-        {{uniquename=0,hash=6f3ad677a1d136e38738edaf5d7e32dc}{%
-           family={{Von\bibnamedelimb Holle}},
-           family_i={V\bibinitperiod},
-           given={Betsy},
-           given_i={B\bibinitperiod}}}%
-        {{uniquename=0,hash=3f12fe5d4ee6ce0d2890408f5f223e9b}{%
-           family={Webster},
-           family_i={W\bibinitperiod},
-           given={Jackson\bibnamedelima R.},
-           given_i={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-      }
-      \strng{namehash}{0d5e067128be81a6bdec9fc0eb0f6fbe}
-      \strng{fullhash}{14780e32e0bd23676d5decc4981a4632}
-      \field{sortinit}{E}
-      \field{sortinithash}{fefc5210ef4721525b2a478df41efcd4}
-      \field{labelyear}{2005}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{In many forested ecosystems, the architecture and functional ecology of certain tree species define forest structure and their species-specific traits control ecosystem dynamics. Such foundation tree species are declining throughout the world due to introductions and outbreaks of pests and pathogens, selective removal of individual taxa, and over-harvesting. Through a series of case studies, we show that the loss of foundation tree species changes the local environment on which a variety of other species depend; how this disrupts fundamental ecosystem processes, including rates of decomposition, nutrient fluxes, carbon sequestration, and energy flow; and dramatically alters the dynamics of associated aquatic ecosystems. Forests in which dynamics are controlled by one or a few foundation species appear to be dominated by a small number of strong interactions and may be highly susceptible to alternating between stable states following even small perturbations. The ongoing decline of many foundation species provides a set of important, albeit unfortunate, opportunities to develop the research tools, models, and metrics needed to identify foundation species, anticipate the cascade of immediate, short- and long-term changes in ecosystem structure and function that will follow from their loss, and provide options for remedial conservation and management. {©} The Ecological Society of America.}
-      \field{issn}{15409309}
-      \field{journaltitle}{Frontiers in Ecology and the Environment}
-      \field{number}{9}
-      \field{title}{{Loss of foundation species: Consequences for the structure and dynamics of forested ecosystems}}
-      \field{volume}{3}
-      \field{year}{2005}
-      \field{pages}{479\bibrangedash 486}
-      \range{pages}{8}
-      \verb{doi}
-      \verb 10.1890/1540-9295(2005)003[0479:LOFSCF]2.0.CO;2
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Ellison et al. - 2005 - Loss of foundation species Consequences for the structure and dynamics of forested ecosystems.pdf:pdf
-      \endverb
-    \endentry
     \entry{Fisher1943}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=0ad07b6e0c3f0b372cfe0b72e9c60c69}{%
@@ -1915,6 +1647,37 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Gorman et al. - 2019 - A simple model predicts how warming simplifies wild food webs.pdf:pdf
       \endverb
     \endentry
+    \entry{Grace1990}{book}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=77dcf844c5be65c74a5156a65e6629f7}{%
+           family={Grace},
+           family_i={G\bibinitperiod},
+           given={James\bibnamedelima B.},
+           given_i={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=56e145e8f70192e123c180987985ea9b}{%
+           family={Tilman},
+           family_i={T\bibinitperiod},
+           given={David},
+           given_i={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{7fb4456bef80244887d4f24a2acc75c2}
+      \strng{fullhash}{7fb4456bef80244887d4f24a2acc75c2}
+      \field{sortinit}{G}
+      \field{sortinithash}{1c854ef9177a91bf894e66485bdbd3ed}
+      \field{labelyear}{1990}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Perspectives on the determinants of competitive success. Perspectives on plant competition : some introductory remarks / James Grace, David Tilman -- Apparent versus "real" competition in plants / Joseph H. Connell -- Components of resource competition in plant communities / Deborah E. Goldberg -- On the relationship between plant traits and competitive ability / James B. Grace -- The application of plant population dynamic models to understanding plant competition / John A. Silander, Jr., Stephen W. Pacala -- Competition and nutrient availability in heathland and grassland ecosystems / Frank Berendse, Wim Th. Elberse -- Mechanisms of plant competition for nutrients : the elements of a predictive theory of competition / David Tilman -- Allelopathy, Koch's postulates, and the neck riddle / G. Bruce Williamson -- The role of competition in community structure. On the effects of competition : from monocultures to mixtures / L.G. Firbank, A.R. Watkinson -- Phytoplankton nutrient competition-- from laboratory to lake / U. Sommer. (cont.) Community theory and competition in vegetation / M.P. Austin -- Plant-plant interactions in successional environments / F.A. Bazzaz -- Competitive hierarchies and centrifugal organization in plant communities / Paul A. Keddy -- Disorderliness in plant communities : comparisons, causes, and consequences / Norma L. Fowler -- The role of competition in structuring pasture communities / Roy Turkington, Loyal A. Mehrhoff -- The role of competition in agriculture / S.R. Radosevich, M.L. Roush -- The impact of herbivores, parasites, and symbionts on competition. The mediation of competition by mycorrhizae in successional and patchy environments / Edith B. Allen, Michael F. Allen -- The impact of parasitic and mutualistic fungi on competitive interactions among plants / Keith Clay -- Herbivore influences on plant performance and competitive interactions / Svaťa M. Louda, Kathleen H. Keeler, Robert D. Holt -- Predation, herbivory, and plant strategies along gradients of primary productivity / Lauri Oksanen.}
+      \field{isbn}{9780122944529}
+      \field{title}{{Perspectives on plant competition}}
+      \field{year}{1990}
+      \field{pages}{484}
+      \range{pages}{1}
+    \endentry
     \entry{Griffith2016}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=b47c892ba8cf7364f5a0e3d4b810ec34}{%
@@ -2069,45 +1832,6 @@
       \verb http://dx.doi.org/10.1007/s00442-015-3244-3
       \endverb
       \keyw{Community persistence,Interaction modifications,Microcosms,Nonprey species,Predation,Trophic interactions}
-    \endentry
-    \entry{Hines2020}{article}{}
-      \name{author}{2}{}{%
-        {{uniquename=0,hash=e297e4304d9e616ce7172e92e5c1d8ee}{%
-           family={Hines},
-           family_i={H\bibinitperiod},
-           given={Jes},
-           given_i={J\bibinitperiod}}}%
-        {{uniquename=0,hash=a805575904e1477166956502aa6979e2}{%
-           family={Keil},
-           family_i={K\bibinitperiod},
-           given={Petr},
-           given_i={P\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer US}%
-      }
-      \strng{namehash}{599c12b1840bb66add97675c0522d5f7}
-      \strng{fullhash}{599c12b1840bb66add97675c0522d5f7}
-      \field{sortinit}{H}
-      \field{sortinithash}{82012198d5dfa657b8c4a168793268a6}
-      \field{labelyear}{2020}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{2397-334X}
-      \field{journaltitle}{Nature Ecology {\&} Evolution}
-      \field{number}{January}
-      \field{title}{{Common competitors and rare friends}}
-      \field{volume}{4}
-      \field{year}{2020}
-      \field{pages}{8\bibrangedash 9}
-      \range{pages}{2}
-      \verb{doi}
-      \verb 10.1038/s41559-019-1071-3
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Hines, Keil - 2020 - Common competitors and rare friends.pdf:pdf
-      \endverb
     \endentry
     \entry{Jordano2016}{article}{}
       \name{author}{1}{}{%
@@ -2505,44 +2229,6 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Miele et al. - 2019 - Non-trophic interactions strengthen the diversity — functioning relationship in an ecological bioenergetic netwo.pdf:pdf
       \endverb
     \endentry
-    \entry{Mills1993}{article}{}
-      \name{author}{3}{}{%
-        {{uniquename=0,hash=c6afe3aab8dc5e7ac4c25264a0a86a73}{%
-           family={Mills},
-           family_i={M\bibinitperiod},
-           given={L\bibnamedelima S},
-           given_i={L\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{uniquename=0,hash=49eac1d1163bbac12321ec232028cf99}{%
-           family={Soulé},
-           family_i={S\bibinitperiod},
-           given={M\bibnamedelima E},
-           given_i={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
-        {{uniquename=0,hash=a57d06bc694e06181e5d7d5eeb7f71f8}{%
-           family={Doak},
-           family_i={D\bibinitperiod},
-           given={D\bibnamedelima F},
-           given_i={D\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
-      }
-      \strng{namehash}{811f86aec7c18cbf2ba1ec5ec497e308}
-      \strng{fullhash}{811f86aec7c18cbf2ba1ec5ec497e308}
-      \field{sortinit}{M}
-      \field{sortinithash}{2684bec41e9697b92699b46491061da2}
-      \field{labelyear}{1993}
-      \field{datelabelsource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{BioScience}
-      \field{number}{4}
-      \field{title}{{The Keystone-Species concept in ecology and conservation}}
-      \field{volume}{Vol. 43, N}
-      \field{year}{1993}
-      \field{pages}{219\bibrangedash 224}
-      \range{pages}{6}
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Mills, Soulé, Doak - 1993 - The Keystone-Species concept in ecology and conservation.pdf:pdf
-      \endverb
-      \keyw{Keystone-Species,conservation,ecology,interaction,management,natural system,policy}
-    \endentry
     \entry{Naeem2000}{article}{}
       \name{author}{6}{}{%
         {{uniquename=0,hash=4fd279b45232aa8cb483d6136274177b}{%
@@ -2846,6 +2532,38 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Orwin et al. - 2016 - Season and dominant species effects on plant trait-ecosystem function relationships in intensively grazed grasslan.pdf:pdf
       \endverb
     \endentry
+    \entry{Paine1969}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=bfb90d8cc2a81c472e554f86aa168608}{%
+           family={Paine},
+           family_i={P\bibinitperiod},
+           given={R.\bibnamedelimi T.},
+           given_i={R\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{bfb90d8cc2a81c472e554f86aa168608}
+      \strng{fullhash}{bfb90d8cc2a81c472e554f86aa168608}
+      \field{sortinit}{P}
+      \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
+      \field{labelyear}{1969}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Predicting the binding mode of flexible polypeptides to proteins is an important task that falls outside the domain of applicability of most small molecule and protein−protein docking tools. Here, we test the small molecule flexible ligand docking program Glide on a set of 19 non-$\alpha$-helical peptides and systematically improve pose prediction accuracy by enhancing Glide sampling for flexible polypeptides. In addition, scoring of the poses was improved by post-processing with physics-based implicit solvent MM- GBSA calculations. Using the best RMSD among the top 10 scoring poses as a metric, the success rate (RMSD ≤ 2.0 Å for the interface backbone atoms) increased from 21{\%} with default Glide SP settings to 58{\%} with the enhanced peptide sampling and scoring protocol in the case of redocking to the native protein structure. This approaches the accuracy of the recently developed Rosetta FlexPepDock method (63{\%} success for these 19 peptides) while being over 100 times faster. Cross-docking was performed for a subset of cases where an unbound receptor structure was available, and in that case, 40{\%} of peptides were docked successfully. We analyze the results and find that the optimized polypeptide protocol is most accurate for extended peptides of limited size and number of formal charges, defining a domain of applicability for this approach.}
+      \field{issn}{0003-0147}
+      \field{journaltitle}{The American Naturalist}
+      \field{number}{929}
+      \field{title}{{A Note on Trophic Complexity and Community Stability}}
+      \field{volume}{103}
+      \field{year}{1969}
+      \field{pages}{91\bibrangedash 93}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1086/282586
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Paine - 1969 - A Note on Trophic Complexity and Community Stability.pdf:pdf
+      \endverb
+    \endentry
     \entry{Picoche2020}{article}{}
       \name{author}{2}{}{%
         {{uniquename=0,hash=52d684554b2945a50ef4a476e4cf1ec0}{%
@@ -2881,6 +2599,45 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Picoche, Barraquand - 2020 - Strong self-regulation and widespread facilitative interactions in phytoplankton communities(2).pdf:pdf
       \endverb
       \keyw{1,c ti o n,coexistence,facilitation,genera can coexist together,how species or close,i ntro d u,in spite of com,mutualism,networks,niche theory,phytoplankton,time series}
+    \endentry
+    \entry{Pimm1978}{misc}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=1041f1c5f635658e6ec7186c1f5f47b0}{%
+           family={Pimm},
+           family_i={P\bibinitperiod},
+           given={S.\bibnamedelimi L.},
+           given_i={S\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{uniquename=0,hash=257993e414d533db362c3086c9678110}{%
+           family={Lawton},
+           family_i={L\bibinitperiod},
+           given={J.\bibnamedelimi H.},
+           given_i={J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{4f0ccb7adb61e92a7add7d079d143923}
+      \strng{fullhash}{4f0ccb7adb61e92a7add7d079d143923}
+      \field{sortinit}{P}
+      \field{sortinithash}{c0a4896d0e424f9ca4d7f14f2b3428e7}
+      \field{labelyear}{1978}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In trying to understand the structure of ecological communities, ecologists usually pay particular attention to the interactions between pairs, or small groups of species1. Questions about the 'shape' of the food webs within which these species are embedded are much more rarely asked2−4. For example, what happens when a population feeds at more than one trophic level (omnivory)? In some real food webs there seem to be no omnivores (Fig. 1a)5; in others omnivores are common6,7 (Fig. 1c)8. In this note we attack the problem of omnivory using simple, linear Lotka−Volterra models of food webs9, and show that certain patterns are much more likely to persist on an evolutionary time scale than others. We then compare the model predictions with real food webs.}
+      \field{booktitle}{Nature}
+      \field{isbn}{0028-0836}
+      \field{issn}{0028-0836}
+      \field{number}{5680}
+      \field{title}{{On feeding on more than one trophic level}}
+      \field{volume}{275}
+      \field{year}{1978}
+      \field{pages}{542\bibrangedash 544}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1038/275542a0
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Pimm, Lawton - 1978 - On feeding on more than one trophic level.pdf:pdf
+      \endverb
+      \keyw{Food webs,Omnivory,Parasitism,Trophic}
     \endentry
     \entry{Piraino2002}{article}{}
       \name{author}{4}{}{%
@@ -3215,6 +2972,42 @@
       \endverb
       \keyw{Ecosystem ecology,Food webs,Management,Phd,dam,high-flow experiment,organic matter flows,regulated river,secondary production,species interactions,trophic basis of production}
     \endentry
+    \entry{Saiz2011}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,hash=c54dc2e3e286ea6551500eef691a6e13}{%
+           family={Saiz},
+           family_i={S\bibinitperiod},
+           given={Hugo},
+           given_i={H\bibinitperiod}}}%
+        {{uniquename=0,hash=8ab060e5ea3f2b2f7dc0e30cee2e2a43}{%
+           family={Alados},
+           family_i={A\bibinitperiod},
+           given={Concepcion\bibnamedelima L.},
+           given_i={C\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{b07c9a4342ffda93bd872e1888ef6fcc}
+      \strng{fullhash}{b07c9a4342ffda93bd872e1888ef6fcc}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelyear}{2011}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{1128401108183}
+      \field{journaltitle}{Ecological Research}
+      \field{number}{3}
+      \field{title}{{Effect of Stipa tenacissima L . on the structure of plant co-occurrence networks in a semi-arid community}}
+      \field{volume}{26}
+      \field{year}{2011}
+      \field{pages}{595\bibrangedash 603}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1007/s11284-011-0818-3
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Saiz, Alados - 2011 - Effect of Stipa tenacissima L . on the structure of plant co-occurrence networks in a semi-arid community.pdf:pdf
+      \endverb
+    \endentry
     \entry{Sander2017}{article}{}
       \name{author}{3}{}{%
         {{uniquename=0,hash=fdf62a5b6676e1a8d04a5f5613d3dd4d}{%
@@ -3263,6 +3056,54 @@
       \verb{url}
       \verb http://dx.doi.org/10.1038/s41598-017-07009-x
       \endverb
+    \endentry
+    \entry{Soule2005a}{article}{}
+      \name{author}{5}{}{%
+        {{uniquename=0,hash=37357dfdbdf077e6309e4e1216978fa2}{%
+           family={Soulé},
+           family_i={S\bibinitperiod},
+           given={Michael\bibnamedelima E},
+           given_i={M\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{uniquename=0,hash=36f2fa80e0026213e680d99e0502c6a4}{%
+           family={Estes},
+           family_i={E\bibinitperiod},
+           given={James\bibnamedelima A},
+           given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{uniquename=0,hash=532d98e16d5ad84f4d291de95f0a7fe3}{%
+           family={Miller},
+           family_i={M\bibinitperiod},
+           given={Brian},
+           given_i={B\bibinitperiod}}}%
+        {{uniquename=0,hash=5a8e6f179117e44794dae8f8c33d2854}{%
+           family={Douglas},
+           family_i={D\bibinitperiod},
+           given={L},
+           given_i={L\bibinitperiod}}}%
+        {{uniquename=0,hash=662f3cf122869c41bf41432280ce877f}{%
+           family={Honnold},
+           family_i={H\bibinitperiod},
+           given={Douglas\bibnamedelima L},
+           given_i={D\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{e9d2f296cdd0217ae38317beae0d9131}
+      \strng{fullhash}{b7aa4428ac45d1dcb10b94a8c13cf355}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelyear}{2005}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{BioScience}
+      \field{number}{2}
+      \field{title}{{Strongly interacting species: conservation policy, management, and ethics}}
+      \field{volume}{55}
+      \field{year}{2005}
+      \field{pages}{168\bibrangedash 176}
+      \range{pages}{9}
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Soulé et al. - 2005 - Strongly interacting species conservation policy, management, and ethics.pdf:pdf
+      \endverb
+      \keyw{effective densities,endangered species act,ethics,interactive species,management}
     \endentry
     \entry{Rstan2020}{article}{}
       \name{author}{1}{}{%
@@ -3550,6 +3391,84 @@
       \verb http://www.annualreviews.org/doi/abs/10.1146/annurev.ecolsys.36.091704.175535
       \endverb
       \keyw{abstract understanding and predicting,allometry,energy flow,food web,generally require estimates of,interaction strength among species,measuring inter-,modeling,scale,systems,the dynamics of multispecies}
+    \endentry
+    \entry{Yenni2012}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=5f8c3f38bf98ee191cf0ae7834519437}{%
+           family={Yenni},
+           family_i={Y\bibinitperiod},
+           given={Glenda},
+           given_i={G\bibinitperiod}}}%
+        {{uniquename=0,hash=6ed16f4f98f35ae9a2268706bac19023}{%
+           family={Adler},
+           family_i={A\bibinitperiod},
+           given={Peter\bibnamedelima B.},
+           given_i={P\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=0e7177aba0adad094a904eff2df94d93}{%
+           family={Ernest},
+           family_i={E\bibinitperiod},
+           given={S.\bibnamedelimi K.\bibnamedelimi Morgan},
+           given_i={S\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{5292db830295c9a4544741e22edc7b8f}
+      \strng{fullhash}{5292db830295c9a4544741e22edc7b8f}
+      \field{sortinit}{Y}
+      \field{sortinithash}{3cbc1e3d286284cedb5e5218a3248f94}
+      \field{labelyear}{2012}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ecology}
+      \field{number}{3}
+      \field{title}{{Strong self-limitation promotes the persistence of rare species}}
+      \field{volume}{93}
+      \field{year}{2012}
+      \field{pages}{456\bibrangedash 461}
+      \range{pages}{6}
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Yenni, Adler, Ernest - 2012 - Strong self-limitation promotes the persistence of rare species.pdf:pdf
+      \endverb
+      \keyw{coexistence,frequency dependence,niche theory,rare species,self-limitation,species}
+    \endentry
+    \entry{Yenni2017}{article}{}
+      \name{author}{3}{}{%
+        {{uniquename=0,hash=5f8c3f38bf98ee191cf0ae7834519437}{%
+           family={Yenni},
+           family_i={Y\bibinitperiod},
+           given={Glenda},
+           given_i={G\bibinitperiod}}}%
+        {{uniquename=0,hash=8f5ea2c5f72dde6c91461f406973fe9b}{%
+           family={Adler},
+           family_i={A\bibinitperiod},
+           given={Peter\bibnamedelima B},
+           given_i={P\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{uniquename=0,hash=b6ff9f90e7b59dedc0971389a21f769b}{%
+           family={Ernest},
+           family_i={E\bibinitperiod},
+           given={S\bibnamedelima K\bibnamedelima Morgan},
+           given_i={S\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{f7c457eff035764d1d09080406700e54}
+      \strng{fullhash}{f7c457eff035764d1d09080406700e54}
+      \field{sortinit}{Y}
+      \field{sortinithash}{3cbc1e3d286284cedb5e5218a3248f94}
+      \field{labelyear}{2017}
+      \field{datelabelsource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Global Ecology and Biogeography}
+      \field{title}{{Do persistent rare species experience stronger negative frequency dependence than common species ?}}
+      \field{volume}{26}
+      \field{year}{2017}
+      \field{pages}{513\bibrangedash 523}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1111/geb.12566
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Yenni, Adler, Ernest - 2017 - Do persistent rare species experience stronger negative frequency dependence than common species.pdf:pdf
+      \endverb
+      \keyw{coexistence,community,diversity,frequency dependence,persistence,rare}
     \endentry
     \entry{Zhao2019}{article}{}
       \name{author}{11}{}{%
