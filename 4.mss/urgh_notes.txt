@@ -8,9 +8,7 @@ More references: intro of networks / interactions
 ~600 words, reasonable length
 
 RESULTS
-~ 1700 words, too long?
-Better explain why we don't compare results to association network
-Add references to case study results (questions)
+1600 words
 Place question 1 at the end??
 
 
@@ -30,10 +28,9 @@ currently 400 words >
 METHODS -- solid (?)
 ~2170 words, good length
 Rewrite to make more general to elements, not species / ecology?
-REM -> RIM (for consistency with Compnet)
 
 SUPPS
-- Seed rate methods or reference other paper? 
+?
 
 FIGURES
 - Figure 1 - black line to show median
