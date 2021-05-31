@@ -28,10 +28,7 @@ SUPPS
 ?
 
 FIGURES
-- Figure 1 - black line to show median
-- Figure 2 - show networks based on median instead of mean?
-- Figure 3 - add A/B/C
-           - diamonds as species medians instead of means
+done
 
 
 => Once all of these have been done, send to Trace and Daniel for comments(?)
