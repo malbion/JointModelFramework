@@ -310,7 +310,7 @@ sp.abunds.rep <- matrix(data = rep(sp.abunds, dim(scaled_alphas)[3]),
 intras <- apply(scaled_alphas, 3, diag)
 upper.intra <- apply(intras, 1, quantile, 0.75)
 lower.intra <- apply(intras, 1, quantile, 0.25)
-mean.intra <- apply(intras, 1, mean)
+mean.intra <- apply(intras, 1, median)
 
 # get the effects of species on others
 inters.out <- scaled_alphas[ , 1:nrow(scaled_alphas), ]
@@ -318,7 +318,7 @@ sum.out <- apply(inters.out, c(2, 3), sum)
 sum.out <- sum.out - intras   # remove intraspecific interactions
 upper.sum.out <- apply(sum.out, 1, quantile, 0.75)
 lower.sum.out <- apply(sum.out, 1, quantile, 0.25)
-mean.sum.out <- apply(sum.out, 1, mean)
+mean.sum.out <- apply(sum.out, 1, median)
 
 # competitive effects only
 sum.comp <- apply(inters.out, c(2, 3), function(x) sum(x[x>0]))
@@ -332,6 +332,9 @@ sum.faci <- apply(inters.out, c(2, 3), function(x) sum(x[x<0]))
 faciintra <- intras
 faciintra[faciintra>0] <- 0
 sum.faci <- sum.faci - faciintra
+# median values for each species
+med.comp <- apply(sum.comp, 1, median)
+med.faci <- apply(sum.faci, 1, median)
 
 # get 'special' species
 invasives <- c('ARCA', 'PEAI', 'HYPO')
@@ -345,7 +348,7 @@ par(mfrow=c(3,1), cex=1.2)
 
 # 1. intra vs abundance
 #-------------------
-plot(intras, sp.abunds.rep,
+plot(intras, sp.abunds.rep, main = 'A', adj = 0,
      xlab = 'Intraspecific interactions (self-regulation)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 abline(v=median(intras), lty = 2)
@@ -374,7 +377,7 @@ text(mean.intra[foundation], sp.abunds[foundation],
 
 # 2. out-strength vs abundance 
 #-----------------------------
-plot(sum.out, sp.abunds.rep,
+plot(sum.out, sp.abunds.rep, main = 'B', adj = 0,
      xlab = 'Net effect on neighbours (Out-strength)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 abline(v=median(sum.out), lty = 2)
@@ -402,7 +405,8 @@ text(mean.sum.out[keyst], sp.abunds[keyst],
 
 # 3. competitive vs facilitative effects
 #-------------------------------------
-plot(sum.comp, -sum.faci, las = 1, bty = 'n', 
+plot(sum.comp, -sum.faci,  main = 'C', adj = 0,
+     las = 1, bty = 'n', 
      # type = 'n',
      pch = 16, cex=0.7, col = 'grey',
      xlab = 'Sum of competitive effects', 
@@ -411,16 +415,16 @@ abline(v=median(sum.comp), lty = 2)
 abline(h=median(-sum.faci), lty = 2)
 # points(sum.comp, -sum.faci, las = 1, bty = 'n', 
 #        pch = 16, cex=0.7, col = 'grey')
-points(rowMeans(sum.comp), -rowMeans(sum.faci), 
+points(med.comp, -med.faci, 
        pch = 23, cex=1, bg='black')
 # points(rowMeans(sum.comp)[foundation], -rowMeans(sum.faci)[foundation], 
 #        pch = 23, bg = 'royalblue', cex = 1.3)
 # points(rowMeans(sum.comp)[keyst], -rowMeans(sum.faci)[keyst], 
 #        pch = 23, bg = 'orange', cex = 1.3)
-points(rowMeans(sum.comp)[invasives], -rowMeans(sum.faci)[invasives],  
+points(med.comp[invasives], -med.faci[invasives],  
        pch = 24, bg = 'red', cex = 1.3)
-text(rowMeans(sum.comp)[invasives], -rowMeans(sum.faci)[invasives], 
-     labels = names(rowMeans(sum.comp)[invasives]), 
+text(med.comp[invasives], -med.faci[invasives], 
+     labels = names(med.comp[invasives]), 
      pos = 4, col = 'darkred', offset = 1)
 
 dev.off()
