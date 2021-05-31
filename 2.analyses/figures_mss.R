@@ -186,13 +186,15 @@ load('3.case_study/model/transformed/scaled_alpha_matrices.Rdata')
 #--------------------------------------
 
 # get the mean and variance estimates for interactions
-alpha_means <- apply(scaled_alphas, c(1, 2), mean)
+# 06/2021 MEDIAN 
+alpha_means <- apply(scaled_alphas, c(1, 2), median)
 alpha_means <- alpha_means[ , 1:nrow(alpha_means)]
-alpha_var <- apply(scaled_alphas, c(1, 2), var)
-alpha_var <- alpha_var[ , 1:nrow(alpha_var)]
+# alpha_var <- apply(scaled_alphas, c(1, 2), var)
+# alpha_var <- alpha_var[ , 1:nrow(alpha_var)]
 
 # getting the RIM alphas and variances only
-ifm_means <- colMeans(ifm_mat)
+# ifm_means <- colMeans(ifm_mat)
+ifm_means <- apply(ifm_mat, 2, median)
 ifm_means <- matrix(data = ifm_means, 
                     nrow = dim(p.samples$response)[[2]],
                     ncol = dim(p.samples$effect)[[2]],
@@ -201,8 +203,8 @@ ifm_means <- ifm_means[ , 1:nrow(ifm_means)]
 
 alpha_rim <- alpha_means
 alpha_rim[which(ifm_means != 0, arr.ind = T)] <- 0
-alpha_var_rim <- alpha_var
-alpha_var_rim[which(ifm_means != 0, arr.ind = T)] <- 0
+# alpha_var_rim <- alpha_var
+# alpha_var_rim[which(ifm_means != 0, arr.ind = T)] <- 0
 
 # set up colours for nodes (linking to next figure)
 invasives <- c('ARCA', 'PEAI', 'HYPO')
@@ -223,7 +225,7 @@ cooc <- cooc[1:nrow(alpha_means), 1:nrow(alpha_means)]
 
 library(qgraph)
 
-png('2.analyses/figures_mss/networks_strengths.png', 
+png('2.analyses/figures_mss/networks_strengths_med.png', 
     width = 600, height = 800, units = 'px')
 par(mfrow=c(2, 1))
 # plot all interactions
