@@ -348,9 +348,10 @@ par(mfrow=c(3,1), cex=1.2)
 
 # 1. intra vs abundance
 #-------------------
-plot(intras, sp.abunds.rep, main = 'A', adj = 0,
+plot(intras, sp.abunds.rep,
      xlab = 'Intraspecific interactions (self-regulation)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
+title(main = 'A', adj = 0)
 abline(v=median(intras), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
 points(intras, sp.abunds.rep,
@@ -377,9 +378,10 @@ text(mean.intra[foundation], sp.abunds[foundation],
 
 # 2. out-strength vs abundance 
 #-----------------------------
-plot(sum.out, sp.abunds.rep, main = 'B', adj = 0,
+plot(sum.out, sp.abunds.rep, 
      xlab = 'Net effect on neighbours (Out-strength)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
+title(main = 'B', adj = 0)
 abline(v=median(sum.out), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
 points(sum.out, sp.abunds.rep,
@@ -405,12 +407,13 @@ text(mean.sum.out[keyst], sp.abunds[keyst],
 
 # 3. competitive vs facilitative effects
 #-------------------------------------
-plot(sum.comp, -sum.faci,  main = 'C', adj = 0,
-     las = 1, bty = 'n', 
+plot(sum.comp, -sum.faci,  
+     las = 1, bty = 'n', cex.lab = 1.2,
      # type = 'n',
      pch = 16, cex=0.7, col = 'grey',
      xlab = 'Sum of competitive effects', 
      ylab = 'Sum of facilitative effects')
+title(main = 'C', adj = 0)
 abline(v=median(sum.comp), lty = 2)
 abline(h=median(-sum.faci), lty = 2)
 # points(sum.comp, -sum.faci, las = 1, bty = 'n', 
