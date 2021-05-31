@@ -90,8 +90,11 @@ for (i in 1:dim(mu)[1]) {     # for each posterior draw
 # log transform seed predictions
 seed_pred <- log(seed_pred)
 # and using just the mean of the parameters
-m.mu <- colMeans(mu)
-m.phi <- colMeans(phi)
+# 06/2021 changed to medians
+# m.mu <- colMeans(mu)
+# m.phi <- colMeans(phi)
+m.mu <- apply(mu, 2, median)
+m.phi <- apply(phi, 2, median)
 mean_seed_pred <- sapply(1:length(m.mu) , function(x) {
   rnbinom(1, mu = m.mu[x], size = m.phi[focalobs[x]])
 })
