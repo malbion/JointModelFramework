@@ -13,7 +13,7 @@ source('data_prep.R')
 source('return_inter_array.R')
 source('simul_data.R')
 
-# load the data 
+# load simulated data 
 simdat <- simul_data(S=10, K=10, p=0.25)
 df <- simdat[[1]]
 sim_a <- simdat[[2]]

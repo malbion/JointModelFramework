@@ -1,8 +1,8 @@
-/* 2018_CompNet
-model
+/* NDDM & RIM joint model
 
-code to run a joint IF and RE model on 
-all focal species at once
+code to run on all focal species at once
+
+Bimler 2021
 */ 
   
   
