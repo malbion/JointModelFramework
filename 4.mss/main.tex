@@ -118,63 +118,50 @@ Data will be submitted to Dryad upon publication.
 
 To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. We define realised interactions as those that can be directly inferred from the observed data, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. 
 
-% [SHOULD I THEN write another paragraph summarising the next section of the methods? e.g. After estimating interactions, they can be integrated into models of population dynamics in order to ....]
- 
-% [should i be introducing the fact that alphas are density-independant here??]
-% Realised interactions are measured by... unrealised interactions act much like latent variable which...
-
-% Realised interactions are those which can be directly measured from the collected data, for example as two plant species are observed to co-occur, their performance is evaluated in each other's presence and the effect of the interaction can thus be directly quantified from the observed data. To do so, the performance of an element - a species, population or any chosen set of replicated individuals - is regressed against the abundance and identity of it's neighbouring elements in a neighbour-density dependant model (NDDM).  Increases or decreases in an overall elements' performance can thus be attributed to neighbouring elements/species which were observed to co-occur. 
-
     
     \subsection{Data requirements}
 
     \paragraph{}
-    The joint model framework was initially developed for an ecological dataset where interacting species (elements) affect each other's lifetime reproductive success (performance). This framework however, 
-    can be applied to data from any interacting elements (e.g. populations or groups of individuals) which meet the following criteria. First, observations must record a proxy for performance, for example seed production, biomass or stem diameter growth as proxies for lifetime reproductive success. Second, these observations must also record the identity and abundance of neighbouring elements within the interaction neighbourhood of each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of neighbouring elements which make up the different interaction neighbourhoods. 
+    The joint model framework was initially developed for an ecological dataset where interacting species (elements) affect each other's lifetime reproductive success (performance). This framework however, can be applied to data from any interacting elements (e.g. populations or groups of individuals) which meet the following criteria. First, observations must record a proxy for performance, for example seed production, biomass or stem diameter growth.  Second, these observations must also record the identity and abundance of neighbouring elements within the interaction neighbourhood of each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of neighbouring elements which make up the different interaction neighbourhoods. 
 
     %     The joint model framework was initially developed for an ecological dataset where interacting species affect each other's lifetime reproductive success. %As such we refer to network elements or nodes as 'species' and node performance as 'lifetime reproductive success' or 'fitness' however this framework is not limited to ecological datasets and can be applied to data from any interacting elements (e.g. populations or groups of individuals) which meet the following criteria. 
+ 
 
-
-    % interaction neighbourhoods for each focal element, in both the identities and densities of the elements which constitute them. 
-
-    In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with empty interaction neighbourhoods to better estimate intrinsic performance (i.e. in the absence of neighbours). In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though neither of these steps are strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. The risk here is that focal elements with dense interaction neighbourhoods may only be observed when the environment is of good enough quality, or that low-density neighbourhoods are only observed when the environment is too poor to support more elements, not because
-    If competition and environment quality are correlated for example, ...
-    - for example ... Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
-
-    any experimental design or data which may reduce confounding effects between environment and competition will provide more accurate estimates of interaction effects (e.g. thinning certain plots, recording environmental data known to affect performance). 
+    In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with empty interaction neighbourhoods to better estimate intrinsic performance (i.e. in the absence of neighbours). In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though neither of these steps are strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
+ 
     
     \subsection{Realised interactions}
         
         \paragraph{}
         Realised interactions are quantified by regressing the performance on an element  - a species, population or any chosen set of replicated individuals - against the abundance and identity of it's neighbouring elements in a neighbour-density dependant model (NDDM).  Increases or decreases in an overall elements' performance can thus be attributed to neighbouring elements which were observed to co-occur. 
 
-        We implement neighbour density-dependant model to each focal element $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ..., S$) against the measured proxy for performance $P_{i}$:
+        \paragraph{}
+        We implement a neighbour density-dependant model to each focal element $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ..., S$) against the measured proxy for performance $P_{i}$ through a link function $f$:
         
         \begin{equation}
-        P_{i} = \beta_{i0} - \sum_{j=1}^{S} \beta_{ij} N_{j}
+        f(P_{i}) = \beta_{i0} - \sum_{j=1}^{S} \beta_{ij} N_{j}
         \label{nddm}
         \end{equation}
         
         The intercept $\beta_{i0}$ represents intrinsic performance, an elements' performance in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ captures the effect of each neighbour $j$ on $i$. Note that neighbours can include other members of element $i$, in which case intraspecific interactions are denoted as $\beta_{ii}$.
 
         \paragraph{}
-        This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $P_i$ and the right-hand side of the equation does not need to be linear, but can be modified to fit the data in question given an appropriate distribution and link function, for example exponential or negative binomial (as was the case for our case study). 
+        This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $P_i$ and the right-hand side of the equation does not need to be linear, but can be modified to fit the data in question given an appropriate distribution and link function $f$, for example negative binomial and natural logarithm. 
               
     \subsection{Unrealised interactions}
 
     \paragraph{}
-        Unrealised interactions on the other hand are those which cannot be directly measured from the collected data. As is common in ecological communities, rare elements may not be observed to co-occur with many neighbours, because data sampling is limited in space and time and rare species are less likely to be found. These rarer species may still, however, potentially interact with many of the other species in the system if given the opportunity to do so. Rather than assigning a 0 value to these unknown interactions, we used the previously quantified realised interactions from the NDDM to estimate those unrealised interactions. To do so, we describe a model which assumes that unrealised interactions can be simplified such that elements typically have a singular impact on and a singular response to neighbours independant of neighbour identity (response and impact model, or RIM). An unrealised interaction is therefore the product of two elements' impact and response parameters. Impact and response are calculated from the realised interactions provided by the NDDM and their estimation contributes directly to the overall joint model log-likelihood. Note that the NDDM estimates a unique parameter for each realised interaction independantly of each elements's effects on other neighbours, whilst the RIM applies only to those unrealised interactions. 
+       A common issue in ecological datasets is that some elements may not be observed to co-occur with many neighbours, because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. These \textit{unrealised} interactions can be estimated by using an alternative model which assumes that elements typically have a singular impact on and a singular response to neighbours independant of neighbour identity (response and impact model, or RIM - see \cite{Godoy2014b}). An unrealised interaction is therefore the product of two elements' impact and response parameters. 
 
-    
-        \paragraph{}
-        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the NDDM above will not be able to estimate all potential interactions ($\beta_{ij}$) between species. This is especially true for rare species. These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the NDD model. This model is described as the response-effect model (here called the response-impact model or RIM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
-        
         \begin{equation}
         P_{i} = \beta_{i0} - r_{i} \sum_{j=1}^{S} e_{j} N_{j}
         \label{rim}
         \end{equation}
         
-        Pairwise interactions which are missing from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. In order to allow both the NDDM and RIM interaction estimates to contribute to the likelihood, we first used the NDDM to quantify observed interactions and then used those to estimate species-specific $r$ and $e$ parameters such that: 
+        Pairwise interactions which are missing from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. Note that the NDDM estimates a unique parameter for each realised interaction independantly of each elements's effects on other neighbours, whilst the RIM applies only to those unrealised interactions. 
+
+    \paragraph{}
+        In order to allow both the NDDM and RIM interaction estimates to contribute to the likelihood, we first used the NDDM to quantify observed interactions and then used those to estimate species-specific $r$ and $e$ parameters such that: 
     
         \begin{equation}
         r_i e_j \sim logistic \left ( \beta_{ij}, \sigma \right )
@@ -182,8 +169,6 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
         \end{equation}
     
         where $\sigma$ is a community-level scale parameter for the logistic distribution. We use a logistic distribution here because the heavier tails make it a slightly weaker informative prior than a normal distribution. $\sigma$ defines how widely the tails extend and can be expressed in terms of the standard deviation. 
-
-        Here I can add stuff about how I avoid the overparameterisation if necessary? and reference the kidzinski paper.
 
 
     \subsection{Standardising effects into per-capita interactions}
