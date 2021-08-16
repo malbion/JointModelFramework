@@ -378,24 +378,29 @@ I don't know where this goes - does it just repeat the methods? maybe reduce to 
 \newpage 
 
 \section{Supplementary Methods}
+\label{SI:Methods}
 
     \subsection{STAN model code}
-
+    \label{SI:modelcode}
     The following code specifies the joint model framework used to estimate the interaction matrix described in the Methods. It can be copied into a text editor and saved with a .stan extension for use with STAN. 
+
+    [Add explanation on indexing system and parameterisation tricks]
+
 
     \includepdf[pages=-]{../../2018_Compnet/stormland/model_stan.pdf}
 
 
 
     \subsection{Case study Methods}
+    \label{SI:casestudy}
 
-        \subsubsection{Data}
+        \subsubsection{Community data}
 
         \paragraph{}
-        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season, from July to October. The resulting dataset contains from 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of the focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species. Total neighbourhood diversity was 71 wildflower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and did not target any particular species.
+        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season. The resulting dataset includes between 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of each focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species \parencite{}. Total neighbourhood diversity was 71 wildflower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and thinning did not target any particular species. %[REFERENCE TRACE'S THESIS ABOVE]
 
         \paragraph{} 
-        We required species demographic rates (seed survival and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability.  The remaining species were assigned mean demographic rates from these experiments. See Bimler et al. (\textit{In Review}) Supplementary Methods .2 for full details on the methods used for collecting those seed rates.
+        We required species demographic rates (seed survival and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability.  The remaining species were assigned mean demographic rates from these experiments. Further details on the methods used for collecting those seed rates are available in section \ref{SI:germination}.
 
         \subsubsection{Model fitting}
 
@@ -459,28 +464,32 @@ I don't know where this goes - does it just repeat the methods? maybe reduce to 
         As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\lambda_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
 
 
-        % Using an appropriate model of population dynamics, the raw interaction estimates can be scaled into per-capita effects (${\beta}''$) which are directly comparable between species \parencite{Godoy2014, Bimler2018}. % Note that this step depends on a population dynamic model which can link species abundance to the chosen measure of fitness, and may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival) to scale the interactions.
+    \subsubsection{Seed germination and survival data}
+    \label{SI:germination}
 
-        % \paragraph{}
-        % In order to determine the appropriate scaling for the interaction estimates returned by our framework, we transform the model into a form equivalent to a Lotka-Volterra competition model: 
+        \paragraph{}
+        Seed demographic rates were collected from a set of field experiments conducted by T. Martyn, M. Raymundo and I. Towers at Perenjori reserve between 2015 and 2019. Experiments differed both in the methods and in which focal species were included in ways which are detailed further below, such that each focal species had a different number of replicates across all experiments. Given how much seed rates estimates have been found to vary within species and according to a range of both individual and environmental factors, we chose to average results from these multiple experiments for each focal species in order to provide a point estimate which captures a wide range of conditions under which seeds may grow. For those species which did not have any field estimates of seed rates (\textit{Austrostipa elegantissima}, \textit{Erodium sp.}, \textit{Petrorhagia dubia}) or seed survival rate (\textit{Gilberta tenuifolia}), no replication (\textit{Waitzia acuminata}) or an unrealistically low estimate of germination rate (\textit{Goodenia pusilliflora}), we substituted the community mean instead. 
 
-        % \begin{equation}
-        % F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
-        % \label{LVform}
-        % \end{equation}
-
-        % This gives us the scaled interaction strengths: 
- 
-        % \begin{equation}
-        % {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
-        % \label{scaling}
-        % \end{equation}
-
-        % \paragraph{}
-        % For this case study, we adapted the framework described here to work with a well-supported annual plant population model with a seed bank \parencite{Bimler2018}. The model describes changes in the rate of a focal species' seeds in the seed bank from one year to the next, which can be linked to $F_i$ through species-specific demographic rates (equations for the annual plant model are further described in Chapter 4). The exact form of the rescaled interactions can thus vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality.
+        \paragraph{}
+        For each experiment, mature seeds were collected at the end of the growing season (September - October) from multiple populations of each focal species located throughout the reserve. Immature or damaged seeds were not included, and collected seed was homogenised for each focal species to elimiate bias associated with local adaptation within populations. Germination rate was estimated by planting seeds in the field along gradients of soil phosphorus, woody canopy cover and herbaceous vegetation density and either directly counting the number of seeds which had germinated or comparing recruitment rates to unplanted plots after a sufficient amount of time had elapsed. Seeds were planted during late-September to mid-October, mimicking natural seed dispersal timing for wildflowers in the area. Seed surival rates were estimated using either the remaining seeds or a separate batch of seeds and assessing viability of the seeds using tetrazolium staining. 
 
 
-% \section{Supplementary Results}
+        \paragraph{T. Martyn experiment:}
+        For 19 focal species (the full species list excluding \textit{A. elegantissima}, \textit{P. dubia} and \textit{G. tenuifolia}), germination bags containing 20 seeds each were planted in the field in 2016 across multiple areas of Perenjori Reserve. Out of the 30 bags, 19 were collected in 2017 and the remaining were collected in 2018. Due to a severe drougth in 2017, half of the bags collected that year were watered during the field season and prior to collection. Germination bags were then brought back to the Mayfield Lab facilities at the University of Queensland, Brisbane, and seeds extracted. Seeds were examined for signs of germination in the field (broken or empty seed coat) and those remaining were placed in germination trays and a germination chamber to mimic light and temperature conditions conducive to germination. Trays were watered with Gibberellic acid once to twice a week and seedlings were recorded and removed until no more seedlings emerged. Remaining, ungerminated seeds were then assessed as dead (moldy) or potentially viable. The remaining potentially viable seeds were assessed for viability using tetrazolium staining, contributing to our estimates of seed survival rates. For this procedure, embryos in each seed were exposed by either removing the seed coat or by creating a thin cut along the seed coat. The exposed embryos were then placed on a six-well germination plate and 2 ml of 0.25\% Tetrazolium solution was added to each well to stain the embryos, before covering them and storing them at 25$^{\circ}$C overnight. To check for staining, embryos were dissected under a dissecting microscope. Viable seeds showed a dark pink embryo while non-viable seeds did not stain or were stained in a splotchy way.
+
+
+        \paragraph{M. Raymundo experiment:}
+        This experiment was carried out on the focal species \textit{H. glutinosum}, \textit{T. cyanopetala}, \textit{T. ornata} and \textit{V. rosea} from 2015 to 2017. However, a severe drought in 2017 made the second round of data collection impossible and thus we only include results for 2016 here. Ten plots were established measuring 0.5 m x 0.5 m at each of three sites in Perenjori Reserve for a total of 30 plots. Each plot was divided into 25 0.1 m x 0.1 m subplots and focal species were randomly assigned a subplot in each plot. Thirty seeds of each focal species were planted in the designated subplot in late September 2015 and a plastic ring 10 cm in diameter and 1 cm high was placed in each subplot where seeds were added to limit seed movement among subplots. Another five subplots were assigned plastic rings to serve as controls for the effect of the rings on non-experimental communities. The remaining 15 subplots served as controls where no seeds or rings were added allowing for recruitment from either natural dispersal or from the seed bank. Blocks were placed in such a way as to span shaded and open areas, bare ground and dense herbaceous vegetation, and areas with native dominated and exotic dominated assemblages. Before implementing the experiment in 2015, plots were surveyed to record the number and identity of all adult plants in each subplot. Due to the randomization of seed addition into subplots, some subplots had focal species already in them. As all focal species were common to this reserve, it is also likely that seeds for all species were in the seed banks in at least some subplots. There was no way to determine this in advance, though when adult individuals of a focal species were present in a subplot prior to the implementation of our experiment, we expected that some seedlings in the following year would be from the seedbank as well as our planted seeds and looked for evidence of this (more than 30 individuals) in data from 2016. We therefore compared average densities of successful focal recruits and those which emerged in situ between sown, control, and ringed subplots to assess seed limitation and germination rate. To measure seed survival rates, thirty seeds of each focal species were also assessed for viability using tetrazolium staining using the same procedure as for the T. Martyn experiment. 
+
+        \paragraph{I. Towers experiment: }
+        This experiment was carried out on the focal species \textit{A. calendula}, \textit{G. berardiana}, \textit{H. glutinosum}, \textit{H. glabra},\textit{P. aroides}, \textit{P. debilis}, \textit{P. canescens}, \textit{T. cyanopetala}, \textit{T. ornata}, \textit{V. rosea} and \textit{W. acuminata} in 2018 and 2019. Pairs of free-draining germination trays were deployed across a gradient of canopy cover in mid-October of both years, filled with soil, which had either been collected from the field and heat-sterilised to render pre-existing seeds nonviable (2019), or simply collected from the roadside (2018). Each germination tray consisted of 24 cells, with two cells randomly assigned to each focal species. In each cell, 15 seeds of the designated focal species were broadly distributed and lightly misted with water to facilitate seed-soil contact and minimise removal by wind. Trays placed in 2018 used seeds collected at the end of the 2017 growing season and dry after-ripened at 60$^{\circ}$C for a month before being stored in cool, dry conditions at the University of Queensland. Seeds planted in 2019 were collected at the end of the 2018 growing season and were placed directly from the field into the germination trays. To re-establish microbial communities for those trays where the soil had been heat-treated, seeds were lightly covered with a small amount of untreated soil collected from the site in which they were buried. Untreated soil was collected from directly underneath coarse woody debris in patches where it was present as prior research in this system has shown that the effect of coarse woody debris on plant performance is partially attributable to debris-specific soil microbial communities (A. Pastore unpublished data). Some of the trays received the additions of leaf litter, but the results of this treatment were not included for the seed rates used in this study. Seed germination rate was measured by counting the number of seedlings which emerged in the field, but seed survival rate was not calculated in this experiment.
+
+
+
+
+
+
+\section{Supplementary Results}
 
 
     \begin{figure}[H]
