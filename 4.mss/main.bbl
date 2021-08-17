@@ -2601,6 +2601,39 @@
       \endverb
       \keyw{biodiversity loss,drought,ecological networks,facilitation,foundation species,nitrogen deposition,plant–plant interactions,trait-based extinction model}
     \endentry
+    \entry{Martyn2020}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=861e5420f59c540b84e98ad6b88a5928}{%
+           family={Martyn},
+           familyi={M\bibinitperiod},
+           given={Trace\bibnamedelima E.},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {University of Queensland}%
+      }
+      \strng{namehash}{861e5420f59c540b84e98ad6b88a5928}
+      \strng{fullhash}{861e5420f59c540b84e98ad6b88a5928}
+      \strng{bibnamehash}{861e5420f59c540b84e98ad6b88a5928}
+      \strng{authorbibnamehash}{861e5420f59c540b84e98ad6b88a5928}
+      \strng{authornamehash}{861e5420f59c540b84e98ad6b88a5928}
+      \strng{authorfullhash}{861e5420f59c540b84e98ad6b88a5928}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Understanding the role of direct and indirect interactions in mediating local plant diversity}}
+      \field{type}{PhD Thesis}
+      \field{year}{2020}
+      \field{pages}{246}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.14264/uql.2020.824
+      \endverb
+    \endentry
     \entry{Mayfield2017}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=55228a5add139429462457a06c6dafae}{%
