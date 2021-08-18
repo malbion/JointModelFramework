@@ -62,7 +62,7 @@ Manuscript submitted for consideration as a \textbf{Method} article.
 
 
 \noindent
-Number of words - Abstract: 147\\
+Number of words - Abstract: 144\\
 Number of words - main text: \\
 Figures \&  Table in main text.\\
 Number of references: XX\\
@@ -87,7 +87,7 @@ Data will be submitted to Dryad upon publication.
 % Submit to Ecology Letters as a Method
 
     \paragraph{}
-    \textbf{Network theory allows us to understand complex systems by evaluating how their constituent elements interact with one another. Quantifying these interaction matrices from empirical data can be difficult however, because the number of potential interactions increases non-linearly as more elements are included in the system, and not all interactions may be empirically observable when some elements are rare. We present a novel modelling framework which estimates realised and unrealised interactions in diverse horizontal systems, using measures of individual performance in the absence and presence of their potential interaction partners. We apply our method to an ecological dataset of an annual wildflower community and quantify the competitive and facilitative effects of 52 neighbouring species on the viable seed production of 22 focal species. We illustrate how these results can help us better understand and manage plant communities, with potential applications of this framework extending well beyond plant community ecology.}
+    \textbf{Network theory allows us to understand complex systems by evaluating how their constituent elements interact with one another. Quantifying these interaction matrices from empirical data can be difficult however, because the number of potential interactions increases non-linearly as more elements are included in the system, and not all interactions may be empirically observable when some elements are rare. We present a novel modelling framework which estimates realised and unrealised interactions in diverse horizontal systems, using measures of element performance in the absence and presence of their potential interaction partners. The resulting interaction matrices can include positive and negative effects, the effect of an element on itself, and are non-symmmetrical. The advantages of these features are illustrated with a case study on an annual wildflower community of 22 focal and 52 neighbouring species, with potential applications of this framework extending well beyond plant community ecology.}
 
 
 
@@ -212,20 +212,19 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
     \subsection{Case study}
 
       
-        We applied this framework to annual wildflower community dataset from Western Australia collected in 2016. This dataset contains observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 neighbouring species, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Mayfield2017, Bimler2018} which required experimentally-measured species demographic rates. Seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
+        We applied this framework to annual wildflower community dataset from Western Australia collected in 2016. This dataset contains observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 neighbouring species, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Mayfield2017, Bimler2018} which required experimentally-measured species demographic rates. Viable eed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
         Further details on the data, the model fitting and the procedure for deriving scaled interactions from the population dynamics model are available in the Supplementary Methods \ref{SI:casestudy}.
 
 
 \section{Results}
 
 
-    Key aspects of the resulting interaction matrix is that these interactions can be competitive or facilitative, non-symmetrical (the effect of element $i$ on $j$ does not necessarily match the effect of element $j$ on $i$) and include intraspecific effects (the effect of element $i$ on itself). Another versatile feature of this framework is that the shape of the relationship between performance and neighbour density can be easily modified to suit the system in question (e.g. linear, exponential, rectangular hyperbolic) though it should be carefully verified before implementation. 
+    Key aspects of the resulting interaction matrix is that these interactions can be competitive or facilitative, non-symmetrical (the effect of element $i$ on $j$ does not necessarily match the effect of element $j$ on $i$) and include intraspecific effects (the effect of element $i$ on itself). We illustrate the advantages of this approach in the case study results below. 
 
 
+    \subsection{Case study results}
 
-
-
-        We conducted a posterior predictive check comparing simulated performance data to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. The model returned estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which 60\% were observed (realised).  When accounting for focal species only, 86.4\% of interactions were observed and estimated by the NDDM. NDDM and RIM estimates matched well and followed similar distributions (S.I. Figure \ref{fig:adist}) as enforced by the framework. 
+    We first applied this joint model to simulated data to verify that the original interaction parameters could be recovered by this framework. We then applied this model to a case study dataset of a diverse annual wildflower community, where elements consisted of 22 focal species and up to 52 neighbouring species (including focal species) and performance was measure by seed production. We conducted a posterior predictive check comparing simulated performance data to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. The model returned estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which 60\% were observed (realised).  When accounting for focal species only, 86.4\% of interactions were observed and estimated by the NDDM. NDDM and RIM estimates matched well and followed similar distributions (S.I. Figure \ref{fig:adist}) as enforced by the framework. 
     
 
 
@@ -245,39 +244,42 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
     \end{figure}
   
 
-    \subsection{Scaling the interactions}
+%     \subsection{Rescaling the interactions}
     
-I don't know where this goes - does it just repeat the methods? maybe reduce to a few lines in results before case study results?
+% I don't know where this goes - does it just repeat the methods? maybe reduce to a few lines in results before case study results?
+% Really, it's just repeating stuff I've written above in the methods...
 
- % We applied the model framework described above to a case study of annual wildflower plants. After quantifying the interaction matrix, we scale all interaction samples using estimates of intrinsic fitness ($\beta_{i0}$) and experimentally-measured species demographic rates. The scaling is determined by a system-appropriate population dynamic model and allows us to translate the interaction matrix into per-capita effects on  abundance. This transformation places the resulting interaction strengths on the same scale and allows us to compare the community-wide effects of different species, amongst other potential applications further illustrated in the Results and Discussion. 
+%     \paragraph{}
+% 	The interaction matrix resulting from the joint model captures the likely effects of neighbours on the performance of focal elements, in this case species. Differences in the magnitude of these interaction terms reflect differences in intrinsic performance (performance in the absence of neighbours) of the focal elements. In order to make interactions comparable between elements that may have very different baseline values of performance, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance. 
+
+
+%     \paragraph{}
+%     To understand how the returned interaction matrix may affect system-wide behaviour, it is useful to also integrate interaction estimates into an overarching model describing the dynamics of the elements in the community. In our wildflower case study, models of plant population dynamics are necessary to link interaction effects on performance to patterns of abundance and diversity. In our example, seed survival and germination rates were used to rescale interaction effects on seed production (our measure of performance) into \textit{per-capita} interaction effects on species growth rates. In other cases where different measures of performance are used (e.g. biomass or height), the species-specific demographic rates to be included and the rescaling formula must be derived from a system-appropriate population dynamic model, as illustrated in the Methods. The resulting per-capita interaction strengths allow us to draw inferrences about how elements may affect each other's growth and future abundances, which is particularly useful for a range of ecological applications as we further illustrate below. \\
+
+
+
+  
+
+    %\subsection{Case study results}
 
     \paragraph{}
-	The interaction matrix resulting from the joint model captures the likely effects of neighbours on the performance of focal elements. Differences in the magnitude of these interaction terms reflect differences in intrinsic performance (performance in the absence of neighbours, either competitive or facilitative) of the focal elements. In order to make interactions comparable between elements which may have very different baseline values of performance, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance. 
+     For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}. A \& B). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. 
+     Furthermore, the elements of the diagonal (the effect of an element on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}. C). 
 
 
-    \paragraph{}
-    To understand how the returned interaction matrix may affect system-wide behaviour, it is useful to also integrate interaction estimates into an overarching model describing the dynamics of the elements in the community. In the wildflower case study illustrated here, models of plant population dynamics are necessary to link interaction effects on performance to patterns of abundance and diversity. In our example, seed survival and germination rates were used to rescale interaction effects on seed production (our measure of performance) into \textit{per-capita} interaction effects on species growth rates. In other cases where different measures of performance are used (e.g. biomass or height), the species-specific demographic rates to be included and the rescaling formula must be derived from a system-appropriate population dynamic model, as illustrated in the Methods. The resulting per-capita interaction strengths allow us to draw inferrences about how elements may affect each other's growth and future abundances, which is particularly useful for a range of ecological applications as we further illustrate below. \\
-
-
-
-    \begin{figure}[H]
+       \begin{figure}[H]
         \begin{centering}
         % Looks like GITE is in larger font???
         \includegraphics[width=0.5\textwidth]{../2.analyses/figures_mss/networks_C_F_cooc.png}
-        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package in R \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together. Focal species only are included, arrows point to species $i$ and line thickness denotes interaction strength. Interaction strengths for (A) and (B) are given as the median over 1000 samples. Species associations (C) were all negative. 
-        Purple coloured nodes correspond to highly abundant native species, whereas green nodes indicate potential keystone species, as further described in Figure \ref{fig:species}. \\
+        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package in R \parencite{Griffith2016}. Competitive and facilitative interactions (A and B) are here shown separately for ease of view but were analysed together. Only focal species are included in these networks, arrows point to species $i$ and line thickness denotes interaction strength. Interaction strengths for (A) and (B) are given as the median over 1000 samples. Species associations (C) were all negative and symmetrical. Purple coloured nodes correspond to highly abundant native species, whereas green nodes indicate potential keystone species, as further described in Figure \ref{fig:species}. \\
         \textbf{GITE is in larger font???}}
         \label{fig:netwks}
        \end{centering}
     \end{figure}    
 
 
-    \subsection{Case study results}
 
-    \paragraph{}
-     For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}. A \& B). Though competition was the dominant interaction type,  35\% of all focal x neighbour rescaled interactions were facilitative, as were 26 \% of all focal x focal interactions (averages across all network samples). As a result, 40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. 
-     Furthermore, the elements of the diagonal (the effect of an element on itself) were able to be estimated, which can allow us to quantify how much a species regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Together, these features make the resulting interaction matrix qualitatively different to association networks, which are a common alternative to inferring interactions in diverse systems (Figure \ref{fig:netwks}. C). 
-
+    \subsection{Examples of ecological applications}
 
     \paragraph{}
     We now illustrate potential uses of this framework by examining ecological questions important to species management and how the interaction matrix derived from our case study data may help us better understand the system in question. 
