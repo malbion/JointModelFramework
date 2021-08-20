@@ -44,7 +44,7 @@ library(rethinking)
 library(reshape2)
 
 
-setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/3.case_study//')
+setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/3.case_study/')
 
 source('functions/rem_dataprep.R')
 source('functions/stan_modelcheck_rem.R')
@@ -69,7 +69,7 @@ message(paste0('Number of neighbours = ', length(key_neighbourID)))
 # Estimate interactions with a joint IFM*REM model |
 #---------------------------------------------------
 
-fit <- stan(file = 'joint_model.stan',
+fit <- stan(file = 'joint_model_reparam.stan',
             data =  stan.data,               # named list of data
             chains = 4,
             warmup = 1000,          # number of warmup iterations per chain
@@ -84,44 +84,44 @@ param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'inter_mat',
 
 # Raw output
 #------------
-save(fit, file = paste0('model/output/', comm, '/model_fit.Rdata')) # model fit
+save(fit, file = paste0('model/output/model_fit.Rdata')) # model fit
 # Save the 'raw' draws from the posterior
 joint.post.draws <- extract.samples(fit)
-save(joint.post.draws, file = paste0('model/output/', comm, '/post_draws.Rdata'))
+save(joint.post.draws, file = paste0('model/output/post_draws.Rdata'))
 
 # Save mean, 10% and 90% quantiles for each parameter, as well as n_eff and Rhat
 fit_sum <- summary(fit, pars = param.vec, probs = c(0.1, 0.9))$summary
-write.csv(fit_sum, file = paste0('model/output/', comm, '/summary_of_draws.csv'), row.names = T)
+write.csv(fit_sum, file = paste0('model/output/summary_of_draws.csv'), row.names = T)
 
 # Save the logarithm of the (unnormalized) posterior density (lp__)
 log_post <- unlist(extract(fit, 'lp__'))
-write.csv(log_post, file = paste0('model/output/', comm, '/log_post.csv'), row.names = F)
+write.csv(log_post, file = paste0('model/output/log_post.csv'), row.names = F)
 
 # Validation
 #------------
 # Diagnostics
-stan_diagnostic(fit, paste0('model/validation/', comm, '/'))
+stan_diagnostic(fit, 'model/validation/')
 # Traceplots and posterior uncertainty intervals
-stan_model_check(fit, paste0('model/validation/', comm, '/'), params = param.vec)
+stan_model_check(fit, 'model/validation/', params = param.vec)
 # Posterior predictive check
-stan_post_pred_check(joint.post.draws, paste0('model/validation/', comm, '/'), stan.data)
+stan_post_pred_check(joint.post.draws, 'model/validation/', stan.data)
 
 # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
 #------------------
 # sample raw model params
-sapply(param.vec[param.vec != 'sigma_alph' & param.vec != 'ifm_alpha'], function(p) {
+sapply(param.vec[param.vec != 'sigma' & param.vec != 'inter_mat'], function(p) {
   
   p.samples <- apply(joint.post.draws[[p]], 2, function(x){
     sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
   })
-  write.csv(p.samples, paste0('model/output/', comm, '/', p, '_samples.csv'), 
+  write.csv(p.samples, paste0('model/output/', p, '_samples.csv'), 
             row.names = F)
   
 })
 # sigma alph mucks up because it is one value only, ifm_alphas mucks up because it's a 3d array
 sigma <- joint.post.draws$sigma
-sigma <- sample(sigma_alph[sigma > quantile(sigma, 0.1) & sigma < quantile(sigma, 0.9)], size = 1000)
-write.csv(sigma, paste0('model/output/', comm, '/sigma_samples.csv'), 
+sigma <- sample(sigma[sigma > quantile(sigma, 0.1) & sigma < quantile(sigma, 0.9)], size = 1000)
+write.csv(sigma, paste0('model/output/sigma_samples.csv'), 
           row.names = F)
 
 
@@ -133,7 +133,7 @@ growth.rates.samples <- apply(joint.post.draws$beta_i0, 2, function(x){
 })
 # exponentiate to get lambda
 growth.rates.samples <- exp(growth.rates.samples)
-write.csv(growth.rates.samples, paste0('model/transformed/', comm, '/lambda_samples.csv'), row.names = F)
+write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
 
 
 # Interactions (alphas)
@@ -164,7 +164,7 @@ re_alphas <- lapply(c(1:length(key_speciesID)), function(x) {
 re_alphas <- do.call(cbind, re_alphas)
 
 # Verify!
-png(paste0('model/validation/', comm, '/ifm_vs_rem_alphas.png'))
+png(paste0('model/validation/ifm_vs_rem_alphas.png'))
 plot(alphas, re_alphas, xlab = 'IFM alphas', ylab='Response*Effect',
      xlim = c(min(re_alphas), max(re_alphas)),
      ylim = c(min(re_alphas), max(re_alphas)))
@@ -173,24 +173,24 @@ dev.off()
 
 # get unobserved estimates only
 unobs <- re_alphas[ , apply(alphas, 2, function(x) {all(x == 0)})]
-png(paste0('model/validation/', comm, '/alpha_est_distr.png'))
+png(paste0('model/validation/alpha_est_distr.png'))
 par(mfrow=c(3,1))
-hist(alphas[ , apply(alphas, 2, function(x) {all(x != 0)})], xlab = "", breaks = 30,
+hist(alphas[  , apply(alphas, 2, function(x) {all(x != 0)})], xlab = "", breaks = 30,
      main = "IFM alphas (0's removed)", xlim = c(min(re_alphas), max(re_alphas)))
 hist(re_alphas[ , apply(alphas, 2, function(x) {all(x != 0)})],  xlab = "", breaks = 30,
-     main = 'REM alphas - Unobserved estimates removed', xlim = c(min(re_alphas), max(re_alphas)))
-hist(unobs,  xlab = "", main = 'REM alphas - Unobserved interactions only', breaks = 30,
+     main = 'REM alphas - Unrealised estimates removed', xlim = c(min(re_alphas), max(re_alphas)))
+hist(unobs,  xlab = "", main = 'REM alphas - Unrealised interactions only', breaks = 30,
      xlim = c(min(re_alphas), max(re_alphas)))
 dev.off()
 
 # replace unobserved interactions (0 in alphas) with the values predicted by the rem
 alphas[ , apply(alphas, 2, function(x) {all(x == 0)})] <- 
   re_alphas[ , apply(alphas, 2, function(x) {all(x == 0)})]
-write.csv(alphas, paste0('model/transformed/', comm, '/alpha_samples.csv'), row.names = F)
+write.csv(alphas, paste0('model/transformed/alpha_samples.csv'), row.names = F)
 
 # Scale the alphas and save
 scaled_alphas <- scale_interactions(alphas, growth.rates.samples, key_speciesID, key_neighbourID, comm)
-save(scaled_alphas, file = paste0('model/transformed/', comm, '/scaled_alpha_matrices.Rdata')) 
+save(scaled_alphas, file = paste0('model/transformed/scaled_alpha_matrices.Rdata')) 
 
 Sys.time()
 

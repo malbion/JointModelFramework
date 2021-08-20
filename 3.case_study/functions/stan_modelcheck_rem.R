@@ -135,7 +135,7 @@ stan_post_pred_check <- function(post.draws,
     ppc.plot <- lines(density(seed_pred[i, ]), col = 'darkgrey')
   }
   # add the actual data
-  ppc.plot <- lines(density(stan.data$seeds), col = 'black', lwd = 2)  
+  ppc.plot <- lines(density(stan.data$perform), col = 'black', lwd = 2)  
   print(ppc.plot)
   dev.off()
   
