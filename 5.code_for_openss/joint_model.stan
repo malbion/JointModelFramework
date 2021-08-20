@@ -26,7 +26,7 @@ Bimler 2021
 
 parameters {
   
-  vector[S] a;    // species-specific intercept 
+  vector[S] beta_i0;    // species-specific intercept 
   vector<lower=0>[S] disp_dev; // species-specific dispersion deviation parameter, 
   // defined for the negative binomial distribution used to reflect seed production (seeds)
   // disp_dev = 1/sqrt(phi) 
@@ -59,7 +59,7 @@ transformed parameters {
   
   // individual fitness model 
   for(n in 1:N) {
-       mu[n] = exp(a[species_ID[n]] - dot_product(X[n], inter_mat[species_ID[n], ]));  
+       mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], inter_mat[species_ID[n], ]));  
   }
   
   // build a vector of interaction parameters based on the response effect model 
@@ -71,7 +71,7 @@ transformed parameters {
 model {
 
   // priors
-  a ~ cauchy(0,10); // prior for the intercept following Gelman 2008
+  beta_i0 ~ cauchy(0,10); // prior for the intercept following Gelman 2008
   disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
   
   response ~ normal(0, 1);   // defining a lower limit aboves truncates the normal distribution
