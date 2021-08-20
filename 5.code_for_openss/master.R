@@ -40,17 +40,17 @@ fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 4,
             warmup = 1000,          # number of warmup iterations per chain
-            iter = 3000,            # total number of iterations per chain
+            iter = 6000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
-                           adapt_delta = 0.9)
+                           adapt_delta = 0.95)
 )
 
 # Get the full posteriors 
 joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
-param.vec <- c('a', 'beta_ij', 'effect', 'response', 're', 'inter_mat',
+param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'inter_mat',
                'mu', 'disp_dev', 'sigma')
 
 # Draw 1000 samples from the 80% posterior interval for each parameter of interest
@@ -67,7 +67,7 @@ p.samples[['sigma']] <- sample(joint.post.draws$sigma[
 
 # WARNING: in the STAN model for annual wildflowers, parameter 'a' lies within an exponential,
 # 'a' estimates must thus be exponentiated to return estimates of intrinsic performance
-intrinsic.perf <- exp(p.samples$a)
+intrinsic.perf <- exp(p.samples$beta_i0)
 colnames(intrinsic.perf) <- focalID
 
 # Build matrices of interaction estimates
