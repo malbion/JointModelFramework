@@ -73,7 +73,7 @@ fit <- stan(file = 'joint_model_reparam.stan',
             data =  stan.data,               # named list of data
             chains = 4,
             warmup = 1000,          # number of warmup iterations per chain
-            iter = 5000,            # total number of iterations per chain
+            iter = 6000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10)
 )
