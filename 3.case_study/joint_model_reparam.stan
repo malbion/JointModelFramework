@@ -33,9 +33,13 @@ parameters {
 
   vector[I] beta_ij;     // vector of interactions which have been observed
   
-  vector<lower=0>[1] response1; // first species-specific response parameter
-  // constrained to be positive for identifiability
-  vector[S-1] responseSm1; // other species-specific response parameters
+  // vector<lower=0>[1] response1; // first species-specific response parameter
+  // // constrained to be positive for identifiability
+  // vector[S-1] responseSm1; // other species-specific response parameters
+  
+  // abov didn't work so let's try forcing all responses to be positive
+  vector<lower=0>[S] response; // species-specific competitive response parameter
+  // >= 0 to avoid bimodality in response and effect 
 
   unit_vector[K] effect; // species-specific effect parameter
 
@@ -45,7 +49,7 @@ parameters {
 transformed parameters {
   
   // transformed parameters constructed from paramaters above
-  vector[S] response;        // combined vector of species-specific responses
+  // vector[S] response;        // combined vector of species-specific responses
   matrix[S, K] inter_mat;    // the community interaction matrix
   vector[I] re;              // interactions as calculated by the re model
   vector[N] mu;              // the linear predictor for seed production
@@ -64,8 +68,8 @@ transformed parameters {
        mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], inter_mat[species_ID[n], ]));  
   }
 
-  // stitch together the response values
-  response = append_row(response1, responseSm1);
+  // // stitch together the response values
+  // response = append_row(response1, responseSm1);
   
   // build a vector of interaction parameters based on the response effect model
   for (i in 1:I) {
@@ -79,8 +83,9 @@ model {
   beta_i0 ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
   disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
   
-  response1 ~ normal(0, 1);   // constrained by parameter defintion to be positive
-  responseSm1 ~ normal(0,1);
+  response ~ normal(0, 1);   // defining a lower limit aboves truncates the normal distribution
+  // response1 ~ normal(0, 1);   // constrained by parameter defintion to be positive
+  // responseSm1 ~ normal(0,1);
   // effect ~ normal(0, 1);   // we can use the default prior for the unit_vector effect
   sigma ~ cauchy(0, 1);
 
