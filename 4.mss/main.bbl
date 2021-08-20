@@ -929,6 +929,85 @@
       \endverb
       \keyw{biodiversity maintenance,community ecology,demography,fitness differences,grassland,individual-based model,integral projection model,interactions,invasion growth rate,niche differences,positive,species coexistence,western united states}
     \endentry
+    \entry{Cirtwill2018a}{article}{}
+      \name{author}{7}{ul=2}{%
+        {{un=0,uniquepart=base,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
+           family={Cirtwill},
+           familyi={C\bibinitperiod},
+           given={Alyssa\bibnamedelima R},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=defc2a7ac630d62cdabea789f7121812}{%
+           family={{Dalla Riva}},
+           familyi={D\bibinitperiod},
+           given={Giulio\bibnamedelima Valentino},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=452be04d3cb006f849b1ad0ecfe3aaaa}{%
+           family={Gaiarsa},
+           familyi={G\bibinitperiod},
+           given={Marilia\bibnamedelima P},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a469c72d262857f4d27dcb0f973f4811}{%
+           family={Bimler},
+           familyi={B\bibinitperiod},
+           given={Malyon\bibnamedelima D},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a101a2c187542af3af33f6603b7e13b3}{%
+           family={Cagua},
+           familyi={C\bibinitperiod},
+           given={E\bibnamedelima Fernando},
+           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=36476aacfdfbdf47f797ade1ca57ba8d}{%
+           family={Coux},
+           familyi={C\bibinitperiod},
+           given={Camille},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d5597df0303545008393e8cd59ecbf80}{%
+           family={Matthias},
+           familyi={M\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Inc}%
+      }
+      \strng{namehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{fullhash}{1e608417c6f5caeec0333df6da62b5b5}
+      \strng{bibnamehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{authorbibnamehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{authornamehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{authorfullhash}{1e608417c6f5caeec0333df6da62b5b5}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{23522496}
+      \field{journaltitle}{Food Webs}
+      \field{title}{{A review of species role concepts in food webs}}
+      \field{year}{2018}
+      \field{pages}{e00093}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1016/j.fooweb.2018.e00093
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Cirtwill et al. - 2018 - A review of species role concepts in food webs.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.fooweb.2018.e00093
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.fooweb.2018.e00093
+      \endverb
+    \endentry
     \entry{Cirtwill2015a}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
@@ -977,91 +1056,6 @@
       \verb http://dx.doi.org/10.1111/geb.12332%7B%5C%%7D5Cnhttp://onlinelibrary.wiley.com/store/10.1111/geb.12332/asset/geb12332.pdf?v=1%7B%5C&%7Dt=icbx419n%7B%5C&%7Ds=3111110ca750521353aaf5c25281fd89e41c6c7e
       \endverb
       \keyw{Bottom-up effects,community assembly,food web,predator–prey interactions,species richness,theory of island biogeography,top-down effects}
-    \endentry
-    \entry{Cirtwill2018a}{article}{}
-      \name{author}{8}{ul=2}{%
-        {{un=0,uniquepart=base,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
-           family={Cirtwill},
-           familyi={C\bibinitperiod},
-           given={Alyssa\bibnamedelima R},
-           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=905a8c6d800499ef5f8999fdfe6557df}{%
-           family={Valentino},
-           familyi={V\bibinitperiod},
-           given={Giulio},
-           giveni={G\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=173640575c61335e2398e00dca8d4239}{%
-           family={Riva},
-           familyi={R\bibinitperiod},
-           given={Dalla},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=452be04d3cb006f849b1ad0ecfe3aaaa}{%
-           family={Gaiarsa},
-           familyi={G\bibinitperiod},
-           given={Marilia\bibnamedelima P},
-           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=a469c72d262857f4d27dcb0f973f4811}{%
-           family={Bimler},
-           familyi={B\bibinitperiod},
-           given={Malyon\bibnamedelima D},
-           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=a101a2c187542af3af33f6603b7e13b3}{%
-           family={Cagua},
-           familyi={C\bibinitperiod},
-           given={E\bibnamedelima Fernando},
-           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=36476aacfdfbdf47f797ade1ca57ba8d}{%
-           family={Coux},
-           familyi={C\bibinitperiod},
-           given={Camille},
-           giveni={C\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=d5597df0303545008393e8cd59ecbf80}{%
-           family={Matthias},
-           familyi={M\bibinitperiod},
-           given={D},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier Inc}%
-      }
-      \strng{namehash}{9ec2d8966d1d37af5a6ddca18299e4f3}
-      \strng{fullhash}{00cc282677de52b9f52780ec10efeddf}
-      \strng{bibnamehash}{9ec2d8966d1d37af5a6ddca18299e4f3}
-      \strng{authorbibnamehash}{9ec2d8966d1d37af5a6ddca18299e4f3}
-      \strng{authornamehash}{9ec2d8966d1d37af5a6ddca18299e4f3}
-      \strng{authorfullhash}{00cc282677de52b9f52780ec10efeddf}
-      \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{23522496}
-      \field{journaltitle}{Food Webs}
-      \field{title}{{A review of species role concepts in food webs}}
-      \field{year}{2018}
-      \field{pages}{e00093}
-      \range{pages}{-1}
-      \verb{doi}
-      \verb 10.1016/j.fooweb.2018.e00093
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Cirtwill et al. - 2018 - A review of species role concepts in food webs.pdf:pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1016/j.fooweb.2018.e00093
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1016/j.fooweb.2018.e00093
-      \endverb
     \endentry
     \entry{Connell1961}{article}{}
       \name{author}{1}{}{%
@@ -2272,6 +2266,40 @@
       \endverb
       \keyw{complex networks,food webs,forbidden links,frugivory,mutualism,network,plant–animal interactions,pollination,seed dispersal}
     \endentry
+    \entry{Kinlock2019}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bc1c6d85eb355c78b1ae7049a0cfdb1e}{%
+           family={Kinlock},
+           familyi={K\bibinitperiod},
+           given={Nicole\bibnamedelima L},
+           giveni={N\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{bc1c6d85eb355c78b1ae7049a0cfdb1e}
+      \strng{fullhash}{bc1c6d85eb355c78b1ae7049a0cfdb1e}
+      \strng{bibnamehash}{bc1c6d85eb355c78b1ae7049a0cfdb1e}
+      \strng{authorbibnamehash}{bc1c6d85eb355c78b1ae7049a0cfdb1e}
+      \strng{authornamehash}{bc1c6d85eb355c78b1ae7049a0cfdb1e}
+      \strng{authorfullhash}{bc1c6d85eb355c78b1ae7049a0cfdb1e}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Naturalist}
+      \field{number}{5}
+      \field{title}{{A Meta-Analysis of Plant Interaction Networks Reveals Competitive Hierarchies as Well as Facilitation and Intransitivity}}
+      \field{volume}{194}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.1086/705293
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Kinlock - 2019 - A Meta-Analysis of Plant Interaction Networks Reveals Competitive Hierarchies as Well as Facilitation and Intransitivit.pdf:pdf
+      \endverb
+      \keyw{competition,facilitation,interaction uncertainty,meta-analysis,networks,plant communities}
+    \endentry
     \entry{Lafferty2008}{article}{}
       \name{author}{18}{}{%
         {{un=0,uniquepart=base,hash=f2e4b6163a86cc11fd852027cd3faeea}{%
@@ -2457,6 +2485,52 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Laird, Schamp - 2006 - Competitive Intransitivity Promotes Species Coexistence.pdf:pdf
       \endverb
       \keyw{biodiversity,cellular automaton,competition,ecology,explaining species coexistence is,impor-,intransitiv-,ity,one of the greatest,one of the most,species coexistence,tant problems in community,transitivity}
+    \endentry
+    \entry{Laska1998}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=796ae7497623db6e5e6393a12097b2a2}{%
+           family={Laska},
+           familyi={L\bibinitperiod},
+           given={Mark\bibnamedelima S.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c6c580bf5cca09a3b4aa3590ec574b9a}{%
+           family={Wootton},
+           familyi={W\bibinitperiod},
+           given={J.\bibnamedelimi Timothy},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{97d33bad764acb60262e7efd9678237e}
+      \strng{fullhash}{97d33bad764acb60262e7efd9678237e}
+      \strng{bibnamehash}{97d33bad764acb60262e7efd9678237e}
+      \strng{authorbibnamehash}{97d33bad764acb60262e7efd9678237e}
+      \strng{authornamehash}{97d33bad764acb60262e7efd9678237e}
+      \strng{authorfullhash}{97d33bad764acb60262e7efd9678237e}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Evaluating the strength of interactions among species is an important step in understanding the structure of natural communities and predicting how they will respond to changes in the biotic environment. Where feasible, accurate characterization of interaction strength can shift the theory of multispecies communities from identifying the vast range of possibilities to isolating the most likely possibilities. To derive generality in our un- derstanding of interaction strengths, however, they must be placed within a unified frame- work, a framework that can be applied to empirical situations. In this paper we first identify four different theoretical concepts of interaction strength prevalent in the literature (com- munity matrix, Jacobian matrix, inverse Jacobian, and removal matrix), showing how they are related to each other and how they are derived. We also demonstrate that their behavior is not necessarily concordant; hence it is important to identify clearly which concept of interaction strength is being discussed. Then we evaluate several observational and ex- perimental approaches to estimating interaction strength empirically, highlighting their ties to theory, if any, and the limitations and strengths of each approach. Finally, we apply several techniques to a simulated data set, based on an intertidal community, evaluating both accuracy and logistical ease of these approaches. We find that per capita interaction strength is often the most useful index to measure, that caution must be exercised in interpreting empirical estimates of interaction strength because of equilibrium assumptions and the potential confounding effect of indirect effects, and that concentrating on evaluating the relationship between empirically observed rates of change and species abundances may be a profitable way to proceed.}
+      \field{annotation}{21/01/2016 Discusses various theoritical/mathematical definitions of interaction strenghts (Jacobian matrix, community coefficients ..) and evaluates empirical and observational approaches to estimating interaction strengths. Lots of support for my masters projet: dynamic regressions over time-series data and community coefficients, arguments for use of interaction strengths, support for my model and approach Very useful !!}
+      \field{isbn}{0012-9658}
+      \field{issn}{00129658}
+      \field{journaltitle}{Ecology}
+      \field{number}{2}
+      \field{title}{{Theoretical concepts and empirical approaches to measuring interaction strength}}
+      \field{volume}{79}
+      \field{year}{1998}
+      \field{pages}{461\bibrangedash 476}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1890/0012-9658(1998)079[0461:TCAEAT]2.0.CO;2
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Laska, Wootton - 1998 - Theoretical concepts and empirical approaches to measuring interaction strength.pdf:pdf
+      \endverb
+      \keyw{Community matrix,Competition,Competition indices,Dynamic regression,Dynamics,Experiment,Food web,Interaction strength,Interactions,Jacobian matrix,Lotka-Volterra model,Masters,Modeling,Observation,Per capita effects,Simulation}
     \endentry
     \entry{Levine2009}{article}{}
       \name{author}{2}{}{%
@@ -4379,7 +4453,6 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{Kinlock2019}
 \endrefsection
 \endinput
 
