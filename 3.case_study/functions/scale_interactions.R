@@ -50,7 +50,7 @@ scale_interactions <- function(alphas,
  }
   
     #-------------------------------------------------------------------------------------#
-    write.csv(r_i, paste0('model/transformed/', comm, '/ri_demogrwth.csv'), row.names = T)
+    write.csv(r_i, paste0('model/transformed/ri_demogrwth.csv'), row.names = T)
     
     # Check all species names match! 
     ifelse(identical(dimnames(alpha_mat)[[1]], key_speciesID) == F, 
