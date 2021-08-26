@@ -13,10 +13,10 @@ setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 ############################################################################################
 
 # Get raw quantities from model output
-load('../2018_Compnet/stormland/model/output/0/post_draws.Rdata')
+load('3.case_study/model/output/post_draws.Rdata')
 
 # 80% posterior of relevant parameters - vectors
-param.vec <- c('a', 'interactions', 'effect', 'response', 're', 'mu', 'disp_dev')
+param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'mu', 'disp_dev')
 p.samples <- list()
 p.samples <- sapply(param.vec, function(p) {
   p.samples[[p]] <- apply(joint.post.draws[[p]], 2, function(x){
@@ -24,7 +24,7 @@ p.samples <- sapply(param.vec, function(p) {
   }) 
 })
 # get ALL interaction estimates for IFM 
-ifm_mat <- as.data.frame(aperm(joint.post.draws$ifm_alpha, perm = c(1, 3, 2)))
+ifm_mat <- as.data.frame(aperm(joint.post.draws$inter_mat, perm = c(1, 3, 2)))
 # take the 80% posterior interval
 ifm_mat <- apply(ifm_mat, 2, function(x) {
   inter <- x[x > quantile(x, 0.1) & x < quantile(x, 0.9)]
@@ -32,7 +32,7 @@ ifm_mat <- apply(ifm_mat, 2, function(x) {
   if (length(inter > 0)) {sample(inter, size = 1000)} else {rep(0, 1000)} 
 })
 # get ALL interaction estimates for REM 
-rim_mat <- lapply(c(1:dim(p.samples[['a']])[[2]]), function(x) {
+rim_mat <- lapply(c(1:dim(p.samples[['beta_i0']])[[2]]), function(x) {
   resp <- p.samples$response[, x]
   resp <- sample(resp, length(resp))  # randomly re-order the response vector
   return(resp*p.samples$effect)})
@@ -153,7 +153,7 @@ dev.off()
 # Figure 3: Response vs Impact |
 #-------------------------------
 
-S <- dim(p.samples$a)[[2]]
+S <- dim(p.samples$beta_i0)[[2]]
 
 png('2.analyses/figures_mss/response_impact2.png', width = 400, height = 700)
 plot(p.samples$response, p.samples$effect[ , 1:S], type = 'n',
