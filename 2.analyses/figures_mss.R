@@ -351,6 +351,8 @@ plot(intras, sp.abunds.rep,
      xlab = 'Intraspecific interactions (self-regulation)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 title(main = 'A', adj = 0)
+polygon(x = c(-0.129 , 0, 0, -0.129), y = c(4.4, 4.4, 9.3, 9.3),
+        col = 'ivory', border = NA)
 abline(v=median(intras), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
 points(intras, sp.abunds.rep,
@@ -365,14 +367,14 @@ sapply(1:length(sp.abunds), function(x) {
 points(mean.intra, sp.abunds, pch = 23, 
        bg = 'black', cex = 1)
 points(mean.intra[foundation], sp.abunds[foundation], pch = 24,
-       bg = 'purple', cex = 1.3)
+       bg = 'purple', cex = 1.8)
 # points(mean.intra[keyst], sp.abunds[keyst], pch = 23, 
 #        bg = 'orange', cex = 1.3)
 # points(mean.intra[invasives], sp.abunds[invasives], pch = 23, 
 #        bg = 'red', cex = 1.3)
 text(mean.intra[foundation], sp.abunds[foundation], 
      labels = names(mean.intra[foundation]), 
-     pos = 4, col = 'darkorchid4', offset = 1)
+     pos = 4, col = 'darkorchid4', offset = 1, cex = 1.4)
 
 
 # 2. out-strength vs abundance 
@@ -381,6 +383,8 @@ plot(sum.out, sp.abunds.rep,
      xlab = 'Net effect on neighbours (Out-strength)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 title(main = 'B', adj = 0)
+polygon(x = c(-0.475 , 0, 0, -0.475), y = c(4.4, 4.4, 9.3, 9.3),
+        col = 'ivory', border = NA)
 abline(v=median(sum.out), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
 points(sum.out, sp.abunds.rep,
@@ -397,11 +401,12 @@ points(mean.sum.out, sp.abunds, pch = 23,
 # points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
 #        bg = 'royalblue', cex = 1.3)
 points(mean.sum.out[keyst], sp.abunds[keyst], pch = 24, 
-       bg = 'chartreuse3', cex = 1.3)
+       bg = 'chartreuse3', cex = 1.8)
 # ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
 #        bg = 'red', cex = 1.3)
 text(mean.sum.out[keyst], sp.abunds[keyst], 
-     labels = names(mean.sum.out[keyst]), pos = 3, col = 'chartreuse4')
+     labels = names(mean.sum.out[keyst]), pos = 3, col = 'chartreuse4', 
+     cex = 1.4, offset = 0.7)
 
 
 # 3. competitive vs facilitative effects
@@ -424,10 +429,39 @@ points(med.comp, -med.faci,
 # points(rowMeans(sum.comp)[keyst], -rowMeans(sum.faci)[keyst], 
 #        pch = 23, bg = 'orange', cex = 1.3)
 points(med.comp[invasives], -med.faci[invasives],  
-       pch = 24, bg = 'red', cex = 1.3)
-text(med.comp[invasives], -med.faci[invasives], 
+       pch = 24, bg = 'red', cex = 1.8)
+lab.x.pos <- med.comp[invasives] - 0.1
+lab.x.pos['ARCA'] <- lab.x.pos['ARCA'] + 0.1
+lab.y.pos <- (-med.faci[invasives] + 0.08)
+lab.y.pos['ARCA'] <- lab.y.pos['ARCA'] - 0.04
+text(lab.x.pos, lab.y.pos, 
      labels = names(med.comp[invasives]), 
-     pos = 4, col = 'darkred', offset = 1)
+     pos =  4, col = 'darkred', offset = 0.8, cex = 1.4)
 
 dev.off()
 
+
+# Another figure - cooccur strengths vs log abundance? 
+#------------------------------------------------------
+png('2.analyses/figures_mss/cooccur_vs_abund.png', 
+    width = 500, height = 500, units = 'px')
+par(cex=1.2)
+plot(-colSums(cooc, na.rm = T), sp.abunds, 
+     xlab = 'Sum of association strengths',
+     ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2,
+     xlim = c(0, 40))
+abline(v=median(-colSums(cooc, na.rm = T)), lty = 2)
+abline(h=median(sp.abunds), lty = 2)
+# points for species means
+points(-colSums(cooc, na.rm = T), sp.abunds, pch = 23, 
+       bg = 'black', cex = 1)
+# points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
+#        bg = 'royalblue', cex = 1.3)
+points(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], pch = 24, 
+       bg = 'chartreuse3', cex = 1.8)
+# ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
+#        bg = 'red', cex = 1.3)
+text(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], 
+     labels = names(-colSums(cooc, na.rm = T)[keyst]), pos = 4, col = 'chartreuse4', 
+     cex = 1.4, offset = 1.7)
+dev.off()
