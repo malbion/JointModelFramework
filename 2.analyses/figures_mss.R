@@ -123,28 +123,27 @@ png('2.analyses/figures_mss/postpredch.png', width=500, height=500)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
                  type = 'n',
-            #      xlim = c(0, 400), # this is only so we can zoom in
-                 ylim = c(0, max.density), 
+                 bty = 'n',
+                 ylim = c(0, max.density+0.03), 
                  col = 'lightgrey',
-                 ylab = 'Seed density',
+                 ylab = 'Seed probability density',
                  xlab = 'Log seed production',
-                 main = 'Post. pred. check',
-                 sub = '(grey = predicted, red = observed)') 
+                 main = '',
+                 # sub = '(grey = predicted, red = observed)'
+                 ) 
 for (i in 1:dim(seed_pred)[1]) {
   # add a line for each draw
   ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
 }
-# ppc.plot <- points(seed_densX, seed_densY, pch = 16, 
-#                    col = rgb(red = 0.8, green = 0.8, blue = 0.8, alpha = 0.2))
-# polygon(c(meanX, rev(meanX)),  # X-Coordinates of polygon
-#         c(minY, rev(maxY)),  # Y-Coordinates of polygon
-#         col = "grey") 
-
-
 # add the 'mean prediction'
 ppc.plot <- lines(density(mean_seed_pred), col = 'black', lwd = 1)  
 # add the actual data
 ppc.plot <- lines(density(log(seeds)), col = 'red', lwd = 1)  
+# add legend
+ppc.plot <- legend('topright', 
+                  legend = c('predicted', 'observed'), 
+                  col = c('lightgrey', 'red'), lwd = c(6, 1),
+                  bty = 'n')
 print(ppc.plot)
 dev.off()
 
