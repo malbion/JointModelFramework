@@ -42,9 +42,11 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
+library(here)
 
+# setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/3.case_study/')
+setwd(here('3.case_study/'))
 
-setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/3.case_study/')
 
 source('functions/rem_dataprep.R')
 source('functions/stan_modelcheck_rem.R')
