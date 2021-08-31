@@ -352,7 +352,7 @@ plot(intras, sp.abunds.rep,
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 title(main = 'A', adj = 0)
 polygon(x = c(-0.129 , 0, 0, -0.129), y = c(4.4, 4.4, 9.3, 9.3),
-        col = 'ivory', border = NA)
+        col = 'ivory2', border = NA)
 abline(v=median(intras), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
 points(intras, sp.abunds.rep,
@@ -384,7 +384,7 @@ plot(sum.out, sp.abunds.rep,
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 title(main = 'B', adj = 0)
 polygon(x = c(-0.475 , 0, 0, -0.475), y = c(4.4, 4.4, 9.3, 9.3),
-        col = 'ivory', border = NA)
+        col = 'ivory2', border = NA)
 abline(v=median(sum.out), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
 points(sum.out, sp.abunds.rep,
@@ -405,7 +405,7 @@ points(mean.sum.out[keyst], sp.abunds[keyst], pch = 24,
 # ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
 #        bg = 'red', cex = 1.3)
 text(mean.sum.out[keyst], sp.abunds[keyst], 
-     labels = names(mean.sum.out[keyst]), pos = 3, col = 'chartreuse4', 
+     labels = names(mean.sum.out[keyst]), pos = 3, col = 'green4', 
      cex = 1.4, offset = 0.7)
 
 
