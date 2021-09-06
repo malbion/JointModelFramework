@@ -2227,6 +2227,30 @@
       \endverb
       \keyw{Community persistence,Interaction modifications,Microcosms,Nonprey species,Predation,Trophic interactions}
     \endentry
+    \entry{Hui2021}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a0b724d9facb9f4d23f352c9a254871d}{%
+           family={Hui},
+           familyi={H\bibinitperiod},
+           given={Francis\bibnamedelimb K.\bibnamedelimi C.},
+           giveni={F\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a0b724d9facb9f4d23f352c9a254871d}
+      \strng{fullhash}{a0b724d9facb9f4d23f352c9a254871d}
+      \strng{bibnamehash}{a0b724d9facb9f4d23f352c9a254871d}
+      \strng{authorbibnamehash}{a0b724d9facb9f4d23f352c9a254871d}
+      \strng{authornamehash}{a0b724d9facb9f4d23f352c9a254871d}
+      \strng{authorfullhash}{a0b724d9facb9f4d23f352c9a254871d}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{boral: Bayesian Ordination and Regression AnaLysis}}
+      \field{year}{2021}
+    \endentry
     \entry{Jordano2016}{article}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=6989b4e5f87b7100722669ce27436978}{%
@@ -2674,6 +2698,53 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Losapio, Sch{\"{o}}b - 2017 - Resistance of plant–plant networks to biodiversity loss and secondary extinctions following simulated environ.pdf:pdf
       \endverb
       \keyw{biodiversity loss,drought,ecological networks,facilitation,foundation species,nitrogen deposition,plant–plant interactions,trait-based extinction model}
+    \endentry
+    \entry{Martin2011}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=877117f37b0c140220cdd7fdfd07e822}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Andrew\bibnamedelima D.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=001a41d028c5b1368d0d346ac3d1962d}{%
+           family={Quinn},
+           familyi={Q\bibinitperiod},
+           given={Kevin\bibnamedelima M.},
+           giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e961bd35e9e51c0383d276c52074b67f}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Jong\bibnamedelima Hee},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{cd388886c2555cf8a814cfbe352db306}
+      \strng{fullhash}{cd388886c2555cf8a814cfbe352db306}
+      \strng{bibnamehash}{cd388886c2555cf8a814cfbe352db306}
+      \strng{authorbibnamehash}{cd388886c2555cf8a814cfbe352db306}
+      \strng{authornamehash}{cd388886c2555cf8a814cfbe352db306}
+      \strng{authorfullhash}{cd388886c2555cf8a814cfbe352db306}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Statistical Software}
+      \field{number}{9}
+      \field{title}{{MCMCpack: Markov Chain Monte Carlo in R}}
+      \field{volume}{42}
+      \field{year}{2011}
+      \field{pages}{22}
+      \range{pages}{1}
+      \verb{urlraw}
+      \verb https://www.jstatsoft.org/v42/i09/
+      \endverb
+      \verb{url}
+      \verb https://www.jstatsoft.org/v42/i09/
+      \endverb
     \endentry
     \entry{Martyn2020}{thesis}{}
       \name{author}{1}{}{%
