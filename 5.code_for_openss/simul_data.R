@@ -57,8 +57,6 @@ simul_data <- function(
   b <- rnorm( 2000, -0.7, .3 )
   c <- rnorm( 1000,  0.3, .2 )
   customdist <- c( a, b, c ) ## make a weird dist with Kurtosis and Skew
-  # hist(customdist, freq=FALSE)
-  # mean(customdist)
   sim_truealpha <- matrix(data = sample(customdist, S*K, replace = F),
                           nrow = S, ncol = K)
   

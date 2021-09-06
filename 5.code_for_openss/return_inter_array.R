@@ -1,6 +1,6 @@
 # This function takes the posterior draws for interaction estimates extracted from 
 # the STAN model fit object and returns a focal x neighbour x sample array of all 
-# interactions, both observed (IFM) and unrealised (RIM)
+# interactions, both realised (IFM) and unrealised (RIM)
 
 return_inter_array <- function(joint.post.draws, # posterior draws extracted using the extract.samples() function
                                response = p.samples$response, # samples for the response parameters
@@ -10,7 +10,7 @@ return_inter_array <- function(joint.post.draws, # posterior draws extracted usi
                                ...){
   
   
-  # extract the IFM interaction estimates - though observed interactions are already sampled from 
+  # extract the IFM interaction estimates - though realised interactions are already sampled from 
   # the 'beta_ij' parameters, sampling from inter_mat has the benefit of including columns of 0's for 
   # unrealised interactions (which can then be filled with the corresponding RIM estimates)
   ifm_inters <- joint.post.draws$inter_mat
@@ -32,7 +32,7 @@ return_inter_array <- function(joint.post.draws, # posterior draws extracted usi
   rim_inters <- do.call(cbind, rim_inters) # this returns RI model estimates for every possible interaction 
   # every column is an interaction
   
-  # replace unobserved interactions (columns of 0 in ifm_inters) with the values predicted by the RIM
+  # replace unrealised interactions (columns of 0 in ifm_inters) with the values predicted by the RIM
   all_inters <- ifm_inters
   all_inters[ , apply(all_inters, 2, function(x) {all(x == 0)})] <- 
     rim_inters[ , apply(all_inters, 2, function(x) {all(x == 0)})]
