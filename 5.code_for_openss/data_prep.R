@@ -3,8 +3,8 @@
 
 # The dataframe should be organised with 1 observation of individual performance per row 
 # Columns should include the measure of performance (perform), a column identifying which 
-# species or component/group that observation belongs to (focal), and a column for each
-# potential neighbouring species or component counting their abundance for that observation
+# species or element that observation belongs to (focal), and a column for each
+# potential neighbouring species or element counting their abundance for that observation
 # e.g.: 
 
 #   focal  |  seeds  | species1 | species2 | species3
@@ -16,45 +16,46 @@
   
   
 data_prep <- function(perform = "seeds", # column name for performance indicator
-                      focal = 'focal',   # column name for species or component indicator
+                      focal = 'focal',   # column name for species or element indicator
                       nonNcols = 2,      # number of columns before neighbour abundances begin
-                      df = NULL,       # dataframe object
+                      df = NULL,         # dataframe object
                       ...){
   
 
   # set up the data in list format as preferred by STAN:
   stan.data <- list()
   
-  # create a matrix which tallies the number of observations for each focal and neighbour
+  # create a matrix which tallies the number of realised interactions for each focal and neighbour
+  # here we define
   counts <- df[ , -c(1:nonNcols)] # keep only neighbour abundances
-  counts[counts>0] <- 1
+  counts[counts>0] <- 1 # here we de
   counts <- split(counts, as.factor(df[ , focal]))
   obs <- do.call(rbind, lapply(counts, colSums))
   
-  # integers
-  stan.data$S <- length(unique(df[ , focal]))  # number of focal components (species)
+  # INTEGERS
+  stan.data$S <- length(unique(df[ , focal]))  # number of focal elements (species)
   stan.data$N <- nrow(df)                      # number of observations
   stan.data$K <- ncol(df[ , -c(1:nonNcols)])   # number of neighbours
-  stan.data$I <- length(obs[obs>0])              # number of observed interactions
+  stan.data$I <- length(obs[obs>0])            # number of realised interactions
 
   
-  # vectors
-  stan.data$species_ID <- as.numeric(as.factor(df[ , focal]))
+  # VECTORS
+  stan.data$species_ID <- as.numeric(as.factor(df[ , focal])) 
   stan.data$perform <- df[ , perform]
   
-  
-  # set up indices to place observed interactions in the alpha matrix
-  # first count the number of interactions observed for each focal species
+  # set up indices to place realised interactions in the interaction matrix
+  # first count the number of interactions realised for each focal species
   stan.data$inter_per_species <- obs
-  stan.data$inter_per_species[stan.data$inter_per_species > 0] <- 1
+  stan.data$inter_per_species[stan.data$inter_per_species > 0] <- 1 # this counts every interaction
+  # for which a focal i and neighbour j cooccur at least once as realised. 
   stan.data$inter_per_species <- rowSums(stan.data$inter_per_species)
-  # column index in the alpha matrix for each observed interaction
+  # column index in the interactions matrix for each realised interaction
   stan.data$icol <- unlist(apply(ifelse(obs > 0, T, F), 1, which))
   names(stan.data$icol) <- NULL
   stan.data$icol <- as.vector(stan.data$icol)
   # begin the row index
   stan.data$irow <- rep(1, stan.data$inter_per_species[[1]])
-  # begin the start and end indices for the vector of interactions per species
+  # begin the start and end indices for the vector of realised interactions per species
   stan.data$istart <- 1
   stan.data$iend <- stan.data$inter_per_species[[1]] #???
   
@@ -68,12 +69,8 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
     stan.data$irow <- c(stan.data$irow, rep(s, stan.data$inter_per_species[[s]]))
   }
   
-  # model matrix
+  # MODEL MATRIX
   stan.data$X <- as.matrix(df[ , -c(1:nonNcols)]) 
-  
-  # Number of observations per interaction - for model weighting?
-  stan.data$Obs <- as.vector(apply(obs, 1, c))   # vector of the number of observations for each interactions
-  stan.data$Obs <- stan.data$Obs[stan.data$Obs>0] # remove unobserved interactions
   
   # Done!
   return(stan.data)
