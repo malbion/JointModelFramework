@@ -42,6 +42,7 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
+library(coda)
 library(here)
 
 # setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/3.case_study/')
@@ -71,11 +72,11 @@ message(paste0('Number of neighbours = ', length(key_neighbourID)))
 # Estimate interactions with a joint IFM*REM model |
 #---------------------------------------------------
 
-fit <- stan(file = 'joint_model_reparam.stan',
+fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
-            chains = 4,
-            warmup = 1000,          # number of warmup iterations per chain
-            iter = 6000,            # total number of iterations per chain
+            chains = 1,
+            warmup = 5000,          # number of warmup iterations per chain
+            iter = 10000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10)
 )
@@ -101,6 +102,7 @@ write.csv(log_post, file = paste0('model/output/log_post.csv'), row.names = F)
 
 # Validation
 #------------
+# 
 # Diagnostics
 stan_diagnostic(fit, 'model/validation/')
 # Traceplots and posterior uncertainty intervals
