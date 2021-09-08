@@ -105,15 +105,15 @@ write.csv(log_post, file = paste0('model/output/log_post.csv'), row.names = F)
 # Get Geweke statistics
 matrix_of_draws <- as.matrix(fit)
 gew <- geweke.diag(matrix_of_draws)
-write.csv(gew, 'model/validation/gew_stats.csv')
+write.csv(gew$z, 'model/validation/gew_stats.csv')
 # get adjusted values (see boral() package)
 gew.pvals <- 2*pnorm(abs(unlist(gew$z)), lower.tail = FALSE)
 adj.gew <- p.adjust(gew.pvals, method = "holm")
 write.csv(adj.gew, 'model/validation/gew_stats_holmadjust.csv')
-message(paste0('Range of p-values for chain convergence: ', range(na.omit(adj.gew))))
+print(paste0('Range of p-values for chain convergence: ', min(na.omit(adj.gew)), ' to ',  max(na.omit(adj.gew))))
 
 png('model/validation/geweke_dist.png', width = 500, height = 500)
-plot(density(gew$z))
+plot(density(na.omit(gew$z)))
 lines(density(rnorm(10000)), col = 'red')
 dev.off()
 # Diagnostics
