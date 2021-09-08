@@ -42,7 +42,6 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
-library(coda)
 library(here)
 
 # setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/3.case_study/')
@@ -104,7 +103,7 @@ write.csv(log_post, file = paste0('model/output/log_post.csv'), row.names = F)
 #------------
 # Get Geweke statistics
 matrix_of_draws <- as.matrix(fit)
-gew <- geweke.diag(matrix_of_draws)
+gew <- coda::geweke.diag(matrix_of_draws)
 write.csv(gew$z, 'model/validation/gew_stats.csv')
 # get adjusted values (see boral() package)
 gew.pvals <- 2*pnorm(abs(unlist(gew$z)), lower.tail = FALSE)
