@@ -31,22 +31,23 @@ stan_diagnostic <- function(fit,
   print(x)
   dev.off() 
   
-  #Histograms of lp__ and accept_stat, and their joint distribution
-  png(paste0(results_folder, '/diag_sample.png'), width=800, height=800)
-  stan_diag(fit, 'sample')
-  dev.off()
-  # Violin plots showing the distributions of lp__ and accept_stat at each of the sampled step sizes (one per chain)
-  png(paste0(results_folder, '/diag_stepsize.png'), width=800, height=800)
-  stan_diag(fit, 'stepsize')
-  dev.off()
-  # Histogram of treedepth and violin plots showing the distributions of lp__ and accept_stat for each value of treedepth
-  png(paste0(results_folder, '/diag_treedepth.png'), width=800, height=800)
-  stan_diag(fit, 'treedepth')
-  dev.off()
-  # Violin plots showing the distributions of lp__ and accept_stat for iterations that encountered divergent transitions (divergent=1) and those that did not (divergent=0)
-  png(paste0(results_folder, '/diag_divergence.png'), width=800, height=800)
-  stan_diag(fit, 'divergence')
-  dev.off()
+  # FOLLOWING ONLY WORK ON MULTIPLE CHAINS
+  # #Histograms of lp__ and accept_stat, and their joint distribution
+  # png(paste0(results_folder, '/diag_sample.png'), width=800, height=800)
+  # stan_diag(fit, 'sample')
+  # dev.off()
+  # # Violin plots showing the distributions of lp__ and accept_stat at each of the sampled step sizes (one per chain)
+  # png(paste0(results_folder, '/diag_stepsize.png'), width=800, height=800)
+  # stan_diag(fit, 'stepsize')
+  # dev.off()
+  # # Histogram of treedepth and violin plots showing the distributions of lp__ and accept_stat for each value of treedepth
+  # png(paste0(results_folder, '/diag_treedepth.png'), width=800, height=800)
+  # stan_diag(fit, 'treedepth')
+  # dev.off()
+  # # Violin plots showing the distributions of lp__ and accept_stat for iterations that encountered divergent transitions (divergent=1) and those that did not (divergent=0)
+  # png(paste0(results_folder, '/diag_divergence.png'), width=800, height=800)
+  # stan_diag(fit, 'divergence')
+  # dev.off()
   
   # NB: for further diagnostics, I can explore with
   # - stan_par(fit, 'specific parameter')
