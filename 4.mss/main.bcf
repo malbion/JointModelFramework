@@ -2208,6 +2208,8 @@
     <bcf:citekey order="14">Carpenter2017</bcf:citekey>
     <bcf:citekey order="15">Hui2021</bcf:citekey>
     <bcf:citekey order="16">Martin2011</bcf:citekey>
+    <bcf:citekey order="17">Geweke1992</bcf:citekey>
+    <bcf:citekey order="18">Plummer2006</bcf:citekey>
     <bcf:citekey order="19">Ellison1996</bcf:citekey>
     <bcf:citekey order="20">Ellison2004</bcf:citekey>
     <bcf:citekey order="21">Levine2009</bcf:citekey>
@@ -2223,6 +2225,7 @@
     <bcf:citekey order="27">Piraino2002</bcf:citekey>
     <bcf:citekey order="27">Libralato2006</bcf:citekey>
     <bcf:citekey order="28">Soule2005a</bcf:citekey>
+    <bcf:citekey order="29">Paine1992</bcf:citekey>
     <bcf:citekey order="30">Libralato2006</bcf:citekey>
     <bcf:citekey order="31">Naeem2000</bcf:citekey>
     <bcf:citekey order="31">Corbin2004</bcf:citekey>
@@ -2230,7 +2233,10 @@
     <bcf:citekey order="31">Zheng2015</bcf:citekey>
     <bcf:citekey order="32">Rodriguez2006</bcf:citekey>
     <bcf:citekey order="32">Ramus2017</bcf:citekey>
-    <bcf:citekey order="34">Saiz2011</bcf:citekey>
+    <bcf:citekey order="33">Burns2010</bcf:citekey>
+    <bcf:citekey order="33">Losapio2018</bcf:citekey>
+    <bcf:citekey order="33">Montesinos-Navarro2018</bcf:citekey>
+    <bcf:citekey order="34">Saiz2018</bcf:citekey>
     <bcf:citekey order="35">Griffith2016</bcf:citekey>
     <bcf:citekey order="36">Sander2017</bcf:citekey>
     <bcf:citekey order="36">Barner2018</bcf:citekey>
@@ -2260,16 +2266,17 @@
     <bcf:citekey order="51">Bascompte2005a</bcf:citekey>
     <bcf:citekey order="52">Olesen2011</bcf:citekey>
     <bcf:citekey order="52">Jordano2016</bcf:citekey>
-    <bcf:citekey order="55">Ellison2019</bcf:citekey>
-    <bcf:citekey order="56">Martyn2020</bcf:citekey>
-    <bcf:citekey order="57">R2020</bcf:citekey>
-    <bcf:citekey order="57">Carpenter2017</bcf:citekey>
-    <bcf:citekey order="57">Rstan2020</bcf:citekey>
-    <bcf:citekey order="58">Levine2009</bcf:citekey>
-    <bcf:citekey order="58">Mayfield2017</bcf:citekey>
+    <bcf:citekey order="53">Ellison2019</bcf:citekey>
+    <bcf:citekey order="54">Martyn2020</bcf:citekey>
+    <bcf:citekey order="55">R2020</bcf:citekey>
+    <bcf:citekey order="55">Carpenter2017</bcf:citekey>
+    <bcf:citekey order="55">Rstan2020</bcf:citekey>
+    <bcf:citekey order="56">Plummer2006</bcf:citekey>
+    <bcf:citekey order="57">Levine2009</bcf:citekey>
+    <bcf:citekey order="57">Mayfield2017</bcf:citekey>
+    <bcf:citekey order="57">Bimler2018</bcf:citekey>
+    <bcf:citekey order="58">Godoy2014</bcf:citekey>
     <bcf:citekey order="58">Bimler2018</bcf:citekey>
-    <bcf:citekey order="59">Godoy2014</bcf:citekey>
-    <bcf:citekey order="59">Bimler2018</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

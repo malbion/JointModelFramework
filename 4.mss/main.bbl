@@ -725,6 +725,45 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Bruno, Stachowicz, Bertness - 2003 - Inclusion of facilitation into ecological theory.pdf:pdf
       \endverb
     \endentry
+    \entry{Burns2010}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=58ef3e8df881c5edea0b79540dff8d3d}{%
+           family={Burns},
+           familyi={B\bibinitperiod},
+           given={K.\bibnamedelimi C.},
+           giveni={K\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=85501cf52af5cf7d8101eb861f05a209}{%
+           family={Zotz},
+           familyi={Z\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3e9bdfe505e51e6193bb29815bcd3134}
+      \strng{fullhash}{3e9bdfe505e51e6193bb29815bcd3134}
+      \strng{bibnamehash}{3e9bdfe505e51e6193bb29815bcd3134}
+      \strng{authorbibnamehash}{3e9bdfe505e51e6193bb29815bcd3134}
+      \strng{authornamehash}{3e9bdfe505e51e6193bb29815bcd3134}
+      \strng{authorfullhash}{3e9bdfe505e51e6193bb29815bcd3134}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ecology}
+      \field{number}{2}
+      \field{title}{{A hierarchical framework for investigating epiphyte assemblages: networks, meta-communities, and scale}}
+      \field{volume}{91}
+      \field{year}{2010}
+      \field{pages}{377\bibrangedash 385}
+      \range{pages}{9}
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Burns, Zotz - 2010 - A hierarchical framework for investigating epiphyte assemblages networks, meta-communities, and scale.pdf:pdf
+      \endverb
+      \keyw{checkerboard distribution,co-occurrence,epiphyte,host trees,meta-community,ness,nested-,network,null model,panamanian rain forest,plant assemblages,scale-dependent patterns,spatiotemporal variation}
+    \endentry
     \entry{Callaway1997a}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=2d8e7392887badebfdc4223bbc5d187c}{%
@@ -1644,6 +1683,64 @@
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Fisher, Corbet, Williams - 1943 - The Relation Between the Number of Species and the Number of Individuals in a Random Sample of an Anim.pdf:pdf
       \endverb
+    \endentry
+    \entry{Geweke1992}{incollection}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=73fa8bd1fc6234dda333ed7be4d87999}{%
+           family={Geweke},
+           familyi={G\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{4}{}{%
+        {{hash=e03bc6d67684a44df0ef3eb3fa8c20f8}{%
+           family={Bernado},
+           familyi={B\bibinitperiod},
+           given={JM},
+           giveni={J\bibinitperiod}}}%
+        {{hash=697e8a0cf0c331486672bd86624bcdeb}{%
+           family={Berger},
+           familyi={B\bibinitperiod},
+           given={JO},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4016275a6a7dc086e196dd10c2f7520d}{%
+           family={Dawid},
+           familyi={D\bibinitperiod},
+           given={AP},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c74088640e2c929c4cadac5f999cd117}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={AFM},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Oxford}%
+      }
+      \list{publisher}{1}{%
+        {Clarendon Press}%
+      }
+      \strng{namehash}{73fa8bd1fc6234dda333ed7be4d87999}
+      \strng{fullhash}{73fa8bd1fc6234dda333ed7be4d87999}
+      \strng{bibnamehash}{73fa8bd1fc6234dda333ed7be4d87999}
+      \strng{authorbibnamehash}{73fa8bd1fc6234dda333ed7be4d87999}
+      \strng{authornamehash}{73fa8bd1fc6234dda333ed7be4d87999}
+      \strng{authorfullhash}{73fa8bd1fc6234dda333ed7be4d87999}
+      \strng{editorbibnamehash}{9d4411e955f3139692adb4f1b8adbf6f}
+      \strng{editornamehash}{9d4411e955f3139692adb4f1b8adbf6f}
+      \strng{editorfullhash}{9a95992561b33ac31a83af4d19dcc322}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Bayesian Statistics 4}
+      \field{title}{{Evaluating the accuracy of sampling-based approaches to calculating posterior moments}}
+      \field{year}{1992}
+      \field{pages}{169\bibrangedash 193}
+      \range{pages}{25}
     \endentry
     \entry{Giling2019}{article}{}
       \name{author}{9}{}{%
@@ -2655,6 +2752,72 @@
       \endverb
       \keyw{Ecopath with Ecosim,Ecosystem model,Impacts of species,Interaction strength,Keystone species}
     \endentry
+    \entry{Losapio2018}{article}{}
+      \name{author}{5}{ul=2}{%
+        {{un=0,uniquepart=base,hash=824b0e7dbe4661830ee72bca00bf1db1}{%
+           family={Losapio},
+           familyi={L\bibinitperiod},
+           given={Gianalberto},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a1c17f7e532d256660beea275e16090f}{%
+           family={Cruz},
+           familyi={C\bibinitperiod},
+           given={Marcelino},
+           giveni={M\bibinitperiod},
+           givenun=0,
+           prefix={de\bibnamedelima la},
+           prefixi={d\bibinitperiod\bibinitdelim l\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=37b737984464d48548098965ffe19dc3}{%
+           family={Escudero},
+           familyi={E\bibinitperiod},
+           given={Adri{á}n},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=38a7ad6248a763abd6041327170d012a}{%
+           family={Schmid},
+           familyi={S\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4d582068c8336b7f66132fd91b4617e1}{%
+           family={Sch{ö}b},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9032f4ade35afaa2528561b7620dfbff}
+      \strng{fullhash}{783f3fd28b3709aebeed2a749fa7993b}
+      \strng{bibnamehash}{9032f4ade35afaa2528561b7620dfbff}
+      \strng{authorbibnamehash}{9032f4ade35afaa2528561b7620dfbff}
+      \strng{authornamehash}{9032f4ade35afaa2528561b7620dfbff}
+      \strng{authorfullhash}{783f3fd28b3709aebeed2a749fa7993b}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Questions: Positive and negative associations among species influence the structure of plant communities. Yet how these plant associations are assembled at the community level is poorly understood. We propose a new approach that combines spatial ecology, network theory and trait-based ecology to examine the assembly of plant– plant associations at the community level. Location: Gemmipass, Swiss Alps. Methods: We fully mapped an alpine plant community at the individual plant level, recording both plant coordinates and functional traits for each individual. We identified non-random species associations using spatial point-pattern analysis and par-tialled out the effect of abiotic heterogeneity. We then analysed the plant network structure and used plant traits to predict species associations. Results: We identified 36 significant spatial associations between plant species, 34 positive and two negatives. Dominant, stress-tolerant species such as Dryas octopetala, Linaria alpina and Leontodon montanus were highly connected in the network, whereas rare, water-and nutrient-demanding species such as Saxifraga aizoides, Galium anisophyllon and Thymus praecox were less connected compared to random expectation. The plant network was clustered, meaning that species were overall more connected among each other than expected by chance. Conclusions: Positive associations among species characterized the studied plant community. Besides the primary effect of associations of the “foundation” species D. octopetala with other species, these “subordinate” plants were also associated with each other. Our study reveals the assembly of plant communities as driven by positive associations among stress-tolerant pioneer species, highlighting their role in supporting the cohesiveness of alpine plant communities.}
+      \field{isbn}{0000000344722}
+      \field{issn}{16541103}
+      \field{journaltitle}{Journal of Vegetation Science}
+      \field{number}{6}
+      \field{title}{{The assembly of a plant network in alpine vegetation}}
+      \field{volume}{29}
+      \field{year}{2018}
+      \field{pages}{999\bibrangedash 1006}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1111/jvs.12681
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Losapio et al. - 2018 - The assembly of a plant network in alpine vegetation.pdf:pdf
+      \endverb
+      \keyw{Alpine tundra,Biodiversity,Community ecology,Competition,Ecological networks,Facilitation,Functional traits,Spatial patterns,Swiss Alps}
+    \endentry
     \entry{Losapio2017}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=824b0e7dbe4661830ee72bca00bf1db1}{%
@@ -2871,6 +3034,98 @@
       \range{pages}{20}
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Miele et al. - 2019 - Non-trophic interactions strengthen the diversity — functioning relationship in an ecological bioenergetic netwo.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Montesinos-Navarro2018}{article}{}
+      \name{author}{10}{}{%
+        {{un=0,uniquepart=base,hash=9e21ccda9d2b0bd003c53ba742427168}{%
+           family={Montesinos-Navarro},
+           familyi={M\bibinithyphendelim N\bibinitperiod},
+           given={Alicia},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=545c936cde811046b47bcc6b5bd7f0c0}{%
+           family={Estrada},
+           familyi={E\bibinitperiod},
+           given={Alba},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=abae44669ed64991c2bad9eb6c3fbca9}{%
+           family={Font},
+           familyi={F\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bc7ac0ea72d99c2dd331d6421898d18a}{%
+           family={Matias},
+           familyi={M\bibinitperiod},
+           given={Miguel\bibnamedelima G.},
+           giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d71ec005e89c3cda5f3ba3256613fbbb}{%
+           family={Meireles},
+           familyi={M\bibinitperiod},
+           given={Catarina},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ef597d3901b5d92b8296bb1f3f1df07c}{%
+           family={Mendoza},
+           familyi={M\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3fc66599368a92c3435bc7287866ffde}{%
+           family={Honrado},
+           familyi={H\bibinitperiod},
+           given={Joao\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=278de86343113803a7374ae4d763025e}{%
+           family={Prasad},
+           familyi={P\bibinitperiod},
+           given={Hari\bibnamedelima D.},
+           giveni={H\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b5142a8f85a0bd5cb875d74cb35ee200}{%
+           family={Vicente},
+           familyi={V\bibinitperiod},
+           given={Joana\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=36fb4fc89052b36b87b4dbd443319959}{%
+           family={Early},
+           familyi={E\bibinitperiod},
+           given={Regan},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{fe06e97113cff411b05e30b126850927}
+      \strng{fullhash}{e08054203c10f4b73b5dfcef00862b8b}
+      \strng{bibnamehash}{fe06e97113cff411b05e30b126850927}
+      \strng{authorbibnamehash}{fe06e97113cff411b05e30b126850927}
+      \strng{authornamehash}{fe06e97113cff411b05e30b126850927}
+      \strng{authorfullhash}{e08054203c10f4b73b5dfcef00862b8b}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Understanding what determines species' geographic distributions is crucial for assessing global change threats to biodiversity. Measuring limits on distributions is usually, and necessarily, done with data at large geographic extents and coarse spatial resolution. However, survival of individuals is determined by processes that happen at small spatial scales. The relative abundance of coexisting species (i.e. ‘community structure') reflects assembly processes occurring at small scales, and are often available for relatively extensive areas, so could be useful for explaining species distributions. We demonstrate that Bayesian Network Inference (BNI) can overcome several challenges to including community structure into studies of species distributions, despite having been little used to date. We hypothesized that the relative abundance of coexisting species can improve predictions of species distributions. In 1570 assemblages of 68 Mediterranean woody plant species we used BNI to incorporate community structure into Species Distribution Models (SDMs), alongside environmental information. Information on species associations improved SDM predictions of community structure and species distributions moderately, though for some habitat specialists the deviance explained increased by up to 15{\%}. We demonstrate that most species associations (95{\%}) were positive and occurred between species with ecologically similar traits. This suggests that SDM improvement could be because species co-occurrences are a proxy for local ecological processes. Our study shows that Bayesian Networks, when interpreted carefully, can be used to include local conditions into measurements of species' large-scale distributions, and this information can improve the predictions of species distributions.}
+      \field{isbn}{1111111111}
+      \field{issn}{19326203}
+      \field{journaltitle}{PLoS ONE}
+      \field{number}{5}
+      \field{title}{{Community structure informs species geographic distributions}}
+      \field{volume}{13}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 16}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1371/journal.pone.0197877
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Montesinos-Navarro et al. - 2018 - Community structure informs species geographic distributions.pdf:pdf
       \endverb
     \endentry
     \entry{Naeem2000}{article}{}
@@ -3245,6 +3500,7 @@
       \strng{authorbibnamehash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
       \strng{authornamehash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
       \strng{authorfullhash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
+      \field{extraname}{1}
       \field{sortinit}{P}
       \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
       \field{extradatescope}{labelyear}
@@ -3265,6 +3521,49 @@
       \endverb
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Paine - 1969 - A Note on Trophic Complexity and Community Stability.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Paine1992}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=abde5cf810fcdc3a96c96eee5a7a4cd0}{%
+           family={Paine},
+           familyi={P\bibinitperiod},
+           given={R.\bibnamedelimi T.},
+           giveni={R\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
+      \strng{fullhash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
+      \strng{bibnamehash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
+      \strng{authorbibnamehash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
+      \strng{authornamehash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
+      \strng{authorfullhash}{abde5cf810fcdc3a96c96eee5a7a4cd0}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The idea that the connections between species in ecological assemblages are characterized by a trait called'interaction strength'has become a cornerstone of modern ecology. Since the classic paper of Watt1, ecologists have acknowledged the importance ... $\backslash$n}
+      \field{eprinttype}{arXiv}
+      \field{isbn}{0028-0836}
+      \field{issn}{0028-0836}
+      \field{journaltitle}{Nature}
+      \field{number}{6355}
+      \field{title}{{Food-web analysis through field measurement of per capita interaction strength}}
+      \field{volume}{355}
+      \field{year}{1992}
+      \field{pages}{73\bibrangedash 75}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1038/355073a0
+      \endverb
+      \verb{eprint}
+      \verb arXiv:1011.1669v3
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Paine - 1992 - Food-web analysis through field measurement of per capita interaction strength.pdf:pdf
       \endverb
     \endentry
     \entry{Picoche2020}{article}{}
@@ -3406,6 +3705,53 @@
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Piraino et al. - 2002 - Variability of species ' roles in marine communities change of paradigms for conservation priorities.pdf:pdf
       \endverb
+    \endentry
+    \entry{Plummer2006}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=6517e388f001f1738b93666bd6e17507}{%
+           family={Plummer},
+           familyi={P\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0b722de921c70fe17432894948d786b1}{%
+           family={Best},
+           familyi={B\bibinitperiod},
+           given={Nicky},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1075563ae9bf6b4aecbfbfb4c63f2ac2}{%
+           family={Cowles},
+           familyi={C\bibinitperiod},
+           given={Kate},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=483c69f925708e764cf622755693188d}{%
+           family={Vines},
+           familyi={V\bibinitperiod},
+           given={Karen},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{90f55d6cf75805f81ead3bd3569a1533}
+      \strng{fullhash}{ab731f9c5d854ace7a0637beab396314}
+      \strng{bibnamehash}{90f55d6cf75805f81ead3bd3569a1533}
+      \strng{authorbibnamehash}{90f55d6cf75805f81ead3bd3569a1533}
+      \strng{authornamehash}{90f55d6cf75805f81ead3bd3569a1533}
+      \strng{authorfullhash}{ab731f9c5d854ace7a0637beab396314}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{R News}
+      \field{number}{1}
+      \field{title}{{CODA: Convergence Diagnosis and Output Analysis for MCMC}}
+      \field{volume}{6}
+      \field{year}{2006}
+      \field{pages}{7\bibrangedash 11}
+      \range{pages}{5}
     \endentry
     \entry{Power1996}{article}{}
       \name{author}{10}{}{%
@@ -3748,47 +4094,61 @@
       \endverb
       \keyw{Ecosystem ecology,Food webs,Management,Phd,dam,high-flow experiment,organic matter flows,regulated river,secondary production,species interactions,trophic basis of production}
     \endentry
-    \entry{Saiz2011}{article}{}
-      \name{author}{2}{}{%
+    \entry{Saiz2018}{article}{}
+      \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=c54dc2e3e286ea6551500eef691a6e13}{%
            family={Saiz},
            familyi={S\bibinitperiod},
            given={Hugo},
            giveni={H\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=6eebe2d74b2410275a4ce0adf986c325}{%
-           family={Alados},
-           familyi={A\bibinitperiod},
-           given={Concepcion\bibnamedelima L.},
-           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
+        {{un=0,uniquepart=base,hash=2e8ac8fd6c83854a5ebf10dab31ea6e1}{%
+           family={G{ó}mez-Garde{ñ}es},
+           familyi={G\bibinithyphendelim G\bibinitperiod},
+           given={Jes{ú}s},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b77c11a4b04d2eaa598466aa8e7d3a4a}{%
+           family={Borda},
+           familyi={B\bibinitperiod},
+           given={Juan\bibnamedelima Pablo},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=05c8e3dd3f9f1d48eef19719d03fa2e3}{%
+           family={Maestre},
+           familyi={M\bibinitperiod},
+           given={Fernando\bibnamedelima T.},
+           giveni={F\bibinitperiod\bibinitdelim T\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{b4a1d1b3f2ec805fcb17386f3d647e03}
-      \strng{fullhash}{b4a1d1b3f2ec805fcb17386f3d647e03}
-      \strng{bibnamehash}{b4a1d1b3f2ec805fcb17386f3d647e03}
-      \strng{authorbibnamehash}{b4a1d1b3f2ec805fcb17386f3d647e03}
-      \strng{authornamehash}{b4a1d1b3f2ec805fcb17386f3d647e03}
-      \strng{authorfullhash}{b4a1d1b3f2ec805fcb17386f3d647e03}
+      \strng{namehash}{7b9156c76ddff57ef991abc8e351c7a8}
+      \strng{fullhash}{2d28df5575830d55e4ded08e54393671}
+      \strng{bibnamehash}{7b9156c76ddff57ef991abc8e351c7a8}
+      \strng{authorbibnamehash}{7b9156c76ddff57ef991abc8e351c7a8}
+      \strng{authornamehash}{7b9156c76ddff57ef991abc8e351c7a8}
+      \strng{authorfullhash}{2d28df5575830d55e4ded08e54393671}
       \field{sortinit}{S}
       \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{1128401108183}
-      \field{journaltitle}{Ecological Research}
-      \field{number}{3}
-      \field{title}{{Effect of Stipa tenacissima L . on the structure of plant co-occurrence networks in a semi-arid community}}
-      \field{volume}{26}
-      \field{year}{2011}
-      \field{pages}{595\bibrangedash 603}
-      \range{pages}{9}
+      \field{abstract}{Despite commonly used to unveil the complex structure of interactions within ecological communities and their value to assess their resilience against external disturbances, network analyses have seldom been applied in plant communities. We evaluated how plant–plant spatial association networks vary in global drylands and assessed whether network structure was related to plant diversity in these ecosystems. We surveyed 185 dryland ecosystems from all continents except Antarctica and built networks using the local spatial association between all the perennial plants species present in the communities studied. Then, for each network, we calculated four descriptors of network structure (link density, link weight mean and heterogeneity, and structural balance) and evaluated their significance with null models. Finally, we used structural equation models to evaluate how abiotic factors (including geography, topography, climate and soil conditions) and network descriptors influenced plant species richness and evenness. Plant networks were highly variable world-wide, but at most study sites (72{\%}) presented common structures such as a higher link density than expected. We also find evidence of the presence of high structural balance in the networks studied. Moreover, all network descriptors considered had a positive and significant effect on plant diversity and on species richness in particular. Synthesis. Our results constitute the first empirical evidence showing the existence of common network architectures structuring dryland plant communities at the global scale and suggest a relationship between the structure of spatial networks and plant diversity. They also highlight the importance of system-level approaches to explain the diversity and structure of interactions in plant communities, two major drivers of terrestrial ecosystem functioning.}
+      \field{issn}{13652745}
+      \field{journaltitle}{Journal of Ecology}
+      \field{number}{4}
+      \field{title}{{The structure of plant spatial association networks is linked to plant diversity in global drylands}}
+      \field{volume}{106}
+      \field{year}{2018}
+      \field{pages}{1443\bibrangedash 1453}
+      \range{pages}{11}
       \verb{doi}
-      \verb 10.1007/s11284-011-0818-3
+      \verb 10.1111/1365-2745.12935
       \endverb
       \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Saiz, Alados - 2011 - Effect of Stipa tenacissima L . on the structure of plant co-occurrence networks in a semi-arid community.pdf:pdf
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Saiz et al. - 2018 - The structure of plant spatial association networks is linked to plant diversity in global drylands.pdf:pdf
       \endverb
+      \keyw{competition,determinants of community structure and diversity,drylands,ecological networks,facilitation,plant diversity,signed networks,spatial patterns}
     \endentry
     \entry{Sander2017}{article}{}
       \name{author}{3}{}{%
