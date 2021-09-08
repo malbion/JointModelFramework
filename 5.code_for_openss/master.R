@@ -7,6 +7,7 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
+library(coda)
 
 # load required functions
 source('data_prep.R')
@@ -38,13 +39,18 @@ message(paste0('Number of neighbour groups = ', length(neighbourID)))
 # Run the model! 
 fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
-            chains = 4,
+            chains = 1,
             warmup = 1000,          # number of warmup iterations per chain
             iter = 6000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
                            adapt_delta = 0.95)
 )
+
+# As well as the usual traceplots etc., convergence one 1 chain can be checked 
+# using the geweke.diag() function from the coda package, e.g.:
+matrix_of_draws <- as.matrix(fit)
+gew <- geweke.diag(matrix_of_draws)
 
 # Get the full posteriors 
 joint.post.draws <- extract.samples(fit)
