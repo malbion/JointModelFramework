@@ -47,10 +47,10 @@ png('2.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 7
 par(mfrow=c(2,2), cex = 1.5)
 hist(ifm_mat[ , apply(ifm_mat, 2, function(x) {all(x != 0)})], 
      xlab = "", breaks = 30,
-     main = "Observed interactions (NDDM)", 
+     main = "Realised interactions (NDDM)", 
      xlim = c(min(rim_mat), max(rim_mat)))
 plot(rim_mat[ifm_mat!=0], ifm_mat[ifm_mat!=0], 
-     ylab = 'NDDM betas', xlab='Response*Impact estimates',
+     ylab = 'NDDM estimates', xlab='Response*Impact estimates',
      xlim = c(min(rim_mat), max(rim_mat)), ylim = c(min(rim_mat), max(rim_mat)), 
      pch = 16, 
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
@@ -61,7 +61,7 @@ hist(rim_mat[ , apply(ifm_mat, 2, function(x) {all(x == 0)})],
      xlim = c(min(rim_mat), max(rim_mat)))
 hist(rim_mat[ , apply(ifm_mat, 2, function(x) {all(x != 0)})],  
      xlab = "", breaks = 30,
-     main = 'Observed interactions (RIM)', 
+     main = 'Realised interactions (RIM)', 
      xlim = c(min(rim_mat), max(rim_mat)))
 dev.off()
 
@@ -415,8 +415,8 @@ plot(sum.comp, -sum.faci,
      las = 1, bty = 'n', cex.lab = 1.2,
      # type = 'n',
      pch = 16, cex=0.7, col = 'grey',
-     xlab = 'Sum of competitive effects', 
-     ylab = 'Sum of facilitative effects')
+     xlab = 'Absolute sum of competitive effects', 
+     ylab = 'Absolute sum of facilitative effects')
 title(main = 'C', adj = 0)
 abline(v=median(sum.comp), lty = 2)
 abline(h=median(-sum.faci), lty = 2)
@@ -447,7 +447,7 @@ png('2.analyses/figures_mss/cooccur_vs_abund.png',
     width = 500, height = 500, units = 'px')
 par(cex=1.2)
 plot(-colSums(cooc, na.rm = T), sp.abunds, 
-     xlab = 'Sum of association strengths',
+     xlab = 'Absolute sum of association strengths',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2,
      xlim = c(0, 40))
 abline(v=median(-colSums(cooc, na.rm = T)), lty = 2)
@@ -465,3 +465,4 @@ text(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst],
      labels = names(-colSums(cooc, na.rm = T)[keyst]), pos = 4, col = 'chartreuse4', 
      cex = 1.4, offset = 1.7)
 dev.off()
+
