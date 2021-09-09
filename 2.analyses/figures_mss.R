@@ -405,7 +405,7 @@ points(mean.sum.out[keyst], sp.abunds[keyst], pch = 24,
 # ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
 #        bg = 'red', cex = 1.3)
 lab.x.pos <- mean.sum.out[keyst]
-lab.x.pos['TROR'] <- lab.x.pos['TROR'] - 0.15
+# lab.x.pos['TROR'] <- lab.x.pos['TROR'] - 0.15
 text(lab.x.pos, sp.abunds[keyst], 
      labels = names(mean.sum.out[keyst]), pos = 3, col = 'green4', 
      cex = 1.4, offset = 0.7)
