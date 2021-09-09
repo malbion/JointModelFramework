@@ -227,7 +227,7 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
 
     \subsection{Case study results}
 
-    We first applied this joint model to simulated data to verify that the original interaction parameters could be recovered by this framework. We then applied this model to a case study dataset of a diverse annual wildflower community, where elements consisted of 22 focal species and up to 52 neighbouring species (including focal species) and performance was measured as viable seed production. We conducted a posterior predictive check comparing simulated performance data to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. The model returned estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which 60\% were realised.  When accounting for focal species only, 86.4\% of interactions were realised and estimated by the NDDM. NDDM and RIM estimates matched well and followed similar distributions (S.I. Figure \ref{fig:adist}) as enforced by the framework. 
+    We first applied this joint model to simulated data to verify that the original interaction parameters could be recovered by this framework. We then applied this model to a case study dataset of a diverse annual wildflower community, where elements consisted of 22 focal species and up to 52 neighbouring species (including focal species) and performance was measured as viable seed production. We conducted a posterior predictive check comparing simulated performance data to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. The model returned estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which 60\% were realised.  When accounting for focal species only, 86.4\% of interactions were realised and estimated by the NDDM. NDDM and RIM estimates matched well and followed similar distributions (S.I. \ref{SI:results} Figure \ref{fig:adist}) as enforced by the framework. 
     
 
 
@@ -266,8 +266,7 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
     %\subsection{Case study results}
 
     \paragraph{}
-     For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}.A \& B). Though competition was the dominant interaction type,  XX35\% of all focal x neighbour interactions were facilitative, as were XX26 \% of all focal x focal interactions (medians across all network samples). As a result, XX40\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. [UPDATE W 1Ch RESULTS]
-     Furthermore, the elements of the diagonal (the effect of an element on itself) were able to be estimated, which can allow us to quantify how much am element regulates it's own performance. For 12 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species [ADD proportion of intra interactions that had a facil vs comp median]. 
+     For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}.A \& B). Though competition was the dominant interaction type,  37\% of all focal x neighbour interactions were facilitative, as were 32\% of all focal x focal interactions (medians across all network samples). As a result, 46\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. Furthermore, the elements of the diagonal (the effect of an element on itself) were able to be estimated, which can allow us to quantify how much am element regulates it's own performance. For 11 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Overall, 77\% of focal species had a median intraspecific interaction strength which was competitive. 
 
 
      \paragraph{}
@@ -396,6 +395,9 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
 \newpage 
 
 \section{Supplementary Methods}
+
+\setcounter{figure}{0}
+
 \label{SI:Methods}
 
     \subsection{STAN model code}
@@ -409,9 +411,7 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
     Secondly, we define the effect parameters as a unit vector, which means we only require S-1 degrees of freedom to estimate all effect values. Thirdly, the first response parameter is forced to positive. This improves convergence by providing an anchor for all other parameter values to 'rotate' around. Though these latter two have implications for our estimates of the latent variables $r_i$ and $e_j$, estimates for realised and unrealised interactions should not be affected.
     }
 
-
-
-    \includepdf[pages=-]{../../2018_Compnet/stormland/model_stan.pdf}
+    \includepdf[pages=-]{joint_model.stan.pdf}
 
 
 
@@ -511,7 +511,7 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
 
 
 \section{Supplementary Results}
-
+\label{SI:results}
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
