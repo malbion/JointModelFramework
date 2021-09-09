@@ -338,7 +338,7 @@ med.faci <- apply(sum.faci, 1, median)
 # get 'special' species
 invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
-keyst <- c('GITE', 'TROR', 'HAOD')
+keyst <- c('GITE',  'HAOD')
 
 ###### PLOT
 png('2.analyses/figures_mss/species_effects.png', 
