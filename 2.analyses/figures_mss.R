@@ -404,7 +404,9 @@ points(mean.sum.out[keyst], sp.abunds[keyst], pch = 24,
        bg = 'chartreuse3', cex = 1.8)
 # ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
 #        bg = 'red', cex = 1.3)
-text(mean.sum.out[keyst], sp.abunds[keyst], 
+lab.x.pos <- mean.sum.out[keyst]
+lab.x.pos['TROR'] <- lab.x.pos['TROR'] - 0.15
+text(lab.x.pos, sp.abunds[keyst], 
      labels = names(mean.sum.out[keyst]), pos = 3, col = 'green4', 
      cex = 1.4, offset = 0.7)
 
@@ -430,14 +432,15 @@ points(med.comp, -med.faci,
 #        pch = 23, bg = 'orange', cex = 1.3)
 points(med.comp[invasives], -med.faci[invasives],  
        pch = 24, bg = 'red', cex = 1.8)
-lab.x.pos <- med.comp[invasives] - 0.1
+lab.x.pos <- med.comp[invasives] 
 lab.x.pos['HYPO'] <- lab.x.pos['HYPO'] + 0.1
+lab.x.pos['PEIA'] <- lab.x.pos['PEIA'] - 0.3
 # lab.x.pos['ARCA'] <- lab.x.pos['ARCA'] + 0.1
 lab.y.pos <- (-med.faci[invasives] + 0.065)
-lab.y.pos['PEAI'] <- lab.y.pos['PEAI'] +0.04
+lab.y.pos['PEAI'] <- lab.y.pos['PEAI'] +0.05
 text(lab.x.pos, lab.y.pos, 
      labels = names(med.comp[invasives]), 
-     pos =  4, col = 'darkred', offset = 0.8, cex = 1.4)
+     pos =  4, col = 'darkred', offset = 0.3, cex = 1.4)
 
 dev.off()
 
