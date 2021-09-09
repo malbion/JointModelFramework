@@ -431,9 +431,10 @@ points(med.comp, -med.faci,
 points(med.comp[invasives], -med.faci[invasives],  
        pch = 24, bg = 'red', cex = 1.8)
 lab.x.pos <- med.comp[invasives] - 0.1
-lab.x.pos['ARCA'] <- lab.x.pos['ARCA'] + 0.1
-lab.y.pos <- (-med.faci[invasives] + 0.08)
-lab.y.pos['ARCA'] <- lab.y.pos['ARCA'] - 0.04
+lab.x.pos['HYPO'] <- lab.x.pos['HYPO'] + 0.1
+# lab.x.pos['ARCA'] <- lab.x.pos['ARCA'] + 0.1
+lab.y.pos <- (-med.faci[invasives] + 0.065)
+lab.y.pos['PEAI'] <- lab.y.pos['PEAI'] +0.04
 text(lab.x.pos, lab.y.pos, 
      labels = names(med.comp[invasives]), 
      pos =  4, col = 'darkred', offset = 0.8, cex = 1.4)
