@@ -317,6 +317,56 @@
       \endverb
       \keyw{2020,absence data,co-occurrence analysis,co-occurrence networks,ecological interactions,ecology letters,presence,statistical inference}
     \endentry
+    \entry{Broekman2020}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=4292c2bd8836dca98459d8824f3f5c0e}{%
+           family={Broekman},
+           familyi={B\bibinitperiod},
+           given={Maarten\bibnamedelima J.E.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b5400b78edfe701580b37f82c05d0b0}{%
+           family={Jongejans},
+           familyi={J\bibinitperiod},
+           given={Eelke},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b9f9fb53725fd5c4a9a75064ec9b991}{%
+           family={Tuljapurkar},
+           familyi={T\bibinitperiod},
+           given={Shripad},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \strng{fullhash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \strng{bibnamehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \strng{authorbibnamehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \strng{authornamehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \strng{authorfullhash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Many species show large variation in lifetime reproductive success (LRS), with a few individuals producing the majority of offspring. This variation can be explained by factors related to individuals (fixed heterogeneity) and stochastic differences in survival and reproduction (dynamic heterogeneity). In this study, we study the relative effects of these processes on the LRS of a Dutch Kestrel population, using three different methods. First, we extended neutral simulations by simulating LRS distributions of populations consisting of groups with increasingly different population parameters. Decomposition of total LRS variance into contributions from fixed and dynamic heterogeneity revealed that the proportion of fixed heterogeneity is probably lower than 10{\%} of the total variance. Secondly, we used sensitivities of the mean and variance in LRS to each parameter to analytically show that it is impossible to get equal contributions of fixed and dynamic heterogeneity when only one parameter differs between groups. Finally, we computed the LRS probability distribution to show that even when all individuals have identical survival and reproduction rates, the variance in LRS is large (females: 27.52, males: 12.99). Although each method has its limitations, they all lead to the conclusion that the majority of the variation in kestrel LRS is caused by dynamic heterogeneity. This large effect of dynamic heterogeneity on LRS is similar to results for other species and contributes to the evidence that in most species the majority of individual variation in LRS is due to dynamic heterogeneity.}
+      \field{issn}{14383896}
+      \field{journaltitle}{Population Ecology}
+      \field{number}{4}
+      \field{title}{{Relative contributions of fixed and dynamic heterogeneity to variation in lifetime reproductive success in kestrels (Falco tinnunculus)}}
+      \field{volume}{62}
+      \field{year}{2020}
+      \field{pages}{408\bibrangedash 424}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1002/1438-390X.12063
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Broekman, Jongejans, Tuljapurkar - 2020 - Relative contributions of fixed and dynamic heterogeneity to variation in lifetime reproductiv.pdf:pdf
+      \endverb
+      \keyw{capture–mark–recapture multistate model,dynamic heterogeneity,lifetime reproductive success,sensitivity,variance partitioning}
+    \endentry
     \entry{Brooker2008a}{article}{}
       \name{author}{24}{ul=9}{%
         {{un=0,uniquepart=base,hash=0840331fb807021df249d5097526742b}{%
@@ -952,8 +1002,8 @@
       \field{title}{{Large niche differences emerge at the recruitment stage to stabilize grassland coexistence}}
       \field{volume}{85}
       \field{year}{2015}
-      \field{pages}{-\bibrangedash -}
-      \range{pages}{-1}
+      \field{pages}{373\bibrangedash 392}
+      \range{pages}{20}
       \verb{doi}
       \verb 10.1890/14-1741.1
       \endverb
