@@ -69,7 +69,7 @@ Number of words - main text: 4904\\
 % results 1041
 % discussion 1357
 4 Figures in main text.\\
-Number of references: 81\\
+Number of references: 82\\
 
 \noindent
 \textbf{Keywords:} Species interactions, competition, facilitation, network, population dynamics, non-trophic, interaction strength.  
@@ -120,9 +120,8 @@ Data will be submitted to Dryad upon publication.
 \section{Methods}
 
 
-To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. We define realised interactions as those that can be directly inferred from the observed data, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. 
+To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. We define realised interactions as those that can be directly inferred from the observed data, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system which quantify the pairwise effects of all neighbours $j$ on all focal elements $i$. 
 
-    
     \subsection{Data requirements}
 
     \paragraph{}
@@ -141,13 +140,11 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
 
         \paragraph{}
         We implement a neighbour density-dependent model to each focal element $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ..., S$) against the measured proxy for performance $P_{i}$ through a link function $f$:
-        
         \begin{equation}
         f(P_{i}) = \beta_{i0} - \sum_{j=1}^{S} \beta_{ij} N_{j}
         \label{nddm}
         \end{equation}
-        
-        The intercept $\beta_{i0}$ represents intrinsic performance, an element's performance in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ captures the effect of each neighbour $j$ on $i$. Note that neighbours can include other members of element $i$, in which case intraspecific interactions are denoted as $\beta_{ii}$.
+        The intercept $\beta_{i0}$ represents intrinsic performance (in the link scale), an element's performance in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ captures the effect of each neighbour $j$ on $i$. Note that neighbours can include other members of element $i$, in which case intraspecific interactions are denoted as $\beta_{ii}$.
 
         \paragraph{}
         This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $P_i$ and the right-hand side of the equation does not need to be linear, but can be modified to fit the data in question given an appropriate distribution and link function $f$, for example negative binomial and natural logarithm. 
@@ -156,46 +153,39 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
 
     \paragraph{}
        A common issue in ecological datasets is that some elements may not be observed to co-occur with many neighbours, or at variable enough densities, because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. These \textit{unrealised} interactions can be estimated by using an alternative model which assumes that elements typically have a singular impact on and a singular response to neighbours independent of neighbour identity (response and impact model, or RIM - see \cite{Godoy2014b}). An unrealised interaction is therefore the product of two element's impact and response parameters. 
-
         \begin{equation}
         P_{i} = \beta_{i0} - r_{i} \sum_{j=1}^{S} e_{j} N_{j}
         \label{rim}
         \end{equation}
-        
         Pairwise interactions which cannot be inferred from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. 
 
+    \paragraph{}
         In order to allow both the NDDM and RIM interaction estimates to contribute to the likelihood, we use the NDDM to quantify realised interactions and use those to estimate species-specific $r_i$ and $e_j$ parameters such that: 
-    
         \begin{equation}
         r_i e_j \sim logistic \left ( \beta_{ij}, \sigma \right )
         \label{unrealised}
         \end{equation}
-    
         where $\sigma$ is a community-level scale parameter for the logistic distribution. We use a logistic distribution here because the heavier tails make it a slightly weaker informative prior than a normal distribution. $\sigma$ defines how widely the tails extend and can be expressed in terms of the standard deviation. 
 
 
     \subsection{Rescaling interaction estimates into per-capita interactions}
 
         The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of element $j$ on the performance of element $i$. Differences in the magnitude of these interaction terms may thus reflect intrinsic differences in performance, which can vary in time, space and between elements. Two species may for example have different baseline values of reproductive fitness. In order to make the effects of interactions comparable between elements, the interaction terms returned by both models above can be transformed into \textit{per capita} interaction strengths \parencite{Laska1998}. The appropriate scaling is determined by rewriting the neighbour density-dependent model (Eq. \ref{nddm}) into a form equivalent to a Lotka-Volterra competition model: 
-
         \begin{equation}
         P_{i} = \beta_{i0} \left ( 1 - \sum_{j=1}^{S} {\beta_{ij}}'' N_{j} \right )
         \label{LVform}
         \end{equation}
-
         This reveals that our interaction terms can be rescaled into per-capita interaction strengths by dividing them by the recipient element's intrinsic performance:  
-
         \begin{equation}
         {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
         \label{scaling}
         \end{equation}
-
         where $\beta_{ij}$ can be replaced with $r_i e_j$ when appropriate. Though this scaling step is not strictly necessary, for ecological datasets per capita interaction strengths have the benefit of being directly comparable both across species and across environmental contexts where reproductive fitness may vary \parencite{Wootton2005}, leading to a wider range of potential applications.
 
     \subsection{Integrating interaction strengths into models of population dynamics}
 
         \paragraph{}
-        In certain instances, models of element population dynamics can be used to further extend the usefulness of the framework presented here. We suggest two cases where such an application may be useful. Firtly, the variable chosen to measure the performance of focal elements $P_i$ may not directly translate into a measure of performance which is relevant to system dynamics,  due to inherent practical constraints with collecting empirical data. For example, the life-history reproductive strategies of certain plant species may lead to measures of high seed production (performance) in the field which do not account for low seed or seedling survival rates post-observation. In these cases, population dynamics models can be used to account for species-specific demographic rates into estimates of interaction effects. Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal element rather than on it's performance. In this scenario, a population dynamic model can be used to translate interaction effects on the measured variable into interaction strengths affecting the variable of interest. 
+        In certain instances, models of element population dynamics can be used to further extend the usefulness of the framework presented here. We suggest two cases where such an application may be useful. Firtly, the variable chosen to measure the performance of focal elements $P_i$ may not directly translate into a measure of performance which is relevant to system dynamics,  due to inherent practical constraints with collecting empirical data. For example, the life-history reproductive strategies of certain species may lead to measures of high fecundity (or performance) in the field which do not account for low survival rates post-observation \parencite{Broekman2020}. In these cases, population dynamics models can be used to account for species-specific demographic rates into estimates of interaction effects. Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal element rather than on it's performance. In this scenario, a population dynamic model can be used to translate interaction effects on the measured variable into interaction strengths affecting the variable of interest. 
 
         \paragraph{}
         In both cases, an established population dynamic model is required as well as knowledge of any crucial element-specific demographic rates. This step is illustrated for our case study in the Supplementary Methods \ref{SI:popdyn}, where an annual plant population dynamic model is used to transform effects on wildflower seed production (the measured proxy for performance) into effects on population growth, and includes species-specific estimates of seed germination and survival rates. 
@@ -210,7 +200,7 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
         The NDDM (Eq. 1) and the RIM (Eqs. 2 and 3) can be implemented as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify realised interactions which are then fed into the RIM. We provide a working example of the STAN code used to specify and set this model to the case study below in the Supplementary Methods \ref{SI:modelcode}, as well as a downloadable zip folder which contains the necessary STAN model code, R script and functions to run the model on a simulated dataset. From the model file, only the link function for $P_i$ and it's parameterisation need to be modified in order to apply it to a different model or system. Additionally, non-integer measures of performance (e.g. biomass) should be redefined as real rather than integers in the data block. In the code given, a negative binomial distribution is used to fit seed production ($P_i$) but a different distribution may be more appropriate when using other measures of performance.   
 
         \paragraph{}
-        \textbf{Bayesian models are often run on multiple MCMC chains. In our case, we deliberately run only one MCMC chain because the latent variables in our model ($r_i$ and $e_j$) are invariant to sign switching. This means that different MCMC chains can return coefficient values which are of the same magnitude, but opposing signs. As with the boral function in the boral R package \parencite{Hui2021} and the MCMCfactanal function in the MCMCpack package \parencite{Martin2011}, we run one chain only to simplify issues with checking chain convergence and computing parameter estimates which arise from sign-switching. Though many MCMC convergence diagnostics require multiple chains to be computed, single chain convergence can be assessed with the Geweke convergence statistic \parencite{Geweke1992}, for example with the geweke.diag() function from the coda package \parencite{Plummer2006}, as well as visually checking traceplots.}  
+        Bayesian models are often run on multiple MCMC chains. In our case, we deliberately run only one MCMC chain because the latent variables in our model ($r_i$ and $e_j$) are invariant to sign switching. This means that different MCMC chains can return coefficient values which are of the same magnitude, but opposing signs. As with the boral function in the boral R package \parencite{Hui2021} and the MCMCfactanal function in the MCMCpack package \parencite{Martin2011}, we run one chain only to simplify issues with checking chain convergence and computing parameter estimates which arise from sign-switching. Though many MCMC convergence diagnostics require multiple chains to be computed, single chain convergence can be assessed with the Geweke convergence statistic \parencite{Geweke1992}, for example with the geweke.diag() function from the coda package \parencite{Plummer2006}, as well as visually checking traceplots.
 
         \paragraph{}
         STAN returns parameters as distributions which maximise the likelihood, and are conditioned by the data and priors. Priors describe the distribution of plausible values which these parameters may take. For an introduction to Bayesian inference which relates the use of priors to frequentist hypothesis testing, see \textcite{Ellison1996}. We recommend investigators experiment with setting different informed priors to both improve model convergence and verify the robustness of parameter estimates. The resulting parameters are termed posterior distributions, and samples from the posterior are drawn for analysis. Using parameter distributions rather than point estimates allows for easy inclusion of uncertainty in the analysis of results, we therefore recommend bootstrap sampling from each posterior interaction strength distribution to create multiple samples of the community interaction matrix. \textcite{Ellison2004} also provides an accessible review of parameter estimates and the use of posterior distributions using a worked example on ant species richness data.
@@ -219,7 +209,7 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
     \subsection{Case study}
 
       
-        We applied this framework to an annual wildflower community dataset from Western Australia collected in 2016. This dataset contains observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 neighbouring species, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Mayfield2017, Bimler2018} which required experimentally-measured species demographic rates. Viable seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
+        We applied this framework to an annual wildflower community dataset from Western Australia collected in 2016. This dataset contains observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 neighbouring species, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Bimler2018} which required experimentally-measured species demographic rates. Viable seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
         Further details on the data, the model fitting and the procedure for deriving scaled interactions from the population dynamics model are available in the Supplementary Methods \ref{SI:casestudy}.
 
 
@@ -445,33 +435,26 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
 
         \paragraph{} 
         We defined the following model for annual plants with a seed bank \parencite{Levine2009, Mayfield2017, Bimler2018} which describe the rate of change in a focal species' \textit{i} abundance of seeds in a seed bank from one year to the next: 
-    
             \begin{equation}
                 \frac{N_{i, t+1}}{N_{i, t}} = \left( 1 - g_{i} \right) s_{i} + g_{i}F_{i, t}
                 \label{ifm}
             \end{equation}
-        
         where \(F_{i,t}\) measures the number of viable seeds produced per germinated individual whilst \(g_{i}\) and \(s_{i}\) are the seed germination and seed survival rate, respectively. In a simplified case where the focal species \textit{i} interacts with only one other species \textit{j}, in this model of population dynamics \(F_{i,t}\) is given by:
-
             \begin{equation}
                 F_{i,t} = \lambda_{i} e^{- \alpha_{ii} g_{i} N_{i, t} -  \alpha_{ij} g_{j} N_{j, t} }
                 \label{fecundity}   
             \end{equation}
-
         where \(\lambda_{i}\) corresponds to seed number in the absence of competition, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij}\) and \(\alpha_{ii}\) which are equivalent to \(\beta_{ij}\) in Eq. \ref{nddm}. 
         We determine the scaled, per-capita interaction strengths ${\alpha}''$'s by including \(\lambda_{i}\), \(g_{i}\) and \(s_{i}\) in such a way that these variables are cancelled out when the ${\alpha}''$'s are substituted for the $\alpha$'s in our annual plant population model \parencite{Godoy2014, Bimler2018}. 
-
         \begin{equation}
             {\alpha_{ij}}'' = \frac{g_{j} \alpha_{ij}}{ln(\eta_{i})}
         \end{equation}
-
         with $\eta_{i} = \frac{\lambda_{i} g_{i}}{\theta_{i}}$ and $\theta_{i} = 1 - (1 - g_{i})(s_{i})$. % \(ln(\eta_{i})\) is thus equivalent to \(\beta_{i0}\) in Eqs. \ref{nddm} and \ref{scaling}.
         Note that because our model evaluates the rate of change of seeds in the seed bank, 'per-capita' here refers to changes 'per seed in the seed bank' of a focal species. Substituting ${\alpha}''$'s for $\alpha$'s in Eq. \ref{ifm} gives us: 
-        
+    
         \begin{equation}
             \frac{N_{i, t+1}}{N_{i, t}} = (1 - \theta_{i}) + \theta_{i} \eta_{i} e^{-ln(\eta_{i})({\alpha_{ii}}'' N_{i, t} + {\alpha_{ij}}'' N_{j, t})}
         \end{equation}
-
         where we can see that the ${\alpha}''$'s are directly proportional to the abundance of neighbours. Relating this population model to the joint model framework, we recover the following: 
 
         \begin{equation}
@@ -485,9 +468,7 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
         \begin{equation}
         \beta_{i0}  = ln(\eta_{i}) = ln(\frac{\lambda_{i} g_{i}}{\theta_{i}})
         \end{equation}
-
         % Daniel thinks this last equation is wrong but I don't think so?
-
         As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\lambda_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
 
 
