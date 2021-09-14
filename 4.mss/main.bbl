@@ -307,8 +307,12 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Ecology Letters}
+      \field{number}{7}
       \field{title}{{Co-occurrence is not evidence of ecological interactions}}
+      \field{volume}{23}
       \field{year}{2020}
+      \field{pages}{1050\bibrangedash 1063}
+      \range{pages}{14}
       \verb{doi}
       \verb 10.1111/ele.13525
       \endverb
@@ -755,7 +759,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Investigations of the role of competition, predation and abiotic stress in shaping natural communities were a staple for previous generations of ecologists and are still popular themes. However, more recent experimental research has uncovered the largely unanticipated, yet striking influence of facilitation (i.e. positive species interactions) on the organization of terrestrial and aquatic communities. Modern ecological concepts and theories were well established a decade before the current renaissance of interest in facilitation began, and thus do not consider the importance of a wide variety of facilitative interactions. It is time to bring ecological theory up to date by including facilitation. This process will not be painless because it will fundamentally change many basic predictions and will challenge some of our most cherished paradigms. But, ultimately, revising ecological theory will lead to a more accurate and inclusive understanding of natural communities.}
-      \field{eprinttype}{arXiv}
       \field{isbn}{0169-5347}
       \field{issn}{01695347}
       \field{journaltitle}{Trends in Ecology and Evolution}
@@ -767,9 +770,6 @@
       \range{pages}{7}
       \verb{doi}
       \verb 10.1016/S0169-5347(02)00045-9
-      \endverb
-      \verb{eprint}
-      \verb 965
       \endverb
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Bruno, Stachowicz, Bertness - 2003 - Inclusion of facilitation into ecological theory.pdf:pdf
@@ -856,10 +856,10 @@
       \field{abstract}{JSTOR is a not-for-profit service that helps scholars, researchers, and students discover, use, and build upon a wide range of content in a trusted digital archive. We use information technology and tools to increase productivity and facilitate new forms of scholarship. For more information about JSTOR, please contact support@jstor.org. Abstract. Interactions among organisms take place within a complex milieu of abiotic and biotic processes, but we generally study them as solitary phenomena. Complex com-binations of negative and positive interactions have been identified in a number of plant communities. The importance of these two processes in structuring plant communities can best be understood by comparing them along gradients of abiotic stress, consumer pressure, and among different life stages, sizes, and densities of the interacting species. Here, we discuss the roles of life stage, physiology, indirect interactions, and the physical environment on the balance of competition and facilitation in plant communities.}
       \field{isbn}{0012-9658}
       \field{issn}{00129658}
-      \field{journaltitle}{Source: Ecology Ecology}
-      \field{number}{787}
+      \field{journaltitle}{Ecology}
+      \field{number}{7}
       \field{title}{{Competition and Facilitation: A Synthetic Approach to Interactions in Plant Communities}}
-      \field{volume}{7812514473}
+      \field{volume}{78}
       \field{year}{1997}
       \field{pages}{1958\bibrangedash 1965}
       \range{pages}{8}
@@ -1081,8 +1081,9 @@
       \field{issn}{23522496}
       \field{journaltitle}{Food Webs}
       \field{title}{{A review of species role concepts in food webs}}
+      \field{volume}{16}
       \field{year}{2018}
-      \field{pages}{e00093}
+      \field{pages}{e00186}
       \range{pages}{-1}
       \verb{doi}
       \verb 10.1016/j.fooweb.2018.e00093
@@ -1124,14 +1125,16 @@
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Aim MacArthur and Wilson's original formulation of the theory of island biogeography (TIB) included the corollary hypothesis that species richness might affect immigration and extinction rates. Building on this, other researchers have suggested additional top-down and bottom-up effects. We compare these hypotheses to identify the strongest candidates for inclusion in a ‘trophic TIB'. Location Six mangrove islands in the Florida Keys, USA Methods We studied a classic island biogeography time series featuring lists of species observed on six mangrove islands during roughly 16 censuses each across 700 days. We first used this time series to determine the number of opportunities for species to immigrate to an island for the first time (n = 18,420), to go locally extinct (n = 1943) or to re-immigrate to an island after having previously gone extinct (n = 1813). We then leveraged information on the predators and prey of those species to estimate the potential for top-down and bottom-up interactions during each census period. Finally, we constructed statistical models to test for species richness, top-down, and bottom-up effects on per-species immigration and extinction probabilities and validated them by comparing each model with a similar model based on the classic TIB. Results We found that models including bottom-up effects gave the greatest improvement over the classic TIB models. Extinction probability in particular decreased sharply for species with both basal resources and animal prey available. Species richness and top-down effects had far weaker impacts on per-species probabilities of immigration and extinction. Main conclusions Our findings suggest that incorporating information on the trophic structure of island communities – particularly the species-specific availability of resources – can substantially alter predictions of extinction probabilities. Immigration probability, on the contrary, appeared largely stochastic. Incorporating trophic information into predictions of extinction rates therefore represents the most promising and best-supported way to extend the TIB.}
+      \field{abstract}{Aim MacArthur and Wilson's original formulation of the theory of island biogeography (TIB) included the corollary hypothesis that species richness might affect immigration and extinction rates. Building on this, other researchers have suggested additional top-down and bottom-up effects. We compare these hypotheses to identify the strongest candidates for inclusion in a ‘trophic TIB'. Location Six mangrove islands in the Florida Keys, USA Methods We studied a classic island biogeography time series featuring lists of species observed on six mangrove islands during roughly 16 censuses each across 700 days. We first used this time series to determine the number of opportunities for species to immigrate to an island for the first time (n = 18,420), to go locally extinct (n = 1943) or to re-immigrate to an island after having previously gone extinct (n = 1813). We then leveraged information on the predators and prey of those species to estimate the potential for top-down and bottom-up interactions during each census period. Finally, we constructed statistical models to test for species richness, top-down, and bottom-up effects on per-species immigration and extinction probabilities and validated them by comparing each model with a similar model based on the classic TIB. Results We found that models including bottom-up effects gave the greatest improvement over the classic TIB models. Extinction probability in particular decreased sharply for species with both basal resources and animal prey available. Species richness and top-down effects had far weaker impacts on per-species probabilities of immigration and extinction. Main conclusions Our findings suggest that incorporating information on the trophic structure of island communities – particularly the species-specific availability of resources – can substantially alter predictions of extinction probabilities. Immigration probability, on the contrary, appeared largely stochastic. Incorporating trophic information into predictions of extinction rates therefore represents the most promising and best-supported way to extend the TIB.}
       \field{isbn}{1466-8238}
       \field{issn}{1466822X}
       \field{journaltitle}{Global Ecology and Biogeography}
+      \field{number}{7}
       \field{title}{{Knowledge of predator–prey interactions improves predictions of immigration and extinction in island biogeography}}
+      \field{volume}{25}
       \field{year}{2015}
-      \field{pages}{n/a\bibrangedash n/a}
-      \range{pages}{-1}
+      \field{pages}{900\bibrangedash 911}
+      \range{pages}{12}
       \verb{doi}
       \verb 10.1111/geb.12332
       \endverb
@@ -2003,7 +2006,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Supplemental Info - Appendix 1 word doc}
-      \field{eprinttype}{arXiv}
       \field{isbn}{1461-0248}
       \field{issn}{14610248}
       \field{journaltitle}{Ecology Letters}
@@ -2015,9 +2017,6 @@
       \range{pages}{9}
       \verb{doi}
       \verb 10.1111/ele.12289
-      \endverb
-      \verb{eprint}
-      \verb 2072
       \endverb
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Godoy, Kraft, Levine - 2014 - Phylogenetic relatedness and the determinants of competitive outcomes.pdf:pdf
@@ -2146,7 +2145,10 @@
       \field{labeltitlesource}{title}
       \field{journaltitle}{Nature Climate Change}
       \field{title}{{A simple model predicts how warming simplifies wild food webs}}
+      \field{volume}{9}
       \field{year}{2019}
+      \field{pages}{611\bibrangedash 616}
+      \range{pages}{6}
       \verb{doi}
       \verb 10.1038/s41558-019-0513-x
       \endverb
@@ -2225,7 +2227,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Statistical Software}
-      \field{number}{February}
       \field{title}{{cooccur: Probabilistic Species Co-Occurrence Analysis in R}}
       \field{volume}{69}
       \field{year}{2016}
@@ -3596,7 +3597,6 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The idea that the connections between species in ecological assemblages are characterized by a trait called'interaction strength'has become a cornerstone of modern ecology. Since the classic paper of Watt1, ecologists have acknowledged the importance ... $\backslash$n}
-      \field{eprinttype}{arXiv}
       \field{isbn}{0028-0836}
       \field{issn}{0028-0836}
       \field{journaltitle}{Nature}
@@ -3608,9 +3608,6 @@
       \range{pages}{3}
       \verb{doi}
       \verb 10.1038/355073a0
-      \endverb
-      \verb{eprint}
-      \verb arXiv:1011.1669v3
       \endverb
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Paine - 1992 - Food-web analysis through field measurement of per capita interaction strength.pdf:pdf
@@ -3644,11 +3641,11 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Ecology}
-      \field{number}{March}
+      \field{number}{6}
       \field{title}{{Strong self-regulation and widespread facilitative interactions in phytoplankton communities}}
-      \field{volume}{00}
+      \field{volume}{108}
       \field{year}{2020}
-      \field{pages}{1\bibrangedash 11}
+      \field{pages}{2232\bibrangedash 2242}
       \range{pages}{11}
       \verb{doi}
       \verb 10.1111/1365-2745.13410
@@ -3658,7 +3655,7 @@
       \endverb
       \keyw{1,c ti o n,coexistence,facilitation,genera can coexist together,how species or close,i ntro d u,in spite of com,mutualism,networks,niche theory,phytoplankton,time series}
     \endentry
-    \entry{Pimm1978}{misc}{}
+    \entry{Pimm1978}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=baa366cdc9d7815252cfd51964f1be56}{%
            family={Pimm},
@@ -3686,9 +3683,9 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{In trying to understand the structure of ecological communities, ecologists usually pay particular attention to the interactions between pairs, or small groups of species1. Questions about the 'shape' of the food webs within which these species are embedded are much more rarely asked2−4. For example, what happens when a population feeds at more than one trophic level (omnivory)? In some real food webs there seem to be no omnivores (Fig. 1a)5; in others omnivores are common6,7 (Fig. 1c)8. In this note we attack the problem of omnivory using simple, linear Lotka−Volterra models of food webs9, and show that certain patterns are much more likely to persist on an evolutionary time scale than others. We then compare the model predictions with real food webs.}
-      \field{booktitle}{Nature}
       \field{isbn}{0028-0836}
       \field{issn}{0028-0836}
+      \field{journaltitle}{Nature}
       \field{number}{5680}
       \field{title}{{On feeding on more than one trophic level}}
       \field{volume}{275}
@@ -3966,7 +3963,7 @@
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Pnas}
+      \field{journaltitle}{PNAS}
       \field{number}{32}
       \field{title}{{An invasive foundation species enhances multifunctionality in a coastal ecosystem}}
       \field{volume}{114}
@@ -4316,7 +4313,7 @@
       \endverb
       \keyw{effective densities,endangered species act,ethics,interactive species,management}
     \endentry
-    \entry{Rstan2020}{article}{}
+    \entry{Rstan2020}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=38cdaa762a62c2f6e7ff4a46c1ce1705}{%
            family={{Stan Development Team}},
@@ -4560,7 +4557,10 @@
       \field{labeltitlesource}{title}
       \field{journaltitle}{Ecography}
       \field{title}{{Testing the link between species interactions and co-occurrence in a trophic network}}
+      \field{volume}{42}
       \field{year}{2019}
+      \field{pages}{1658\bibrangedash 1670}
+      \range{pages}{13}
       \verb{doi}
       \verb 10.1111/ecog.04360
       \endverb
