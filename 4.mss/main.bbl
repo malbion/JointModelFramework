@@ -2375,6 +2375,50 @@
       \endverb
       \keyw{Community persistence,Interaction modifications,Microcosms,Nonprey species,Predation,Trophic interactions}
     \endentry
+    \entry{Huber2004}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=6b74aba61715dfa12fb83cd423f4cf2e}{%
+           family={Huber},
+           familyi={H\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=023115c9bd12c216ff8bfe050a8a8b1c}{%
+           family={Ronchetti},
+           familyi={R\bibinitperiod},
+           given={Elvezio},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c53112d849122ded250a90be45bda191}{%
+           family={Victoria-Feser},
+           familyi={V\bibinithyphendelim F\bibinitperiod},
+           given={Maria-Pia},
+           giveni={M\bibinithyphendelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \strng{fullhash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \strng{bibnamehash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \strng{authorbibnamehash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \strng{authornamehash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \strng{authorfullhash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the Royal Statistical Society . Series B ( Statistical Methodology )}
+      \field{number}{4}
+      \field{title}{{Estimation of Generalized Linear Latent Variable Models}}
+      \field{volume}{66}
+      \field{year}{2004}
+      \field{pages}{893\bibrangedash 908}
+      \range{pages}{16}
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Huber, Ronchetti, Victoria-Feser - 2004 - Estimation of Generalized Linear Latent Variable Models.pdf:pdf
+      \endverb
+    \endentry
     \entry{Hui2021}{misc}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=a0b724d9facb9f4d23f352c9a254871d}{%
@@ -2437,6 +2481,63 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Jordano - 2016 - Sampling networks of ecological interactions.pdf:pdf
       \endverb
       \keyw{complex networks,food webs,forbidden links,frugivory,mutualism,network,plant–animal interactions,pollination,seed dispersal}
+    \endentry
+    \entry{Kidzinski2020}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=325c17cc6e70d8055344b13df0c618bc}{%
+           family={Kidzi{ń}ski},
+           familyi={K\bibinitperiod},
+           given={{Ł}ukasz},
+           giveni={Ł\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a0b724d9facb9f4d23f352c9a254871d}{%
+           family={Hui},
+           familyi={H\bibinitperiod},
+           given={Francis\bibnamedelimb K.\bibnamedelimi C.},
+           giveni={F\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1ba59c28f90db059d902fa5b3248b41c}{%
+           family={Warton},
+           familyi={W\bibinitperiod},
+           given={David\bibnamedelima I.},
+           giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
+           family={Hastie},
+           familyi={H\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7bbbd6201e0062419536f67ec8601085}
+      \strng{fullhash}{d90a24ea4f6bc4a9b714fb64454dad68}
+      \strng{bibnamehash}{7bbbd6201e0062419536f67ec8601085}
+      \strng{authorbibnamehash}{7bbbd6201e0062419536f67ec8601085}
+      \strng{authornamehash}{7bbbd6201e0062419536f67ec8601085}
+      \strng{authorfullhash}{d90a24ea4f6bc4a9b714fb64454dad68}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Unmeasured or latent variables are often the cause of correlations between multivariate measurements and are studied in a variety of fields such as psychology, ecology, and medicine. For Gaussian measurements, there are classical tools such as factor analysis or principal component analysis with a well-established theory and fast algorithms. Generalized Linear Latent Variable models (GLLVM) generalize such factor models to non-Gaussian responses. However, current algorithms for estimating model parameters in GLLVMs require intensive computation and do not scale to large datasets with thousands of observational units or responses. In this article, we propose a new approach for fitting GLLVMs to such high-volume, high-dimensional datasets. We approximate the likelihood using penalized quasi-likelihood and use a Newton method and Fisher scoring to learn the model parameters. Our method greatly reduces the computation time and can be easily parallelized, enabling factorization at unprecedented scale using commodity hardware. We illustrate application of our method on a dataset of 48,000 observational units with over 2,000 observed species in each unit, finding that most of the variability can be explained with a handful of factors.}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{arXiv preprint}
+      \field{title}{{Generalized Matrix Factorization}}
+      \field{year}{2021}
+      \verb{eprint}
+      \verb 2010.02469
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Kidzi{\'{n}}ski et al. - 2021 - Generalized Matrix Factorization.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2010.02469
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2010.02469
+      \endverb
     \endentry
     \entry{Kinlock2019}{article}{}
       \name{author}{1}{}{%
@@ -3312,6 +3413,60 @@
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Narwani et al. - 2019 - Interactive effects of foundation species on ecosystem functioning and stability in response to disturbance.pdf:pdf
       \endverb
+    \endentry
+    \entry{Niku2021}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=a04efd85623fdcd0d5bd9ec701b0b660}{%
+           family={Niku},
+           familyi={N\bibinitperiod},
+           given={Jenni},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a0b724d9facb9f4d23f352c9a254871d}{%
+           family={Hui},
+           familyi={H\bibinitperiod},
+           given={Francis\bibnamedelimb K\bibnamedelima C},
+           giveni={F\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c8e4c75e69e02d0c7c78277a52e295e8}{%
+           family={Taskinen},
+           familyi={T\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1ba59c28f90db059d902fa5b3248b41c}{%
+           family={Warton},
+           familyi={W\bibinitperiod},
+           given={David\bibnamedelima I},
+           giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{759ec492b7a52ac23d03424b72e24a5d}
+      \strng{fullhash}{b33766720a14460d68a1d6c05820a9d9}
+      \strng{bibnamehash}{759ec492b7a52ac23d03424b72e24a5d}
+      \strng{authorbibnamehash}{759ec492b7a52ac23d03424b72e24a5d}
+      \strng{authornamehash}{759ec492b7a52ac23d03424b72e24a5d}
+      \strng{authorfullhash}{b33766720a14460d68a1d6c05820a9d9}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Environmetrics}
+      \field{number}{6}
+      \field{title}{{Analyzing environmental-trait interactions in ecological communities with fourth-corner latent variable models}}
+      \field{volume}{32}
+      \field{year}{2021}
+      \field{pages}{e2683}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1002/env.2683
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Niku et al. - 2021 - Analyzing environmental-trait interactions in ecological communities with fourth-corner latent variable models.pdf:pdf
+      \endverb
+      \keyw{community analysis,fourth-corner problem,generalized linear mixed model,joint species}
     \endentry
     \entry{Novak2010}{article}{}
       \name{author}{2}{}{%
