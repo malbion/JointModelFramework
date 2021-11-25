@@ -1,15 +1,11 @@
 % DOCUMENT CLASS
-    % Change "letterpaper" to "a4" if you use a4 paper size
     \documentclass[a4,12pt]{article}
-    % Thesis formatting:  line spacing 1.5, Times New Roman or Arial 12 pt font, all four margins 20mm, A4 size.
+
 	
   %  \usepackage{titlesec} % Allows customization of titles
     \usepackage{authblk} % For multiple authors
     \usepackage{amsmath}
     \usepackage[utf8]{inputenc}
-    %\usepackage[T1]{fontenc}
-%     \renewcommand{\rmdefault}{phv} % Arial
-% \renewcommand{\sfdefault}{phv} 
  	\usepackage{times}
  	\usepackage{setspace} % lines spacing
     \usepackage{lineno} 	% See \linenumbers at the top of content.tex
@@ -18,9 +14,11 @@
     \usepackage{listings} % allows me to insert code 
     \usepackage{pdfpages}
     \usepackage[margin=20mm]{geometry} % set exact margins for thesis
+    \usepackage{caption} % allows doublespacing of captions
+    \captionsetup{font=doublespacing}
 
 % REFERENCES
-    \usepackage[giveninits=true, backend=biber, style=authoryear]{biblatex}
+    \usepackage[firstinits=true, backend=biber, style=authoryear, url=false, isbn=false, doi=false, eprint=false]{biblatex}
     \DeclareNameAlias{sortname}{last-first}
 
     \addbibresource{../../../BibTex_files/03_Chapter3.bib}
@@ -33,274 +31,293 @@
 
 \onehalfspacing % line spacing 1.5 for thesis formatting
 
-\title{Estimating interaction matrices for diverse, single-trophic communities}
+\title{\large Estimating interaction matrices for diverse, horizontal systems}
 
 
-\author[1]{Malyon D. Bimler}
-\author[1]{Margaret M. Mayfield}
-\author[2]{Trace E. Martyn}
-\author[3]{Daniel B. Stouffer}
+
+\author[1]{\small Malyon D. Bimler *}
+\author[2]{\small Margaret M. Mayfield}
+\author[3]{\small Trace E. Martyn}
+\author[4]{\small Daniel B. Stouffer}
+
+\affil[1]{\footnotesize School of Biological Sciences, The University of Queensland, St Lucia, Queensland, Australia. Email: malyonbimler@gmail.com}
+\affil[2]{\footnotesize School of Biological Sciences, The University of Queensland, St Lucia, Queensland, Australia. Email: m.mayfield@uq.edu.au }
+\affil[3]{\footnotesize School of Natural Resources and the Environment, The University of Arizona, Tucson, USA. Email: tmartyn@arizona.edu }
+\affil[4]{\footnotesize Centre for Integrative Ecology, School of Biological Sciences, University of Canterbury, Christchurch, New Zealand. Email: daniel.stouffer@canterbury.ac.nz }
 
 
-\affil[1]{School of Biological Sciences, The University of Queensland, St Lucia, Queensland, Australia.}
-\affil[2]{School of Natural Resources and the Environment, The University of Arizona, Tucson, USA}
-\affil[3]{Centre for Integrative Ecology, School of Biological Sciences, University of Canterbury, Christchurch, New Zealand}
-
-\date{} % supresses date
-
-\setcounter{page}{70}
 
 \setlength{\intextsep}{10ex}
 
 \begin{document}
-% \maketitle  
-% \newpage
-\setcounter{secnumdepth}{3} % sections are level 1
+\maketitle  
 
-% \linenumbers
+\noindent
+\textbf{Running title:} Estimating horizontal interaction matrices
+
+\noindent
+\textbf{Corresponding Author:} Malyon D. Bimler, email: malyonbimler@gmail.com, ph: +64 481941634\\
 
 
-\section*{Abstract}
-    
-    \begin{enumerate}
-    \item Understanding ecological communities requires an understanding of how the different species within it relate to one another. Those relationships are difficult to quantify in single trophic systems such as plant communities because they cannot be directly observed as in food webs or other species interaction networks, and must instead be inferred by other means. Current methods are inadequate for natural complex communities because they tend to rely on co-occurrence patterns (inaccurate) or intensive experimental designs (time-consuming, especially for many species). 
-    \item We describe a general framework which allows us to estimate competitive and facilitative pair-wise interactions in diverse plant communities from empirical observations of performance (e.g. fecundity). This framework requires a multi-tiered approach to resolve all interactions. We first apply individual fitness models models to each species in order to estimate interactions between species commonly observed to co-occur. We then use the resulting interactions to approximate interactions which were not observed using a different set of assumptions. 
-    \item This approach is modelled using a Bayesian statistical framework which allows us to estimate interactions coefficients despite high model complexity, as well as quantify the uncertainty around the resulting community matrix. We provide the model code in the STAN programming language. We illustrate the potential uses of this method by applying it to a case study on australian wildflowers. We show how to scale the resulting interaction matrix into per-capita effects by integrating the above model framework into an annual plant population dynamic model. This particular application can be of wide use to both ecosystem management and towards improving our understanding of community diversity and stability.
-    \end{enumerate}
+\noindent
+Manuscript submitted for consideration as a \textbf{Method} article.
 
-% neighbour density-dependent performance models
+
+\noindent
+Number of words - Abstract: 144\\
+Number of words - main text: 4934\\
+% intro 698
+% methods 1838
+% results 1041
+% discussion 1357
+4 Figures in main text.\\
+Number of references: 85\\
+
+\noindent
+\textbf{Keywords:} Species interactions, competition, facilitation, network, population dynamics, non-trophic, interaction strength.  
+
+\section*{Author contributions}
+
+M.D.B. designed the methodology, carried out analyses and led the drafting of the manuscript. M.M.M. helped design the field study, collected data, contributed to the interpretation of analyses and critically revised the manuscript. T.E.M. led the field study and data collection. D.B.S. helped design the methodology, interpret analyses and critically revised the manuscript. 
+
+\section*{Data accessibility}
+
+Data will be submitted to Dryad upon publication.
+
 \newpage
-\section{Introduction}
-    
-    \paragraph{}
-    Interactions between species can affect growth rates and population abundances, for example as a predator eats a prey or two plants compete for resources. Together, interactions between many species influence the dynamics of the whole community in ways which can determine patterns of species richness and abundance. In order to understand how community dynamics behave when many species are involved, ecologists can represent communities as networks \parencite{Pimm1978} where species are nodes and linked by interactions. This approach provides a broad view of how multiple species relate to one another within a community \parencite{Kefi2015}. As a result, ecological networks have been observed to typically differ from randomly-assembled networks in important and varied ways, thus informing us on the biological processes structuring these communities \parencite{Dunne2002}. There is now a rich body of work describing the characteristics of food webs, plant-pollinator networks, and host-parasite interactions, but non-trophic interactions such as those occurring between plants are largely neglected \parencite{Ellison2019}. This is unfortunate, as recent work indicates that non-trophic interactions and plant diversity alter food web structure, stability and diversity functioning relationships \parencite{Hammill2015, Giling2019, Zhao2019, Miele2019}. Integrating plant and trophic networks remains a key challenge in improving our understanding of community dynamics and persistence \parencite{Godoy2018c}. 
+
+% \setcounter{secnumdepth}{3} % sections are level 1
+
+\linenumbers
+
+% Submit to Ecology Letters as a Method
 
     \paragraph{}
-    Measuring non-trophic relationships in plant communities is difficult, in part because they cannot be directly observed as in food webs or other interaction networks, and must instead be inferred by other means. Arguably the most common approach to empirically quantifying interactions between a focal species and others involves measuring the effects of neighbours on a proxy for lifetime reproductive success (e.g. fecundity, growth rate) \parencite{Connell1961, Grace1990}. This can be done for example by growing focal species with neighbours of different identities and at varying densities, in the field or laboratory. The resulting phenomenological interaction strengths are not dependant on any specific mechanism and can be directly linked to changes in species abundances through the use of population dynamic models, for example with the Beverton-Holt model \parencite{Beverton1957, Levine2009}). This approach has been widely applied and has greatly improved our understanding of competition and its effects on biodiversity \parencite{Tilman1982, Chesson2000b, Levine2008, Adler2010, Mayfield2010a, Kraft2015} but remains limited to investigating interactions between few species, rather than a diverse community. The reason is two-fold: applying this method to a large number of species requires both large amounts of data and replication, as well as complex models which can be difficult to implement and run the danger of over-parameterisation. 
+    \textbf{Network theory allows us to understand complex systems by evaluating how their constituent elements interact with one another. Quantifying these interaction matrices from empirical data can be difficult however, because the number of potential interactions increases non-linearly as more elements are included in the system, and not all interactions may be empirically observable when some elements are rare. We present a novel modelling framework which estimates realised and unrealised interactions in diverse horizontal systems, using measures of element performance in the absence and presence of their potential interaction partners. The resulting interaction matrices can include positive and negative effects, the effect of an element on itself, and are non-symmetrical. The advantages of these features are illustrated with a case study on an annual wildflower community of 22 focal and 52 neighbouring species, with potential applications of this framework extending well beyond plant community ecology.}
+
+
+
+\section{Introduction}
+
+    
+    \paragraph{}
+    In many biological systems, interactions between system elements (be these species, individuals etc.) affect performance and together determine the dynamics of the whole system. In order to understand system dynamics when multiple system elements are involved, such complex systems can be represented as networks where the elements are nodes and linked by interactions \parencite{Pimm1978}. These nodes can take on a wide array of identities, including cells, individuals, populations or species. Likewise, interactions or links can operate via many different mechanisms and have a wide range of effects on the nodes. Biological networks have been observed to typically differ from randomly-assembled networks in important and varied ways, thus informing us on the biological processes structuring these systems \parencite{Dunne2002, Kinlock2019}.
+
+    \paragraph{}
+    Network theory has been widely applied to investigate the structure of biological systems such as food webs and other types of multi-level ecological interaction networks. Because network theory can be used to characterise diversity, stability and other community-level properties emerging from species interactions, it has had a long and meaningful impact on our understanding of ecological communities. There is now a rich body of work describing the structural properties of food webs, plant-pollinator networks, and host-parasite interactions (e.g. \cite{Lafferty2008, Thompson2012, Dunne2013, Stouffer2014, Cirtwill2015a}). Horizontal networks however, where interactions occur within the same level of organisation (for example interactions between plants belonging to the same food web) have been more neglected by network ecology \parencite{Ellison2019}. These elements and their interactions have been found to alter the structure, stability and diversity-functioning relationships of the whole multi-level system \parencite{Hammill2015, Giling2019, Zhao2019, Miele2019}, which makes integrating horizontal and vertical networks a key challenge in improving our understanding of system dynamics and persistence \parencite{Godoy2018c}.
+
+    %\paragraph{} % I reckon this paragraph can be cut?? It doesn't bring that much to the intro... Can be kept for MEE
+    %In many horizontal systems, interactions between nodes are not always easy to observe empirically and must instead be deduced through other means. One strategy is to look at associations between the nodes: nodes which are often found together are assumed to interact more strongly than nodes which rarely co-occur (e.g. \cite{Araujo2011}). This approach benefits from a wide range of packages available in R, requires fairly simple data (presence/absence of the nodes) and can be used to deduce associations between large numbers of nodes. An important drawback remains: association networks cannot always distinguish between the multiple confounding factors which lead to co-occurrence, and in ecological communities little evidence supports their use as a proxy for interactions \parencite{Sander2017,Barner2018, Thurman2019, Blanchet2020}.
+    %% [Keep this if I have enough spare words]
 
     \paragraph{} 
-    A common alternative which is less demanding, and scalable to high-diversity systems is the use of association, or co-occurrence networks. Plant 'interactions' are inferred by measuring positive and negative spatial associations between species (e.g. \cite{Saiz2011}), resulting in networks which capture a variety of factors including biotic interactions \parencite{Losapio2019}. This approach requires data which is much more easily obtainable and can naturally handle a large number of species. A wide range of packages are available in R to deduce association networks, alongside further tools and methods to better infer plant interactions from spatial distribution patterns \parencite{Keil2019}, for example by including environmental covariates. Spatial association networks however, have been found to remain poor predictors of species interactions and rarely match empirical estimates \parencite{Sander2017,Barner2018, Thurman2019, Blanchet2020}.
+    In many horizontal systems, interactions between nodes are not always easy to observe empirically and must instead be deduced through other means. A common approach in ecology is to directly quantify the effects of interacting nodes on the node of interest by evaluating its performance in the absence and presence of potential interaction partners \parencite{Connell1961, Grace1990}. 'Performance' can refer to any variable of interest that affects the dynamics of the system, for example quantity of resources gathered, biomass, or population growth. The resulting interactions are phenomenological and thus not dependent on any specific mechanism, allowing us to capture a wide range of biological processes affecting the dynamics of the whole system \parencite{Novak2010}. Such methods can quickly become data intensive and computationally complex, however, as the number of nodes $S$ increases and the number of potential direct interactions subsequently increases to $S^2$. Highly diverse systems pose a further challenge: the abundance distribution of different nodes is typically skewed, with a few elements making up the majority of abundances and a large number of elements remaining rare \parencite{Fisher1943}. Given that data collection is limited in time and scope, interactions with rarer elements especially may not be observed simply by chance, excluding them from analysis regardless of the role they might play \parencite{Olesen2011}. Empirically quantifying interaction matrices for diverse horizontal systems thus requires a method that is flexible to both a high number of nodes, and potential gaps in our records of interactions. 
 
 
-    \paragraph{}
-    In this paper, we describe a framework to estimate non-trophic interactions within a diverse plant system, which can be extended to other horizontal communities. Because not all interactions which can occur may be observed, we use a multi-tiered model which allows us to estimate interactions between common as well as rarer species and apply it with Bayesian parameter estimation methods which are flexible to greater model complexity.  Our framework is applied to a case study of an annual wildflower plant community in Western Australia consisting of 22 focal species and up to 52 neighbouring species, and the resulting interaction parameters are scaled into per-capita interaction strengths. We demonstrate how our method can integrate into and extend traditional plant population dynamic approaches to quantifying interactions by explicitly dealing with many species and allowing for both competitive and facilitative interactions. We illustrate how the resulting interaction matrices differs from a co-occurrence network on the same data, and suggest potential applications that make use of the rich information provided by species interaction networks.
+    \paragraph{} 
+    We present a general framework to estimate interactions in highly diverse horizontal systems. We specify a joint model which allows us to estimate both realised and unrealised interactions, the latter being conditioned on the former. We present the model code in STAN, a Bayesian statistical language which is flexible to a high number of parameters, and apply it to an ecological case study of an annual wildflower community in Western Australia. Using this  dataset, we estimate positive and negative interactions between 22 focal species and 52 neighbouring species and illustrate how to couch these results into established models of population dynamics. This step further widens the potential applications of this novel framework by accounting for other demographic processes affecting species or element performance, and thus system dynamics. We show the benefits of this approach by comparing a range of findings from our case study to the results derived from a spatial-abundance association network, a common alternative to estimating interactions in ecology. We suggest potential applications in species management and conservation that make use of the rich information provided by horizontal interaction networks as developed using our novel framework.
 
-    
+    % Mayve remove the last sentence???
+
 \section{Methods}
-    
+
+
+To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. We define realised interactions as those that can be directly inferred from the observed data, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system which quantify the pairwise effects of all neighbours $j$ on all focal elements $i$. 
+
+    \subsection{Data requirements}
+
     \paragraph{}
-    This framework can be applied to any dataset of interacting species which meets the following criteria: 
-    \begin{itemize}
-        \item observations of focal individuals record a proxy for lifetime reproductive success (e.g. seed production, stem diameter growth, above-ground biomass)
-        \item these observations also record the identity and abundance of neighbours within the interaction neighbourhood of each focal individual
-        \item observations are replicated across several individuals of each focal species
-    \end{itemize}
-    In addition to these requirements, any experimental design or data which may reduce confounding effects between environment and competition will provide more accurate estimates of interaction strengths (e.g. thinning certain plots, recording environmental data known to affect reproductive success). 
+    The joint model framework was initially developed for an ecological dataset where interacting species (elements) affect each other's lifetime reproductive success (performance). This framework however, can be applied to data from any interacting elements (e.g. cells, individuals, populations, species) which meet the following criteria. First, observations must include some proxy for performance, such as growth (e.g. biomass) or fecundity (e.g. seed production).  Second, these observations must also record the identity and abundance of neighbouring elements within the interaction neighbourhood of each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of neighbouring elements which make up the different interaction neighbourhoods. 
+
+    %     The joint model framework was initially developed for an ecological dataset where interacting species affect each other's lifetime reproductive success. %As such we refer to network elements or nodes as 'species' and node performance as 'lifetime reproductive success' or 'fitness' however this framework is not limited to ecological datasets and can be applied to data from any interacting elements (e.g. populations or groups of individuals) which meet the following criteria. 
+ 
+
+    In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with empty interaction neighbourhoods to better estimate intrinsic performance (i.e. in the absence of neighbours). In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though neither of these steps are strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
+ 
     
-    \subsection{Individual Fitness Model}
+    \subsection{Realised interactions}
         
         \paragraph{}
-        We begin by implementing an individual fitness model to each focal species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ...$) against the measured proxy for lifetime reproductive success $F_{i}$:
-        
+        Realised interactions are quantified by regressing the performance of an element  - a species, population or any chosen set of replicated units - against the abundance and identity of it's neighbouring elements in a neighbour-density dependent model (NDDM).  Increases or decreases in an overall element's performance can thus be attributed to neighbouring elements which were observed to co-occur. 
+
+        \paragraph{}
+        We implement a neighbour density-dependent model to each focal element $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ..., S$) against the measured proxy for performance $P_{i}$ through a link function $f$:
         \begin{equation}
-        F_{i} = \beta_{i0} - \sum_{i}^{j} \beta_{ij} N_{j}
-        \label{ifm}
+        f(P_{i}) = \beta_{i0} - \sum_{j=1}^{S} \beta_{ij} N_{j}
+        \label{nddm}
         \end{equation}
-        
-        The intercept $\beta_{i0}$ represents intrinsic fitness, a species' fitness in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ represent the species-specific effect of each neighbour $j$ on $i$. Note that neighbours can include conspecifics, in which case intraspecific interactions are denoted as $\beta_{ii}$.
+        The intercept $\beta_{i0}$ represents intrinsic performance (in the link scale), an element's performance in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ captures the effect of each neighbour $j$ on $i$. Note that neighbours can include other members of element $i$, in which case intraspecific interactions are denoted as $\beta_{ii}$.
+
+        \paragraph{}
+        This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $P_i$ and the right-hand side of the equation does not need to be linear, but can be modified to fit the data in question given an appropriate distribution and link function $f$, for example negative binomial and natural logarithm. 
               
-    \subsection{Unrealised links}
-    
-        \paragraph{}
-        In any given site or year, a focal species may only be observed to interact with a subset of potential interaction partners, which means the IFM above will not be able to estimate all potential interactions ($\beta$) between species. This is especially true for rare species. 
-        These \textit{unrealised} interactions can be estimated by using an alternative model with a different set of assumptions to the IFMs. This model is described as the response-effect model (REM) by Godoy, Kraft and Levine (2014) and assumes that each species has the same effect on all neighbours regardless of their identity, as well as the same response to competition regardless of competitor identity. 
-        
+    \subsection{Unrealised interactions}
+
+    \paragraph{}
+       A common issue in ecological datasets is that some elements may not be observed to co-occur with many neighbours, or at variable enough densities, because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. These \textit{unrealised} interactions can be estimated by using an alternative model which assumes that elements typically have a singular impact on and a singular response to neighbours independent of neighbour identity (response and impact model, or RIM - see \cite{Godoy2014b}). An unrealised interaction is therefore the product of two element's impact and response parameters. 
         \begin{equation}
-        F_{i} = \beta_{i0} - r_{i} \sum_{i}^{j} e_{j} N_{j}
-        \label{rem1}
+        P_{i} = \beta_{i0} - r_{i} \sum_{j=1}^{S} e_{j} N_{j}
+        \label{rim}
         \end{equation}
-        
-        Pairwise interactions which are missing from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. In order to allow both the IFM and REM interaction estimates to contribute to the likelihood, we first used the IFM to quantify observed interactions and then used those to estimate species-specific $r$ and $e$ parameters such that: 
-    
+        Pairwise interactions which cannot be inferred from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. 
+
+    \paragraph{}
+        In order to allow both the NDDM and RIM interaction estimates to contribute to the likelihood, we use the NDDM to quantify realised interactions and use those to estimate species-specific $r_i$ and $e_j$ parameters such that: 
         \begin{equation}
         r_i e_j \sim logistic \left ( \beta_{ij}, \sigma \right )
         \label{unrealised}
         \end{equation}
-    
         where $\sigma$ is a community-level scale parameter for the logistic distribution. We use a logistic distribution here because the heavier tails make it a slightly weaker informative prior than a normal distribution. $\sigma$ defines how widely the tails extend and can be expressed in terms of the standard deviation. 
 
-	\subsection{Model fitting}
 
-        \paragraph{}        
-        The IFMs (Eq. 1) and the REM (Eq. 2) can be implemented as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify \textit{realised} interactions which are then fed into the REM. We provide a working example of the STAN file used to specify and set this model to the case study below in the Supplementary Information. From this file, only the link function for $F_i$ and it's parameterisation need to be modified in order to apply it to a different model or system. In the code given, a negative binomial distribution is used to fit seed production ($F_i$) but a different distribution may be more appropriate when using other proxies for lifetime reproductive success.   
+    \subsection{Rescaling interaction estimates into per-capita interactions}
 
-        \paragraph{}
-        STAN returns parameters as distributions which maximise the likelihood, and are conditioned by the data and priors. Priors describe the distribution of plausible values which these parameters may take. For an introduction to Bayesian inference which relates the use of priors to frequentist hypothesis testing, see \textcite{Ellison1996}. We recommend investigators experiment with setting different informed priors to both improve model convergence and verify the robustness of parameter estimates. The resulting parameters are termed posterior distributions, and samples from the posterior are drawn for analysis. \textcite{Ellison2004} also provides an accessible review of parameter estimate and the use of posterior distributions using a worked example on ant species richness data.
-
-        %----------------------------------
-
-    \section{Case study}
-
-    	We applied the model framework described above to a case study of annual wildflower plants. After quantifying the interaction matrix, we scale all interaction samples using estimates of intrinsic fitness ($\beta_{i0}$) and experimentally-measured species demographic rates. The scaling is determined by a system-appropriate population dynamic model and allows us to translate the interaction matrix into per-capita effects on  abundance. This transformation places the resulting interaction strengths on the same scale and allows us to compare the community-wide effects of different species, amongst other potential applications further illustrated in the Results and Discussion. 
-
-    	\subsection{Data}
-
-        \paragraph{}
-        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season, from July to October. The resulting dataset contains from 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of the focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species. Total neighbourhood diversity was 71 wildlfower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and did not target any particular species.
-
-        \paragraph{} 
-        We required species demographic rates (seed and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability. The remaining species were assigned mean demographic rates from these experiments. 
-
-		\subsection{Model fitting}
-
-        \paragraph{}
-        We fit the model using R version 3.6.3, STAN and the rstan package \parencite{R2020, Carpenter2017, Rstan2020}. Estimates of seed production were fit with a negative binomial distribution. The model was run with 4 chains of 5000 iterations each, discarding the first 1000. Models were checked for convergence and traceplots were visually inspected to verify good chain behaviour and mixing. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
-
-        \subsection{Scaling interaction estimates into per-capita effects}
-
-        \paragraph{}
-        The above model framework returns species-specific estimates of intrinsic fitness ($\beta_{i0}$), as well as as a species x neighbour matrix of observed ($\beta_{ij}$) and unobserved ($r_i e_j$) interaction estimates which quantify the effects of one neighbour $j$ on the intrinsic fitness of a focal species $i$. Though useful as they are, these estimates can lead to a wider range of potential applications when integrated into models of population dynamics. For example, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. Using an appropriate model of population dynamics, the raw interaction estimates can be scaled into per-capita effects (${\beta}''$) which are directly comparable between species \parencite{Godoy2014, Bimler2018}. % Note that this step depends on a population dynamic model which can link species abundance to the chosen measure of fitness, and may require species-specific measures of certain key demographic rates (e.g. mortality, seedling survival) to scale the interactions.
-
-        \paragraph{}
-		In order to determine the appropriate scaling for the interaction estimates returned by our framework, we transform the model into a form equivalent to a Lotka-Volterra competition model: 
-
+        The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of element $j$ on the performance of element $i$. Differences in the magnitude of these interaction terms may thus reflect intrinsic differences in performance, which can vary in time, space and between elements. Two species may for example have different baseline values of reproductive fitness. In order to make the effects of interactions comparable between elements, the interaction terms returned by both models above can be transformed into \textit{per capita} interaction strengths \parencite{Laska1998}. The appropriate scaling is determined by rewriting the neighbour density-dependent model (Eq. \ref{nddm}) into a form equivalent to a Lotka-Volterra competition model: 
         \begin{equation}
-        F_{i} = \beta_{i0} \left ( 1 - \sum_{i}^{j} {\beta_{ij}}'' N_{j} \right )
+        P_{i} = \beta_{i0} \left ( 1 - \sum_{j=1}^{S} {\beta_{ij}}'' N_{j} \right )
         \label{LVform}
         \end{equation}
-
-        This gives us the scaled interaction strengths: 
- 
+        This reveals that our interaction terms can be rescaled into per-capita interaction strengths by dividing them by the recipient element's intrinsic performance:  
         \begin{equation}
         {\beta_{ij}}'' = \frac{\beta_{ij}}{\beta_{i0}}
         \label{scaling}
         \end{equation}
+        where $\beta_{ij}$ can be replaced with $r_i e_j$ when appropriate. Though this scaling step is not strictly necessary, for ecological datasets per capita interaction strengths have the benefit of being directly comparable both across species and across environmental contexts where reproductive fitness may vary \parencite{Wootton2005}, leading to a wider range of potential applications.
+
+    \subsection{Integrating interaction strengths into models of population dynamics}
 
         \paragraph{}
-		For this case study, we adapted the framework described here to work with a well-supported annual plant population model with a seed bank \parencite{Bimler2018}. The model describes changes in the rate of a focal species' seeds in the seed bank from one year to the next, which can be linked to $F_i$ through species-specific demographic rates (equations for the annual plant model are further described in Chapter 4). The exact form of the rescaled interactions can thus vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality.
+        In certain instances, models of element population dynamics can be used to further extend the usefulness of the framework presented here. We suggest two cases where such an application may be useful. Firtly, the variable chosen to measure the performance of focal elements $P_i$ may not directly translate into a measure of performance which is relevant to system dynamics,  due to inherent practical constraints with collecting empirical data. For example, the life-history reproductive strategies of certain species may lead to measures of high fecundity (or performance) in the field which do not account for low survival rates post-observation \parencite{Broekman2020}. In these cases, population dynamics models can be used to account for species-specific demographic rates into estimates of interaction effects. Alternatively, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal element rather than on it's performance. In this scenario, a population dynamic model can be used to translate interaction effects on the measured variable into interaction strengths affecting the variable of interest. 
 
+        \paragraph{}
+        In both cases, an established population dynamic model is required as well as knowledge of any crucial element-specific demographic rates. This step is illustrated for our case study in the Supplementary Methods \ref{SI:popdyn}, where an annual plant population dynamic model is used to transform effects on wildflower seed production (the measured proxy for performance) into effects on population growth, and includes species-specific estimates of seed germination and survival rates. 
+
+        % \paragraph{}
+        % Though this rescaling is not necessary when interactions are quantified as effects on rates such as growth or biomass accumulation, it is particularly useful in cases where $P_i$ is captured by variables which are affected by r/K reproductive strategies, such as seed or fruit production. Species $i$ for example may produce a high number of seeds of which few are viable, whereas species $j$ produces very few seeds though these are much more likely to mature into reproductive adults. Scaling the interaction terms returned by the models allows us to compare how species $i$ and $j$ both respond to interactions, relative to their performance. [MOVE TO DISCUSSIO?]
+
+
+    \subsection{Model fitting}
+
+        \paragraph{}        
+        The NDDM (Eq. 1) and the RIM (Eqs. 2 and 3) can be implemented as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify realised interactions which are then fed into the RIM. We provide a working example of the STAN code used to specify and set this model to the case study below in the Supplementary Methods \ref{SI:modelcode}, as well as a downloadable zip folder which contains the necessary STAN model code, R script and functions to run the model on a simulated dataset. From the model file, only the link function for $P_i$ and it's parameterisation need to be modified in order to apply it to a different model or system. Additionally, non-integer measures of performance (e.g. biomass) should be redefined as real rather than integers in the data block. In the code given, a negative binomial distribution is used to fit seed production ($P_i$) but a different distribution may be more appropriate when using other measures of performance.   
+
+        \paragraph{}
+        Bayesian models are often run on multiple MCMC chains. In our case, we deliberately run only one MCMC chain because the latent variables in our model ($r_i$ and $e_j$) are invariant to sign switching. This means that different MCMC chains can return coefficient values which are of the same magnitude, but opposing signs. As with the boral function in the boral R package \parencite{Hui2021} and the MCMCfactanal function in the MCMCpack package \parencite{Martin2011}, we run one chain only to simplify issues with checking chain convergence and computing parameter estimates which arise from sign-switching. Though many MCMC convergence diagnostics require multiple chains to be computed, single chain convergence can be assessed with the Geweke convergence statistic \parencite{Geweke1992}, for example with the geweke.diag() function from the coda package \parencite{Plummer2006}, as well as visually checking traceplots.
+
+        \paragraph{}
+        STAN returns parameters as distributions which maximise the likelihood, and are conditioned by the data and priors. Priors describe the distribution of plausible values which these parameters may take. For an introduction to Bayesian inference which relates the use of priors to frequentist hypothesis testing, see \textcite{Ellison1996}. We recommend investigators experiment with setting different informed priors to both improve model convergence and verify the robustness of parameter estimates. The resulting parameters are termed posterior distributions, and samples from the posterior are drawn for analysis. Using parameter distributions rather than point estimates allows for easy inclusion of uncertainty in the analysis of results, we therefore recommend bootstrap sampling from each posterior interaction strength distribution to create multiple samples of the community interaction matrix. \textcite{Ellison2004} also provides an accessible review of parameter estimates and the use of posterior distributions using a worked example on ant species richness data.
+
+
+    \subsection{Case study}
+
+      
+        We applied this framework to an annual wildflower community dataset from Western Australia collected in 2016. This dataset contains observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 neighbouring species, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Bimler2018} which required experimentally-measured species demographic rates. Viable seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
+        Further details on the data, the model fitting and the procedure for deriving scaled interactions from the population dynamics model are available in the Supplementary Methods \ref{SI:casestudy}.
 
 
 \section{Results}
 
-	\paragraph{} 
-	We applied our framework to estimate non-trophic interactions between 22 focal species and 52 neighbours in an annual wildflower community. In our case study, 13.6\% of interactions between focal species were estimated using the REM (out of 484), and 40\% when taking all neighbouring species into account (out of 1144). IFM and REM estimates matched well and followed similar distributions (Figure \ref{fig:adist}). Interactions estimates were scaled into per-capita effects and the resulting interaction network is illustrated in Figure \ref{fig:all_vs_rem}.A.
 
-	    \paragraph{} 
-    One potential use for translating interaction estimates into per-capita interaction strengths is to identify species of particular importance to the healthy functioning of the whole community. Keystone species for example typically have low abundance but disproportionately strong effects on the rest of the community \parencite{Power1996}. Foundation species on the other hand are locally abundant and have important, sometimes facilitative effects on other species population dynamics \parencite{Ellison2019}. Figure \ref{fig:species}.A. identifies several contenders for keystone (orange diamonds) or foundation (blue diamonds) species status based on their community abundance and net interaction effects across all neighbours. Likewise, the integration of exotic species into native communities can also be evaluated using interaction networks. In our case study, two out of three exotic species (red diamonds in Fig. \ref{fig:species}) were extremely abundant but had substantially different effects on neighbours, with the grass \textit{Pentameris airoides} facilitating some species, whereas \textit{Arctotheca calendula} had almost exclusively competitive effects on all other neighbours (Fig. \ref{fig:species}.B.). These examples are not exhaustive, but serve to illustrate how interaction matrices can help us understand what roles specific species play within a community. 
+    Key aspects of the resulting interaction matrix is that these interactions can be competitive or facilitative, non-symmetrical (the effect of element $i$ on $j$ does not necessarily match the effect of element $j$ on $i$) and include intraspecific effects (the effect of element $i$ on itself). We illustrate the advantages of this approach in the case study results below. 
 
 
-    \begin{figure}[H]
-       % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../2.analyses/figures/interaction_ests.png}
-        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the IFM ($\beta_{ij}$), which are then plotted against the corresponding REM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unobserved} (left) and observed interactions estimates returned by the REM. Interaction estimates are unscaled.}
-        \label{fig:adist}
-    \end{figure}
+    \subsection{Case study results}
 
-    \newpage
-
-        \begin{figure}[H]
-        \begin{centering}
-        \includegraphics[width=0.7\textwidth]{../2.analyses/figures/all_vs_rem.png}
-        \caption{Mean per-capita interaction strengths between 22 focal species of wildflowers. (A) shows all observed and unobserved interactions whereas (B) shows those interactions estimated by the REM only. Competitive interactions are shown in yellow and facilitative in blue, line thickness denotes interaction strength. Arrows point to species $i$.}
-        \label{fig:all_vs_rem}
-        \end{centering}
-    \end{figure}
+    We first applied this joint model to simulated data to verify that the original interaction parameters could be recovered by this framework. We then applied this model to a case study dataset of a diverse annual wildflower community, where elements consisted of 22 focal species and up to 52 neighbouring species (including focal species) and performance was measured as viable seed production. We conducted a posterior predictive check comparing simulated performance data to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. The model returned estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which 60\% were realised.  When accounting for focal species only, 86.4\% of interactions were realised and estimated by the NDDM. NDDM and RIM estimates matched well and followed similar distributions (S.I. \ref{SI:results} Figure \ref{fig:adist}) as enforced by the framework. 
+    
 
 
 
-        \paragraph{}
-    Our resulting networks also differ qualitatively to association networks (Figure \ref{fig:netwks}.A-C), a common alternative to inferring interactions in species-rich communities. Firstly, intraspecific interactions ($\alpha_{ii}$) are estimated for all focal species and allow us to quantify how much a species regulates itself. In our case study, 85\% of all species across all network samples showed intraspecific competition. Interactions estimated on growth rates are also directed, which means they have an associated direction such as going from species $i$ to species $j$ ($\alpha_{ij}$), or alternatively from $j$ to $i$ ($\alpha_{ji}$). This interaction pair does not need to be of the same sign or strength, which makes the resulting interaction networks non-symmetrical. Interaction pairs of opposing signs were common in our case study (Figure \ref{fig:netwks}.D), making up 40\% of all pairs and many more differed in strength. 
+    % \paragraph{}
+    %     Jacopo made a few comments which I could also address here: 
+    %     \begin{itemize}
+    %         \item explore the values of r and e, e.g. whether they are correlated across species (they aren't) - can be included in Supps
+    %         \item interaction estimates for the REM peak around 0 - which can only occur if $r_i$ or $e_j$ are 0 - can discuss when this might occur (1. there exists true 0's such that some species have no effects on others - 2. some species might have both positive and negative effects so averages to 0 - 3. prior is centered on 0 and signal is too weak to be picked up)
+
+
+    
+
+%     \subsection{Rescaling the interactions}
+    
+% I don't know where this goes - does it just repeat the methods? maybe reduce to a few lines in results before case study results?
+% Really, it's just repeating stuff I've written above in the methods...
+
+%     \paragraph{}
+% 	The interaction matrix resulting from the joint model captures the likely effects of neighbours on the performance of focal elements, in this case species. Differences in the magnitude of these interaction terms reflect differences in intrinsic performance (performance in the absence of neighbours) of the focal elements. In order to make interactions comparable between elements that may have very different baseline values of performance, interaction terms can be rescaled by dividing them by the returned values for intrinsic performance. 
+
+
+%     \paragraph{}
+%     To understand how the returned interaction matrix may affect system-wide behaviour, it is useful to also integrate interaction estimates into an overarching model describing the dynamics of the elements in the community. In our wildflower case study, models of plant population dynamics are necessary to link interaction effects on performance to patterns of abundance and diversity. In our example, seed survival and germination rates were used to rescale interaction effects on seed production (our measure of performance) into \textit{per-capita} interaction effects on species growth rates. In other cases where different measures of performance are used (e.g. biomass or height), the species-specific demographic rates to be included and the rescaling formula must be derived from a system-appropriate population dynamic model, as illustrated in the Methods. The resulting per-capita interaction strengths allow us to draw inferrences about how elements may affect each other's growth and future abundances, which is particularly useful for a range of ecological applications as we further illustrate below. \\
+
+
+
+  
+
+    %\subsection{Case study results}
 
     \paragraph{}
-    In addition to explicitely allowing for many species interactions, including both competitive (Figure \ref{fig:netwks}.A) and facilitative (Figure \ref{fig:netwks}.B) interactions is another feature which distinguishes our framework from traditional approaches to plant community ecology. Plant population dynamic models typically force interactions to be competitive, despite rising evidence that facilitation is common and an important driver of plant community dynamics \parencite{Brooker2008a}. In our case study, 35\% of all focal x neighbour interactions were facilitative, as were 26 \% of all focal x focal interactions.
+     For our case study, the resulting interaction matrix was non-symmetrical and included both positive (competitive) and negative (facilitative) values (Figure \ref{fig:netwks}.A \& B). Though competition was the dominant interaction type,  37\% of all focal x neighbour interactions were facilitative, as were 32\% of all focal x focal interactions (medians across all network samples). As a result, 46\% of interactions between pairs of focal species were of opposing signs such that $i$ competes with $j$ but $j$ facilitates $i$. Furthermore, the elements of the diagonal (the effect of an element on itself) were able to be estimated, which can allow us to quantify how much am element regulates it's own performance. For 11 of our 22 focal species, the scaled distributions of these intraspecific effects did not overlap with 0, which suggests individuals of those species have a non-trivial effect on other individuals of the same species. Overall, 77\% of focal species had a median intraspecific interaction strength which was competitive. 
+
+
+     \paragraph{}
+     We applied the same data to the cooccur package in R \parencite{Griffith2016} to build a spatial-association network, a common alternative to inferring interactions in diverse systems. Species associations (Figure \ref{fig:netwks}.C) were all negative (competitive), symmetrical, and the association between a species and itself (the equivalent to intraspecific interactions) cannot be estimated. Together, these aspects make species association networks qualitatively different to the interaction networks returned by our framework. 
 
 
 
-    \begin{figure}[H]
-        \begin{centering}
-        \includegraphics[width=0.9\textwidth]{../2.analyses/figures/spceffects_edited.png}
-        \caption{Focal species net effects on neighbours, according to their abundance (A). On the x axis, values over 0 indicate a net competitive effect whereas values below 0 indicate a net facilitative effect on neighbouring species. Dashed lines represent the median value for focals. Diamonds are species means across all network samples, black lines cover the 50\% quantile and grey dots indicate the full range of out-strength values as calculated from 1000 sampled networks. Yellow, blue and red diamonds signify potential keystone or foundation species, and exotic species respectively. (B) Focal species effects on neighbours, split into competitive vs. facilitative. Axes refer to the absolute sum of competitive vs. facilitative interactions. As for (A), diamonds are species means across all network samples and grey dots indicate the full range of  values as calculated from 1000 sampled networks.(1) \textit{P. airoides}, (2) \textit{A. calendula}.}
-        \label{fig:species}
-        \end{centering}
-    \end{figure} 
+
+    \subsection{Examples of ecological applications}
+
+    \paragraph{}
+    We illustrate a few potential applications of our framework by exploring questions of common ecological relevance and how these can be answered using the results from our case study. Each question below highlights some of the advantages of our resulting interaction network over the spatial-association network returned by the cooccur package: intraspecific interactions, non-symmetrical interactions, and the ability to estimate positive and negative interactions. 
 
 
- %    Identifying keystone species. .. GITE and HAOD rel. abund < 0.01, two highest sumaji. Maybe GOBE  too? 
- %    Invasives...
- %     Foundation species: VERO, maybe POCA ? Also well connected! 
- %    PLDE : fairly common, strong facilitative effects
- %    Dominant species are locally abundant but replaceable. 
- %    Invasives: ARCA
- %    TRCY and TROR - very different strategies!
- %    EROD: outcompeted by many species, weak effects on others, received lots of facilitation
- % - abundance - sum of comp effects - sum of facil effects
+    \subsubsection*{Do abundant natives under-regulate their population density compared to rarer native species?}
+    One hypothesis as to why certain plant species are more abundant than others is that they tend to compete with themselves less strongly than rare species \parencite{Yenni2012, Yenni2017}. Hypothetically, this release from intraspecific competition pressure allows them to reach much higher abundances than species which strongly compete with themselves. In our case study, we can explore this hypothesis by plotting the effect of a species on itself (the diagonal of the interaction matrix, or intraspecific interactions) against it's abundance as in Figure \ref{fig:species}.A. Intraspecific interactions are at their weakest when close to $0$. The two most abundant native species \textit{Velleia rosea} (VERO) and \textit{Podolepsis canescens} (POCA) highlighted in purple fall very close to the median intraspecific interaction strength. This suggests that \textit{V. rosea} and \textit{P. canescens} do not reach high abundances through an under-regulation of their population density but through other means (e.g. access to a larger niche space). As noted previously, the diagonal of the matrix is not available in spatial association networks.
+    %[ADD You could note that no comparison with standard approaches is possible because existing methods don't allow for calculation of self regulation.  You send it before but maybe drive that novelty home. ] 
+
+    \subsubsection*{Which species may be taking on keystone roles in the system?}
+    Keystone species have strong effects on the dynamics of the whole ecosystem, such that their exclusion from a community can create significant changes in species density and composition \parencite{Paine1969}. Furthermore, the impact of keystone species on other species is disproportionately large relative to their abundance \parencite{Power1996, Piraino2002, Libralato2006}. The keystone species concept is  relevant to ecosystem management and conservation in helping identify species of particular importance for the safeguarding of a whole system \parencite{Soule2005a}. Though determining which species truly serve keystone roles has historically involved extensive ecological experimentation (e.g. \cite{Paine1992}), we can identify potential candidates by comparing a species' impact on the population growth of other species to it's own abundance \parencite{Libralato2006}. It is important to note that because our framework allows for asymmetrical interactions, we are able to differentiate a species' impact on other species from it's response or sensitivity to neighbours. Figure \ref{fig:species}.B highlights two native species in green which may be potential keystone species due to having strongly competitive effects on the rest of the community overall, despite rather low abundances: \textit{Haloragis odontocarpa} (HAOD) and \textit{Gilberta tenuifolia} (GITE). Plotting species spatial association strengths against their log abundance, however, does not return the same insights (Figure \ref{fig:coocab}).
+    
+
+    \subsubsection*{Do all exotic species compete with native species?}
+    Though many invasive species compete with natives \parencite{Naeem2000, Corbin2004, Riley2008, Zheng2015}, several studies have found evidence of invasives facilitating natives, with cascading effects on other species and net positive effects on ecosystem processes \parencite{Rodriguez2006, Ramus2017}. By allowing for positive and negative interaction strengths between species in a system, we can determine which exotics are harmful or beneficial to a native's performance. Figure \ref{fig:species} C. plots the sum of a species competitive effects on neighbours against the sum of it's facilitative effects on neighbours. Exotic species are identified in red. All three exotic species have overall competitive effects, especially \textit{Arctotheca calendula} (ARCA) which is a weak facilitator but has a higher-than-median competitive effect on neighbours. \textit{Pentameris aroides} (PEAI) and \textit{Hypochaeris glabra} (HYPO) on the other hand are close to the community median for both facilitative and competitive effects. Neither \textit{P. aroides} nor \textit{H. glabra} are particularly competitive towards other species in the system, and even facilitate some species regardless of whether those are native or exotic. It appears instead that \textit{A. calendula} may be more of a threat to the native community than either of the other exotic species present. 
+
+    %\textit{Hypochaeris glabra} (HYPO) and \textit{Arctotheca calendula} (ARCA) both have a lower-than-median facilitative effect on neighbours but a higher-than-median competitive effect, these two species overall have a competitive effect on the native-dominated community. \textit{Pentameris aroides} (PEAI) on the other hand has a slightly lower-than-median competitive effect and higher-than-median facilitative effect: it competes more weakly and facilitates more strongly than the median species in the system, regardless of whether they are native or exotic. In this instance, \textit{P. aroides} is an exotic species that facilitates some native species.
 
 
-
-    \newpage
-
-    \begin{figure}[H]
-    	\begin{centering}
-        \includegraphics[width=0.9\textwidth]{../2.analyses/figures/bigntwkfig.png}
-        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package \parencite{Griffith2016}. Competitive and facilitative interactions are here shown separately for ease of view but were analysed together (see Fig. \ref{fig:all_vs_rem}.A). Focal species only are included. Species associations (C) were all negative.  Interactions estimated for (A) and (B) are given as the mean over 1000 samples. Line thickness denotes the strength of the interactions or association. (D) shows the proportion of pair-wise interaction loops which were asymmetric (+/-), cooperative (+/+) or competitive (-/-) in our interaction matrix.}
-        \label{fig:netwks}
-       \end{centering}
-    \end{figure}    
+    % \paragraph{}
+    % Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. Basically scaling into per-capita is necessary if we want to make inferrences about diversity maintenance or stability. \\
+    % We calculated .... 
 
 
+    
 
 \section{Discussion}
     
+% word count aim: 500-1000
+
+% Cut three paragraphs and tighten
+
+
+    \paragraph{} 
+    Our novel framework quantifies the effects of interacting elements and reciprocal performance, allowing the estimation of diverse, horizontal interaction matrices. The resulting matrices are non-symmetrical and can contain both positive and negative interactions, as well as the effect of one element on itself. This framework is flexible to metrics of performance, element identity (groups) and diversity. We also propose a way to estimate unrealised interactions from those which are realised. The matrices generated through this framework can be transformed into interaction networks through the use of further models describing the system's interaction dynamics. These features make it particularly useful in an ecological context, as illustrated in our case study on a diverse wildflower community, as well as flexible for use with data from the wide range of complex systems dominated by horizontal interactions.
+
     \paragraph{}
-    The framework presented here allows the estimation of species-rich interaction matrices from plant community data. Given individual observations of reproductive success and the identity of the local neighbourhood, our model uses Bayesian regression to quantify the competitive or facilitative effects of one species on another's intrinsic fitness. Scaling the resulting interaction estimates into per-capita interaction strengths can integrate these results into  population dynamic models, extending traditional plant ecology approaches to quantifying interactions by explicitly allowing for many species and interactions, as well as being able to include and estimate facilitation. We showcase this framework with a case study on a diverse annual wildflower system and illustrate how the resulting interaction networks allow us to better characterise the inner workings of these communities and has strong applications for ecosystem management and conservation.
-
-    \subsection{Interaction matrices for diverse communities}
+    Here, we illustrate the unique useful features of this framework using a typical plant-dominated ecological system for context. In our case study, we show how wildflower species are linked through  plant-plant interaction networks. In turn, this network can help us identify what roles specific species play within a community, and explore how the mechanisms maintaining diversity and stability operate in these systems. By estimating the effects of species on each other's performance, and subsequently their population growth and patterns of abundance, our method stands in contrast to association networks and returns qualitatively different information. There are a wide range of association network frameworks used in ecology \parencite{Burns2010, Losapio2018, Montesinos-Navarro2018} and collectively, they are a common alternative to estimating interaction networks in high-diversity systems as they capture spatial associations between species (e.g. \cite{Saiz2018}) and require easier-to-obtain data. Association networks also benefit from easy implementation with a wide range of packages in R (e.g. \cite{Griffith2016}) though the resulting networks are typically symmetrical and cannot capture a species' effect on itself. Moreover, association networks remain poor predictors of species interactions and rarely match empirical estimates \parencite{Sander2017,Barner2018, Thurman2019, Blanchet2020}.
 
     \paragraph{}
-    The model framework we present here quantifies pair-wise interaction strengths between species from diverse single-trophic community data. Several aspects of our model and its implementation allow us to better capture complex features of plant communities compared to co-occurrence networks as well as traditional plant population dynamic models. Like co-occurrence networks, our framework is flexible to the inclusion of many species. Unlike co-occurrence networks however, interactions in our model are estimated from species effects on each other's growth rates. This allows us to capture how interactions may directly affect species abundances, rather than spatial association patterns. Two features make this possible: the response-effect model to estimate unobserved interactions, and a Bayesian implementation to deal with many parameters. 
+    Species interaction networks have a wide range of practical applications, such as evaluating ecosystem response to human-altered landscapes, guiding future management decisions \parencite{Ross2011} or exploring how communities may respond to global warming \parencite{Gorman2019}. Conservation and ecosystem management efforts aimed at regulating species abundances can, for example, use the information provided by an interaction network to prioritise which species to conserve or eradicate based on their role in the community. Such roles can be deduced by a species' position in the interaction network \parencite{Cirtwill2018a} and as illustrated in our case study. Identifying keystone, foundation and other important types of species roles is also helpful for understanding biological diversity, ecosystem integrity and functioning, especially in response to disturbances and other stresses \parencite{Nyakatya2008, Orwin2016, Losapio2017, Narwani2019}. The examples we describe in our case study are not exhaustive, but serve to illustrate how interaction networks can help us understand both community dynamics overall and the effects \& response of specific species towards the community. 
 
     \paragraph{}
-    The response-effect model allows us to deal with a small number of unobserved interactions by relaxing assumptions for those cases and estimating more general 'effect' and 'response' parameters from the pair-wise interactions that are observed. Because they are estimated from observed interactions previously quantified by the IFM, the response and effect parameters are constrained such that their product follows a similar distribution to that of the observed interactions (Figure \ref{fig:adist}). The Bayesian implementation means that parameters are estimated using MCMC algorithms, which amongst many benefits can estimate more parameters than with more commonly used frequentist approaches \parencite{Dorazio2016}. This approach also returns parameter estimates as posterior distributions rather than simple mean and standard deviations. By having access to the full distribution of likely values for every interaction, we can draw samples of likely networks from these distributions and thus easily incorporate some measure of variation and uncertainty around interaction values. 
+    Quantifying the matrix of per-capita interaction strengths between species in horizontal communities can also allow us to explore how the mechanisms maintaining diversity and stability operate in these systems and across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability \parencite{Barabas2017} and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive and facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species (for an example, see \cite{Chu2015a}); weak interactions between species suggest that they are not sharing or competing for many resources, and thus may have large niche differences in the community. %Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to stability and diversity in plant communities.
 
-    \subsection{Limitations}
+        \paragraph{}
+        Another key feature of our model framework is the inclusion of facilitative interactions, which have traditionally been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised \parencite{Callaway1997a} but there is still little consensus on how they may affect biodiversity \parencite{Bruno2003, Brooker2008a}. Recent work suggests facilitation may be more widespread than traditionally thought \parencite{Gross2015, Picoche2020} and can benefit species diversity and stability depending on the circumstances \parencite{Coyte2015, Brooker2008}. Our framework provides a means to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity.  
         
         \paragraph{}
-        Though our framework does provide a way of estimating interactions between species which are not observed to cooccur, care should be taken that these unrealised interactions do not dominate a resulting network. The method we propose uses observed interactions to estimate simpler parameters which allow us to approximate the remaining interactions. This method thus works better the more observed interactions we have with which to estimate the unobserved ones, and the more reliable those observed estimates are. It is also important to consider the likely reasons for missing interactions. Forbidden links are a subset of potential interactions which cannot be observed, often due to biological constraints or spatio-temporal uncoupling. For example, a pair of short-lived annual plants might have such opposing phenologies that their growing season never overlaps in the field. This type of interaction would be assigned a 0 value. We direct the reader towards the literature on forbidden interactions \parencite{Olesen2011, Jordano2016} for solving these cases. 
+        Ultimately, quantifying plant interaction networks allows us to apply tools from network theory which will help us understand not only how plants interact, but also how these interactions drive community-level patterns of abundance and diversity. Several metrics already exist for describing network structure such as weighted connectance \parencite{Ulanowicz1991} or relative intransitivity \parencite{Laird2006a}, though these are fewer than for trophic or unweighted networks networks (e.g. \cite{Bersier2002, Delmas2019}). Adapting measures of nestedness or modularity for example to non-sparse networks (as plant communities typically are) would allow us to further characterise how interactions and species are organised. These metrics relate to various aspects of stability and could greatly inform us on how diversity is maintained between plants. Likewise, networks also provide several ways of measuring and describing species roles in their respective communities \parencite{Cirtwill2018a} for example through the use of structural motifs, unique patterns of interacting species which together make up the whole network. Motifs have been found to have important biological meaning in food webs \parencite{Bascompte2005a} but remain to be identified for single-trophic and bipartite networks. 
 
-        \paragraph{}
-        Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain-mixing and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial as we do not recommend fewer than 20 observations per focal species. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times across all observations were grouped into an 'other' category with its own interaction effect. If interactions with or between very rare species are the explicit object of interest however, data-collection can simply be focused on amassing observations of focal individuals from those rarer species to be able to estimate these interaction strengths.   
-
-
-    \subsection{Applications to ecosystem management}
-
-        \paragraph{}
-        Interaction networks provide a unique lens with which to examine an ecological community. By describing how species are linked, networks can for example be used to evaluate ecosystem response to human-altered landscapes and guide future management decisions \parencite{Ross2011} or explore how communities may respond to global warming \parencite{Gorman2019}. Specifically, couching species-rich interaction matrices into models of population dynamics allow us to compare how community dynamics may affect and respond to individual species. This can direct ecosystem management efforts such as prioritising certain species to conserve, or eradicating invasives which are disruptful to native species community dynamics.
-        % Because some species have stronger effects on other species abundances and are more crucial to the maintenance of biodiversity, management efforts can be prioritised towards their conservation. 
-
-        \paragraph{}
-        Certain species play important roles in the community which can be deduced from their position in the interaction network \parencite{Cirtwill2018a}. Keystone species for example are both crucial to maintaining the organisation and diversity of their community, and have exceptionally strong effects on other species \parencite{Mills1993}, often leading to secondary extinctions when they are removed from a network. Their influence on the abundance of other species and wider community dynamics is disproportionately high compared to their biomass \parencite{Power1996, Piraino2002, Libralato2006}, which allows easy identification of potential keystone species from our network results (Fig. \ref{fig:species}) though further tests are recommended for validation. Foundation species also control local biodiversity but are widely connected, locally abundant and hold a unique position in regards to their effects on community dynamics \parencite{Ellison2005, Baiser2013, Ellison2019}. Though it can take many years of careful study to identify foundation species from abundant species which are not as crucial to community structure, our framework can help distinguish species which are abundant and interact weakly with neighbours from common species which have strong competitive and facilitative effects on the community. Identifying keystone, foundation and other important types of species roles is helpful for maintaining biological diversity, ecosystem integrity and functioning, especially in response to disturbances and other stresses \parencite{Nyakatya2008, Orwin2016, Losapio2017, Narwani2019}.
-        % [The two species were \textit{Gilberta tenuifolia} and \textit{Haloragis odontocarpa} in case that's interesting.]
-
-        \paragraph{}
-        Network approaches can also be used to evaluate how specific species are integrated within the community. Our case study for example illustrates how different exotic species can have widely varying competitive and facilitative effects on neighbours (Fig. \ref{fig:species}). Though many invasive species compete with natives \parencite{Naeem2000, Riley2008, Zheng2015}, several studies have found evidence of invasives facilitating natives, with cascading effects on other species and net positive effects on ecosystem processes \parencite{Rodriguez2006, Ramus2017}. Alternatively, threatened species could also benefit from this type of analysis. Recent work suggests rare species are the prime emitters and beneficiaries of facilitative interactions, forming mutualistic refuges from competitive dominants \parencite{Calatayud2019, Hines2020}. Identifying neighbouring species which facilitate and increase the local abundance of rarer, endangered target species is one of many strategies which could help guide conservation management.
-
-
-    \subsection{Understanding community diversity and stability}
-
-        \paragraph{}
-        Quantifying the matrix of per-capita interaction strengths between species in horizontal communities allows us to explore how the mechanisms maintaining diversity and stability operate in these systems and across a broad number of species. Self-regulation, for example, is an extremely important driver of community stability \parencite{Barabas2017} and arises from how individuals of the same species interact with one another. Whereas same-species effects cannot be estimated by association networks, our framework quantifies intraspecific interactions and allows us to measure the strength and prevalence of competitive and facilitative density-dependence. Measures of intra and interspecific interactions can also allow us to estimate niche overlap between species (for an example, see \cite{Chu2015a}): weak interactions between species suggests they are not sharing or competing for many resources, and occupy different niche spaces in the community. Strong competitive self-regulation, and weak interactions between two species, are two of many mechanisms leading to stability and diversity in plant communities.
-
-        \paragraph{}
-        A key feature of our model framework is the inclusion of facilitative interactions, which have long been disregarded in plant population models and theoretical frameworks of plant diversity-maintenance. The importance of facilitative interactions to community structure and patterns of abundance has long been recognised \parencite{Callaway1997a} but there is still little consensus on how they may affect biodiversity \parencite{Bruno2003}. Recent work suggests facilitation may be more widespread than expected \parencite{Gross2015, Picoche2020} and can  benefit species diversity and stability depending on the circumstances \parencite{Coyte2015, Brooker2008}. Our framework provides a means to investigate the prevalence and strength of facilitation across multiple species, and how it may act in relation to competition and species diversity.  
-        
-        \paragraph{}
-        Ultimately, quantifying plant interaction networks allows us to apply tools from network theory which will help us understand not only how plants interact, but also how these interactions drive community-level patterns of abundance and diversity. Several metrics already exist for describing network structure such as weighted connectance \parencite{Ulanowicz1991} or relative intransitivity \parencite{Laird2006a}, though these are fewer than for trophic or unweighted networks networks (e.g. \cite{Bersier2002, Delmas2019}). Adapting measures of nestedness or modularity for example to non-sparse networks (as plant communities typically are) would allow us to further characterise how interactions and species are organised. These metrics relate to various aspects of stability and could greatly inform us on how diversity is maintained between plants. 
-
-        %Likewise, networks also provide several ways of measuring and describing species roles in their respective communities \parencite{Cirtwill2018a} for example through the use of structural motifs, unique patterns of interacting species which together make up the whole network. Motifs have been found to have important biological meaning in food webs \parencite{Bascompte2005a} but remain to be identified for single-trophic and bipartite networks. 
-
-
-
+     
     % \subsection{Future research directions}
 
     % - adding trait or phylogeny data, for example by informing priors with trait or phylogeny distance matrix
@@ -308,9 +325,37 @@
     % - improving our knowledge of networks, developing tools for plant networks and tools that can deal with non-sparse networks, competitive and facilitative interactions \\
     % - integrate with trophic networks (which appear to be sensitive to producer/plant network structure!)\\
 
+   \subsection{Limitations}
+
+
+        
+        \paragraph{}
+        Our novel framework includes a versatile approach for estimating interactions between system elements which are not observed to cooccur. Care should be taken, however, that these unrealised interactions do not dominate resulting networks. The method we propose uses realised interactions to estimate unrealised interactions. This method thus works better the more realised interactions available and is thus not ideal for small or heavily fragmented datasets. It is also important to consider the likely reasons for unrealised interactions. Forbidden links are a subset of potential interactions which cannot be observed, often due to physical constraints (e.g. biological mismatch) or spatio-temporal uncoupling. For example, a pair of short-lived annual plants might have such opposing phenologies that their growing seasons never overlap in the field. We direct the reader towards the literature on forbidden interactions \parencite{Olesen2011, Jordano2016} for solving these cases. 
+
+        %\paragraph{}
+        %Our framework assumes that though the total effect of one element on another increases with density, this relationship is linear. This may not always be the case however, as interactions may be invariant to density \parencite{} or scale non-linearly \parencite{}. Our framework also evaluates direct interactions only, and does not consider higher-order interactions \parencite{}. 
+
+        \paragraph{}
+        Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain convergence and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times across all observations were grouped into an 'other' category with its own interaction effect. If interactions with or between very rare species are the explicit object of a study, however, data-collection should focus on amassing observations of focal individuals from those rarer species to be able to estimate  interaction strengths.   
+
+\subsection{Conclusion}
+
+    \paragraph{} 
+    There is now a rich body of work describing the characteristics of food web, plant-pollinator and host-parasite interactions, but fewer network approaches focus on non-trophic interactions such as those occurring between plants \parencite{Ellison2019}. Here we present a novel framework which makes the process of inferring  interactions in horizontal systems easier, whilst allowing for many and multiple types (competitive and facilitative) of interactions. In turn, this allows the application of  network theory tools to the management of non-trophic systems, as well as to deepening our understanding of diversity, stability and other community-level properties which emerge from interactions. By applying our framework to a wildflower case study, we find that over-abundant species do not appear to self-regulate more strongly than rare species, contrary to expectations. We also identify species which have strong effects on their neighbours, and which exotic species may be more of a threat to the native community. Though we illustrate our study with one particular ecological dataset, the method presented here could be adapted for use on a wider array of  horizontal systems such as those found in microbial, neural, and social networks. 
+   
 
 % \bibliography{../../../BibTex_files/03_Chapter3}
 % \bibliographystyle{plainnat}
+
+\section*{Acknowledgements}
+
+We thank M. Raymundo \& I. Towers for the seed rate data used in this paper, C. Bowler, T. Britton, and J. Ikin for their work in sample processing for this data set, as well as Rob Freckleton and Jacopo Grilli for insightful comments on the manuscript. This work was made possible by funding awarded to M.M.M. (DP170100837) by the Australian Research Council. D.B.S. is grateful for the support of the Marsden Fund Council, from New Zealand Government funding (grant 16-UOC-008).
+
+
+\section*{Competing interests}
+
+The authors declare no competing interests. 
+
 
 \newpage
 
@@ -318,12 +363,171 @@
 
 \newpage 
 
-\section{Supplementary Information}
+\section{Figures}
+
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=.6\textwidth]{../2.analyses/figures_mss/postpredch.png}
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey), on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
+        \label{fig:ppcheck}
+    \end{figure}
+
+    \begin{figure}[H]
+        \begin{centering}
+        % Looks like GITE is in larger font???
+        \includegraphics[width=0.5\textwidth]{../2.analyses/figures_mss/networks_C_F_cooc.png}
+        \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package in R \parencite{Griffith2016}. Competitive and facilitative interactions (A and B) are here shown separately for ease of view but were analysed together. Only focal species are included in these networks, arrows point to species $i$ and line thickness denotes interaction strength. Interaction strengths for (A) and (B) are given as the median over 1000 samples. Species associations (C) were all negative and symmetrical. Purple coloured nodes correspond to highly abundant native species, whereas green nodes indicate potential keystone species, as further described in Figure \ref{fig:species}.}
+        \label{fig:netwks}
+       \end{centering}
+    \end{figure}  
+
+
+    \begin{figure}[H]
+        \begin{centering}
+        \includegraphics[width=0.4\textwidth]{../2.analyses/figures_mss/species_effects.png}
+        \caption{(Caption next page.)}
+        \label{fig:species}
+        \end{centering}
+    \end{figure} 
+
+    \addtocounter{figure}{-1}
+    \begin{figure} [t!]
+        \caption{(Previous page.) Understanding interaction effects can help identify species of particular ecological importance to a system. For all graphs, diamonds are species medians across all network samples, black lines cover the 50\% quantile and grey dots indicate the full range of out-strength values as calculated from 1000 sampled networks. The shaded part of the graphs show facilitative (negative) interactions. Dashed lines represent the median value for all focals. Coloured triangles indicate the species refered to in the main text for each of the ecological questions associated with (A), (B) and (C). \\
+        In (A), the x-axis shows the strength of per-capita intraspecific interactions, that is how strongly a focal species interacts with itself, plotted against a focal species' log abundance (y-axis). Values over $0$ indicate competition, and values less than $0$ indicate facilitation.  The two most abundant natives, \textit{Velleia rosea} (VERO) and \textit{Podolepsis canescens} (POCA) in purple, do not seem to compete with themselves any more or less strongly than the median for all species in the system (dashed line). \\
+        (B) shows the sum of interaction effects of focal species on neighbours (x-axis) against the focal species' log abundance (x-axis). On the x-axis, values greater than $0$ indicate that a focal species has an overall competitive effect on neighbours, and values less than $0$ indicate that it has an overall facilitative effect. Green diamonds identify species with low abundance but strong competitive effects on neighbours: \textit{Haloragis odontocarpa} (HAOD) and \textit{Gilberta tenuifolia} (GITE). \\
+        (C) decomposes a focal species' net interaction effects into its competitive effects (x-axis) and facilitative effects (y-axis). Red diamonds show the exotic species \textit{Hypochaeris glabra} (HYPO), \textit{Arctotheca calendula} (ARCA) and \textit{Pentameris aroides} (PEAI).} 
+    \end{figure}
+
+\clearpage
+\newpage
+
+    \begin{figure}[H]
+        \begin{centering}
+        \includegraphics[width=0.4\textwidth]{../2.analyses/figures_mss/cooccur_vs_abund.png}
+        \caption{Absolute sum of focal species association strengths as returned by the cooccur package (x-axis), plotted against their log abundance (y-axis). Dashed lines are the median for all focals. In green are the same potential keystone species as identified in Fig. \ref{fig:species}.B: \textit{Haloragis odontocarpa} (HAOD) and \textit{Gilberta tenuifolia} (GITE). Because association strengths are derived from abundances, rare species also tend to have weaker summed association strengths which makes identifying potential keystone species challenging.}
+        \label{fig:coocab}
+        \end{centering}
+    \end{figure} 
+
+
+\newpage 
+
+\section{Supplementary Methods}
+
+\setcounter{figure}{0}
+
+\label{SI:Methods}
 
     \subsection{STAN model code}
+    \label{SI:modelcode}
+    The following code specifies the joint model framework used to estimate the interaction matrix described in the Methods. It can be copied into a text editor and saved with a .stan extension for use with STAN. \\
 
-    The following code specifies the joint model framework used to estimate the interaction matrix described in the Methods. It can be copied into a text editor and saved with a .stan extension for use with STAN. 
+    This code is also available in the Supplementary Methods zip folder under the name 'joint\_model.stan', alongside the R scripts and functions used to prepare the data and call upon STAN to run the model. \\
 
-    \includepdf[pages=-]{../1.model/model_stan.pdf}
+    We make the several observations in addition to the comments in the code. Firstly, realised interactions (beta\_ij in the code) are defined as a vector, which must then be matched to their correct position in the interaction matrix. This is the role of the istart, iend, icol, and irow vectors defined in the data block. The Supplementary Methods zip folder also contains the data\_prep.R file, which will show how to calculate these vectors from the input data. 
+    Secondly, we impose the following constraints to improve convergence, avoid over-parameterisation and maintain identifiability of our parameters $r_i$ and $e_j$ \parencite{Huber2004, Kidzinski2020, Niku2021}. We define the effect parameters as a unit vector, which means we only require K-1 degrees of freedom (where K is the total number of neighbour elements) to estimate all effect values. This loss of a degree of freedom arises from the fact that the matrix of $r_i$ $e_j$ parameters is of rank 1. The first response parameter is also forced to positive. This improves convergence by providing an anchor for all other parameter values to 'rotate' around. Though these latter two have implications for our estimates of the latent variables $r_i$ and $e_j$, estimates for realised and unrealised interactions should not be affected.
+
+    \includepdf[pages=-]{joint_model.stan.pdf}
+
+
+
+    \subsection{Case study Methods}
+    \label{SI:casestudy}
+
+        \subsubsection{Community data}
+
+        \paragraph{}
+        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season. The resulting dataset includes between 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of each focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species \parencite{Martyn2020}. Total neighbourhood diversity was 71 wildflower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and thinning did not target any particular species. 
+
+        \paragraph{} 
+        We required species demographic rates (seed survival and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability.  The remaining species were assigned mean demographic rates from these experiments. Further details on the methods used for collecting those seed rates are available in section \ref{SI:germination}.
+
+        \subsubsection{Model fitting}
+
+        \paragraph{}
+        We fit the model using R version 3.6.3, STAN and the rstan package \parencite{R2020, Carpenter2017, Rstan2020}. Estimates of seed production were fit with a negative binomial distribution. The model was run with 1 chain of 10000 iterations, discarding the first 5000. Models were checked for convergence using the geweke.diag() function from the coda package \parencite{Plummer2006} and traceplots were visually inspected to verify good chain behaviour. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
+
+        \subsubsection{A model for annual plant population dynamics}
+        \label{SI:popdyn}
+
+        \paragraph{}
+        The above model framework returns species-specific estimates of intrinsic fitness ($\beta_{i0}$), as well as as a species x neighbour matrix of realised ($\beta_{ij}$) and unrealised ($r_i e_j$) interaction estimates which quantify the effects of one neighbour $j$ on the intrinsic fitness of a focal species $i$. Though useful as they are, these estimates can lead to a wider range of potential applications when integrated into models of population dynamics. For example, we might be more interested in the effects of neighbours on the abundance or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. Importantly, it is necessary to specifiy a model describing population dynamics in order to draw conclusions about the effects of interactions and network structure on the maintenance of community diversity and stability. 
+
+        \paragraph{} 
+        We defined the following model for annual plants with a seed bank \parencite{Levine2009, Mayfield2017, Bimler2018} which describe the rate of change in a focal species' \textit{i} abundance of seeds in a seed bank from one year to the next: 
+            \begin{equation}
+                \frac{N_{i, t+1}}{N_{i, t}} = \left( 1 - g_{i} \right) s_{i} + g_{i}F_{i, t}
+                \label{ifm}
+            \end{equation}
+        where \(F_{i,t}\) measures the number of viable seeds produced per germinated individual whilst \(g_{i}\) and \(s_{i}\) are the seed germination and seed survival rate, respectively. In a simplified case where the focal species \textit{i} interacts with only one other species \textit{j}, in this model of population dynamics \(F_{i,t}\) is given by:
+            \begin{equation}
+                F_{i,t} = \lambda_{i} e^{- \alpha_{ii} g_{i} N_{i, t} -  \alpha_{ij} g_{j} N_{j, t} }
+                \label{fecundity}   
+            \end{equation}
+        where \(\lambda_{i}\) corresponds to seed number in the absence of competition, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij}\) and \(\alpha_{ii}\) which are equivalent to \(\beta_{ij}\) in Eq. \ref{nddm}. 
+        We determine the scaled, per-capita interaction strengths ${\alpha}''$'s by including \(\lambda_{i}\), \(g_{i}\) and \(s_{i}\) in such a way that these variables are cancelled out when the ${\alpha}''$'s are substituted for the $\alpha$'s in our annual plant population model \parencite{Godoy2014, Bimler2018}. 
+        \begin{equation}
+            {\alpha_{ij}}'' = \frac{g_{j} \alpha_{ij}}{ln(\eta_{i})}
+        \end{equation}
+        with $\eta_{i} = \frac{\lambda_{i} g_{i}}{\theta_{i}}$ and $\theta_{i} = 1 - (1 - g_{i})(s_{i})$. % \(ln(\eta_{i})\) is thus equivalent to \(\beta_{i0}\) in Eqs. \ref{nddm} and \ref{scaling}.
+        Note that because our model evaluates the rate of change of seeds in the seed bank, 'per-capita' here refers to changes 'per seed in the seed bank' of a focal species. Substituting ${\alpha}''$'s for $\alpha$'s in Eq. \ref{ifm} gives us: 
+    
+        \begin{equation}
+            \frac{N_{i, t+1}}{N_{i, t}} = (1 - \theta_{i}) + \theta_{i} \eta_{i} e^{-ln(\eta_{i})({\alpha_{ii}}'' N_{i, t} + {\alpha_{ij}}'' N_{j, t})}
+        \end{equation}
+        where we can see that the ${\alpha}''$'s are directly proportional to the abundance of neighbours. Relating this population model to the joint model framework, we recover the following: 
+
+        \begin{equation}
+        {\beta_{ij}}'' = {\alpha_{ij}}''
+        \end{equation}
+
+        \begin{equation}
+        \beta_{ij} = \alpha_{ij}
+        \end{equation}
+
+        \begin{equation}
+        \beta_{i0}  = ln(\eta_{i}) = ln(\frac{\lambda_{i} g_{i}}{\theta_{i}})
+        \end{equation}
+        % Daniel thinks this last equation is wrong but I don't think so?
+        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\lambda_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
+
+
+        \subsubsection{Seed germination and survival data}
+        \label{SI:germination}
+
+        \paragraph{}
+        Seed demographic rates were collected from a set of field experiments conducted by T. Martyn, M. Raymundo and I. Towers at Perenjori reserve between 2015 and 2019. Experiments differed both in the methods and in which focal species were included in ways which are detailed further below, such that each focal species had a different number of replicates across all experiments. Given how much seed rates estimates have been found to vary within species and according to a range of both individual and environmental factors, we chose to average results from these multiple experiments for each focal species in order to provide a point estimate which captures a wide range of conditions under which seeds may grow. For those species which did not have any field estimates of seed rates (\textit{Austrostipa elegantissima}, \textit{Erodium sp.}, \textit{Petrorhagia dubia}) or seed survival rate (\textit{Gilberta tenuifolia}), no replication (\textit{Waitzia acuminata}) or an unrealistically low estimate of germination rate (\textit{Goodenia pusilliflora}), we substituted the community mean instead. 
+
+        \paragraph{}
+        For each experiment, mature seeds were collected at the end of the growing season (September - October) from multiple populations of each focal species located throughout the reserve. Immature or damaged seeds were not included, and collected seed was homogenised for each focal species to elimiate bias associated with local adaptation within populations. Germination rate was estimated by planting seeds in the field along gradients of soil phosphorus, woody canopy cover and herbaceous vegetation density and either directly counting the number of seeds which had germinated or comparing recruitment rates to unplanted plots after a sufficient amount of time had elapsed. Seeds were planted during late-September to mid-October, mimicking natural seed dispersal timing for wildflowers in the area. Seed surival rates were estimated using either the remaining seeds or a separate batch of seeds and assessing viability of the seeds using tetrazolium staining. 
+
+
+        \paragraph{T. Martyn experiment:}
+        For 19 focal species (the full species list excluding \textit{A. elegantissima}, \textit{P. dubia} and \textit{G. tenuifolia}), germination bags containing 20 seeds each were planted in the field in 2016 across multiple areas of Perenjori Reserve. Out of the 30 bags, 19 were collected in 2017 and the remaining were collected in 2018. Due to a severe drougth in 2017, half of the bags collected that year were watered during the field season and prior to collection. Germination bags were then brought back to the Mayfield Lab facilities at the University of Queensland, Brisbane, and seeds extracted. Seeds were examined for signs of germination in the field (broken or empty seed coat) and those remaining were placed in germination trays and a germination chamber to mimic light and temperature conditions conducive to germination. Trays were watered with Gibberellic acid once to twice a week and seedlings were recorded and removed until no more seedlings emerged. Remaining, ungerminated seeds were then assessed as dead (moldy) or potentially viable. The remaining potentially viable seeds were assessed for viability using tetrazolium staining, contributing to our estimates of seed survival rates. For this procedure, embryos in each seed were exposed by either removing the seed coat or by creating a thin cut along the seed coat. The exposed embryos were then placed on a six-well germination plate and 2 ml of 0.25\% Tetrazolium solution was added to each well to stain the embryos, before covering them and storing them at 25$^{\circ}$C overnight. To check for staining, embryos were dissected under a dissecting microscope. Viable seeds showed a dark pink embryo while non-viable seeds did not stain or were stained in a splotchy way.
+
+
+        \paragraph{M. Raymundo experiment:}
+        This experiment was carried out on the focal species \textit{H. glutinosum}, \textit{T. cyanopetala}, \textit{T. ornata} and \textit{V. rosea} from 2015 to 2017. However, a severe drought in 2017 made the second round of data collection impossible and thus we only include results for 2016 here. Ten plots were established measuring 0.5 m x 0.5 m at each of three sites in Perenjori Reserve for a total of 30 plots. Each plot was divided into 25 0.1 m x 0.1 m subplots and focal species were randomly assigned a subplot in each plot. Thirty seeds of each focal species were planted in the designated subplot in late September 2015 and a plastic ring 10 cm in diameter and 1 cm high was placed in each subplot where seeds were added to limit seed movement among subplots. Another five subplots were assigned plastic rings to serve as controls for the effect of the rings on non-experimental communities. The remaining 15 subplots served as controls where no seeds or rings were added allowing for recruitment from either natural dispersal or from the seed bank. Blocks were placed in such a way as to span shaded and open areas, bare ground and dense herbaceous vegetation, and areas with native dominated and exotic dominated assemblages. Before implementing the experiment in 2015, plots were surveyed to record the number and identity of all adult plants in each subplot. Due to the randomization of seed addition into subplots, some subplots had focal species already in them. As all focal species were common to this reserve, it is also likely that seeds for all species were in the seed banks in at least some subplots. There was no way to determine this in advance, though when adult individuals of a focal species were present in a subplot prior to the implementation of our experiment, we expected that some seedlings in the following year would be from the seedbank as well as our planted seeds and looked for evidence of this (more than 30 individuals) in data from 2016. We therefore compared average densities of successful focal recruits and those which emerged in situ between sown, control, and ringed subplots to assess seed limitation and germination rate. To measure seed survival rates, thirty seeds of each focal species were also assessed for viability using tetrazolium staining using the same procedure as for the T. Martyn experiment. 
+
+        \paragraph{I. Towers experiment: }
+        This experiment was carried out on the focal species \textit{A. calendula}, \textit{G. berardiana}, \textit{H. glutinosum}, \textit{H. glabra},\textit{P. aroides}, \textit{P. debilis}, \textit{P. canescens}, \textit{T. cyanopetala}, \textit{T. ornata}, \textit{V. rosea} and \textit{W. acuminata} in 2018 and 2019. Pairs of free-draining germination trays were deployed across a gradient of canopy cover in mid-October of both years, filled with soil, which had either been collected from the field and heat-sterilised to render pre-existing seeds nonviable (2019), or simply collected from the roadside (2018). Each germination tray consisted of 24 cells, with two cells randomly assigned to each focal species. In each cell, 15 seeds of the designated focal species were broadly distributed and lightly misted with water to facilitate seed-soil contact and minimise removal by wind. Trays placed in 2018 used seeds collected at the end of the 2017 growing season and dry after-ripened at 60$^{\circ}$C for a month before being stored in cool, dry conditions at the University of Queensland. Seeds planted in 2019 were collected at the end of the 2018 growing season and were placed directly from the field into the germination trays. To re-establish microbial communities for those trays where the soil had been heat-treated, seeds were lightly covered with a small amount of untreated soil collected from the site in which they were buried. Untreated soil was collected from directly underneath coarse woody debris in patches where it was present as prior research in this system has shown that the effect of coarse woody debris on plant performance is partially attributable to debris-specific soil microbial communities (A. Pastore unpublished data). Some of the trays received the additions of leaf litter, but the results of this treatment were not included for the seed rates used in this study. Seed germination rate was measured by counting the number of seedlings which emerged in the field, but seed survival rate was not calculated in this experiment.
+
+
+
+
+
+
+\section{Supplementary Results}
+\label{SI:results}
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=\textwidth]{../2.analyses/figures_mss/interaction_estimates.png}
+        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and observed interactions estimates returned by the RIM. Interaction estimates are unscaled.}
+        \label{fig:adist}
+    \end{figure}
+
+
 
 \end{document}

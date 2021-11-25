@@ -1,0 +1,33 @@
+DBS mss comments 06/2021
+
+# Intro
+minor comments
+
+# Results 
+
+**Define 'realised' interactions** - 'I'm very worried that our definition of "realised" is imprecise to the point of being incorrect, here and throughout. That is, whether or not we can fit an alpha based on the data is NOT a function of whether or not species co-occur; it is a function of whether or not they co-occur *at varying densities*. (It's also a function of whether or not those densities are colinear with densities of other neighbours, but that is secondary [if also pertinent] issue to the one I'm trying to raise here.) Possibly the short take home from this comment is that, somewhere in the paper, we need to *explicitly* define how we decide which alphas get estimated and which do not.'
+
+**Overparameterisation** 'My immediate reaction: This is absolute bullshit. As far as I can tell, there is absolutely nothing inherent with our approach that helps avoid overparameterisation.'
+
+Figure 1 y axis
+
+# Case study
+
+Report medians instead of means.
+
+Make exotic species question sound snappier.
+
+Figure 3 label competitive and facilitative areas
+
+# Discussion
+
+**'This type of interaction would be assigned a 0 value'** I fundamentally disagree with this statement. The interaction matrix tells us about how strong interactions are when species co-occur. It is the role of the population dynamics model (or the bigger picture perspective) to lead to them not interacting and hence not REALISING the interaction. What we're currently stating is that two species that do not co-occur would have 0 competitive/facilitative effects on each other, and that is a 100% incorrect assumption.
+
+**Remove estimate of sample size needed** This is going to sound dramatic, but I cannot in good conscience be on a paper that makes this statement. The number of observations per focal species is NOT the statistical criterion with which to determine whether interactions are inferrable. (Straw man example: If you had 20 observations of a focal individual growing alone, how far would that get you?) If we wish to make a recommendation along these lines, we need to do it correctly; otherwise, we're selling snake oil.
+
+**Observed vs Realised** Observed and unobserved? Or should this be realised and unrealised? (Of course, this also relates to my question of whether the key question is realisation of the interactions or their inferrability.)
+
+
+# Methods
+
+Fix Equations 10 and 11 
