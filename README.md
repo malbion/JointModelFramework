@@ -1,13 +1,13 @@
 # Methods_for_compnet
 
-This folder covers the code, analyses, case study results and manuscript for the METHODS of compnet - aka the IFM + REM joint model. 
+This folder covers the code, analyses, case study results and manuscript for the joint model. 
 
 Trying out a different project dir structure.
 
-**1.model** - files for a generalised joint model
+**1.code** - scripts and functions to run a joint model
 
-**2.analyses** - analyses of the model (verification, sensitivity etc)
+**2.case_study** - data, specific functions & scripts and model output from the case study
 
-**3.case_study** - data, code, results and figures for running model on case study data
+**3.analyses** - analyses and figures (applied to case study)
 
 **4.mss** - manuscript
