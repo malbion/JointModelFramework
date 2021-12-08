@@ -52,24 +52,52 @@ source('functions/rem_dataprep.R')
 source('functions/stan_modelcheck_rem.R')
 source('functions/scale_interactions.R')
 
-# prepare data
-#-------------
+# Load, verify & prepare data
+#----------------------------
 fecundities <- read.csv(paste0('data/fecundities', comm, '.csv'), stringsAsFactors = F)
 
-stan.data <- rem_dataprep(fecundities)
-
-# I need to keep note of how focals and neighbours are indexed
+# Keep note of how focals and neighbours are indexed
 key_speciesID <- unlist(read.csv(paste0('data/key_speciesID', comm, '.csv'), stringsAsFactors = F))
 key_neighbourID <- unlist(read.csv(paste0('data/key_neighbourID', comm, '.csv'), stringsAsFactors = F))
+
+
+# ensure neighbours are linearly independant across the whole dataset
+X_all <- cbind(model.matrix(~as.factor(fecundities$focal)), fecundities[ , 5:dim(fecundities)[2]])
+R_all <- pracma::rref(X_all)
+Z_all <- t(R_all) %*% R_all
+
+
+# Determine which pairwise interactions are inferrable
+# this is done species by species
+inferrables <- sapply(key_speciesID, function(f){
+  
+  N_i <- as.matrix(df[df$focal == f, 5:56])
+  X_i <- cbind(1,N_i)
+  R_i <- pracma::rref(X_i)
+  Z_i <- t(R_i) %*% R_i
+  
+  # param k is inferrable if its corresponding row/column is all 0 except for the k'th element
+  # ignore intercept because we always want to include it
+  sapply(seq(2, dim(Z_i)[1], 1), function(k){ 
+    ifelse(Z_i[k, k] == 1 & sum(Z_i[k, -k]) == 0, 1, 0)
+  }) # inferrable params == 1
+  
+})
+dimnames(inferrables) <- list(c(unname(key_neighbourID)), c(unname(key_speciesID)))
+
+
+# transform data into format required by STAN
+stan.data <- rem_dataprep(fecundities)
+
 
 message(paste0('Community selected: ', comm))
 message(paste0('Fecundity data dimensions = ', dim(fecundities)[1], ', ', dim(fecundities)[2]))
 message(paste0('Number of focals = ', length(key_speciesID)))
 message(paste0('Number of neighbours = ', length(key_neighbourID)))
 
-#---------------------------------------------------
-# Estimate interactions with a joint IFM*REM model |
-#---------------------------------------------------
+#--------------------------------------------------
+# Estimate interactions with a joint NDD*RI model |
+#--------------------------------------------------
 
 fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
