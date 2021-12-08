@@ -52,10 +52,28 @@ rem_dataprep <- function(fecundities,
   # model matrix 
   stan.data$X <- as.matrix(fecundities[ , -c(1:4)])  
   
-  # Number of observations per interaction - for model weighting?
-  stan.data$Obs <- as.vector(apply(obs, 1, c))   # vector of the number of observations for each interactions
-  stan.data$Obs <- stan.data$Obs[stan.data$Obs>0] # remove unobserved interactions
+  # # Number of observations per interaction - for model weighting?
+  # stan.data$Obs <- as.vector(apply(obs, 1, c))   # vector of the number of observations for each interactions
+  # stan.data$Obs <- stan.data$Obs[stan.data$Obs>0] # remove unobserved interactions
   
+  # Determine which pairwise interactions are inferrable
+  # this is done species by species
+  Q <- sapply(levels(as.factor(fecundities$focal)), function(f){
+    
+    N_i <- as.matrix(df[df$focal == f, 5:56])
+    X_i <- cbind(1,N_i)
+    R_i <- pracma::rref(X_i)
+    Z_i <- t(R_i) %*% R_i
+    
+    # param k is inferrable if its corresponding row/column is all 0 except for the k'th element
+    # ignore intercept because we always want to include it
+    sapply(seq(2, dim(Z_i)[1], 1), function(k){ 
+      ifelse(Z_i[k, k] == 1 & sum(Z_i[k, -k]) == 0, 1, 0)
+    }) 
+    
+  })
+  stan.data$Q <- t(Q)
+  # Q is a matrix of focal x neighbours, if Q[i, j] = 1 then the interaction between i and j is inferrable
   
   return(stan.data)
 }

@@ -60,7 +60,6 @@ fecundities <- read.csv(paste0('data/fecundities', comm, '.csv'), stringsAsFacto
 key_speciesID <- unlist(read.csv(paste0('data/key_speciesID', comm, '.csv'), stringsAsFactors = F))
 key_neighbourID <- unlist(read.csv(paste0('data/key_neighbourID', comm, '.csv'), stringsAsFactors = F))
 
-
 # ensure neighbours are linearly independent across the whole dataset
 N_all <- apply(fecundities[ , 5:dim(fecundities)[2]], c(1,2), as.numeric)
 X_all <- cbind(model.matrix(~as.factor(fecundities$focal)), N_all)
@@ -72,28 +71,8 @@ indep <- sapply(seq(1, dim(Z_all)[1], 1), function(k){
 all(indep == 1) # if TRUE then neighbours are linearly independent and we can continue
 if(!all(indep == 1)) message('WARNING neighbours are not linearly independent') 
 
-# Determine which pairwise interactions are inferrable
-# this is done species by species
-Q <- sapply(key_speciesID, function(f){
-  
-  N_i <- as.matrix(df[df$focal == f, 5:56])
-  X_i <- cbind(1,N_i)
-  R_i <- pracma::rref(X_i)
-  Z_i <- t(R_i) %*% R_i
-  
-  # param k is inferrable if its corresponding row/column is all 0 except for the k'th element
-  # ignore intercept because we always want to include it
-  sapply(seq(2, dim(Z_i)[1], 1), function(k){ 
-    ifelse(Z_i[k, k] == 1 & sum(Z_i[k, -k]) == 0, 1, 0)
-  }) # inferrable params == 1
-  
-})
-Q <- t(Q)
-# Q is a matrix of focal x neighbours, if Q[i, j] = 1 then the interaction between i and j is
-
 # transform data into format required by STAN
 stan.data <- rem_dataprep(fecundities)
-stan.data$Q <- Q
 
 message(paste0('Community selected: ', comm))
 message(paste0('Fecundity data dimensions = ', dim(fecundities)[1], ', ', dim(fecundities)[2]))
