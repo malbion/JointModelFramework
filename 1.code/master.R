@@ -20,16 +20,32 @@ df <- simdat[[1]]
 sim_a <- simdat[[2]]
 sim_interactions <- simdat[[3]]
 
+# identify focal and neighbouring species to be matched to parameter estimates
+focalID <- unique(df$focal)  # this should return the names of unique focal groups in the order
+# in which they are encountered in the dataframe
+neighbourID <- colnames(df[ , -c(1:2)])
+
+# ensure neighbours are linearly independent across the whole dataset
+N_all <- df[ , neighbourID]
+N_all <- apply(N_all, c(1,2), as.numeric)
+X_all <- cbind(model.matrix(~as.factor(df$focal)), N_all)
+R_all <- pracma::rref(X_all)
+Z_all <- t(R_all) %*% R_all
+indep <- sapply(seq(1, dim(Z_all)[1], 1), function(k){ 
+  ifelse(Z_all[k, k] == 1 & sum(Z_all[k, -k]) == 0, 1, 0)
+}) #
+all(indep == 1) # if TRUE then neighbours are linearly independent and we can continue
+if(!all(indep == 1)) message('WARNING neighbours are not linearly independent') 
+
+
 # prepare the data into the format required by STAN and the model code
 stan.data <- data_prep(perform = 'seeds', 
                        focal = 'focal', 
                        nonNcols = 2, # number of columns that aren't neighbour abundances
                        df = df)
 
-# identify focal and neighbouring species to be matched to parameter estimates
-focalID <- unique(df$focal)  # this should return the names of unique focal groups in the order
-# in which they are encountered in the dataframe
-neighbourID <- colnames(df[ , -c(1:2)])
+
+
 
 message(paste0('Data dimensions = ', dim(df)[1], ', ', dim(df)[2]))
 message(paste0('Number of focal groups = ', length(focalID)))
