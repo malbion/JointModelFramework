@@ -7,7 +7,7 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
-library(coda)
+# library(coda)
 
 # load required functions
 source('data_prep.R')
@@ -54,8 +54,8 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 1,
-            warmup = 1000,          # number of warmup iterations per chain
-            iter = 6000,            # total number of iterations per chain
+            warmup = 100,          # number of warmup iterations per chain
+            iter = 600,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
                            adapt_delta = 0.95)
@@ -71,7 +71,21 @@ joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
 param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'inter_mat',
-               'mu', 'disp_dev', 'sigma')
+               'mu', 'disp_dev', 'sigma') 
+
+
+######### diagnostics only ####################
+source('../2.case_study/functions/stan_modelcheck_rem.R')
+detach('package:coda')  # maybe this isnt necessary after not loading it directly anymore
+
+stan_diagnostic(fit, 'output')
+stan_model_check(fit, 'output', params = param.vec)
+stan_post_pred_check(joint.post.draws, 'output', stan.data)
+
+log_post <- unlist(extract(fit, 'lp__'))
+write.csv(log_post, file = paste0('output/log_post.csv'), row.names = F)
+
+##################################################################################
 
 # Draw 1000 samples from the 80% posterior interval for each parameter of interest
 p.samples <- list()
