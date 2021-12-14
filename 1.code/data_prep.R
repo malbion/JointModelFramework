@@ -72,6 +72,26 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   # MODEL MATRIX
   stan.data$X <- as.matrix(df[ , -c(1:nonNcols)]) 
   
+  # MATRIX OF INFERRABLE INTERACTIONS
+  # this is done species by species
+  Q <- sapply(levels(as.factor(df$focal)), function(f){
+    
+    N_i <- as.matrix(df[df$focal == f, -c(1:nonNcols)])
+    X_i <- cbind(1,N_i)
+    R_i <- pracma::rref(X_i)
+    Z_i <- t(R_i) %*% R_i
+    
+    # param k is inferrable if its corresponding row/column is all 0 except for the k'th element
+    # ignore intercept because we always want to include it
+    sapply(seq(2, dim(Z_i)[1], 1), function(k){ 
+      ifelse(Z_i[k, k] == 1 & sum(Z_i[k, -k]) == 0, 1, 0)
+    }) 
+    
+  })
+  stan.data$Q <- t(Q)
+  # Q is a matrix of focal x neighbours, if Q[i, j] = 1 then the interaction between i and j is inferrable
+  
+  
   # Done!
   return(stan.data)
   

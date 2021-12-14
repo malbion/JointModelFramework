@@ -45,12 +45,10 @@ stan.data <- data_prep(perform = 'seeds',
                        df = df)
 
 
-
-
 message(paste0('Data dimensions = ', dim(df)[1], ', ', dim(df)[2]))
 message(paste0('Number of focal groups = ', length(focalID)))
 message(paste0('Number of neighbour groups = ', length(neighbourID)))
-
+message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$K)))
 
 # Run the model! 
 fit <- stan(file = 'joint_model.stan',
