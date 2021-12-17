@@ -50,15 +50,18 @@ transformed parameters {
   // matrix[S, K] inter_mat;    // the community interaction matrix
   // vector[I] re;              // interactions as calculated by the re model
   vector[N] mu;              // the linear predictor for perform (here seed production)
+  matrix[S, K] rim_betaij;
   
   // inter_mat = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
   
   // stitch together the response values
   response = append_row(response1, responseSm1);
+  // get RIM interactions
+  rim_betaij = response*effect';
   
   // response-impact model runs on all interactions
   for(n in 1:N) {
-       mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], response[species_ID[n]]*effect));  
+       mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], rim_betaij[species_ID[n], ]));  
   }
   
   
