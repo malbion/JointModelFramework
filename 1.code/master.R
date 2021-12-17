@@ -64,13 +64,13 @@ fit <- stan(file = 'joint_model.stan',
 # As well as the usual traceplots etc., convergence one 1 chain can be checked 
 # using the geweke.diag() function from the coda package, e.g.:
 matrix_of_draws <- as.matrix(fit)
-gew <- geweke.diag(matrix_of_draws)
+gew <- coda::geweke.diag(matrix_of_draws)
 
 # Get the full posteriors 
 joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
-param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'inter_mat',
+param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'rim_betaij',
                'mu', 'disp_dev', 'sigma') 
 
 
