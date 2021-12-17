@@ -21,6 +21,7 @@ data {
   int<lower=0> irow[I];
   
   matrix[N,K] X;         // neighbour abundances (the model matrix)
+  matrix[S, K] Q;	  // inferrable interactions
 
 } 
 
@@ -31,7 +32,7 @@ parameters {
   // defined for the negative binomial distribution used to reflect seed production (perform)
   // disp_dev = 1/sqrt(phi)
 
-  vector[I] beta_ij;     // vector of interactions which have been realised
+  // vector[I] beta_ij;     // vector of interactions which have been realised
   
   vector<lower=0>[1] response1; // first species-specific response parameter
   // constrained to be positive for identifiability
@@ -46,31 +47,39 @@ transformed parameters {
   
   // transformed parameters constructed from parameters above
   vector[S] response;        // combined vector of species-specific responses
-  matrix[S, K] inter_mat;    // the community interaction matrix
-  vector[I] re;              // interactions as calculated by the re model
+  // matrix[S, K] inter_mat;    // the community interaction matrix
+  // vector[I] re;              // interactions as calculated by the re model
   vector[N] mu;              // the linear predictor for perform (here seed production)
   
-  inter_mat = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
+  // inter_mat = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
   
-  // match observed interactions parameters to the correct position in the community matrix
-  for(s in 1:S) {
-    for(i in istart[s]:iend[s]) {
-      inter_mat[irow[i], icol[i]] = beta_ij[i];
-    }
-  }
-  
-  // neighbour density-dependent model 
-  for(n in 1:N) {
-       mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], inter_mat[species_ID[n], ]));  
-  }
-
   // stitch together the response values
   response = append_row(response1, responseSm1);
   
-  // build a vector of interaction parameters based on the response impact model
-  for (i in 1:I) {
-    re[i] = response[irow[i]]*effect[icol[i]];
+  // response-impact model runs on all interactions
+  for(n in 1:N) {
+       mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], response[species_ID[n]]*effect));  
   }
+  
+  
+  // match observed interactions parameters to the correct position in the community matrix
+  // for(s in 1:S) {
+  //   for(i in istart[s]:iend[s]) {
+  //     inter_mat[irow[i], icol[i]] = beta_ij[i];
+  //  }
+  // }
+  
+  // neighbour density-dependent model 
+  // for(n in 1:N) {
+  //      mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], inter_mat[species_ID[n], ]));  
+  // }
+
+
+  
+  // build a vector of interaction parameters based on the response impact model
+  // for (i in 1:I) {
+  //   re[i] = response[irow[i]]*effect[icol[i]];
+  // }
 } 
 
 model {
@@ -92,8 +101,10 @@ model {
   }
 
   // response-effect interactions
-  for (i in 1:I) {
-    target += logistic_lpdf(re[i] | beta_ij[i], sigma);
-  }
+  // for (i in 1:I) {
+  //   target += logistic_lpdf(re[i] | beta_ij[i], sigma);
+  // }
   
 }
+
+
