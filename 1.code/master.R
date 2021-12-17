@@ -7,7 +7,7 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
-# library(coda)
+library(coda)
 
 # load required functions
 source('data_prep.R')
@@ -76,7 +76,7 @@ param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'inter_mat',
 
 ######### diagnostics only ####################
 source('../2.case_study/functions/stan_modelcheck_rem.R')
-detach('package:coda')  # maybe this isnt necessary after not loading it directly anymore
+detach('package:coda')  # otherwise it interfers
 
 stan_diagnostic(fit, 'output')
 stan_model_check(fit, 'output', params = param.vec)
