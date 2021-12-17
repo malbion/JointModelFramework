@@ -25,18 +25,37 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   # set up the data in list format as preferred by STAN:
   stan.data <- list()
   
-  # create a matrix which tallies the number of realised interactions for each focal and neighbour
-  # here we define
-  counts <- df[ , -c(1:nonNcols)] # keep only neighbour abundances
-  counts[counts>0] <- 1 # here we de
-  counts <- split(counts, as.factor(df[ , focal]))
-  obs <- do.call(rbind, lapply(counts, colSums))
+  # # create a matrix which tallies the number of realised interactions for each focal and neighbour
+  # # here we define
+  # counts <- df[ , -c(1:nonNcols)] # keep only neighbour abundances
+  # counts[counts>0] <- 1 # here we de
+  # counts <- split(counts, as.factor(df[ , focal]))
+  # obs <- do.call(rbind, lapply(counts, colSums))
+  
+  # MATRIX OF INFERRABLE INTERACTIONS
+  # this is done species by species
+  Q <- t(sapply(levels(as.factor(df$focal)), function(f){
+    
+    N_i <- as.matrix(df[df$focal == f, -c(1:nonNcols)])
+    X_i <- cbind(1,N_i)
+    R_i <- pracma::rref(X_i)
+    Z_i <- t(R_i) %*% R_i
+    
+    # param k is inferrable if its corresponding row/column is all 0 except for the k'th element
+    # ignore intercept because we always want to include it
+    sapply(seq(2, dim(Z_i)[1], 1), function(k){ 
+      ifelse(Z_i[k, k] == 1 & sum(Z_i[k, -k]) == 0, 1, 0)
+    }) 
+    
+  }))
+  stan.data$Q <- Q
+  # Q is a matrix of focal x neighbours, if Q[i, j] = 1 then the interaction between i and j is inferrable
   
   # INTEGERS
   stan.data$S <- length(unique(df[ , focal]))  # number of focal elements (species)
   stan.data$N <- nrow(df)                      # number of observations
   stan.data$K <- ncol(df[ , -c(1:nonNcols)])   # number of neighbours
-  stan.data$I <- length(obs[obs>0])            # number of realised interactions
+  stan.data$I <- sum(Q)                        # number of inferred interactions
 
   
   # VECTORS
@@ -45,12 +64,12 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   
   # set up indices to place realised interactions in the interaction matrix
   # first count the number of interactions realised for each focal species
-  stan.data$inter_per_species <- obs
-  stan.data$inter_per_species[stan.data$inter_per_species > 0] <- 1 # this counts every interaction
-  # for which a focal i and neighbour j cooccur at least once as realised. 
-  stan.data$inter_per_species <- rowSums(stan.data$inter_per_species)
+  # stan.data$inter_per_species <- obs
+  # stan.data$inter_per_species[stan.data$inter_per_species > 0] <- 1 # this counts every interaction
+  # # for which a focal i and neighbour j cooccur at least once as realised. 
+  stan.data$inter_per_species <- rowSums(Q)
   # column index in the interactions matrix for each realised interaction
-  stan.data$icol <- unlist(apply(ifelse(obs > 0, T, F), 1, which))
+  stan.data$icol <- unlist(apply(ifelse(Q > 0, T, F), 1, which))
   names(stan.data$icol) <- NULL
   stan.data$icol <- as.vector(stan.data$icol)
   # begin the row index
@@ -72,24 +91,7 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   # MODEL MATRIX
   stan.data$X <- as.matrix(df[ , -c(1:nonNcols)]) 
   
-  # MATRIX OF INFERRABLE INTERACTIONS
-  # this is done species by species
-  Q <- sapply(levels(as.factor(df$focal)), function(f){
-    
-    N_i <- as.matrix(df[df$focal == f, -c(1:nonNcols)])
-    X_i <- cbind(1,N_i)
-    R_i <- pracma::rref(X_i)
-    Z_i <- t(R_i) %*% R_i
-    
-    # param k is inferrable if its corresponding row/column is all 0 except for the k'th element
-    # ignore intercept because we always want to include it
-    sapply(seq(2, dim(Z_i)[1], 1), function(k){ 
-      ifelse(Z_i[k, k] == 1 & sum(Z_i[k, -k]) == 0, 1, 0)
-    }) 
-    
-  })
-  stan.data$Q <- t(Q)
-  # Q is a matrix of focal x neighbours, if Q[i, j] = 1 then the interaction between i and j is inferrable
+  
   
   
   # Done!
