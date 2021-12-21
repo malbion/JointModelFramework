@@ -17,6 +17,13 @@ source('simul_data.R')
 # load simulated data 
 simdat <- simul_data(S=10, K=10, p=0.25)
 df <- simdat[[1]]
+############# TEMP #############
+# add more neighbours than focals 
+simdat2 <- simul_data(S=10, K=10, p=0.25)
+mn <- min(nrow(df), nrow(simdat2[[1]]))
+df <- cbind(df[1:mn, ], simdat2[[1]][1:mn, 3:5])
+colnames(df)[13:15] <- c("K11", "K12", "K13")
+###################################
 sim_a <- simdat[[2]]
 sim_interactions <- simdat[[3]]
 
