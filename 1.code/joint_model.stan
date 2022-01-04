@@ -16,7 +16,8 @@ data {
   
   int<lower=0> species_ID[N];   // index matching species to observations
   int<lower=0> perform[N];      // response variable 
-  
+  int<lower=0> perform2[N];      // response variable 
+    
   int<lower=0> istart[S];       // indices matching species to inferred interactions
   int<lower=0> iend[S];
   int<lower=0> icol[I];
@@ -123,7 +124,7 @@ model {
   }
   
   for(n in 1:N2) {
-    perform[n] ~ neg_binomial_2(mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
+    perform2[n] ~ neg_binomial_2(mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
     // in our case study, seed production shows a better fit to a negative binomial 
     // than poisson distribution
   }
