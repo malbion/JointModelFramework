@@ -54,7 +54,7 @@ transformed parameters {
   // transformed parameters constructed from parameters above
   vector[S] response;        // combined vector of species-specific responses
   // matrix[S, K] inter_mat;    // the community interaction matrix
-  vector[I] re;              // interactions as calculated by the re model
+  // vector[I] re;              // interactions as calculated by the re model
   
   vector[N] mu;              // the linear predictor for perform (here seed production)
   vector[N] mu2;              // the linear predictor for perform (here seed production)
@@ -64,6 +64,13 @@ transformed parameters {
   //  matrix[S, K] ndd_betaij0;  // interaction matrix for the NDD model
   
   ndd_betaij = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
+  
+    // match observed interactions parameters to the correct position in the community matrix
+  for(s in 1:S) {
+    for(i in istart[s]:iend[s]) {
+      ndd_betaij[irow[i], icol[i]] = beta_ij[i];
+   }
+  }
   
   // stitch together the response values
   response = append_row(response1, responseSm1);
@@ -82,18 +89,6 @@ transformed parameters {
    }
   
   
-  // match observed interactions parameters to the correct position in the community matrix
-  for(s in 1:S) {
-    for(i in istart[s]:iend[s]) {
-      ndd_betaij[irow[i], icol[i]] = beta_ij[i];
-   }
-  }
-  
-  // neighbour density-dependent model 
-  // for(n in 1:N) {
-  //      mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], inter_mat[species_ID[n], ]));  
-  // }
-
 
   
   // build a vector of interaction parameters based on the response impact model
@@ -109,6 +104,7 @@ model {
   disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
   beta_i02 ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
   disp_dev2 ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
+  
   beta_ij ~ normal(0,1);
   
   response1 ~ normal(0, 1);   // constrained by parameter defintion to be positive
