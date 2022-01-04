@@ -44,22 +44,19 @@ parameters {
 
   unit_vector[K] effect; // species-specific effect parameter
 
-  //real<lower=0> sigma;	// scale parameter for the logistic distribution (used to estimate re's)
+
 } 
 
 transformed parameters {
   
   // transformed parameters constructed from parameters above
   vector[S] response;        // combined vector of species-specific responses
-  // matrix[S, K] inter_mat;    // the community interaction matrix
-  // vector[I] re;              // interactions as calculated by the re model
   
   vector[N] mu;              // the linear predictor for perform (here seed production)
   vector[N] mu2;              // the linear predictor for perform (here seed production)
   
   matrix[S, K] ri_betaij;   // interaction matrix for the RI model
   matrix[S, K] ndd_betaij;  // interaction matrix for the NDD model
-  //  matrix[S, K] ndd_betaij0;  // interaction matrix for the NDD model
   
   ndd_betaij = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
   
@@ -86,13 +83,7 @@ transformed parameters {
         mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
    }
   
-  
-
-  
-  // build a vector of interaction parameters based on the response impact model
-  // for (i in 1:I) {
-  //   re[i] = response[irow[i]]*effect[icol[i]];
-  // }
+ 
 } 
 
 model {
@@ -107,7 +98,6 @@ model {
   
   response1 ~ normal(0, 1);   // constrained by parameter defintion to be positive
   responseSm1 ~ normal(0,1);
- // sigma ~ cauchy(0, 1);
   // no prior needed for effect as we can use the default prior for the unit_vector
 
   // seed production, i.e. P_i
