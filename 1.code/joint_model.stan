@@ -9,6 +9,8 @@ Bimler 2021
 data {
   int<lower=1> S;          // number of species (elements) 
   int<lower=1> N;          // number of observations (rows in model matrix)
+  int<lower=1> N1;          // number of observations (rows in model matrix)
+  int<lower=1> N2;          // number of observations (rows in model matrix)
   int<lower=0> K;          // number of neighbours (columns in model matrix)
   int<lower=0> I;          // number of inferred interactions 
   
@@ -68,13 +70,13 @@ transformed parameters {
   ri_betaij = response*effect';
   
   // response-impact model estimates all interactions
-  for(n in 1:N) {
+  for(n in 1:N1) {
        mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], ri_betaij[species_ID[n], ]));  
   }
   
   // neighbour density dependent model estimates inferrable interactions only
   // ndd_betaij = Q .* ndd_betaij0;
-  for(n in 1:N) {
+  for(n in 1:N2) {
         mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
    }
   
@@ -114,13 +116,13 @@ model {
   // no prior needed for effect as we can use the default prior for the unit_vector
 
   // seed production, i.e. P_i
-  for(n in 1:N) {
+  for(n in 1:N1) {
     perform[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
     // in our case study, seed production shows a better fit to a negative binomial 
     // than poisson distribution
   }
   
-  for(n in 1:N) {
+  for(n in 1:N2) {
     perform[n] ~ neg_binomial_2(mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
     // in our case study, seed production shows a better fit to a negative binomial 
     // than poisson distribution
