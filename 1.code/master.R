@@ -61,8 +61,8 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 1,
-            warmup = 100,          # number of warmup iterations per chain
-            iter = 600,            # total number of iterations per chain
+            warmup = 500,          # number of warmup iterations per chain
+            iter = 1000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
                            adapt_delta = 0.95)
@@ -77,9 +77,8 @@ gew <- coda::geweke.diag(matrix_of_draws)
 joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
-param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'rim_betaij',
-               'mu', 'disp_dev', 'sigma') 
-
+param.vec <- c('beta_i0', 'beta_i02','beta_ij', 'effect', 'response', 're', 'ri_betaij',
+               'ndd_betaij', 'joint_betaij', 'mu', 'mu2', 'disp_dev', 'sigma') 
 
 ######### diagnostics only ####################
 source('../2.case_study/functions/stan_modelcheck_rem.R')
@@ -87,6 +86,8 @@ detach('package:coda')  # otherwise it interfers
 
 stan_diagnostic(fit, 'output')
 stan_model_check(fit, 'output', params = param.vec)
+# # or alternatively
+# stan_model_check(fit, 'output', params = fit@model_pars)
 stan_post_pred_check(joint.post.draws, 'output', stan.data)
 
 log_post <- unlist(extract(fit, 'lp__'))
