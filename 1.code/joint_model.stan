@@ -105,10 +105,8 @@ model {
   // no prior needed for effect as we can use the default prior for the unit_vector
 
   // seed production, i.e. P_i for the RIM
-  for(n in 1:N) {
-    perform[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
-    // in our case study, seed production shows a better fit to a negative binomial 
-    // than poisson distribution
+  for (n in 1:N) {
+     target += neg_binomial_2_lpmf(perform[n] | mu[n], (disp_dev[species_ID[n]]^2)^(-1));
   }
   
   // NDDM
@@ -117,9 +115,9 @@ model {
   // }
 
   // NDDM
-   for (n in 1:N) {
-     target += neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
-   }
+  for (n in 1:N) {
+    target += neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
+  }
   
 }
 
