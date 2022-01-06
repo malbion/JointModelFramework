@@ -14,7 +14,7 @@ data {
   
   int<lower=0> species_ID[N];   // index matching species to observations
   int<lower=0> perform[N];      // response variable 
-  int<lower=0> perform2[N];      // response variable 
+  //int<lower=0> perform2[N];      // response variable 
     
   int<lower=0> istart[S];       // indices matching species to inferred interactions
   int<lower=0> iend[S];
@@ -58,6 +58,8 @@ transformed parameters {
   matrix[S, K] ri_betaij;   // interaction matrix for the RI model
   matrix[S, K] ndd_betaij;  // interaction matrix for the NDD model
   
+  matrix[S, K] joint_betaij;  // interaction matrix for the two models together
+  
   ndd_betaij = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
   
     // match observed interactions parameters to the correct position in the community matrix
@@ -78,11 +80,13 @@ transformed parameters {
   }
   
   // neighbour density dependent model estimates inferrable interactions only
-  // ndd_betaij = Q .* ndd_betaij0;
   for(n in 1:N) {
         mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
    }
-  
+   
+   
+   // use appropriate interaction estimate
+  joint_betaij = Q .* ndd_betaij + (1 - Q) .* ri_betaij;
  
 } 
 
@@ -100,23 +104,22 @@ model {
   responseSm1 ~ normal(0,1);
   // no prior needed for effect as we can use the default prior for the unit_vector
 
-  // seed production, i.e. P_i
+  // seed production, i.e. P_i for the RIM
   for(n in 1:N) {
     perform[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
     // in our case study, seed production shows a better fit to a negative binomial 
     // than poisson distribution
   }
   
-  for(n in 1:N) {
-    perform2[n] ~ neg_binomial_2(mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
-    // in our case study, seed production shows a better fit to a negative binomial 
-    // than poisson distribution
-  }
-
-  // response-effect interactions
-  // for (i in 1:I) {
-  //   target += logistic_lpdf(re[i] | beta_ij[i], sigma);
+  // NDDM
+  // for(n in 1:N) {
+  //   perform[n] ~ neg_binomial_2(mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
   // }
+
+  // NDDM
+   for (n in 1:N) {
+     target += neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
+   }
   
 }
 
