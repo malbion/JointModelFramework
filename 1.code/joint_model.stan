@@ -76,6 +76,7 @@ transformed parameters {
   
   // use ndd interaction estimate when inferrable, rim estimate when not
   // joint_betaij = Q .* ndd_betaij + (1 - Q) .* ri_betaij;
+  ndd_betaij = Q .* ndd_betaij;
   
   // response-impact model estimates all interactions
   for(n in 1:N) {
@@ -87,8 +88,7 @@ transformed parameters {
   //      mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], joint_betaij[species_ID[n], ]));  
   // }
   for(n in 1:N) {
-        mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], 
-        (Q[species_ID[n], ] .* ndd_betaij[species_ID[n], ])));  
+        mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
    }
    
    
