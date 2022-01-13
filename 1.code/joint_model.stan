@@ -22,7 +22,7 @@ data {
   int<lower=0> irow[I];
   
   matrix[N,K] X;         // neighbour abundances (the model matrix)
-  matrix[S,K] Q;	  // matrix of inferrable interactions
+  // matrix[S,K] Q;	  // matrix of inferrable interactions
 
 } 
 
@@ -58,7 +58,6 @@ transformed parameters {
   matrix[S, K] ri_betaij;   // interaction matrix for the RI model
   matrix[S, K] ndd_betaij;  // interaction matrix for the NDD model
   
-  //matrix[S, K] joint_betaij;  // interaction matrix for the two models together
   
   ndd_betaij = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
   
@@ -74,18 +73,12 @@ transformed parameters {
   // get RIM interactions
   ri_betaij = response*effect';
   
-  // use ndd interaction estimate when inferrable, rim estimate when not
-  // joint_betaij = Q .* ndd_betaij + (1 - Q) .* ri_betaij;
   
   // response-impact model estimates all interactions
   for(n in 1:N) {
        mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], ri_betaij[species_ID[n], ]));  
   }
   
-  // neighbour density dependent model estimates inferrable interactions only
-  //for(n in 1:N) {
-  //      mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], joint_betaij[species_ID[n], ]));  
-  // }
   for(n in 1:N) {
         mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
    }
