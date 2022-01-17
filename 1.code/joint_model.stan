@@ -29,7 +29,6 @@ data {
 parameters {
   
   vector[S] beta_i0;    // species-specific intercept 
-  vector[S] beta_i02;    // species-specific intercept 
     
   vector<lower=0>[S] disp_dev; // species-specific dispersion deviation parameter, 
   // defined for the negative binomial distribution used to reflect seed production (perform)
@@ -79,7 +78,7 @@ transformed parameters {
   }
   
   for(n in 1:N) {
-        mu2[n] = exp(beta_i02[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
+        mu2[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
    }
    
    
@@ -91,7 +90,6 @@ model {
   // priors
   beta_i0 ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
   disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
-  beta_i02 ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
   
   beta_ij ~ normal(0,1);
   
