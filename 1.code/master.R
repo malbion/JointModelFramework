@@ -87,6 +87,9 @@ param.vec <- fit@model_pars
 source('../2.case_study/functions/stan_modelcheck_rem.R')
 detach('package:coda')  # otherwise it interfers
 
+# empty results folder of past runs
+do.call(file.remove, list(list.files("output", full.names = TRUE)))
+
 stan_diagnostic(fit, 'output')
 stan_model_check(fit, 'output', params = param.vec)
 stan_post_pred_check(joint.post.draws, 'output', stan.data)
