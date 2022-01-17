@@ -58,16 +58,6 @@ transformed parameters {
   matrix[S, K] ri_betaij;   // interaction matrix for the RI model
   matrix[S, K] ndd_betaij;  // interaction matrix for the NDD model
   
-  
-  ndd_betaij = rep_matrix(0, S, K); // fill the community interaction matrix with 0 (instead of NA)
-  
-    // match inferrable interactions parameters to the correct position in the community matrix
-  for(s in 1:S) {
-    for(i in istart[s]:iend[s]) {
-      ndd_betaij[irow[i], icol[i]] = beta_ij[i];
-   }
-  }
-  
   // stitch together the response values
   response = append_row(response1, responseSm1);
   // get RIM interactions
@@ -77,6 +67,16 @@ transformed parameters {
   // response-impact model estimates all interactions
   for(n in 1:N) {
        mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], ri_betaij[species_ID[n], ]));  
+  }
+  
+    
+  ndd_betaij = ri_betaij; // initialise nddm interactions to rim estimates
+  
+    // match inferrable interactions parameters to the correct position in the community matrix
+  for(s in 1:S) {
+    for(i in istart[s]:iend[s]) {
+      ndd_betaij[irow[i], icol[i]] = beta_ij[i];
+   }
   }
   
   for(n in 1:N) {
