@@ -34,7 +34,6 @@ parameters {
   vector<lower=0>[S] disp_dev; // species-specific dispersion deviation parameter, 
   // defined for the negative binomial distribution used to reflect seed production (perform)
   // disp_dev = 1/sqrt(phi)
-  vector<lower=0>[S] disp_dev2;
     
   vector[I] beta_ij;     // vector of interactions which have been inferred
   
@@ -93,7 +92,6 @@ model {
   beta_i0 ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
   disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
   beta_i02 ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
-  disp_dev2 ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
   
   beta_ij ~ normal(0,1);
   
@@ -110,7 +108,7 @@ model {
 
   // NDDM
   for (n in 1:N) {
-    target += neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev2[species_ID[n]]^2)^(-1));
+    target += neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev[species_ID[n]]^2)^(-1));
   }
   
 }
