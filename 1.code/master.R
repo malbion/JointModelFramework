@@ -11,7 +11,6 @@ library(coda)
 
 # load required functions
 source('data_prep.R')
-source('return_inter_array.R')
 source('simul_data.R')
 
 # load simulated data 
@@ -113,13 +112,12 @@ p.samples <- sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], fun
 intrinsic.perf <- exp(p.samples$beta_i0)
 colnames(intrinsic.perf) <- focalID
 
-# Build matrices of interaction estimates
-#----------------------------------------
-inter_mat <- return_inter_array(joint.post.draws, 
-                                response = p.samples$response,
-                                effect = p.samples$effect,
-                                focalID,
-                                neighbourID)
+# Get interaction estimates
+#--------------------------
+inter_mat <- aperm(joint.post.draws$ndd_betaij, c(2, 3, 1))
+rownames(inter_mat) <- focalID
+colnames(inter_mat) <- neighbourID
+
 # inter_mat is now a 3 dimensional array, where rows = focals, columns = neighbours and 3rd dim = samples from the posterior
 # inter_mat[ , , 1] should return a matrix consisting of one sample for every interaction 
 # apply(inter_mat, c(1, 2), mean) will return the mean estimate for every interaction (NB: this is the 
