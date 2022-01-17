@@ -73,12 +73,15 @@ fit <- stan(file = 'joint_model.stan',
 matrix_of_draws <- as.matrix(fit)
 gew <- coda::geweke.diag(matrix_of_draws)
 
+plot(density(na.omit(gew$z)), main = 'Geweke statistic density distribution')
+abline(v = -2, lty = 2)
+abline(v = 2, lty = 2)
+
 # Get the full posteriors 
 joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
-param.vec <- c('beta_i0', 'beta_i02','beta_ij', 'effect', 'response', 're', 'ri_betaij',
-               'ndd_betaij', 'joint_betaij', 'mu', 'mu2', 'disp_dev', 'sigma') 
+param.vec <- fit@model_pars
 
 ######### diagnostics only ####################
 source('../2.case_study/functions/stan_modelcheck_rem.R')
@@ -86,8 +89,6 @@ detach('package:coda')  # otherwise it interfers
 
 stan_diagnostic(fit, 'output')
 stan_model_check(fit, 'output', params = param.vec)
-# # or alternatively
-# stan_model_check(fit, 'output', params = fit@model_pars)
 stan_post_pred_check(joint.post.draws, 'output', stan.data)
 
 log_post <- unlist(extract(fit, 'lp__'))
