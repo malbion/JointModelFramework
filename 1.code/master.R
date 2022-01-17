@@ -81,7 +81,7 @@ abline(v = 2, lty = 2)
 joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
-param.vec <- fit@model_pars
+param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', 'lp__')]
 
 ######### diagnostics only ####################
 source('../2.case_study/functions/stan_modelcheck_rem.R')
@@ -101,18 +101,15 @@ write.csv(log_post, file = paste0('output/log_post.csv'), row.names = F)
 
 # Draw 1000 samples from the 80% posterior interval for each parameter of interest
 p.samples <- list()
-p.samples <- sapply(param.vec[param.vec != 'sigma' & param.vec != 'inter_mat'], function(p) {
+p.samples <- sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
   p.samples[[p]] <- apply(joint.post.draws[[p]], 2, function(x){
-    sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
+    sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 100)
   })  # this only works for parameters which are vectors
 })
-# there is only one sigma_alph parameter so we must sample differently:
-p.samples[['sigma']] <- sample(joint.post.draws$sigma[
-  joint.post.draws$sigma > quantile(joint.post.draws$sigma, 0.1) & 
-    joint.post.draws$sigma < quantile(joint.post.draws$sigma, 0.9)], size = 1000)
 
-# WARNING: in the STAN model for annual wildflowers, parameter 'a' lies within an exponential,
-# 'a' estimates must thus be exponentiated to return estimates of intrinsic performance
+
+# WARNING: in the STAN model for annual wildflowers, parameter 'beta_i0' lies within an exponential,
+# 'beta_i0' estimates must thus be exponentiated to return estimates of intrinsic performance
 intrinsic.perf <- exp(p.samples$beta_i0)
 colnames(intrinsic.perf) <- focalID
 
