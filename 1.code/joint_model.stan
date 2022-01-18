@@ -108,4 +108,13 @@ model {
   
 }
 
+generated quantities {
+
+  vector[N] log_lik;
+  
+  for(n in 1:N) {
+    log_lik[n] = neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev[species_ID[n]]^2)^(-1));
+  }
+
+}
 
