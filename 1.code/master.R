@@ -60,11 +60,11 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 1,
-            warmup = 500,          # number of warmup iterations per chain
-            iter = 1000,            # total number of iterations per chain
+            warmup = 1000,          # number of warmup iterations per chain
+            iter = 5000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
-                           adapt_delta = 0.95)
+                           adapt_delta = 0.8) # try lowering this to remove divergences
 )
 
 # As well as the usual traceplots etc., convergence one 1 chain can be checked 
