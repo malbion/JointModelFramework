@@ -110,10 +110,15 @@ model {
 
 generated quantities {
 
-  vector[N] log_lik;	// for model comparison
+  vector[N] log_lik_rim;	// log-likelihood for the RIM
+  vector[N] log_lik_nddm;	// log-likelihood for the NDDM
   
-  for(n in 1:N) {	// I don't think this is correct though
-    log_lik[n] = neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev[species_ID[n]]^2)^(-1));
+  for(n in 1:N) {	
+    log_lik_rim[n] = neg_binomial_2_lpmf(perform[n] | mu[n], (disp_dev[species_ID[n]]^2)^(-1));
+  }
+  
+    for(n in 1:N) {	
+    log_lik_nddm[n] = neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev[species_ID[n]]^2)^(-1));
   }
 
 }
