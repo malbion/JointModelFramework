@@ -98,6 +98,7 @@ stan_model_check <- function(fit,
 # This function plots the posterior predicted seed number vs the actual data
 
 stan_post_pred_check <- function(post.draws,
+                                 var_name = 'mu',
                                  results_folder,
                                  stan.data,
                                  ...) {
@@ -108,7 +109,7 @@ stan_post_pred_check <- function(post.draws,
   # mu is the mean for predicted seed number 
   
   # extract mu and phi
-  mu <- post.draws$mu # matrix with nrow = draws and ncol = observations
+  mu <- post.draws[[var_name]] # matrix with nrow = draws and ncol = observations
   disp_dev <- post.draws$disp_dev
   phi <- (disp_dev^2)^(-1)
   
@@ -125,7 +126,7 @@ stan_post_pred_check <- function(post.draws,
                        max(density(stan.data$perform)$y)))
   
   # dev.new(noRStudioGD = T)
-  png(paste0(results_folder, '/postpredch.png'), width=800, height=800)
+  png(paste0(results_folder, '/postpredch', var_name, '.png'), width=800, height=800)
   # start a plot with the first draw 
   ppc.plot <- plot(density(seed_pred[1, ]), ylim = c(0, max.density), col = 'darkgrey',
                    ylab = 'Seed density',

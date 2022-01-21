@@ -61,7 +61,7 @@ fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 1,
             warmup = 1000,          # number of warmup iterations per chain
-            iter = 5000,            # total number of iterations per chain
+            iter = 2500,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
                            adapt_delta = 0.8) # try lowering this to remove divergences
@@ -91,7 +91,8 @@ do.call(file.remove, list(list.files("output", full.names = TRUE)))
 
 stan_diagnostic(fit, 'output')
 stan_model_check(fit, 'output', params = param.vec)
-stan_post_pred_check(joint.post.draws, 'output', stan.data)
+stan_post_pred_check(joint.post.draws, 'mu', 'output', stan.data)
+stan_post_pred_check(joint.post.draws, 'mu2', 'output', stan.data)
 
 log_post <- unlist(extract(fit, 'lp__'))
 write.csv(log_post, file = paste0('output/log_post.csv'), row.names = F)
