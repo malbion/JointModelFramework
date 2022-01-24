@@ -7,7 +7,6 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
-library(coda)
 
 # load required functions
 source('data_prep.R')
@@ -16,13 +15,13 @@ source('simul_data.R')
 # load simulated data 
 simdat <- simul_data(S=10, K=10, p=0.25)
 df <- simdat[[1]]
-############# TEMP #############
-# add more neighbours than focals 
-simdat2 <- simul_data(S=10, K=10, p=0.25)
-mn <- min(nrow(df), nrow(simdat2[[1]]))
-df <- cbind(df[1:mn, ], simdat2[[1]][1:mn, 3:5])
-colnames(df)[13:15] <- c("K11", "K12", "K13")
-###################################
+# ############# TEMP #############
+# # add more neighbours than focals 
+# simdat2 <- simul_data(S=10, K=10, p=0.25)
+# mn <- min(nrow(df), nrow(simdat2[[1]]))
+# df <- cbind(df[1:mn, ], simdat2[[1]][1:mn, 3:5])
+# colnames(df)[13:15] <- c("K11", "K12", "K13")
+# ###################################
 sim_a <- simdat[[2]]
 sim_interactions <- simdat[[3]]
 
@@ -69,12 +68,13 @@ fit <- stan(file = 'joint_model.stan',
 
 # As well as the usual traceplots etc., convergence one 1 chain can be checked 
 # using the geweke.diag() function from the coda package, e.g.:
+library(coda)
 matrix_of_draws <- as.matrix(fit)
 gew <- coda::geweke.diag(matrix_of_draws)
 
-plot(density(na.omit(gew$z)), main = 'Geweke statistic density distribution')
-abline(v = -2, lty = 2)
-abline(v = 2, lty = 2)
+# plot(density(na.omit(gew$z)), main = 'Geweke statistic density distribution')
+# abline(v = -2, lty = 2)
+# abline(v = 2, lty = 2)
 
 # Get the full posteriors 
 joint.post.draws <- extract.samples(fit)
@@ -82,22 +82,22 @@ joint.post.draws <- extract.samples(fit)
 # Select parameters of interest
 param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', 'lp__')]
 
-######### diagnostics only ####################
-source('../2.case_study/functions/stan_modelcheck_rem.R')
-detach('package:coda')  # otherwise it interfers
-
-# empty results folder of past runs
-do.call(file.remove, list(list.files("output", full.names = TRUE)))
-
-stan_diagnostic(fit, 'output')
-stan_model_check(fit, 'output', params = param.vec)
-stan_post_pred_check(joint.post.draws, 'mu', 'output', stan.data)
-stan_post_pred_check(joint.post.draws, 'mu2', 'output', stan.data)
-
-log_post <- unlist(extract(fit, 'lp__'))
-write.csv(log_post, file = paste0('output/log_post.csv'), row.names = F)
-
-##################################################################################
+# ######### diagnostics only ####################
+# source('../2.case_study/functions/stan_modelcheck_rem.R')
+# detach('package:coda')  # otherwise it interfers
+# 
+# # empty results folder of past runs
+# do.call(file.remove, list(list.files("output", full.names = TRUE)))
+# 
+# stan_diagnostic(fit, 'output')
+# stan_model_check(fit, 'output', params = param.vec)
+# stan_post_pred_check(joint.post.draws, 'mu', 'output', stan.data)
+# stan_post_pred_check(joint.post.draws, 'mu2', 'output', stan.data)
+# 
+# log_post <- unlist(extract(fit, 'lp__'))
+# write.csv(log_post, file = paste0('output/log_post.csv'), row.names = F)
+# 
+# ##################################################################################
 
 # Draw 1000 samples from the 80% posterior interval for each parameter of interest
 p.samples <- list()
