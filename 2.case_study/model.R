@@ -83,7 +83,7 @@ message(paste0('Number of neighbours = ', length(key_neighbourID)))
 # Estimate interactions with a joint NDD*RI model |
 #--------------------------------------------------
 
-fit <- stan(file = 'joint_model.stan',
+fit <- stan(file = '../1.code/joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 1,
             warmup = 5000,          # number of warmup iterations per chain
