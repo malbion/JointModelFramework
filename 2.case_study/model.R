@@ -1,4 +1,4 @@
-# Objective: running a joint model combining IF and RE to estimate all interactions at the same time. 
+# Objective: running a joint model combining NDDM and RIM to estimate all interactions at the same time. 
 # 
 # Run in Terminal: 
 #   
@@ -10,14 +10,13 @@
 # results got to model/output, /transformed and /validation
 
 
-# One model to rule them all: 
-# 1. Estimate observed interactions with IFM 
-# 2. Estimate response and effect from observed interactions
+# Run the joint model: 
+# 1. Estimate inferrable interactions with NDDM 
+# 2. Estimate response and effect interactions when non-inferrable
 
 # Then: 
-# 3. Extract the intrinsic growth rates
-# 4. Estimate missing interactions using response and effect 
-# 5. Scale the interactions into alphas
+# 3. Extract the intrinsic growth rates 
+# 5. Scale the interactions into per-capita growth rates
 
 # PRELUDE
 #-------
@@ -44,9 +43,7 @@ library(rethinking)
 library(reshape2)
 library(here)
 
-# setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/3.case_study/')
 setwd(here('3.case_study/'))
-
 
 source('../1.code/data_prep.R')
 source('functions/stan_modelcheck_rem.R')
