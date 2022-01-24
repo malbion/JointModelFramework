@@ -129,17 +129,22 @@ print(paste0('Range of p-values for chain convergence: ', min(na.omit(adj.gew)),
 png('model/validation/geweke_dist.png', width = 500, height = 500)
 plot(density(na.omit(gew$z)))
 lines(density(rnorm(10000)), col = 'red')
+abline(v = -2, lty = 2)
+abline(v = 2, lty = 2)
 dev.off()
+
+
 # Diagnostics
 stan_diagnostic(fit, 'model/validation/')
 # Traceplots and posterior uncertainty intervals
 stan_model_check(fit, 'model/validation/', params = param.vec)
 # Posterior predictive check
-stan_post_pred_check(joint.post.draws, 'model/validation/', stan.data)
+stan_post_pred_check(joint.post.draws, 'mu', 'model/validation/', stan.data)
+stan_post_pred_check(joint.post.draws, 'mu2', 'model/validation/', stan.data)
 
 # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
 #------------------
-# sample raw model params
+# this works for parameters that are not the interaction matrices
 sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
   
   p.samples <- apply(joint.post.draws[[p]], 2, function(x){
@@ -149,12 +154,6 @@ sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
             row.names = F)
   
 })
-# sigma alph mucks up because it is one value only, ifm_alphas mucks up because it's a 3d array
-sigma <- joint.post.draws$sigma
-sigma <- sample(sigma[sigma > quantile(sigma, 0.1) & sigma < quantile(sigma, 0.9)], size = 1000)
-write.csv(sigma, paste0('model/output/sigma_samples.csv'), 
-          row.names = F)
-
 
 # Transformed parameters
 #-----------------------
@@ -166,58 +165,48 @@ growth.rates.samples <- apply(joint.post.draws$beta_i0, 2, function(x){
 growth.rates.samples <- exp(growth.rates.samples)
 write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
 
-
 # Interactions (alphas)
-# get posterior draws for all interactions (from the IFM)
-alphas <- joint.post.draws$inter_mat
-# columns are interactions (in same order as the interactions vector - focals, then neighbours)
-alphas <- as.data.frame(aperm(alphas, perm = c(1, 3, 2)))
-colnames(alphas) <- grep('ifm_alpha', rownames(fit_sum), value = T)
-# take the 80% posterior interval
-alphas <- apply(alphas, 2, function(x) {
-  inter <- x[x > quantile(x, 0.1) & x < quantile(x, 0.9)]
-  if (length(inter > 0)) {sample(inter, size = 1000)} else {rep(0, 1000)}
-  # this is for those unobserved interactions (0)
-})
-
-# calculate interactions according to the response effect model
-response <- apply(joint.post.draws$response, 2, function(x) {
+# joint interactions 
+betaij <- apply(joint.post.draws$ndd_betaij, c(2, 3), function(x) {
   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
 })
-effect <- apply(joint.post.draws$effect, 2, function(x) {
+betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
+colnames(betaijS) <- grep('beta_ij', rownames(fit_sum), value = T)
+write.csv(betaijS, paste0('model/transformed/betaij_samples.csv'), row.names = F)
+
+# rim interactions only
+rim_betaij <- apply(joint.post.draws$ri_betaij, c(2, 3), function(x) {
   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
 })
 
-re_alphas <- lapply(c(1:length(key_speciesID)), function(x) {
-  ri <- response[, x]
-  ri <- sample(ri, length(ri))  # randomly re-order the ri vector
-  return(ri*effect)})
-re_alphas <- do.call(cbind, re_alphas)
+# inferrable vs. non-inferrable interactions 
+betaij_inf <- t(apply(betaij, 1, function(x) x*stan.data$Q))
+betaij_inf <- betaij_inf[  , apply(betaij_inf, 2, function(x) {all(x != 0)})]
+betaij_inf <- t(apply(rim_betaij, 1, function(x) x*stan.data$Q))
+rim_betaij_inf <- rim_betaij_inf[  , apply(rim_betaij_inf, 2, function(x) {all(x != 0)})]
+rim_betaij_noinf <- t(apply(rim_betaij, 1, function(x) x*(1 - stan.data$Q)))
+rim_betaij_noinf <- rim_betaij_noinf[  , apply(rim_betaij_noinf, 2, function(x) {all(x != 0)})]
 
-# Verify!
-png(paste0('model/validation/ifm_vs_rem_alphas.png'))
-plot(alphas, re_alphas, xlab = 'IFM alphas', ylab='Response*Effect',
-     xlim = c(min(re_alphas), max(re_alphas)),
-     ylim = c(min(re_alphas), max(re_alphas)))
+# Check estimates of inferrable interactions from both models
+png(paste0('model/validation/nddm_vs_rim_alphas.png'))
+plot(betaij_inf, betaij_inf, 
+     xlab = 'NDDM interactions (inferrable only)', 
+     ylab='RIM interactions (inferrable only)',
+     xlim = c(min(betaij), max(betaij)),
+     ylim = c(min(betaij), max(betaij)))
 abline(0,1)
 dev.off()
 
-# get unobserved estimates only
-unobs <- re_alphas[ , apply(alphas, 2, function(x) {all(x == 0)})]
+# check distribution of inferrable and non-inferrable interactions
 png(paste0('model/validation/alpha_est_distr.png'))
 par(mfrow=c(3,1))
-hist(alphas[  , apply(alphas, 2, function(x) {all(x != 0)})], xlab = "", breaks = 30,
-     main = "IFM alphas (0's removed)", xlim = c(min(re_alphas), max(re_alphas)))
-hist(re_alphas[ , apply(alphas, 2, function(x) {all(x != 0)})],  xlab = "", breaks = 30,
-     main = 'REM alphas - Unrealised estimates removed', xlim = c(min(re_alphas), max(re_alphas)))
-hist(unobs,  xlab = "", main = 'REM alphas - Unrealised interactions only', breaks = 30,
-     xlim = c(min(re_alphas), max(re_alphas)))
+hist(betaij_inf, xlab = "", breaks = 30,
+     main = "Inferrable interactions (NDDM)", xlim = c(min(betaij), max(betaij)))
+hist(rim_betaij_inf,  xlab = "", breaks = 30,
+     main = 'Inferrable interactions (RIM)', xlim = c(min(betaij), max(betaij)))
+hist(rim_betaij_noinf,  xlab = "", main = 'Non-inferrable interactions (RIM)', breaks = 30,
+     xlim = c(min(betaij), max(betaij)))
 dev.off()
-
-# replace unobserved interactions (0 in alphas) with the values predicted by the rem
-alphas[ , apply(alphas, 2, function(x) {all(x == 0)})] <- 
-  re_alphas[ , apply(alphas, 2, function(x) {all(x == 0)})]
-write.csv(alphas, paste0('model/transformed/alpha_samples.csv'), row.names = F)
 
 # Scale the alphas and save
 scaled_alphas <- scale_interactions(alphas, growth.rates.samples, key_speciesID, key_neighbourID, comm)
