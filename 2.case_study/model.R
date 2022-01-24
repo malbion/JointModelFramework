@@ -48,7 +48,7 @@ library(here)
 setwd(here('3.case_study/'))
 
 
-source('functions/rem_dataprep.R')
+source('../1.code/data_prep.R')
 source('functions/stan_modelcheck_rem.R')
 source('functions/scale_interactions.R')
 
@@ -72,12 +72,15 @@ all(indep == 1) # if TRUE then neighbours are linearly independent and we can co
 if(!all(indep == 1)) message('WARNING neighbours are not linearly independent') 
 
 # transform data into format required by STAN
-stan.data <- rem_dataprep(fecundities)
+stan.data <- data_prep(perform = 'seeds', focal = 'focal', 
+                       nonNcols = 4, df = fecundities)
+
 
 message(paste0('Community selected: ', comm))
 message(paste0('Fecundity data dimensions = ', dim(fecundities)[1], ', ', dim(fecundities)[2]))
 message(paste0('Number of focals = ', length(key_speciesID)))
 message(paste0('Number of neighbours = ', length(key_neighbourID)))
+message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$K)))
 
 #--------------------------------------------------
 # Estimate interactions with a joint NDD*RI model |
@@ -93,8 +96,8 @@ fit <- stan(file = '../1.code/joint_model.stan',
 )
 
 # parameters of interest
-param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'inter_mat',
-               'mu', 'disp_dev', 'sigma')
+param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', 'lp__')]
+
 
 # Raw output
 #------------
@@ -137,7 +140,7 @@ stan_post_pred_check(joint.post.draws, 'model/validation/', stan.data)
 # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
 #------------------
 # sample raw model params
-sapply(param.vec[param.vec != 'sigma' & param.vec != 'inter_mat'], function(p) {
+sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
   
   p.samples <- apply(joint.post.draws[[p]], 2, function(x){
     sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
