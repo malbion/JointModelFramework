@@ -43,7 +43,7 @@ library(rethinking)
 library(reshape2)
 library(here)
 
-setwd(here('3.case_study/'))
+setwd(here('2.case_study/'))
 
 source('../1.code/data_prep.R')
 source('functions/stan_modelcheck_rem.R')
