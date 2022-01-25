@@ -13,7 +13,7 @@ setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 ############################################################################################
 
 # Get raw quantities from model output
-load('3.case_study/model/output/post_draws.Rdata')
+load('2.case_study/model/output/post_draws.Rdata')
 
 # 80% posterior of relevant parameters - vectors
 param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'mu', 'disp_dev')
@@ -71,7 +71,7 @@ dev.off()
 #---------------------------------------
 
 # get real data
-fecundities <- read.csv('3.case_study/data/fecundities0.csv', stringsAsFactors = F)
+fecundities <- read.csv('2.case_study/data/fecundities0.csv', stringsAsFactors = F)
 seeds <- fecundities$seeds
 focalobs <- as.numeric(as.factor(fecundities$focal))
 
@@ -176,7 +176,7 @@ rm(joint.post.draws)
 ############################################################################################
 
 
-load('3.case_study/model/transformed/scaled_alpha_matrices.Rdata')
+load('2.case_study/model/transformed/scaled_betaij_matrices.Rdata')
 
 
 
@@ -186,9 +186,9 @@ load('3.case_study/model/transformed/scaled_alpha_matrices.Rdata')
 
 # get the mean and variance estimates for interactions
 # 06/2021 MEDIAN 
-alpha_means <- apply(scaled_alphas, c(1, 2), median)
-alpha_means <- alpha_means[ , 1:nrow(alpha_means)]
-# alpha_var <- apply(scaled_alphas, c(1, 2), var)
+bij.med <- apply(scaled_betas, c(1, 2), median)
+bij.med <- bij.med[ , 1:nrow(bij.med)]
+# alpha_var <- apply(scaled_betas, c(1, 2), var)
 # alpha_var <- alpha_var[ , 1:nrow(alpha_var)]
 
 # getting the RIM alphas and variances only
@@ -200,7 +200,7 @@ ifm_means <- matrix(data = ifm_means,
                     byrow = T)
 ifm_means <- ifm_means[ , 1:nrow(ifm_means)]
 
-alpha_rim <- alpha_means
+alpha_rim <- bij.med
 alpha_rim[which(ifm_means != 0, arr.ind = T)] <- 0
 # alpha_var_rim <- alpha_var
 # alpha_var_rim[which(ifm_means != 0, arr.ind = T)] <- 0
@@ -209,18 +209,18 @@ alpha_rim[which(ifm_means != 0, arr.ind = T)] <- 0
 invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
 keyst <- c('GITE', 'TROR', 'HAOD')
-all.sp <- rep('white', length(dimnames(alpha_means)$species))
-names(all.sp) <- dimnames(alpha_means)$species
+all.sp <- rep('white', length(dimnames(bij.med)$species))
+names(all.sp) <- dimnames(bij.med)$species
 # all.sp[invasives] <- 'tomato'
 all.sp[foundation] <- 'plum'
 all.sp[keyst] <- 'seagreen2'
-# node.outline.width <- rep(1, length(dimnames(alpha_means)$species))
-# names(node.outline.width) <- dimnames(alpha_means)$species
+# node.outline.width <- rep(1, length(dimnames(bij.med)$species))
+# names(node.outline.width) <- dimnames(bij.med)$species
 # node.outline.width[ c(invasives, foundation, keyst)] <- 3
 
 # get the cooccurence matrix
 cooc <- read.csv('2.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
-cooc <- cooc[1:nrow(alpha_means), 1:nrow(alpha_means)]
+cooc <- cooc[1:nrow(bij.med), 1:nrow(bij.med)]
 
 library(qgraph)
 
@@ -228,13 +228,13 @@ png('2.analyses/figures_mss/networks_strengths_med.png',
     width = 600, height = 800, units = 'px')
 par(mfrow=c(2, 1))
 # plot all interactions
-qgraph(alpha_means,  # plot interaction means
+qgraph(bij.med,  # plot interaction means
      #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
        layout = 'circle',
        negCol = 'royalblue4',   # facilitation = blue
        posCol = 'orange',       # competition = orange
        color = all.sp,
-       labels = dimnames(alpha_means)$species,
+       labels = dimnames(bij.med)$species,
        fade = T, directed = T,
        title = 'A', title.cex =5)
 # # plot those from the RIM only 
@@ -251,7 +251,7 @@ qgraph(cooc,
        negCol = 'orange',   # swap the colours around
        posCol = 'royalblue4',     
        color = all.sp,
-       labels = dimnames(alpha_means)$species,
+       labels = dimnames(bij.med)$species,
        fade = T,
        title = 'B', title.cex =5)
 dev.off()
@@ -260,24 +260,24 @@ png('2.analyses/figures_mss/networks_C_F_cooc.png',
     width = 600, height = 1200, units = 'px')
 par(mfrow=c(3, 1))
 # plot competition only
-qgraph(alpha_means,  # plot interaction means
+qgraph(bij.med,  # plot interaction means
        #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
        layout = 'circle',
        negCol = rgb(red = 0, green = 0, blue = 0, alpha = 0),   # facilitation = transaprent
        posCol = 'orange',       # competition = orange
        color = all.sp,
       # border.width = node.outline.width,
-       labels = dimnames(alpha_means)$species,
+       labels = dimnames(bij.med)$species,
        fade = T, directed = T,
        title = 'A', title.cex =5)
 # plot facilitation only
-qgraph(alpha_means,  # plot interaction means
+qgraph(bij.med,  # plot interaction means
        #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
        layout = 'circle',
        negCol = 'royalblue4',   # facilitation = transaprent
        posCol = rgb(red = 0, green = 0, blue = 0, alpha = 0),       # competition = orange
        color = all.sp,
-       labels = dimnames(alpha_means)$species,
+       labels = dimnames(bij.med)$species,
        fade = T, directed = T,
        title = 'B', title.cex =5)
 # plot from the cooccur package
@@ -286,7 +286,7 @@ qgraph(cooc,
        negCol = 'orange',   # swap the colours around
        posCol = 'royalblue4',     
        color = all.sp,
-       labels = dimnames(alpha_means)$species,
+       labels = dimnames(bij.med)$species,
        fade = T,
        title = 'C', title.cex =5)
 dev.off()
@@ -295,24 +295,24 @@ dev.off()
 # Figure 5: Applications - species effects |
 #-------------------------------------------
 
-sp.abunds <- read.csv('3.case_study/data/plot_species_abundances.csv', stringsAsFactors = F)
+sp.abunds <- read.csv('2.case_study/data/plot_species_abundances.csv', stringsAsFactors = F)
 sp.abunds <- split(sp.abunds, as.factor(sp.abunds$species))
 sp.abunds <- do.call(rbind,
                      lapply(sp.abunds, function(x) sum(x[ ,'Num_indivs'])))
-sp.abunds <- sp.abunds[rownames(alpha_means), ]
+sp.abunds <- sp.abunds[rownames(bij.med), ]
 # log scale 
 sp.abunds <- log(sp.abunds)
-sp.abunds.rep <- matrix(data = rep(sp.abunds, dim(scaled_alphas)[3]), 
-                        nrow = length(sp.abunds), ncol = dim(scaled_alphas)[3])
+sp.abunds.rep <- matrix(data = rep(sp.abunds, dim(scaled_betas)[3]), 
+                        nrow = length(sp.abunds), ncol = dim(scaled_betas)[3])
 
 # get the effects of species on themselves 
-intras <- apply(scaled_alphas, 3, diag)
+intras <- apply(scaled_betas, 3, diag)
 upper.intra <- apply(intras, 1, quantile, 0.75)
 lower.intra <- apply(intras, 1, quantile, 0.25)
 mean.intra <- apply(intras, 1, median)
 
 # get the effects of species on others
-inters.out <- scaled_alphas[ , 1:nrow(scaled_alphas), ]
+inters.out <- scaled_betas[ , 1:nrow(scaled_betas), ]
 sum.out <- apply(inters.out, c(2, 3), sum)
 sum.out <- sum.out - intras   # remove intraspecific interactions
 upper.sum.out <- apply(sum.out, 1, quantile, 0.75)
