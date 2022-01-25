@@ -66,7 +66,7 @@ stan_model_check <- function(fit,
   fit_summary <- summary(fit)$summary
   
   # remove 'mu' from the parameter vector and do it after because it is too long
-  params <- params[params != 'mu']
+  params <- params[!params %in% c('mu', 'mu2', 'log_lik_rim', 'log_lik_nddm')]
   
   sapply(params, function(x) { 
     
@@ -74,8 +74,8 @@ stan_model_check <- function(fit,
     N <- length(grep(x, rownames(fit_summary)))
     # some exceptions: 
     if (x == 'beta_i0') {N <- 20}
-    if (x == 're') {N <- 800}
-    if (x == 'sigma') {N <- 10}
+    if (x == 'beta_ij') {N <- 800}
+    if (x == 'lp__') {N <- 10}
     
     # save traceplot of the posterior draws
     png(paste0(results_folder, '/tplot_', x, '.png'), width = 800, height = (N/5*100))
