@@ -100,8 +100,8 @@ param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', '
 #------------
 save(fit, file = paste0('model/output/model_fit.Rdata')) # model fit
 # Save the 'raw' draws from the posterior
-joint.post.draws <- extract.samples(fit)
-save(joint.post.draws, file = paste0('model/output/post_draws.Rdata'))
+post.draws <- extract.samples(fit)
+save(post.draws, file = paste0('model/output/post_draws.Rdata'))
 
 # Save mean, 10% and 90% quantiles for each parameter, as well as n_eff and Rhat
 fit_sum <- summary(fit, pars = param.vec, probs = c(0.1, 0.9))$summary
@@ -136,15 +136,15 @@ stan_diagnostic(fit, 'model/validation/')
 # Traceplots and posterior uncertainty intervals
 stan_model_check(fit, 'model/validation/', params = param.vec)
 # Posterior predictive check
-stan_post_pred_check(joint.post.draws, 'mu', 'model/validation/', stan.data)
-stan_post_pred_check(joint.post.draws, 'mu2', 'model/validation/', stan.data)
+stan_post_pred_check(post.draws, 'mu', 'model/validation/', stan.data)
+stan_post_pred_check(post.draws, 'mu2', 'model/validation/', stan.data)
 
 # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
 #------------------
 # this works for parameters that are not the interaction matrices
 sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
   
-  p.samples <- apply(joint.post.draws[[p]], 2, function(x){
+  p.samples <- apply(post.draws[[p]], 2, function(x){
     sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
   })
   write.csv(p.samples, paste0('model/output/', p, '_samples.csv'), 
@@ -155,16 +155,16 @@ sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
 # Transformed parameters
 #-----------------------
 # Intrinsic growth rate (lambda)
-growth.rates.samples <- apply(joint.post.draws$beta_i0, 2, function(x){
+growth.rates.samples <- apply(post.draws$beta_i0, 2, function(x){
   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
 })
 # exponentiate to get lambda
 growth.rates.samples <- exp(growth.rates.samples)
 write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
 
-# Interactions (alphas)
+# Interactions (betaij)
 # joint interactions 
-betaij <- apply(joint.post.draws$ndd_betaij, c(2, 3), function(x) {
+betaij <- apply(post.draws$ndd_betaij, c(2, 3), function(x) {
   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
 })
 betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
@@ -172,32 +172,32 @@ colnames(betaijS) <- grep('beta_ij', rownames(fit_sum), value = T)
 write.csv(betaijS, paste0('model/transformed/betaij_samples.csv'), row.names = F)
 
 # rim interactions only
-rim_betaij <- apply(joint.post.draws$ri_betaij, c(2, 3), function(x) {
+rim_betaij <- apply(post.draws$ri_betaij, c(2, 3), function(x) {
   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
 })
 
 # inferrable vs. non-inferrable interactions 
-betaij_inf <- t(apply(betaij, 1, function(x) x*stan.data$Q))
-betaij_inf <- betaij_inf[  , apply(betaij_inf, 2, function(x) {all(x != 0)})]
-betaij_inf <- t(apply(rim_betaij, 1, function(x) x*stan.data$Q))
-rim_betaij_inf <- rim_betaij_inf[  , apply(rim_betaij_inf, 2, function(x) {all(x != 0)})]
-rim_betaij_noinf <- t(apply(rim_betaij, 1, function(x) x*(1 - stan.data$Q)))
+nddm_betaij <- t(apply(betaij, 1, function(x) x*stan.data$Q))  # NDDM estimates only
+nddm_betaij_inf <- nddm_betaij[  , apply(nddm_betaij, 2, function(x) {all(x != 0)})] # remove non-inferrables
+rim_betaij_inf <- t(apply(rim_betaij, 1, function(x) x*stan.data$Q))  # RIM inferrable estimates only
+rim_betaij_inf <- rim_betaij_inf[  , apply(nddm_betaij, 2, function(x) {all(x != 0)})]
+rim_betaij_noinf <- t(apply(rim_betaij, 1, function(x) x*(1 - stan.data$Q)))  # RIM non-inferrable only
 rim_betaij_noinf <- rim_betaij_noinf[  , apply(rim_betaij_noinf, 2, function(x) {all(x != 0)})]
 
 # Check estimates of inferrable interactions from both models
 png(paste0('model/validation/nddm_vs_rim_alphas.png'))
-plot(betaij_inf, betaij_inf, 
+plot(nddm_betaij_inf, rim_betaij_inf, 
      xlab = 'NDDM interactions (inferrable only)', 
      ylab='RIM interactions (inferrable only)',
-     xlim = c(min(betaij), max(betaij)),
-     ylim = c(min(betaij), max(betaij)))
+     xlim = c(min(nddm_betaij_inf), max(nddm_betaij_inf)),
+     ylim = c(min(nddm_betaij_inf), max(nddm_betaij_inf)))
 abline(0,1)
 dev.off()
 
 # check distribution of inferrable and non-inferrable interactions
-png(paste0('model/validation/alpha_est_distr.png'))
+png(paste0('model/validation/betaij_est_distr.png'))
 par(mfrow=c(3,1))
-hist(betaij_inf, xlab = "", breaks = 30,
+hist(nddm_betaij_inf, xlab = "", breaks = 30,
      main = "Inferrable interactions (NDDM)", xlim = c(min(betaij), max(betaij)))
 hist(rim_betaij_inf,  xlab = "", breaks = 30,
      main = 'Inferrable interactions (RIM)', xlim = c(min(betaij), max(betaij)))
@@ -206,8 +206,8 @@ hist(rim_betaij_noinf,  xlab = "", main = 'Non-inferrable interactions (RIM)', b
 dev.off()
 
 # Scale the alphas and save
-scaled_alphas <- scale_interactions(alphas, growth.rates.samples, key_speciesID, key_neighbourID, comm)
-save(scaled_alphas, file = paste0('model/transformed/scaled_alpha_matrices.Rdata')) 
+scaled_betas <- scale_interactions(betaijS, growth.rates.samples, key_speciesID, key_neighbourID, comm)
+save(scaled_betas, file = paste0('model/transformed/scaled_betaij_matrices.Rdata')) 
 
 Sys.time()
 
