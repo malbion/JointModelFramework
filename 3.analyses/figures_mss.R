@@ -12,54 +12,43 @@ setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 #                               PREP FOR FIGURES 1-3
 ############################################################################################
 
-# Get raw quantities from model output
-load('2.case_study/model/output/post_draws.Rdata')
+# # Get raw quantities from model output
+# load('2.case_study/model/output/post_draws.Rdata')
+# 
+# # 80% posterior of relevant parameters - vectors
+# param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'mu', 'disp_dev')
+# p.samples <- list()
+# p.samples <- sapply(param.vec, function(p) {
+#   p.samples[[p]] <- apply(joint.post.draws[[p]], 2, function(x){
+#     sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
+#   }) 
+# })
 
-# 80% posterior of relevant parameters - vectors
-param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'mu', 'disp_dev')
-p.samples <- list()
-p.samples <- sapply(param.vec, function(p) {
-  p.samples[[p]] <- apply(joint.post.draws[[p]], 2, function(x){
-    sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
-  }) 
-})
-# get ALL interaction estimates for IFM 
-ifm_mat <- as.data.frame(aperm(joint.post.draws$inter_mat, perm = c(1, 3, 2)))
-# take the 80% posterior interval
-ifm_mat <- apply(ifm_mat, 2, function(x) {
-  inter <- x[x > quantile(x, 0.1) & x < quantile(x, 0.9)]
-  # this is for those unobserved interactions (0):
-  if (length(inter > 0)) {sample(inter, size = 1000)} else {rep(0, 1000)} 
-})
-# get ALL interaction estimates for REM 
-rim_mat <- lapply(c(1:dim(p.samples[['beta_i0']])[[2]]), function(x) {
-  resp <- p.samples$response[, x]
-  resp <- sample(resp, length(resp))  # randomly re-order the response vector
-  return(resp*p.samples$effect)})
-rim_mat <- do.call(cbind, rim_mat)
+rim_mat <- as.matrix(read.csv('2.case_study/model/output/RIM_betaij_samples.csv'))
+nddm_mat <- as.matrix(read.csv('2.case_study/model/output/NDDM_betaij_samples.csv'))
 
 
 #---------------------------------
 # Figure 1: IFM vs RIM estimates |
 #---------------------------------
 
-png('2.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 700)
+png('3.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 700)
 par(mfrow=c(2,2), cex = 1.5)
-hist(ifm_mat[ , apply(ifm_mat, 2, function(x) {all(x != 0)})], 
+hist(nddm_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})], 
      xlab = "", breaks = 30,
      main = "Realised interactions (NDDM)", 
      xlim = c(min(rim_mat), max(rim_mat)))
-plot(rim_mat[ifm_mat!=0], ifm_mat[ifm_mat!=0], 
+plot(rim_mat[nddm_mat!=0], nddm_mat[nddm_mat!=0], 
      ylab = 'NDDM estimates', xlab='Response*Impact estimates',
      xlim = c(min(rim_mat), max(rim_mat)), ylim = c(min(rim_mat), max(rim_mat)), 
      pch = 16, 
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
 abline(0,1)
-hist(rim_mat[ , apply(ifm_mat, 2, function(x) {all(x == 0)})],  
+hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x == 0)})],  
      xlab = "", breaks = 30,
      main = 'Unrealised interactions (RIM)', 
      xlim = c(min(rim_mat), max(rim_mat)))
-hist(rim_mat[ , apply(ifm_mat, 2, function(x) {all(x != 0)})],  
+hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})],  
      xlab = "", breaks = 30,
      main = 'Realised interactions (RIM)', 
      xlim = c(min(rim_mat), max(rim_mat)))
@@ -119,7 +108,7 @@ max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}),
                      max(density(seeds)$y)))
 
 
-png('2.analyses/figures_mss/postpredch.png', width=500, height=500)
+png('3.analyses/figures_mss/postpredch.png', width=500, height=500)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
                  type = 'n',
@@ -154,7 +143,7 @@ dev.off()
 
 S <- dim(p.samples$beta_i0)[[2]]
 
-png('2.analyses/figures_mss/response_impact2.png', width = 400, height = 700)
+png('3.analyses/figures_mss/response_impact2.png', width = 400, height = 700)
 plot(p.samples$response, p.samples$effect[ , 1:S], type = 'n',
      xlab = expression(italic('response i')), ylab = expression(italic('impact i')))
 abline(h = 0, lty = 2)
@@ -178,32 +167,13 @@ rm(joint.post.draws)
 
 load('2.case_study/model/transformed/scaled_betaij_matrices.Rdata')
 
-
-
 #--------------------------------------
 # Figure 4: Pretty network vs cooccur |
 #--------------------------------------
 
-# get the mean and variance estimates for interactions
-# 06/2021 MEDIAN 
+# Median interaction estimates for joint model
 bij.med <- apply(scaled_betas, c(1, 2), median)
 bij.med <- bij.med[ , 1:nrow(bij.med)]
-# alpha_var <- apply(scaled_betas, c(1, 2), var)
-# alpha_var <- alpha_var[ , 1:nrow(alpha_var)]
-
-# getting the RIM alphas and variances only
-# ifm_means <- colMeans(ifm_mat)
-ifm_means <- apply(ifm_mat, 2, median)
-ifm_means <- matrix(data = ifm_means, 
-                    nrow = dim(p.samples$response)[[2]],
-                    ncol = dim(p.samples$effect)[[2]],
-                    byrow = T)
-ifm_means <- ifm_means[ , 1:nrow(ifm_means)]
-
-alpha_rim <- bij.med
-alpha_rim[which(ifm_means != 0, arr.ind = T)] <- 0
-# alpha_var_rim <- alpha_var
-# alpha_var_rim[which(ifm_means != 0, arr.ind = T)] <- 0
 
 # set up colours for nodes (linking to next figure)
 invasives <- c('ARCA', 'PEAI', 'HYPO')
@@ -219,12 +189,12 @@ all.sp[keyst] <- 'seagreen2'
 # node.outline.width[ c(invasives, foundation, keyst)] <- 3
 
 # get the cooccurence matrix
-cooc <- read.csv('2.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
+cooc <- read.csv('3.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
 cooc <- cooc[1:nrow(bij.med), 1:nrow(bij.med)]
 
 library(qgraph)
 
-png('2.analyses/figures_mss/networks_strengths_med.png', 
+png('3.analyses/figures_mss/networks_strengths_med.png', 
     width = 600, height = 800, units = 'px')
 par(mfrow=c(2, 1))
 # plot all interactions
@@ -237,14 +207,6 @@ qgraph(bij.med,  # plot interaction means
        labels = dimnames(bij.med)$species,
        fade = T, directed = T,
        title = 'A', title.cex =5)
-# # plot those from the RIM only 
-# qgraph(alpha_rim,  # plot interaction means
-#        edge.width = (alpha_var_rim*100),  # set edge width to be equal to the variance
-#        layout = 'circle',
-#        negCol = 'royalblue4',   # facilitation = blue
-#        posCol = 'orange',       # competition = orange
-#        fade = T, directed = T,
-#        title = 'B', title.cex =5)
 # plot from the cooccur package
 qgraph(cooc,
        layout = 'circle', 
@@ -256,7 +218,7 @@ qgraph(cooc,
        title = 'B', title.cex =5)
 dev.off()
 
-png('2.analyses/figures_mss/networks_C_F_cooc.png', 
+png('3.analyses/figures_mss/networks_C_F_cooc.png', 
     width = 600, height = 1200, units = 'px')
 par(mfrow=c(3, 1))
 # plot competition only
@@ -341,7 +303,7 @@ foundation <- c('VERO', 'POCA')
 keyst <- c('GITE',  'HAOD')
 
 ###### PLOT
-png('2.analyses/figures_mss/species_effects.png', 
+png('3.analyses/figures_mss/species_effects.png', 
     width = 500, height = 1500, units = 'px')
 par(mfrow=c(3,1), cex=1.2)
 
@@ -447,7 +409,7 @@ dev.off()
 
 # Another figure - cooccur strengths vs log abundance? 
 #------------------------------------------------------
-png('2.analyses/figures_mss/cooccur_vs_abund.png', 
+png('3.analyses/figures_mss/cooccur_vs_abund.png', 
     width = 500, height = 500, units = 'px')
 par(cex=1.2)
 plot(-colSums(cooc, na.rm = T), sp.abunds, 
