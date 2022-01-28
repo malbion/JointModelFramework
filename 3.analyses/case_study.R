@@ -22,11 +22,12 @@ length(foc_only[foc_only < 0])/length(foc_only)*100
 
 # get species metrics
 source('3.analyses/calc_sp_ntwk_metrics.R')
+
 sp.abunds <- read.csv('2.case_study/data/plot_species_abundances.csv', stringsAsFactors = F)
 smm <- calc.sp.ntwk.metrics('0', scaled_betas, sp.abunds)
+
 require(plyr)
 smm <- adply(smm, c(1, 3))
-write.csv(smm, '2.analyses/smm.csv', row.names = F)
+write.csv(smm, '3.analyses/smm.csv', row.names = F)
 
-smm <- read.csv('2.analyses/smm.csv', stringsAsFactors = F)
-                                    
+                                 

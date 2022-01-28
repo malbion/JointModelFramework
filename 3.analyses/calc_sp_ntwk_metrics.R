@@ -8,7 +8,7 @@
 require(reshape2)
 
 efc <- function(imat, com, intras, ...) {
-  fecund <- read.csv(paste0('3.case_study/data/fecundities', com, '.csv'), stringsAsFactors = F)
+  fecund <- read.csv(paste0('2.case_study/data/fecundities', com, '.csv'), stringsAsFactors = F)
   fecund <- fecund[ , !colnames(fecund) %in% c('plot', 'seeds', 'focalID')]
   
   effective.comp <- sapply(dimnames(imat)[['species']], function(foc) {
@@ -213,10 +213,10 @@ calc.sp.ntwk.metrics <- function(
                                      matrix(data = NA, nrow = (Nb-Sp), ncol = Sm))
   
   # Extract the response and effect parameters too 
-  response <- read.csv(paste0('3.case_study/model/output/response_samples.csv'),  stringsAsFactors = F)
-  effect <- read.csv(paste0('3.case_study/model/output/effect_samples.csv'), stringsAsFactors = F)
-  colnames(response) <- read.csv(paste0('3.case_study/data/key_speciesID', com, '.csv'),stringsAsFactors = F)[ , 1]
-  colnames(effect) <- read.csv(paste0('3.case_study/data/key_neighbourID', com, '.csv'), stringsAsFactors = F)[ , 1]
+  response <- read.csv(paste0('2.case_study/model/output/response_samples.csv'),  stringsAsFactors = F)
+  effect <- read.csv(paste0('2.case_study/model/output/effect_samples.csv'), stringsAsFactors = F)
+  colnames(response) <- read.csv(paste0('2.case_study/data/key_speciesID', com, '.csv'),stringsAsFactors = F)[ , 1]
+  colnames(effect) <- read.csv(paste0('2.case_study/data/key_neighbourID', com, '.csv'), stringsAsFactors = F)[ , 1]
 
   metrics[ , 'response', ] <- rbind(t(response), matrix(data = NA, nrow = (Nb-Sp), ncol = Sm))
   metrics[ , 'effect', ] <- t(effect)
