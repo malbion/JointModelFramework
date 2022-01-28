@@ -68,23 +68,23 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   # stan.data$inter_per_species[stan.data$inter_per_species > 0] <- 1 # this counts every interaction
   # # for which a focal i and neighbour j cooccur at least once as realised. 
   stan.data$inter_per_species <- rowSums(Q)
-  # column index in the interactions matrix for each realised interaction
+  # column index in the interactions matrix for each inferrable interaction
   stan.data$icol <- unlist(apply(ifelse(Q > 0, T, F), 1, which))
   names(stan.data$icol) <- NULL
   stan.data$icol <- as.vector(stan.data$icol)
   # begin the row index
   stan.data$irow <- rep(1, stan.data$inter_per_species[[1]])
-  # begin the start and end indices for the vector of realised interactions per species
+  # begin the start and end indices for the vector of inferrable interactions per species
   stan.data$istart <- 1
   stan.data$iend <- stan.data$inter_per_species[[1]] #???
   
   # populate indices for all the other species
   for(s in 2:stan.data$S) {
-    # starting position of a_ij's for i in the vector of observed interactions (ie the 1st 'j')
+    # starting position of a_ij's for i in the vector of inferrable interactions (ie the 1st 'j')
     stan.data$istart[s] <- sum(stan.data$inter_per_species[s-1:s])+1
-    # end position of a_ij's for i in the vector of observed interactions (the last 'j')
+    # end position of a_ij's for i in the vector of inferrable interactions (the last 'j')
     stan.data$iend[s] <-  sum(stan.data$inter_per_species[1:s])
-    # row index in the alpha matrix for each observed interaction
+    # row index in the alpha matrix for each inferrable interaction
     stan.data$irow <- c(stan.data$irow, rep(s, stan.data$inter_per_species[[s]]))
   }
   
