@@ -169,27 +169,26 @@ rim_betaijS <- as.data.frame(aperm(rim_betaij, perm = c(1, 3, 2)))
 colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
 write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
 
-# inferrable vs. non-inferrable interactions 
-nddm_betaij <- t(apply(betaij, 1, function(x) x*stan.data$Q))  # NDDM estimates only, 0 when non-inferrable
+# replace uninferrable interactions with 0 to get the NDDM estimates only 
+nddm_betaij <- as.data.frame(t(apply(betaij, 1, function(x) x*stan.data$Q)))  
 colnames(nddm_betaij) <- grep('ndd_betaij', rownames(fit_sum), value = T)
 write.csv(nddm_betaij, paste0('model/output/NDDM_betaij_samples.csv'), row.names = F)
 
+# Let's do a few plots while we're at it
+# interactions inferred by the NDDM only
+nddm_betaij_inf <-as.matrix(nddm_betaij[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
+# RIM estimates for those inferrable interactions
+rim_betaij_inf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
+# RIM estimates for non-inferrable interactions only
+rim_betaij_noinf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) == 0)])
 
-nddm_betaij_inf <- nddm_betaij[  , apply(nddm_betaij, 2, function(x) {all(x != 0)})] # NDDM without non-inferrables
-rim_betaij_inf <- t(apply(rim_betaij, 1, function(x) x*stan.data$Q))  # RIM inferrable estimates only
-rim_betaij_inf <- rim_betaij_inf[  , apply(nddm_betaij, 2, function(x) {all(x != 0)})]
-rim_betaij_noinf <- t(apply(rim_betaij, 1, function(x) x*(1 - stan.data$Q)))  # RIM non-inferrable only
-rim_betaij_noinf <- rim_betaij_noinf[  , apply(rim_betaij_noinf, 2, function(x) {all(x != 0)})]
-
-
-
-# Check estimates of inferrable interactions from both models while we're at it
+# Check estimates of inferrable interactions from both models 
 png(paste0('model/validation/nddm_vs_rim_alphas.png'))
 plot(nddm_betaij_inf, rim_betaij_inf, 
      xlab = 'NDDM interactions (inferrable only)', 
-     ylab='RIM interactions (inferrable only)',
-     xlim = c(min(nddm_betaij_inf), max(nddm_betaij_inf)),
-     ylim = c(min(nddm_betaij_inf), max(nddm_betaij_inf)))
+     ylab = 'RIM interactions (inferrable only)',
+     xlim = c(min(nddm_betaij), max(nddm_betaij)),
+     ylim = c(min(nddm_betaij), max(nddm_betaij)))
 abline(0,1)
 dev.off()
 
@@ -197,11 +196,11 @@ dev.off()
 png(paste0('model/validation/betaij_est_distr.png'))
 par(mfrow=c(3,1))
 hist(nddm_betaij_inf, xlab = "", breaks = 30,
-     main = "Inferrable interactions (NDDM)", xlim = c(min(betaij), max(betaij)))
+     main = "Inferrable interactions (NDDM)", xlim = c(min(betaijS), max(betaijS)))
 hist(rim_betaij_inf,  xlab = "", breaks = 30,
-     main = 'Inferrable interactions (RIM)', xlim = c(min(betaij), max(betaij)))
-hist(rim_betaij_noinf,  xlab = "", main = 'Non-inferrable interactions (RIM)', breaks = 30,
-     xlim = c(min(betaij), max(betaij)))
+     main = 'Inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
+hist(rim_betaij_noinf,  xlab = "", breaks = 30,
+     main = 'Non-inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
 dev.off()
 
 # Transformed parameters
