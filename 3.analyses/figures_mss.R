@@ -65,8 +65,9 @@ seeds <- fecundities$seeds
 focalobs <- as.numeric(as.factor(fecundities$focal))
 
 # extract mu and phi
-mu <- p.samples$mu
-phi <- (p.samples$disp_dev^2)^(-1)
+mu <- read.csv('2.case_study/model/output/mu_samples.csv')
+phi <- read.csv('2.case_study/model/output/disp_dev_samples.csv')
+phi <- (phi^2)^(-1)
 
 # generating posterior predictions
 seed_pred <- matrix(nrow = dim(mu)[1], ncol = dim(mu)[2])
@@ -78,42 +79,26 @@ for (i in 1:dim(mu)[1]) {     # for each posterior draw
 }
 # log transform seed predictions
 seed_pred <- log(seed_pred)
-# and using just the mean of the parameters
-# 06/2021 changed to medians
-# m.mu <- colMeans(mu)
-# m.phi <- colMeans(phi)
+# and using just the median of the parameters
 m.mu <- apply(mu, 2, median)
 m.phi <- apply(phi, 2, median)
 mean_seed_pred <- sapply(1:length(m.mu) , function(x) {
   rnbinom(1, mu = m.mu[x], size = m.phi[focalobs[x]])
 })
 mean_seed_pred <- log(mean_seed_pred)
-# # get the seed density for each sample 
-# seed_dens <- apply(seed_pred, 1, function(x) {list(density(x)$x, density(x)$y)})
-# 
-# seed_densX <- apply(seed_pred, 1, function(x) {density(x)$x})
-# seed_densY <- apply(seed_pred, 1, function(x) {density(x)$y})
-# # get the minimum and maximum y for each row
-# minY <- apply(seed_densY, 1, quantile, 0.025)
-# maxY <- apply(seed_densY, 1, quantile, 0.975)
-
-# sapply(1:nrow(seed_densY), function(x) {
-#   temp1 <- quantile(seed_densY[x, ], 0.025)
-#   temp2 <- seed_densX[x, ]
-# })
-
 
 # get maximum density for plot limits
 max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}), 
                      max(density(seeds)$y)))
 
 
-png('3.analyses/figures_mss/postpredch.png', width=500, height=500)
+png('3.analyses/figures_mss/postpredch_mu.png', width=500, height=500)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
                  type = 'n',
                  bty = 'n',
-                 ylim = c(0, max.density+0.03), 
+                 ylim = c(0, max.density+0.03),  
+                 xlim = c(-1, 10),
                  col = 'lightgrey',
                  ylab = 'Seed probability density',
                  xlab = 'Log seed production',
@@ -136,28 +121,82 @@ ppc.plot <- legend('topright',
 print(ppc.plot)
 dev.off()
 
+#################### And do the same again but for mu2 ######################
+mu2 <- read.csv('2.case_study/model/output/mu2_samples.csv')
+
+# generating posterior predictions
+seed_pred <- matrix(nrow = dim(mu2)[1], ncol = dim(mu2)[2])
+for (i in 1:dim(mu2)[1]) {     # for each posterior draw
+  for (j in 1:dim(mu2)[2]) {    # for each observation 
+    # draw from the predicted distribution
+    seed_pred[i, j] <- rnbinom(1, mu = mu2[i, j], size = phi[i, focalobs[j]])  
+  }
+}
+# log transform seed predictions
+seed_pred <- log(seed_pred)
+# and using just the median of the parameters
+m.mu2 <- apply(mu2, 2, median)
+m.phi <- apply(phi, 2, median)
+mean_seed_pred <- sapply(1:length(m.mu2) , function(x) {
+  rnbinom(1, mu = m.mu2[x], size = m.phi[focalobs[x]])
+})
+mean_seed_pred <- log(mean_seed_pred)
+
+# get maximum density for plot limits
+max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}), 
+                     max(density(seeds)$y)))
+
+
+png('3.analyses/figures_mss/postpredch_mu2.png', width=500, height=500)
+# start a plot with the first draw 
+ppc.plot <- plot(density(seed_pred[1, ]), 
+                 type = 'n',
+                 bty = 'n',
+                 ylim = c(0, max.density+0.03), 
+                 xlim = c(-1, 10),
+                 col = 'lightgrey',
+                 ylab = 'Seed probability density',
+                 xlab = 'Log seed production',
+                 main = '',
+                 # sub = '(grey = predicted, red = observed)'
+) 
+for (i in 1:dim(seed_pred)[1]) {
+  # add a line for each draw
+  ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
+}
+# add the 'mean prediction'
+ppc.plot <- lines(density(mean_seed_pred), col = 'black', lwd = 1)  
+# add the actual data
+ppc.plot <- lines(density(log(seeds)), col = 'red', lwd = 1)  
+# add legend
+ppc.plot <- legend('topright', 
+                   legend = c('predicted', 'observed'), 
+                   col = c('lightgrey', 'red'), lwd = c(6, 1),
+                   bty = 'n')
+print(ppc.plot)
+dev.off()
+
 
 #-------------------------------
 # Figure 3: Response vs Impact |
 #-------------------------------
 
-S <- dim(p.samples$beta_i0)[[2]]
+response <- as.matrix(read.csv('2.case_study/model/output/response_samples.csv'))
+effect <- as.matrix(read.csv('2.case_study/model/output/effect_samples.csv'))
+S <- dim(response)[2]
 
-png('3.analyses/figures_mss/response_impact2.png', width = 400, height = 700)
-plot(p.samples$response, p.samples$effect[ , 1:S], type = 'n',
+png('3.analyses/figures_mss/response_impact.png', width = 400, height = 700)
+plot(response, effect[ , 1:S], type = 'n',
      xlab = expression(italic('response i')), ylab = expression(italic('impact i')))
 abline(h = 0, lty = 2)
-points(p.samples$response, p.samples$effect[ , 1:S],
+points(response, effect[ , 1:S],
      pch = 16, 
      col = rgb(red = 0.5, green = 0.5, blue = 0.5, alpha = 0.2))
-points(colMeans(p.samples$response), colMeans(p.samples$effect[ , 1:S]),
+points(apply(response, 2, median), apply(effect[ , 1:S], 2, median),
        pch = 18, cex = 2)
 dev.off()
 
 
-
-
-rm(joint.post.draws)
 
 
 ############################################################################################
