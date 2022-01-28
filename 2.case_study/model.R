@@ -158,7 +158,7 @@ betaij <- apply(post.draws$ndd_betaij, c(2, 3), function(x) {
   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
 })
 betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
-colnames(betaijS) <- grep('beta_ij', rownames(fit_sum), value = T)
+colnames(betaijS) <- grep('ndd_betaij', rownames(fit_sum), value = T)
 write.csv(betaijS, paste0('model/output/joint_betaij_samples.csv'), row.names = F)
 
 # rim interactions only
@@ -170,8 +170,8 @@ colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
 write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
 
 # replace uninferrable interactions with 0 to get the NDDM estimates only 
-nddm_betaij <- as.data.frame(t(apply(betaij, 1, function(x) x*stan.data$Q)))  
-colnames(nddm_betaij) <- grep('ndd_betaij', rownames(fit_sum), value = T)
+Q <- as.vector(t(stan.data$Q)) # the t() is very important to fill Q by row! 
+nddm_betaij <- sweep(betaijS, 2, Q, `*`)
 write.csv(nddm_betaij, paste0('model/output/NDDM_betaij_samples.csv'), row.names = F)
 
 # Let's do a few plots while we're at it
