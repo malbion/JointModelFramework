@@ -4,7 +4,7 @@
 setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 
 keyspeciesID <- unlist(read.csv('2.case_study/data/key_speciesID0.csv', stringsAsFactors = F))
-keyspeciesID <- unlist(read.csv('2.case_study/data/key_neighbourID0.csv', stringsAsFactors = F))
+keyneighbourID <- unlist(read.csv('2.case_study/data/key_neighbourID0.csv', stringsAsFactors = F))
 
 # Get raw (unscaled) interaction estimates
 joint_betaij <- read.csv('2.case_study/model/output/joint_betaij_samples.csv')
@@ -12,55 +12,46 @@ rim_betaij <- read.csv('2.case_study/model/output/RIM_betaij_samples.csv')
 nddm_betaij <- read.csv('2.case_study/model/output/NDDM_betaij_samples.csv')
 
 # get median species x species interaction matrices 
+joint_mat <- matrix(apply(joint_betaij, 2, median), byrow = T,
+                    nrow = length(keyspeciesID), ncol = length(keyneighbourID))
+colnames(joint_mat) <- keyneighbourID
+rownames(joint_mat) <- keyspeciesID
+rim_mat <- matrix(apply(rim_betaij, 2, median), byrow = T,
+                    nrow = length(keyspeciesID), ncol = length(keyneighbourID))
+colnames(rim_mat) <- keyneighbourID
+rownames(rim_mat) <- keyspeciesID
+nddm_mat <- matrix(apply(nddm_betaij, 2, median), byrow = T,
+                    nrow = length(keyspeciesID), ncol = length(keyneighbourID))
+colnames(nddm_mat) <- keyneighbourID
+rownames(nddm_mat) <- keyspeciesID
 
-
-# load('2.case_study/model/output/post_draws.Rdata')
-# 
-# fit_sum <- read.csv('2.case_study/model/output/summary_of_draws.csv', row.names = 1)
-# key_speciesID <- unlist(read.csv('2.case_study/data/key_speciesID0.csv', stringsAsFactors = F))
-
-# Interactions (alphas)
-# get posterior draws for all interactions (from the IFM)
-
-
-# Find estimates from REM / IFM
-#-------------------------------
-load('2.case_study/model/transformed/scaled_betaij_matrices.Rdata')
-alpha_mat <- apply(scaled_alphas, c(1, 2), mean)
-rm(scaled_alphas)
-
-obs <- read.csv('2.case_study/data/obs_interact0.csv')
-obs <- obs[obs$neighb_is_focal == T, ]
-library(reshape2)
-obs <- dcast(obs, focal ~ neighbour, value.var = 'total_density')
-rownames(obs) <- obs[ , 1]
-obs <- obs[ , 2:23]
-
-alpha_mat <- alpha_mat[ , 1:nrow(alpha_mat)]
-ifm_mat <- alpha_mat
-rem_mat <- alpha_mat
-
-ifm_mat[which(obs==0)] <- 0
-rem_mat[which(obs>0)] <- 0
 
 library(qgraph)
-qgraph(alpha_mat, negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
-qgraph(ifm_mat, negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
-qgraph(rem_mat, negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
+qgraph(joint_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
+qgraph(nddm_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
+qgraph(rim_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
 
-png('3.analyses/figures/ifm_only.png', width = 600, height = 240, units = 'px')
-qgraph(ifm_mat, negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
+png('3.analyses/figures/joint_network.png', width = 600, height = 240, units = 'px')
+qgraph(joint_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
 dev.off()
 
-png('3.analyses/figures/rem_only.png', width = 600, height = 240, units = 'px')
-qgraph(rem_mat, negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
+png('3.analyses/figures/NDDM_network.png', width = 600, height = 240, units = 'px')
+qgraph(nddm_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
 dev.off()
 
-png('3.analyses/figures/all_vs_rem.png', width = 1400, height = 1040, units = 'px')
-par(mfrow=c(2,1))
-qgraph(alpha_mat, negCol = 'royalblue4', posCol = 'orange', layout = 'circle',
-       title = 'A', title.cex =5)
-qgraph(rem_mat, negCol = 'royalblue4', posCol = 'orange', layout = 'circle',
-       title = 'B', title.cex =5)
+png('3.analyses/figures/RIM_network.png', width = 600, height = 240, units = 'px')
+qgraph(rim_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
+dev.off()
+
+rim_mat_infer <- rim_mat
+rim_mat_infer[which(nddm_mat == 0)] <- 0  # only keep the interactions which are also inferred by the NDDM
+png('3.analyses/figures/RIM_inferrables_network.png', width = 600, height = 240, units = 'px')
+qgraph(rim_mat_infer[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
+dev.off()
+
+rim_mat_noinfer <- rim_mat
+rim_mat_noinfer[which(nddm_mat != 0)] <- 0 # only keep the interactions which aren't inferred by the NDDM
+png('3.analyses/figures/RIM_noninferrables_network.png', width = 600, height = 240, units = 'px')
+qgraph(rim_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
 dev.off()
 
