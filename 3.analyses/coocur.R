@@ -2,9 +2,9 @@
 
 setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 
-load('3.case_study/model/transformed/scaled_alpha_matrices.Rdata')
+load('3.case_study/model/transformed/scaled_betaij_matrices.Rdata')
 
-alpha_mat <- apply(scaled_alphas, c(1, 2), mean)
+betaij_mat <- apply(scaled_betas, c(1, 2), median)
 
 #-----------------------------------
 # Compare to co-occurrence network |
@@ -59,27 +59,27 @@ write.csv(assocs, paste0('2.analyses/', comm, '_cooc.csv'))
 
 library(qgraph)
 
-comp <- -alpha_mat[ , 1:nrow(alpha_mat)]
-comp[comp>0] <- 0
-facil <- -alpha_mat[ , 1:nrow(alpha_mat)]
-facil[facil<0] <- 0
-png('2.analyses/figures/comp_facil.png', width = 1400, height = 1040, units = 'px')
-par(mfrow = c(2, 1))
-qgraph(comp, posCol = 'royalblue4', negCol = 'orange', layout = 'circle',
-       title = 'A', title.cex =5)
-qgraph(facil, posCol = 'royalblue4', negCol = 'orange', layout = 'circle',
-       title = 'B', title.cex =5)
-dev.off()
-# qgraph((-alpha_mat[ , 1:nrow(alpha_mat)]))
-png('2.analyses/figures/coocur.png', width = 1100, height = 520, units = 'px')
-qgraph(assocs[rownames(alpha_mat), colnames(assocs) %in% rownames(alpha_mat)],
-       posCol = 'royalblue4', negCol = 'orangered', layout = 'circle',
-       title = 'C', title.cex =5)
-dev.off()
-
-png('2.analyses/figures/all_inter.png', width = 600, height = 240, units = 'px')
-qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], posCol = 'royalblue4', negCol = 'orange', layout = 'circle')
-dev.off()
+# comp <- -alpha_mat[ , 1:nrow(alpha_mat)]
+# comp[comp>0] <- 0
+# facil <- -alpha_mat[ , 1:nrow(alpha_mat)]
+# facil[facil<0] <- 0
+# png('2.analyses/figures/comp_facil.png', width = 1400, height = 1040, units = 'px')
+# par(mfrow = c(2, 1))
+# qgraph(comp, posCol = 'royalblue4', negCol = 'orange', layout = 'circle',
+#        title = 'A', title.cex =5)
+# qgraph(facil, posCol = 'royalblue4', negCol = 'orange', layout = 'circle',
+#        title = 'B', title.cex =5)
+# dev.off()
+# # qgraph((-alpha_mat[ , 1:nrow(alpha_mat)]))
+# png('2.analyses/figures/coocur.png', width = 1100, height = 520, units = 'px')
+# qgraph(assocs[rownames(alpha_mat), colnames(assocs) %in% rownames(alpha_mat)],
+#        posCol = 'royalblue4', negCol = 'orangered', layout = 'circle',
+#        title = 'C', title.cex =5)
+# dev.off()
+# 
+# png('2.analyses/figures/all_inter.png', width = 600, height = 240, units = 'px')
+# qgraph(-alpha_mat[ , 1:nrow(alpha_mat)], posCol = 'royalblue4', negCol = 'orange', layout = 'circle')
+# dev.off()
 
 smm <- read.csv('2.analyses/smm.csv', stringsAsFactors = F)
 smmfoc <- smm[is.na(smm$aii) == F, ]
