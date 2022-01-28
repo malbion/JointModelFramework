@@ -152,16 +152,6 @@ sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
   
 })
 
-# Transformed parameters
-#-----------------------
-# Intrinsic growth rate (lambda)
-growth.rates.samples <- apply(post.draws$beta_i0, 2, function(x){
-  sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
-})
-# exponentiate to get lambda
-growth.rates.samples <- exp(growth.rates.samples)
-write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
-
 # Interactions (betaij)
 # joint interactions 
 betaij <- apply(post.draws$ndd_betaij, c(2, 3), function(x) {
@@ -169,22 +159,31 @@ betaij <- apply(post.draws$ndd_betaij, c(2, 3), function(x) {
 })
 betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
 colnames(betaijS) <- grep('beta_ij', rownames(fit_sum), value = T)
-write.csv(betaijS, paste0('model/transformed/betaij_samples.csv'), row.names = F)
+write.csv(betaijS, paste0('model/output/joint_betaij_samples.csv'), row.names = F)
 
 # rim interactions only
 rim_betaij <- apply(post.draws$ri_betaij, c(2, 3), function(x) {
   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
 })
+rim_betaijS <- as.data.frame(aperm(rim_betaij, perm = c(1, 3, 2)))
+colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
+write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
 
 # inferrable vs. non-inferrable interactions 
-nddm_betaij <- t(apply(betaij, 1, function(x) x*stan.data$Q))  # NDDM estimates only
-nddm_betaij_inf <- nddm_betaij[  , apply(nddm_betaij, 2, function(x) {all(x != 0)})] # remove non-inferrables
+nddm_betaij <- t(apply(betaij, 1, function(x) x*stan.data$Q))  # NDDM estimates only, 0 when non-inferrable
+colnames(nddm_betaij) <- grep('ndd_betaij', rownames(fit_sum), value = T)
+write.csv(nddm_betaij, paste0('model/output/NDDM_betaij_samples.csv'), row.names = F)
+
+
+nddm_betaij_inf <- nddm_betaij[  , apply(nddm_betaij, 2, function(x) {all(x != 0)})] # NDDM without non-inferrables
 rim_betaij_inf <- t(apply(rim_betaij, 1, function(x) x*stan.data$Q))  # RIM inferrable estimates only
 rim_betaij_inf <- rim_betaij_inf[  , apply(nddm_betaij, 2, function(x) {all(x != 0)})]
 rim_betaij_noinf <- t(apply(rim_betaij, 1, function(x) x*(1 - stan.data$Q)))  # RIM non-inferrable only
 rim_betaij_noinf <- rim_betaij_noinf[  , apply(rim_betaij_noinf, 2, function(x) {all(x != 0)})]
 
-# Check estimates of inferrable interactions from both models
+
+
+# Check estimates of inferrable interactions from both models while we're at it
 png(paste0('model/validation/nddm_vs_rim_alphas.png'))
 plot(nddm_betaij_inf, rim_betaij_inf, 
      xlab = 'NDDM interactions (inferrable only)', 
@@ -204,6 +203,16 @@ hist(rim_betaij_inf,  xlab = "", breaks = 30,
 hist(rim_betaij_noinf,  xlab = "", main = 'Non-inferrable interactions (RIM)', breaks = 30,
      xlim = c(min(betaij), max(betaij)))
 dev.off()
+
+# Transformed parameters
+#-----------------------
+# Intrinsic growth rate (lambda)
+growth.rates.samples <- apply(post.draws$beta_i0, 2, function(x){
+  sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
+})
+# exponentiate to get lambda
+growth.rates.samples <- exp(growth.rates.samples)
+write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
 
 # Scale the alphas and save
 scaled_betas <- scale_interactions(betaijS, growth.rates.samples, key_speciesID, key_neighbourID, comm)
