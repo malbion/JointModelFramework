@@ -52,15 +52,15 @@
 \begin{document}
 \maketitle  
 
-\noindent
-\textbf{Running title:} Estimating horizontal interaction matrices
+% \noindent
+% \textbf{Running title:} Estimating horizontal interaction matrices
 
 \noindent
-\textbf{Corresponding Author:} Malyon D. Bimler, email: malyonbimler@gmail.com, ph: +64 481941634\\
+\textbf{Corresponding Author:} Malyon D. Bimler, email: malyonbimler@gmail.com \\ %, ph: +64 481941634\\
 
 
-\noindent
-Manuscript submitted for consideration as a \textbf{Method} article.
+% \noindent
+% Manuscript submitted for consideration as a \textbf{Method} article.
 
 
 \noindent
@@ -122,9 +122,17 @@ Data will be submitted to Dryad upon publication.
 \section{Methods}
 
 
-To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. We define realised interactions as those that can be directly inferred from the observed data, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system which quantify the pairwise effects of all neighbours $j$ on all focal elements $i$. 
+To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. \textbf{We define realised interactions as those that can be directly inferred from the observed data (see \ref{meth:id_params} below), to which we assign a unique interaction parameter as described in the neighbour-density dependent model (\ref{meth:nddm}). Independantly to this model, we also describe a response-impact model (\ref{meth:rim}) where elements have a singular effect on neighbours, and a singular response. This allows us to estimate unrealised interactions as the product of element-specific response and impact parameters. Both models contribute to the overall joint model likelihood as detailed in \ref{meth:addlog}.}
+
+
+%, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. 
+
+
+Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system which quantify the pairwise effects of all neighbours $j$ on all focal elements $i$. 
 
     \subsection{Data requirements}
+
+    \textbf{Rewrite below according to Allesina comments}
 
     \paragraph{}
     The joint model framework was initially developed for an ecological dataset where interacting species (elements) affect each other's lifetime reproductive success (performance). This framework however, can be applied to data from any interacting elements (e.g. cells, individuals, populations, species) which meet the following criteria. First, observations must include some proxy for performance, such as growth (e.g. biomass) or fecundity (e.g. seed production).  Second, these observations must also record the identity and abundance of neighbouring elements within the interaction neighbourhood of each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of neighbouring elements which make up the different interaction neighbourhoods. 
@@ -133,10 +141,15 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
  
 
     In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with empty interaction neighbourhoods to better estimate intrinsic performance (i.e. in the absence of neighbours). In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though neither of these steps are strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
- 
+
+    \subsection{Identifying realised and unrealised interactions}
+    \label{meth:id_params}
+
+    Interactions are estimated 
     
     \subsection{Realised interactions}
-        
+    \label{meth:nddm}    
+
         \paragraph{}
         Realised interactions are quantified by regressing the performance of an element  - a species, population or any chosen set of replicated units - against the abundance and identity of it's neighbouring elements in a neighbour-density dependent model (NDDM).  Increases or decreases in an overall element's performance can thus be attributed to neighbouring elements which were observed to co-occur. 
 
@@ -152,14 +165,20 @@ To estimate pairwise interactions in diverse, horizontal systems such as those o
         This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $P_i$ and the right-hand side of the equation does not need to be linear, but can be modified to fit the data in question given an appropriate distribution and link function $f$, for example negative binomial and natural logarithm. 
               
     \subsection{Unrealised interactions}
+    \label{meth:rim}
 
     \paragraph{}
-       A common issue in ecological datasets is that some elements may not be observed to co-occur with many neighbours, or at variable enough densities, because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. These \textit{unrealised} interactions can be estimated by using an alternative model which assumes that elements typically have a singular impact on and a singular response to neighbours independent of neighbour identity (response and impact model, or RIM - see \cite{Godoy2014b}). An unrealised interaction is therefore the product of two element's impact and response parameters. 
+       A common issue in ecological datasets is that some elements may not be observed to co-occur with many neighbours, or at variable enough densities, because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. These \textit{unrealised} interactions can be estimated by using an alternative model which assumes that elements typically have a singular impact ($e$) on and a singular response ($r$) to neighbours independent of neighbour identity (response and impact model, or RIM - see \cite{Godoy2014b}). An unrealised interaction is therefore the product of two element's impact and response parameters. 
         \begin{equation}
         P_{i} = \beta_{i0} - r_{i} \sum_{j=1}^{S} e_{j} N_{j}
         \label{rim}
         \end{equation}
         Pairwise interactions which cannot be inferred from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. 
+
+    \subsection{Adding the model likelihoods}
+    \label{meth:addlog}
+
+    \textbf{rewrite below. This is also where i can mention mu and mu2?}
 
     \paragraph{}
         In order to allow both the NDDM and RIM interaction estimates to contribute to the likelihood, we use the NDDM to quantify realised interactions and use those to estimate species-specific $r_i$ and $e_j$ parameters such that: 
@@ -368,15 +387,17 @@ The authors declare no competing interests.
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
-        \includegraphics[width=.6\textwidth]{../../2.analyses/figures_mss/postpredch.png}
+        \includegraphics[width=.6\textwidth]{../../3.analyses/figures_mss/postpredch_mu.png}
         \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey), on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
         \label{fig:ppcheck}
     \end{figure}
 
+    \textbf{ADD mu2}
+
     \begin{figure}[H]
         \begin{centering}
         % Looks like GITE is in larger font???
-        \includegraphics[width=0.5\textwidth]{../../2.analyses/figures_mss/networks_C_F_cooc.png}
+        \includegraphics[width=0.5\textwidth]{../../3.analyses/figures_mss/networks_C_F_cooc.png}
         \caption{Competitive (A) and facilitative (B) per-capita interaction networks estimated from our model framework, compared to an association network (C) estimated from the same data using the cooccur package in R \parencite{Griffith2016}. Competitive and facilitative interactions (A and B) are here shown separately for ease of view but were analysed together. Only focal species are included in these networks, arrows point to species $i$ and line thickness denotes interaction strength. Interaction strengths for (A) and (B) are given as the median over 1000 samples. Species associations (C) were all negative and symmetrical. Purple coloured nodes correspond to highly abundant native species, whereas green nodes indicate potential keystone species, as further described in Figure \ref{fig:species}.}
         \label{fig:netwks}
        \end{centering}
@@ -385,7 +406,7 @@ The authors declare no competing interests.
 
     \begin{figure}[H]
         \begin{centering}
-        \includegraphics[width=0.4\textwidth]{../../2.analyses/figures_mss/species_effects.png}
+        \includegraphics[width=0.4\textwidth]{../../3.analyses/figures_mss/species_effects.png}
         \caption{(Caption next page.)}
         \label{fig:species}
         \end{centering}
@@ -404,7 +425,7 @@ The authors declare no competing interests.
 
     \begin{figure}[H]
         \begin{centering}
-        \includegraphics[width=0.4\textwidth]{../../2.analyses/figures_mss/cooccur_vs_abund.png}
+        \includegraphics[width=0.4\textwidth]{../../3.analyses/figures_mss/cooccur_vs_abund.png}
         \caption{Absolute sum of focal species association strengths as returned by the cooccur package (x-axis), plotted against their log abundance (y-axis). Dashed lines are the median for all focals. In green are the same potential keystone species as identified in Fig. \ref{fig:species}.B: \textit{Haloragis odontocarpa} (HAOD) and \textit{Gilberta tenuifolia} (GITE). Because association strengths are derived from abundances, rare species also tend to have weaker summed association strengths which makes identifying potential keystone species challenging.}
         \label{fig:coocab}
         \end{centering}
@@ -428,7 +449,7 @@ The authors declare no competing interests.
     We make the several observations in addition to the comments in the code. Firstly, realised interactions (beta\_ij in the code) are defined as a vector, which must then be matched to their correct position in the interaction matrix. This is the role of the istart, iend, icol, and irow vectors defined in the data block. The Supplementary Methods zip folder also contains the data\_prep.R file, which will show how to calculate these vectors from the input data. 
     Secondly, we impose the following constraints to improve convergence, avoid over-parameterisation and maintain identifiability of our parameters $r_i$ and $e_j$ \parencite{Huber2004, Kidzinski2020, Niku2021}. We define the effect parameters as a unit vector, which means we only require K-1 degrees of freedom (where K is the total number of neighbour elements) to estimate all effect values. This loss of a degree of freedom arises from the fact that the matrix of $r_i$ $e_j$ parameters is of rank 1. The first response parameter is also forced to positive. This improves convergence by providing an anchor for all other parameter values to 'rotate' around. Though these latter two have implications for our estimates of the latent variables $r_i$ and $e_j$, estimates for realised and unrealised interactions should not be affected.
 
-    \includepdf[pages=-]{joint_model.stan.pdf}
+    \includepdf[pages=-]{../joint_model.stan.pdf}
 
 
 
@@ -523,7 +544,7 @@ The authors declare no competing interests.
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
-        \includegraphics[width=\textwidth]{../../2.analyses/figures_mss/interaction_estimates.png}
+        \includegraphics[width=\textwidth]{../../3.analyses/figures_mss/interaction_estimates.png}
         \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and observed interactions estimates returned by the RIM. Interaction estimates are unscaled.}
         \label{fig:adist}
     \end{figure}
