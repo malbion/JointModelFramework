@@ -139,7 +139,18 @@ Taken together, realised and unrealised interaction estimates are then used to p
     The joint model framework was initially developed for an ecological dataset where interacting elements (species) affect each other's performance (lifetime reproductive success). This framework however, can be applied to data from any interacting elements (e.g. cells, individuals, populations, species) which meet the following criteria. First, observations must include some proxy for performance, such as growth (e.g. biomass), fecundity (e.g. number of eggs laid) or chemical production (e.g. oxygen). Second, these observations must also record the identity and abundance of elements which interact with each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of interaction partners. In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with no interaction partners to better estimate intrinsic performance. \textbf{Changes: removed mention of 'interaction neighbourhood' and moved info about environment / interaction covariation to case study section. This is to generalise the method.}
 
     \paragraph{}
-    We define $s$ as the number of focal elements $i$, $i \in \{ 1, .., s \}$, and $k$ as the number of interaction partners across all $s$ focals. Typically not all elements in the system will be respresented in the set of focals, such that $s \le k$. Measurements of the performance of individual units from each focal element (e.g. seed production of individual plants belonging to a set of focal species) are stored in a vector $p$ of length $n$. The abundance of interaction partners is stored in a matrix $X$, of size $n \times k$. Finally, the element identity of each of the $n$ focal individuals is stored in the vector $d$, of length $n$, and containing the index of the corresponding element: $d_i \in \{1, ..., s \}$.
+    \textbf{
+    We define $s$ as the number of focal elements $i$, $i \in \{ 1, .., s \}$, and $k$ as the number of interacting elements $j$ across all $s$ focals, $j \in \{1, ..., k \}$. Typically not all elements in the system will be represented in the set of focals, such that $s \le k$. Measurements of the performance of individual units from each focal element (e.g. seed production of individual plants belonging to a set of focal species) are stored in a vector $p$ of length $n$. The abundance of interaction partners is stored in a matrix $X$, of size $n \times k$. Finally, the element identity of each of the $n$ focal individuals is stored in the vector $d$, of length $n$, and containing the index of the corresponding element: $d_i \in \{1, ..., s \}$.}
+
+
+    \subsection{Identifying realised and unrealised interactions}
+    \label{meth:id_params}
+
+    \paragraph{}
+    \textbf{
+    The aim of the following framework is to estimate $B$, the $s \times k$ matrix of interactions between all focal elements $i$ and interacting elements $j$. The effect of element $j$ on the performance of focal element $i$ is noted as $\beta_{ij}$, corresponding to the $i$'th row and the $j$'th column of $B$. 
+    For an interaction $\beta_{ij}$ to be inferrable, and thus realised, the data must contain measurements of the performance of $i$ when interacting with $j$. Moreover, the vector of abundances of $j$ associated to measurements of focal $i$ must be linearly independant to all other vectors of abundances of other elements  belonging to $k$ and interacting with $i$. Thus, if two elements $j$ and $k$ interact with focal $i$ yet have the same abundance at each measurement, neither $\beta_{ij}$ nor $\beta_{ik}$ will be inferrable. We define \textit{realised} interactions as those which are inferrable following the above assumptions, and \textit{unrealised} interactions as those which are not. We construct a matrix $Q$ of size $s \times k$, with $Q_{ij} = 1$ if the corresponding $\beta_{ij}$ paramater is realised, and $Q_{ij} = 0$ if not. How we construct the $Q$ matrix is shared in the code attached to this paper (Supplementary Information XX)}
+
     
     \subsection{Realised interactions}
     \label{meth:nddm}    
@@ -169,13 +180,6 @@ Taken together, realised and unrealised interaction estimates are then used to p
         \end{equation}
         Pairwise interactions which cannot be inferred from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. 
 
-
-    \subsection{Identifying realised and unrealised interactions}
-    \label{meth:id_params}
-
-    For an interaction $\beta_{ij}$ to be inferrable, and thus realised, 
-
-    For a species i and it's vector of interactions $\{\beta_{ii}, \beta_{ij}, ... , \beta_{ik}\}$
 
     \subsection{Adding the model likelihoods}
     \label{meth:addlog}
