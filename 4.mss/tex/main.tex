@@ -115,37 +115,32 @@ Data will be submitted to Dryad upon publication.
 
 
     \paragraph{} 
-    We present a general framework to estimate interactions in highly diverse horizontal systems. We specify a joint model which allows us to estimate both realised and unrealised interactions, the latter being conditioned on the former. We present the model code in STAN, a Bayesian statistical language which is flexible to a high number of parameters, and apply it to an ecological case study of an annual wildflower community in Western Australia. Using this  dataset, we estimate positive and negative interactions between 22 focal species and 52 neighbouring species and illustrate how to couch these results into established models of population dynamics. This step further widens the potential applications of this novel framework by accounting for other demographic processes affecting species or element performance, and thus system dynamics. We show the benefits of this approach by comparing a range of findings from our case study to the results derived from a spatial-abundance association network, a common alternative to estimating interactions in ecology. We suggest potential applications in species management and conservation that make use of the rich information provided by horizontal interaction networks as developed using our novel framework.
+    We present a general framework to estimate interactions in highly diverse horizontal systems. We specify a joint model which allows us to estimate both realised and unrealised interactions, \textbf{something here}. We present the model code in STAN, a Bayesian statistical language which is flexible to a high number of parameters, and apply it to an ecological case study of an annual wildflower community in Western Australia. Using this  dataset, we estimate positive and negative interactions between 22 focal species and 52 neighbouring species and illustrate how to couch these results into established models of population dynamics. This step further widens the potential applications of this novel framework by accounting for other demographic processes affecting species or element performance, and thus system dynamics. We show the benefits of this approach by comparing a range of findings from our case study to the results derived from a spatial-abundance association network, a common alternative to estimating interactions in ecology. We suggest potential applications in species management and conservation that make use of the rich information provided by horizontal interaction networks as developed using our novel framework.
 
     % Mayve remove the last sentence???
 
 \section{Methods}
 
-
-To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. \textbf{We define realised interactions as those that can be directly inferred from the observed data (see \ref{meth:id_params} below), to which we assign a unique interaction parameter as described in the neighbour-density dependent model (\ref{meth:nddm}). Independantly to this model, we also describe a response-impact model (\ref{meth:rim}) where elements have a singular effect on neighbours, and a singular response. This allows us to estimate unrealised interactions as the product of element-specific response and impact parameters. Both models contribute to the overall joint model likelihood as detailed in \ref{meth:addlog}.}
-
+\paragraph{} 
+To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. 
+\textbf{
+We define realised interactions as those that can be directly inferred from the observed data (see \ref{meth:id_params} below), and estimate those interactions through 
+to which we assign a unique interaction parameter as described in the neighbour-density dependent model (\ref{meth:nddm}). 
+Independantly to this model, we also describe a response-impact model (\ref{meth:rim}) where elements have a singular effect on neighbours, and a singular response. This allows us to estimate unrealised interactions as the product of element-specific response and impact parameters. Both models contribute to the overall joint model likelihood as detailed in \ref{meth:addlog}.}
+Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system that quantify the pairwise effects of all neighbours $j$ on all focal elements $i$. 
 
 %, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. 
 
 
-Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system which quantify the pairwise effects of all neighbours $j$ on all focal elements $i$. 
 
     \subsection{Data requirements}
 
-    \textbf{Rewrite below according to Allesina comments}
+    \paragraph{}
+    The joint model framework was initially developed for an ecological dataset where interacting elements (species) affect each other's performance (lifetime reproductive success). This framework however, can be applied to data from any interacting elements (e.g. cells, individuals, populations, species) which meet the following criteria. First, observations must include some proxy for performance, such as growth (e.g. biomass), fecundity (e.g. number of eggs laid) or chemical production (e.g. oxygen). Second, these observations must also record the identity and abundance of elements which interact with each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of interaction partners. In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with no interaction partners to better estimate intrinsic performance. \textbf{Changes: removed mention of 'interaction neighbourhood' and moved info about environment / interaction covariation to case study section. This is to generalise the method.}
 
     \paragraph{}
-    The joint model framework was initially developed for an ecological dataset where interacting species (elements) affect each other's lifetime reproductive success (performance). This framework however, can be applied to data from any interacting elements (e.g. cells, individuals, populations, species) which meet the following criteria. First, observations must include some proxy for performance, such as growth (e.g. biomass) or fecundity (e.g. seed production).  Second, these observations must also record the identity and abundance of neighbouring elements within the interaction neighbourhood of each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of neighbouring elements which make up the different interaction neighbourhoods. 
+    units 
 
-    %     The joint model framework was initially developed for an ecological dataset where interacting species affect each other's lifetime reproductive success. %As such we refer to network elements or nodes as 'species' and node performance as 'lifetime reproductive success' or 'fitness' however this framework is not limited to ecological datasets and can be applied to data from any interacting elements (e.g. populations or groups of individuals) which meet the following criteria. 
- 
-
-    In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with empty interaction neighbourhoods to better estimate intrinsic performance (i.e. in the absence of neighbours). In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though neither of these steps are strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
-
-    \subsection{Identifying realised and unrealised interactions}
-    \label{meth:id_params}
-
-    Interactions are estimated 
     
     \subsection{Realised interactions}
     \label{meth:nddm}    
@@ -154,12 +149,12 @@ Taken together, realised and unrealised interaction estimates are then used to p
         Realised interactions are quantified by regressing the performance of an element  - a species, population or any chosen set of replicated units - against the abundance and identity of it's neighbouring elements in a neighbour-density dependent model (NDDM).  Increases or decreases in an overall element's performance can thus be attributed to neighbouring elements which were observed to co-occur. 
 
         \paragraph{}
-        We implement a neighbour density-dependent model to each focal element $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ..., S$) against the measured proxy for performance $P_{i}$ through a link function $f$:
+        We implement a neighbour density-dependent model to each focal element or species $i$ which regresses the identity and abundance of neighbours $j$ ($j = 1, 2, 3, ..., S$) against the measured proxy for performance $P_{i}$ through a link function $f$:
         \begin{equation}
         f(P_{i}) = \beta_{i0} - \sum_{j=1}^{S} \beta_{ij} N_{j}
         \label{nddm}
         \end{equation}
-        The intercept $\beta_{i0}$ represents intrinsic performance (in the link scale), an element's performance in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ captures the effect of each neighbour $j$ on $i$. Note that neighbours can include other members of element $i$, in which case intraspecific interactions are denoted as $\beta_{ii}$.
+        The intercept $\beta_{i0}$ represents intrinsic performance (in the link scale), an element's performance \textbf{across all observations} in the absence of interactions with neighbours. $N_{j}$ are the abundances of neighbours recorded for each observation, and the $\beta_{ij}$ captures the \textbf{overall} effect of each neighbour $j$ on $i$. Note that neighbours can include other members of element $i$, in which case intraspecific interactions are denoted as $\beta_{ii}$.
 
         \paragraph{}
         This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $P_i$ and the right-hand side of the equation does not need to be linear, but can be modified to fit the data in question given an appropriate distribution and link function $f$, for example negative binomial and natural logarithm. 
@@ -174,6 +169,14 @@ Taken together, realised and unrealised interaction estimates are then used to p
         \label{rim}
         \end{equation}
         Pairwise interactions which cannot be inferred from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. 
+
+
+    \subsection{Identifying realised and unrealised interactions}
+    \label{meth:id_params}
+
+    For an interaction $\beta_{ij}$ to be inferrable, and thus realised, 
+
+    For a species i and it's vector of interactions $\{\beta_{ii}, \beta_{ij}, ... , \beta_{ik}\}$
 
     \subsection{Adding the model likelihoods}
     \label{meth:addlog}
@@ -460,6 +463,10 @@ The authors declare no competing interests.
 
         \paragraph{}
         We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season. The resulting dataset includes between 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of each focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species \parencite{Martyn2020}. Total neighbourhood diversity was 71 wildflower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and thinning did not target any particular species. 
+
+        \paragraph{}
+    \textbf{In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though neither of these steps are strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.}
+    Rewrite above to fit with case study.
 
         \paragraph{} 
         We required species demographic rates (seed survival and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability.  The remaining species were assigned mean demographic rates from these experiments. Further details on the methods used for collecting those seed rates are available in section \ref{SI:germination}.
