@@ -263,22 +263,24 @@ Taken together, realised and unrealised interaction estimates are then used to p
 
     \subsection{Case study}
 
-      
-        We applied this framework to an annual wildflower community dataset from Western Australia collected in 2016. This dataset contains over 5000 observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 \textbf{interaction partner species}, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Bimler2018} which required experimentally-measured species demographic rates. Viable seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
+       \paragraph{}
+        We applied this framework to an annual wildflower community dataset from Western Australia collected in 2016. This dataset contains over 5000 observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 neighbour species, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Bimler2018} which required experimentally-measured species demographic rates. Viable seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
         Further details on the data, the model fitting and the procedure for deriving scaled interactions from the population dynamics model are available in the Supplementary Methods \ref{SI:casestudy}.
 
 
 \section{Results}
-
-
-    Key aspects of the resulting interaction matrix is that these interactions can be competitive or facilitative, non-symmetrical (the effect of element $i$ on $j$ does not necessarily match the effect of element $j$ on $i$) and include intraspecific effects (the effect of element $i$ on itself). We illustrate the advantages of this approach in the case study results below. 
+    
+    \paragraph{}
+    \textbf{The joint model framework returns a matrix $B$ which quantifies the effect of interacting elements $j$ (columns) on the performance of focal elements $i$ (rows). The interactions (values) which make up $B$ can be positive or negative,} non-symmetrical (the effect of element $i$ on $j$ does not necessarily match the effect of element $j$ on $i$) and include intraspecific effects (the effect of element $i$ on itself). We illustrate the advantages of this approach in the case study results below. 
 
 
     \subsection{Case study results}
 
-    We first applied this joint model to simulated data to verify that the original interaction parameters could be recovered by this framework. We then applied this model to a case study dataset of a diverse annual wildflower community, where elements consisted of 22 focal species and up to 52 neighbouring species (including focal species) and performance was measured as viable seed production. We conducted a posterior predictive check comparing simulated performance data to observed values (Figure \ref{fig:ppcheck}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. The model returned estimates for all 1144 interactions between those 22 focal species and 52 neighbouring species, of which 60\% were realised.  When accounting for focal species only, 86.4\% of interactions were realised and estimated by the NDDM. NDDM and RIM estimates matched well and followed similar distributions (S.I. \ref{SI:results} Figure \ref{fig:adist}) as enforced by the framework. 
-    
+    \paragraph{}
+    We first applied this joint model to simulated data to verify that the original interaction parameters could be recovered by this framework. We then applied this model to a case study dataset of a diverse annual wildflower community, where focal elements consisted of \textbf{$s = 22$} focal species and up to \textbf{$k = 52$} neighbouring species (the 22 focal species and an additional 30 species) and performance $p$ was measured as viable seed production. The model returned estimates for all 1144 interactions between those 22 focal species and 52 interacting species, of which \textbf{56.7\% were realised} and estimated by the NDDM.  When accounting for focal species only, \textbf{82.0\%} of interactions were realised. 
 
+    \paragraph{}
+    We conducted a posterior predictive check comparing simulated performance data from the joint model to observed values (Figure \ref{fig:ppcheckmu2}), this is especially important for verifying that the appropriate distribution and link function is being used for the data at hand. \textbf{The joint model also returns simulated performance data for the RI model only, which we also checked visually (S.I. \ref{SI:results} Figure \ref{fig:ppcheckmu1}).}
 
 
     % \paragraph{}
@@ -421,12 +423,10 @@ The authors declare no competing interests.
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
-        \includegraphics[width=.6\textwidth]{../../3.analyses/figures_mss/postpredch_mu.png}
-        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey), on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
-        \label{fig:ppcheck}
+        \includegraphics[width=.6\textwidth]{../../3.analyses/figures_mss/postpredch_mu2.png}
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey) as estimated by the joint model, on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
+        \label{fig:ppcheckmu2}
     \end{figure}
-
-    \textbf{ADD mu2}
 
     \begin{figure}[H]
         \begin{centering}
@@ -580,10 +580,18 @@ The authors declare no competing interests.
 \section{Supplementary Results}
 \label{SI:results}
 
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=.6\textwidth]{../../3.analyses/figures_mss/postpredch_mu.png}
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey) as estimated by the RI model only, on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
+        \label{fig:ppcheckmu1}
+    \end{figure}
+
     \begin{figure}[H]
        % \hspace*{-3.5cm}
         \includegraphics[width=\textwidth]{../../3.analyses/figures_mss/interaction_estimates.png}
-        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and observed interactions estimates returned by the RIM. Interaction estimates are unscaled.}
+        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unrealised} (left) and realised interactions estimates returned by the RIM. Interaction estimates are unscaled.}
         \label{fig:adist}
     \end{figure}
 
