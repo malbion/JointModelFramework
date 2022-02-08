@@ -180,23 +180,56 @@ Taken together, realised and unrealised interaction estimates are then used to p
         Pairwise interactions which cannot be inferred from Eq. 1 can be approximated by Eq. 2 by multiplying the relevant $r_{i}$ and $e_{j}$ such that $\beta_{ij} = r_{i} e_{j}$. \textbf{Once again, the abundances of elements $j$ must be linearly independant to one another, but across the entire $X$ matrix (as opposed to \ref{meth:nddm} above, where the abundances of $j$ must be linearly independant within the subset of obervations for each focal $i$).}
 
 
-    \subsection{Adding the model likelihoods}
+    \subsection{Joining the two models}
     \label{meth:addlog}
 
-    In a hypothetical world where all interactions are inferrable, the NDDM is sufficient to estimate all realised interactions. Given that real-world data will rarely satisfy those requirements, especially in diverse systems, the RIM is used to 'plug' those holes. Conversely, when no interactions are inferrable then we can use the RIM only. 
+    \paragraph{}
+    \textbf{
+    The matrix of interactions $B$ is thus given by:}
 
-    What do we do when we have a bit of both? 
-    We maximise the likelihood of the RIM across ...
+        \begin{equation}
+        B = Q \circ \tilde B + (1 - Q) \circ r e
+        \label{matB}
+        \end{equation}
+
+    [[NB: No transpose on re here because it wasn't necessary in the code - double check!]]
+    
+    \textbf{where $\circ$ represents the elementwise product, $Q$ the matrix of inferrable interactions, and the matrix $\tilde B$ only has free parameters inferred in the locations where $Q_{ij} =1$. In other words, the final interaction matrix $B$ takes a free parameter from the NDD model when that parameter is inferrable, and the corresponding RI model estimate, $r_i e_j$, when that parameter is not. Both the NDD and RI models contribute to the overall joint model log likelihood:}
+
+         \begin{equation}
+        \mathcal{L}_{joint} = \mathcal{L}_{RIM} + \mathcal{L}_{NDDM}
+        \label{loglikjoint}
+        \end{equation}
+
+    with
+
+        \begin{equation}
+        \mathcal{L}_{RIM} = \sum_{s=1}^{n} \log (d_s (p_s | \beta_{i0}, r, e, \theta))
+        \label{logrim}
+        \end{equation}
+
+        \begin{equation}
+        \mathcal{L}_{NDDM} = \sum_{s=1}^{n} \log (d_s (p_s | \beta_{i0}, B, \theta))
+        \label{lognddm}
+        \end{equation}
+
+\textbf{
+    where the sum is across all $n$ observations, $d_s$ is the probability density for the model (e.g. negative binomial), $p_s$ the vector of measured performances, $\beta_{i0}, r, e,$ and $B$ are parameters as defined in Eqs \ref{nddm} and \ref{rim}, and $\theta$ includes any other parameters (e.g. dispersion if using a negative binomial distribution for the data). }
+
+    [[NB: notation here differs from your and Stefanos because above I define S as the number of focals and K as the number of neighbours. Keeping p as the vector of performances. Unless it's supposed to be all data aka performances and neighbour abundances? Unsure on the correct notation.]]
+
+    Consequences....
+
+    In a hypothetical world where all interactions are inferrable, the NDDM is sufficient to estimate all realised interactions. Given that real-world data will rarely satisfy those requirements, especially in diverse systems, the RIM is used to 'plug' those holes. Conversely, when no interactions are inferrable then we can use the RIM only. 
 
     The NDDM only estimates realised interactions. The RIM estimates all interactions, realised and unrealised. 
 
 
-
     \subsection{Rescaling interaction estimates into per-capita interactions}
 
-        The $\beta_{ij}$ and $r_i e_j$ estimates returned by the framework describe the effect of element $j$ on the performance of element $i$. Differences in the magnitude of these interaction terms may thus reflect intrinsic differences in performance, which can vary in time, space and between elements. Two species may for example have different baseline values of reproductive fitness. In order to make the effects of interactions comparable between elements, the interaction terms returned by both models above can be transformed into \textit{per capita} interaction strengths \parencite{Laska1998}. The appropriate scaling is determined by rewriting the neighbour density-dependent model (Eq. \ref{nddm}) into a form equivalent to a Lotka-Volterra competition model: 
+        The $\beta_{ij}$ estimates returned by the framework describe the effect of element $j$ on the performance of element $i$. Differences in the magnitude of these interaction terms may thus reflect intrinsic differences in performance, which can vary in time, space and between elements. Two species may for example have different baseline values of reproductive fitness. In order to make the effects of interactions comparable between elements, the interaction terms returned by both models above can be transformed into \textit{per capita} interaction strengths \parencite{Laska1998}. The appropriate scaling is determined by rewriting the neighbour density-dependent model (Eq. \ref{nddm}) into a form equivalent to a Lotka-Volterra competition model: 
         \begin{equation}
-        P_{i} = \beta_{i0} \left ( 1 - \sum_{j=1}^{S} {\beta_{ij}}'' N_{j} \right )
+        p_{i} = \beta_{i0} \left ( 1 - \sum_{j=1}^{k} {\beta_{ij}}'' N_{j} \right )
         \label{LVform}
         \end{equation}
         This reveals that our interaction terms can be rescaled into per-capita interaction strengths by dividing them by the recipient element's intrinsic performance:  
@@ -221,7 +254,7 @@ Taken together, realised and unrealised interaction estimates are then used to p
     \subsection{Model fitting}
 
         \paragraph{}        
-        The NDDM (Eq. 1) and the RIM (Eqs. 2 and 3) can be implemented as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify realised interactions which are then fed into the RIM. We provide a working example of the STAN code used to specify and set this model to the case study below in the Supplementary Methods \ref{SI:modelcode}, as well as a downloadable zip folder which contains the necessary STAN model code, R script and functions to run the model on a simulated dataset. From the model file, only the link function for $P_i$ and it's parameterisation need to be modified in order to apply it to a different model or system. Additionally, non-integer measures of performance (e.g. biomass) should be redefined as real rather than integers in the data block. In the code given, a negative binomial distribution is used to fit seed production ($P_i$) but a different distribution may be more appropriate when using other measures of performance.   
+        The NDDM (Eq. 1) and the RIM (Eqs. 2 and 3) can be implemented as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to identify realised interactions which are then fed into the RIM. We provide a working example of the STAN code used to specify and set this model to the case study below in the Supplementary Methods \ref{SI:modelcode}, as well as a downloadable zip folder which contains the necessary STAN model code, R script and functions to run the model on a simulated dataset. From the model file, only the link function for $p_i$ and it's parameterisation need to be modified in order to apply it to a different model or system. Additionally, non-integer measures of performance (e.g. biomass) should be redefined as real rather than integers in the data block. In the code given, a negative binomial distribution is used to fit seed production ($p_i$) but a different distribution may be more appropriate when using other measures of performance.   
 
         \paragraph{}
         Bayesian models are often run on multiple MCMC chains. In our case, we deliberately run only one MCMC chain because the latent variables in our model ($r_i$ and $e_j$) are invariant to sign switching. This means that different MCMC chains can return coefficient values which are of the same magnitude, but opposing signs. As with the boral function in the boral R package \parencite{Hui2021} and the MCMCfactanal function in the MCMCpack package \parencite{Martin2011}, we run one chain only to simplify issues with checking chain convergence and computing parameter estimates which arise from sign-switching. Though many MCMC convergence diagnostics require multiple chains to be computed, single chain convergence can be assessed with the Geweke convergence statistic \parencite{Geweke1992}, for example with the geweke.diag() function from the coda package \parencite{Plummer2006}, as well as visually checking traceplots.
@@ -233,7 +266,7 @@ Taken together, realised and unrealised interaction estimates are then used to p
     \subsection{Case study}
 
       
-        We applied this framework to an annual wildflower community dataset from Western Australia collected in 2016. This dataset contains observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 neighbouring species, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Bimler2018} which required experimentally-measured species demographic rates. Viable seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
+        We applied this framework to an annual wildflower community dataset from Western Australia collected in 2016. This dataset contains over 5000 observations of individual plant seed production from 22 different focal species, and the identity and abundance of all neighbouring individuals within a 3 to 5 cm radius of the focal individual. We used the framework to quantify interactions between these 22 focal species and 52 \textbf{interaction partner species}, and derived per-capita interaction strengths with a well-supported population dynamics model for annual plants with a seed bank \parencite{Levine2009, Bimler2018} which required experimentally-measured species demographic rates. Viable seed production was used as a measure of performance and modeled with a negative binomial distribution and a log link.
         Further details on the data, the model fitting and the procedure for deriving scaled interactions from the population dynamics model are available in the Supplementary Methods \ref{SI:casestudy}.
 
 
