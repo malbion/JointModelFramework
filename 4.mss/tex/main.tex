@@ -183,15 +183,13 @@ Taken together, realised and unrealised interaction estimates are then used to p
     \subsection{Adding the model likelihoods}
     \label{meth:addlog}
 
-    \textbf{rewrite below. This is also where i can mention mu and mu2?}
+    In a hypothetical world where all interactions are inferrable, the NDDM is sufficient to estimate all realised interactions. Given that real-world data will rarely satisfy those requirements, especially in diverse systems, the RIM is used to 'plug' those holes. Conversely, when no interactions are inferrable then we can use the RIM only. 
 
-    \paragraph{}
-        In order to allow both the NDDM and RIM interaction estimates to contribute to the likelihood, we use the NDDM to quantify realised interactions and use those to estimate species-specific $r_i$ and $e_j$ parameters such that: 
-        \begin{equation}
-        r_i e_j \sim logistic \left ( \beta_{ij}, \sigma \right )
-        \label{unrealised}
-        \end{equation}
-        where $\sigma$ is a community-level scale parameter for the logistic distribution. We use a logistic distribution here because the heavier tails make it a slightly weaker informative prior than a normal distribution. $\sigma$ defines how widely the tails extend and can be expressed in terms of the standard deviation. 
+    What do we do when we have a bit of both? 
+    We maximise the likelihood of the RIM across ...
+
+    The NDDM only estimates realised interactions. The RIM estimates all interactions, realised and unrealised. 
+
 
 
     \subsection{Rescaling interaction estimates into per-capita interactions}
