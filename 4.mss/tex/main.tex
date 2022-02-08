@@ -122,18 +122,16 @@ Data will be submitted to Dryad upon publication.
 \section{Methods}
 
 \paragraph{} 
-To estimate pairwise interactions in diverse, horizontal systems such as those occurring between plant species in ecological communities, we developed a joint modeling framework capable of estimating both realised and unrealised interactions from empirical observational data of individual element performance in the absence and presence of neighbours. 
 \textbf{
-We define realised interactions as those that can be directly inferred from the observed data (see \ref{meth:id_params} below), and estimate those interactions through 
-to which we assign a unique interaction parameter as described in the neighbour-density dependent model (\ref{meth:nddm}). 
-Independantly to this model, we also describe a response-impact model (\ref{meth:rim}) where elements have a singular effect on neighbours, and a singular response. This allows us to estimate unrealised interactions as the product of element-specific response and impact parameters. Both models contribute to the overall joint model likelihood as detailed in \ref{meth:addlog}.}
-Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system that quantify the pairwise effects of all interaction partners on all focal elements. 
+We developed a joing modeling framework to estimate pairwise interactions in diverse systems from measures of element performance under varying abundances of different interaction partners. This framework benefits from several distinguishing features including the ability to estimate both \textit{realised} interactions (direct estimates from the observed data), and \textit{unrealised} interactions (when observations are missing or too few). After describing the required data (\ref{meth:data} below), we then define and identify which interactions are realised and which are not (\ref{meth:id_params}). Realised interactions are estimated with a unique interaction parameter as described in the neighbour-density dependent model (\ref{meth:nddm}). Independantly to this model, we also describe a response-impact model (\ref{meth:rim}) where elements have a singular effect on neighbours, and a singular response. This allows us to estimate unrealised interactions as the product of element-specific response and impact parameters. Both models contribute to the overall joint model likelihood as detailed in \ref{meth:addlog}.}
+Taken together, realised and unrealised interaction estimates are then used to populate community interaction matrices for the system that describes the indivudal effects of all interaction partners on the performance of all focal elements. 
 
 %, i.e. when elements are observed to co-occur enough times and at varying densities such that the effect of one element on the performance of the other can be reliably estimated via regression. Conversely, the interaction effect of element $j$ on element $i$ is is deemed unrealised when there are none or too few measures of the performance of $i$ in the presence of varying densities of $j$. 
 
 
 
     \subsection{Data requirements}
+    \label{meth:data}
 
     \paragraph{}
     The joint model framework was initially developed for an ecological dataset where interacting elements (species) affect each other's performance (lifetime reproductive success). This framework however, can be applied to data from any interacting elements (e.g. cells, individuals, populations, species) which meet the following criteria. First, observations must include some proxy for performance, such as growth (e.g. biomass), fecundity (e.g. number of eggs laid) or chemical production (e.g. oxygen). Second, these observations must also record the identity and abundance of elements which interact with each focal element. Lastly, observations should be replicated for each focal element with the aim to capture variation in the identities and densities of interaction partners. In addition to these requirements, the experimental design or data may also benefit from observations of focal elements with no interaction partners to better estimate intrinsic performance. \textbf{Changes: removed mention of 'interaction neighbourhood' and moved info about environment / interaction covariation to case study section. This is to generalise the method.}
