@@ -215,6 +215,7 @@ load('2.case_study/model/transformed/scaled_betaij_matrices.Rdata')
 # Median interaction estimates for joint model
 bij.med <- apply(scaled_betas, c(1, 2), median)
 bij.med <- bij.med[ , 1:nrow(bij.med)]
+bij.med <- t(bij.med)  # this is so qgraph points the arrows towards i
 
 # set up colours for nodes (linking to next figure)
 invasives <- c('ARCA', 'PEAI', 'HYPO')
@@ -232,6 +233,7 @@ all.sp[keyst] <- 'seagreen2'
 # get the cooccurence matrix
 cooc <- read.csv('3.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
 cooc <- cooc[1:nrow(bij.med), 1:nrow(bij.med)]
+cooc <- t(cooc)
 
 library(qgraph)
 

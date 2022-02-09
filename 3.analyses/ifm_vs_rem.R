@@ -32,26 +32,27 @@ qgraph(nddm_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'ora
 qgraph(rim_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle')
 
 png('3.analyses/figures/joint_network.png', width = 1200, height = 480, units = 'px')
-qgraph(joint_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
+qgraph(t(joint_mat[ , 1:length(keyspeciesID)]), negCol = 'royalblue4', posCol = 'orange', 
+       layout = 'circle', maximum = 1.6, diag = T)
 dev.off()
 
 png('3.analyses/figures/NDDM_network.png', width = 1200, height = 480, units = 'px')
-qgraph(nddm_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
+qgraph(t(nddm_mat[ , 1:length(keyspeciesID)]), negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
 dev.off()
 
 png('3.analyses/figures/RIM_network.png', width = 1200, height = 480, units = 'px')
-qgraph(rim_mat[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
+qgraph(t(rim_mat[ , 1:length(keyspeciesID)]), negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
 dev.off()
 
 rim_mat_infer <- rim_mat
 rim_mat_infer[which(nddm_mat == 0)] <- 0  # only keep the interactions which are also inferred by the NDDM
 png('3.analyses/figures/RIM_inferrables_network.png', width = 1200, height = 480, units = 'px')
-qgraph(rim_mat_infer[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
+qgraph(t(rim_mat_infer[ , 1:length(keyspeciesID)]), negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
 dev.off()
 
 rim_mat_noinfer <- rim_mat
 rim_mat_noinfer[which(nddm_mat != 0)] <- 0 # only keep the interactions which aren't inferred by the NDDM
 png('3.analyses/figures/RIM_noninferrables_network.png', width = 1200, height = 480, units = 'px')
-qgraph(rim_mat_noinfer[ , 1:length(keyspeciesID)], negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
+qgraph(t(rim_mat_noinfer[ , 1:length(keyspeciesID)]), negCol = 'royalblue4', posCol = 'orange', layout = 'circle', maximum = 1.6)
 dev.off()
 
