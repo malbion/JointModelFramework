@@ -31,27 +31,29 @@ nddm_mat <- as.matrix(read.csv('2.case_study/model/output/NDDM_betaij_samples.cs
 #---------------------------------
 # Figure 1: IFM vs RIM estimates |
 #---------------------------------
+mn <- min(nddm_mat)
+mx <- max(nddm_mat)
 
 png('3.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 700)
 par(mfrow=c(2,2), cex = 1.5)
 hist(nddm_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})], 
      xlab = "", breaks = 30,
      main = "Realised interactions (NDDM)", 
-     xlim = c(min(rim_mat), max(rim_mat)))
+     xlim = c(mn, mx))
 plot(rim_mat[nddm_mat!=0], nddm_mat[nddm_mat!=0], 
      ylab = 'NDDM estimates', xlab='Response*Impact estimates',
-     xlim = c(min(rim_mat), max(rim_mat)), ylim = c(min(rim_mat), max(rim_mat)), 
+     xlim = c(mn, mx), ylim = c(mn, mx), 
      pch = 16, 
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
 abline(0,1)
 hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x == 0)})],  
      xlab = "", breaks = 30,
      main = 'Unrealised interactions (RIM)', 
-     xlim = c(min(rim_mat), max(rim_mat)))
+     xlim = c(mn, mx))
 hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})],  
      xlab = "", breaks = 30,
      main = 'Realised interactions (RIM)', 
-     xlim = c(min(rim_mat), max(rim_mat)))
+     xlim = c(mn, mx))
 dev.off()
 
 
@@ -217,7 +219,7 @@ bij.med <- bij.med[ , 1:nrow(bij.med)]
 # set up colours for nodes (linking to next figure)
 invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
-keyst <- c('GITE', 'TROR', 'HAOD')
+keyst <- c('GITE', 'TROR')
 all.sp <- rep('white', length(dimnames(bij.med)$species))
 names(all.sp) <- dimnames(bij.med)$species
 # all.sp[invasives] <- 'tomato'
@@ -339,7 +341,7 @@ med.faci <- apply(sum.faci, 1, median)
 # get 'special' species
 invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
-keyst <- c('GITE',  'HAOD')
+keyst <- c('GITE', 'TROR')
 
 ###### PLOT
 png('3.analyses/figures_mss/species_effects.png', 
@@ -407,8 +409,8 @@ points(mean.sum.out[keyst], sp.abunds[keyst], pch = 24,
 #        bg = 'red', cex = 1.3)
 lab.x.pos <- mean.sum.out[keyst]
 # lab.x.pos['TROR'] <- lab.x.pos['TROR'] - 0.15
-text(lab.x.pos, sp.abunds[keyst], 
-     labels = names(mean.sum.out[keyst]), pos = 3, col = 'green4', 
+text(lab.x.pos + .5, sp.abunds[keyst], 
+     labels = names(mean.sum.out[keyst]), pos = 3, col = 'springgreen4', 
      cex = 1.4, offset = 0.7)
 
 
@@ -421,6 +423,7 @@ plot(sum.comp, -sum.faci,
      xlab = 'Absolute sum of competitive effects', 
      ylab = 'Absolute sum of facilitative effects')
 title(main = 'C', adj = 0)
+abline(0, 1, cex=0.5, col = 'snow4')
 abline(v=median(sum.comp), lty = 2)
 abline(h=median(-sum.faci), lty = 2)
 # points(sum.comp, -sum.faci, las = 1, bty = 'n', 
@@ -435,10 +438,9 @@ points(med.comp[invasives], -med.faci[invasives],
        pch = 24, bg = 'red', cex = 1.8)
 lab.x.pos <- med.comp[invasives] 
 lab.x.pos['HYPO'] <- lab.x.pos['HYPO'] + 0.1
-lab.x.pos['PEIA'] <- lab.x.pos['PEIA'] - 0.3
-# lab.x.pos['ARCA'] <- lab.x.pos['ARCA'] + 0.1
-lab.y.pos <- (-med.faci[invasives] + 0.065)
+lab.y.pos <- (-med.faci[invasives] + 0.11)
 lab.y.pos['PEAI'] <- lab.y.pos['PEAI'] +0.05
+lab.y.pos['ARCA'] <- lab.y.pos['ARCA'] - 0.4
 text(lab.x.pos, lab.y.pos, 
      labels = names(med.comp[invasives]), 
      pos =  4, col = 'darkred', offset = 0.3, cex = 1.4)
