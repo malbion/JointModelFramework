@@ -30,4 +30,14 @@ require(plyr)
 smm <- adply(smm, c(1, 3))
 write.csv(smm, '3.analyses/smm.csv', row.names = F)
 
-                                 
+smmii <- smm[is.na(smm$aii) == F, ]
+median(smmii$perc.exploiter)*2
+
+library(magrittr)
+library(dplyr)
+
+smmii$species <- droplevels(smmii$species)
+smmii %>% group_by(species) %>% summarise(min = min(aii),
+                                          max = max(aii)) -> foo
+foo[which(sign(foo$min) == sign(foo$max)), ]
+
