@@ -1,20 +1,20 @@
 # Malyon Bimler
 # CompNet 2019 
 
-# Scale the interaction parameters into alphas
+# Scale the interaction parameters into betas
 # Returns a 3D array of dimensions [N_species, N_neighbs, N_samples]
 
-scale_interactions <- function(alphas,
+scale_interactions <- function(betas,
                                lambdas,   # growth.rates.samples
                                key_speciesID,
                                key_neighbourID,
                                comm,
                                ...){ 
   
-  N_samples <- nrow(alphas)
+  N_samples <- nrow(betas)
 
   # Recreate community matrices (focals x neighbours, with 3rd dim = samples taken from posterior draws)
-  alpha_mat <- array(data = unlist(alphas), 
+  alpha_mat <- array(data = unlist(betas), 
                      dim = c(N_samples, length(key_neighbourID), length(key_speciesID)), 
                      dimnames = list('samples' = seq(1, N_samples), 'neighbour' = key_neighbourID, 'species' = key_speciesID))
   alpha_mat <- aperm(alpha_mat, c(3,2,1))
@@ -60,7 +60,7 @@ scale_interactions <- function(alphas,
                   'Key species ID names match'))
     
     
-    # Scale the alphas by dividing by growth rate
+    # Scale the betas by dividing by growth rate
     # scaled alpha = model_param/r_i = model_param/ln(eta)
     # reminder: model_param == alpha*g
     alpha_mat <- sapply(c(1:length(key_speciesID)), function(x) {
