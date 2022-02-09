@@ -310,7 +310,7 @@ Taken together, realised and unrealised interaction estimates are then used to p
     
 
     \subsubsection*{Do all exotic species compete with native species?}
-    Though many invasive species compete with natives \parencite{Naeem2000, Corbin2004, Riley2008, Zheng2015}, several studies have found evidence of invasives facilitating natives, with cascading effects on other species and net positive effects on ecosystem processes \parencite{Rodriguez2006, Ramus2017}. By allowing for positive and negative interaction strengths between species in a system, we can determine which exotics are harmful or beneficial to a native's performance. Figure \ref{fig:species} C. plots the sum of a species competitive effects on neighbours against the sum of it's facilitative effects on neighbours. Exotic species are identified in red. Out of these three exotic species, two have overall competitive effects on the community: \textit{Arctotheca calendula} (ARCA) and \textit{Pentameris aroides} (PEAI). PEAI interacts weakly with neighbours, whether it is competing or facilitative, and ARCA does compete but still lies below the median sum of competitive effects for the community, it's overall competitive effect being largely driven by weak facilitation. \textit{Hypochaeris glabra} (HYPO) on the other hand has strong effects on other species, both competitive and facilitative, and has an overall facilitative contribution to the community. The results from our case study suggest that here at least, the effects of exotic species on native species are rather complex and species-dependent.
+    Though many invasive species compete with natives \parencite{Naeem2000, Corbin2004, Riley2008, Zheng2015}, several studies have found evidence of invasives facilitating natives, with cascading effects on other species and net positive effects on ecosystem processes \parencite{Rodriguez2006, Ramus2017}. By allowing for positive and negative interaction strengths between species in a system, we can determine which exotics are harmful or beneficial to a native's performance. Figure \ref{fig:species} C. plots the sum of a species competitive effects on neighbours against the sum of it's facilitative effects on neighbours. Exotic species are identified in red. \textbf{Out of these three exotic species, two have overall competitive effects on the community: \textit{Arctotheca calendula} (ARCA) and \textit{Pentameris aroides} (PEAI). PEAI interacts weakly with neighbours, whether it is competing or facilitative, and ARCA does compete but still lies below the median sum of competitive effects for the community, it's overall competitive effect being largely driven by weak facilitation. \textit{Hypochaeris glabra} (HYPO) on the other hand has strong effects on other species, both competitive and facilitative, and has an overall facilitative contribution to the community. The results from our case study suggest that here at least, the effects of exotic species on native species are rather complex and species-dependent.}
 
     
     \subsection{Network results}
@@ -318,6 +318,8 @@ Taken together, realised and unrealised interaction estimates are then used to p
     % \paragraph{}
     % Potentially a short paragraph on 'network' results (weighted connectance, transitivity) so that I can later discuss how the scaling + network theory can allow us to link network patterns to diversity / stability etc. Basically scaling into per-capita is necessary if we want to make inferrences about diversity maintenance or stability. \\
     % We calculated .... 
+
+    We calculate weighted connectance and transitivity.....
 
 
     
@@ -471,8 +473,7 @@ The authors declare no competing interests.
         We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season. The resulting dataset includes between 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and abundances of all neighbouring individuals within the interaction neighbourhood of each focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species \parencite{Martyn2020}. Total neighbourhood diversity was 71 wildflower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low abundance, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and thinning did not target any particular species. 
 
         \paragraph{}
-    \textbf{In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though neither of these steps are strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.}
-    Rewrite above to fit with case study.
+    \textbf{In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though this steps is not strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.}
 
         \paragraph{} 
         We required species demographic rates (seed survival and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability.  The remaining species were assigned mean demographic rates from these experiments. Further details on the methods used for collecting those seed rates are available in section \ref{SI:germination}.
@@ -570,6 +571,24 @@ The authors declare no competing interests.
         \label{fig:adist}
     \end{figure}
 
+   % NETWORK FIGURES
 
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{../../3.analyses/figures/joint_network.png}
+        \caption{The full network of interactions between 22 focal species as estimated by the joint modelling framework presented here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in yellow and competitive interactions are shown in blue.}
+        \label{fig:jointnetwork}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{../../3.analyses/figures/NDDM_network.png}
+        \caption{Network of realised interactions between 22 focal species as estimated by the NDD model, unrealised interactions are not shown here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in yellow and competitive interactions are shown in blue.}
+        \label{fig:jointnetwork}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{../../3.analyses/figures/RIM_noninferrables_network.png}
+        \caption{Network of unrealised interactions between 22 focal species as estimated by the RI Model. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in yellow and competitive interactions are shown in blue.}
+        \label{fig:jointnetwork}
+    \end{figure}
 
 \end{document}
