@@ -40,7 +40,7 @@ Type 'q()' to quit R.
 > # PRELUDE
 > #-------
 > Sys.time()
-[1] "2022-01-24 17:12:43 AEST"
+[1] "2022-02-09 11:30:24 AEST"
 > 
 > # Get arguments from bash script
 > #!/usr/bin/env Rscript
@@ -127,11 +127,12 @@ Proportion of inferrable interactions = 0.567307692307692
 +             refresh = 100,         # show progress every 'refresh' iterations
 +             control = list(max_treedepth = 10)
 + )
+hash mismatch so recompiling; make sure Stan code ends with a blank line
 
 SAMPLING FOR MODEL 'joint_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 0.017266 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 172.66 seconds.
+Chain 1: Gradient evaluation took 0.014784 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 147.84 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -238,9 +239,9 @@ Chain 1: Iteration: 9800 / 10000 [ 98%]  (Sampling)
 Chain 1: Iteration: 9900 / 10000 [ 99%]  (Sampling)
 Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 2368.02 seconds (Warm-up)
-Chain 1:                2726.05 seconds (Sampling)
-Chain 1:                5094.07 seconds (Total)
+Chain 1:  Elapsed Time: 2384.45 seconds (Warm-up)
+Chain 1:                2771.41 seconds (Sampling)
+Chain 1:                5155.86 seconds (Total)
 Chain 1: 
 > 
 > # parameters of interest
@@ -251,8 +252,8 @@ Chain 1:
 > #------------
 > save(fit, file = paste0('model/output/model_fit.Rdata')) # model fit
 > # Save the 'raw' draws from the posterior
-> joint.post.draws <- extract.samples(fit)
-> save(joint.post.draws, file = paste0('model/output/post_draws.Rdata'))
+> post.draws <- extract.samples(fit)
+> save(post.draws, file = paste0('model/output/post_draws.Rdata'))
 > 
 > # Save mean, 10% and 90% quantiles for each parameter, as well as n_eff and Rhat
 > fit_sum <- summary(fit, pars = param.vec, probs = c(0.1, 0.9))$summary
@@ -273,7 +274,7 @@ Chain 1:
 > adj.gew <- p.adjust(gew.pvals, method = "holm")
 > write.csv(adj.gew, 'model/validation/gew_stats_holmadjust.csv')
 > print(paste0('Range of p-values for chain convergence: ', min(na.omit(adj.gew)), ' to ',  max(na.omit(adj.gew))))
-[1] "Range of p-values for chain convergence: 0.0327157823342563 to 1"
+[1] "Range of p-values for chain convergence: 0.0239374604665672 to 1"
 > 
 > png('model/validation/geweke_dist.png', width = 500, height = 500)
 > plot(density(na.omit(gew$z)))
@@ -299,8 +300,8 @@ E-BFMI indicated no pathological behavior.
 0 of 5000 iterations saturated the maximum tree depth of 10.
 E-BFMI indicated no pathological behavior.
 0 of 5000 iterations ended with a divergence.
-[1] "rhat range: "      "0.999799979996296" "1.00531821483615" 
-[1] "n_eff range: "   "876.43526194306" "13782.25763414" 
+[1] "rhat range: "     "0.99979997999647" "1.00298231436137"
+[1] "n_eff range: "    "593.93173555197"  "14789.2038234831"
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -318,10 +319,154 @@ ci_level: 0.8 (80% intervals)
 outer_level: 0.95 (95% intervals)
 ci_level: 0.8 (80% intervals)
 outer_level: 0.95 (95% intervals)
-Error in png(paste0(results_folder, "/tplot_", x, ".png"), width = 800,  : 
-  unable to start device 'png'
-Calls: stan_model_check -> sapply -> lapply -> FUN -> png
-In addition: Warning message:
-In png(paste0(results_folder, "/tplot_", x, ".png"), width = 800,  :
-  cairo error 'invalid value (typically too big) for the size of the input (surface, pattern, etc.)'
-Execution halted
+ci_level: 0.8 (80% intervals)
+outer_level: 0.95 (95% intervals)
+ci_level: 0.8 (80% intervals)
+outer_level: 0.95 (95% intervals)
+   beta_i0.null device   disp_dev.null device    beta_ij.null device 
+                     1                      1                      1 
+    effect.null device   response.null device  ri_betaij.null device 
+                     1                      1                      1 
+ndd_betaij.null device 
+                     1 
+> # Posterior predictive check
+> stan_post_pred_check(post.draws, 'mu', 'model/validation/', stan.data)
+NULL
+null device 
+          1 
+> stan_post_pred_check(post.draws, 'mu2', 'model/validation/', stan.data)
+NULL
+null device 
+          1 
+> 
+> # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
+> #------------------
+> # this works for parameters that are not the interaction matrices
+> sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
++   
++   p.samples <- apply(post.draws[[p]], 2, function(x){
++     sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
++   })
++   write.csv(p.samples, paste0('model/output/', p, '_samples.csv'), 
++             row.names = F)
++   
++ })
+$beta_i0
+NULL
+
+$disp_dev
+NULL
+
+$beta_ij
+NULL
+
+$effect
+NULL
+
+$response
+NULL
+
+$mu
+NULL
+
+$mu2
+NULL
+
+$log_lik_rim
+NULL
+
+$log_lik_nddm
+NULL
+
+> 
+> # Interactions (betaij)
+> # joint interactions 
+> betaij <- apply(post.draws$ndd_betaij, c(2, 3), function(x) {
++   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
++ })
+> betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
+> colnames(betaijS) <- grep('ndd_betaij', rownames(fit_sum), value = T)
+> write.csv(betaijS, paste0('model/output/joint_betaij_samples.csv'), row.names = F)
+> 
+> # rim interactions only
+> rim_betaij <- apply(post.draws$ri_betaij, c(2, 3), function(x) {
++   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
++ })
+> rim_betaijS <- as.data.frame(aperm(rim_betaij, perm = c(1, 3, 2)))
+> colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
+> write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
+> 
+> # replace uninferrable interactions with 0 to get the NDDM estimates only 
+> Q <- as.vector(t(stan.data$Q)) # the t() is very important to fill Q by row! 
+> nddm_betaij <- sweep(betaijS, 2, Q, `*`)
+> write.csv(nddm_betaij, paste0('model/output/NDDM_betaij_samples.csv'), row.names = F)
+> 
+> # Let's do a few plots while we're at it
+> # interactions inferred by the NDDM only
+> nddm_betaij_inf <-as.matrix(nddm_betaij[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
+> # RIM estimates for those inferrable interactions
+> rim_betaij_inf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
+> # RIM estimates for non-inferrable interactions only
+> rim_betaij_noinf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) == 0)])
+> 
+> # Check estimates of inferrable interactions from both models 
+> png(paste0('model/validation/nddm_vs_rim_alphas.png'))
+> plot(nddm_betaij_inf, rim_betaij_inf, 
++      xlab = 'NDDM interactions (inferrable only)', 
++      ylab = 'RIM interactions (inferrable only)',
++      xlim = c(min(nddm_betaij), max(nddm_betaij)),
++      ylim = c(min(nddm_betaij), max(nddm_betaij)))
+> abline(0,1)
+> dev.off()
+null device 
+          1 
+> 
+> # check distribution of inferrable and non-inferrable interactions
+> png(paste0('model/validation/betaij_est_distr.png'))
+> par(mfrow=c(3,1))
+> hist(nddm_betaij_inf, xlab = "", breaks = 30,
++      main = "Inferrable interactions (NDDM)", xlim = c(min(betaijS), max(betaijS)))
+> hist(rim_betaij_inf,  xlab = "", breaks = 30,
++      main = 'Inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
+> hist(rim_betaij_noinf,  xlab = "", breaks = 30,
++      main = 'Non-inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
+> dev.off()
+null device 
+          1 
+> 
+> # Transformed parameters
+> #-----------------------
+> # Intrinsic growth rate (lambda)
+> growth.rates.samples <- apply(post.draws$beta_i0, 2, function(x){
++   sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
++ })
+> # exponentiate to get lambda
+> growth.rates.samples <- exp(growth.rates.samples)
+> write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
+> 
+> # Scale the alphas and save
+> scaled_betas <- scale_interactions(betaijS, growth.rates.samples, key_speciesID, key_neighbourID, comm)
+Growth rates for community 0
+      POLE       POCA       PEAI       WAAC       HYPO       GOPU       PEDU 
+ 5.3227248  4.6026826  4.2528640  4.1385363  3.8309363  3.3151453  2.8453049 
+      STPA       ARCA       PLDE       GOBE       HYGL       GITE       VECY 
+ 2.7455934  2.6548025  2.5757523  2.5498072  2.4388030  2.4142741  2.3568714 
+      VERO       CAHI       PTGA       EROD       MEDI       HAOD       TRCY 
+ 2.3013481  1.7363732  1.6188857  1.5363879  1.5279258  1.5266977  0.2248293 
+      TROR 
+-0.7671882 
+Growth rates for TRCY replaced by HAOD
+Growth rates for TROR replaced by HAOD
+
+> save(scaled_betas, file = paste0('model/transformed/scaled_betaij_matrices.Rdata')) 
+> 
+> Sys.time()
+[1] "2022-02-09 13:21:53 AEST"
+> 
+> 
+> 
+> 
+> 
+> proc.time()
+    user   system  elapsed 
+6971.321  571.143 6688.346 
