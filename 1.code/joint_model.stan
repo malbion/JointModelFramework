@@ -113,6 +113,8 @@ generated quantities {
 	
     log_lik_nddm[n] = neg_binomial_2_lpmf(perform[n] | mu2[n], (disp_dev[species_ID[n]]^2)^(-1));
   }
-
+  
 }
+ 
+
 
