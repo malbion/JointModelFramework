@@ -79,7 +79,7 @@
       <file>main.bcf</file>
     </requires>
     <requires type="editable">
-      <file>../../../BibTex_files/03_Chapter3.bib</file>
+      <file>../../../../BibTex_files/03_Chapter3.bib</file>
     </requires>
   </external>
 </requests>
