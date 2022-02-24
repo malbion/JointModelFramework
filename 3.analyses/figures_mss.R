@@ -261,9 +261,9 @@ qgraph(cooc,
        title = 'B', title.cex =5)
 dev.off()
 
-png('3.analyses/figures_mss/networks_C_F_cooc.png', 
+png('3.analyses/figures_mss/networks_C_F.png', 
     width = 600, height = 1200, units = 'px')
-par(mfrow=c(3, 1))
+par(mfrow=c(2, 1))
 # plot competition only
 qgraph(bij.med,  # plot interaction means
        #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
@@ -286,14 +286,14 @@ qgraph(bij.med,  # plot interaction means
        fade = T, directed = T,
        title = 'B', title.cex =5)
 # plot from the cooccur package
-qgraph(cooc,
-       layout = 'circle', 
-       negCol = 'orange',   # swap the colours around
-       posCol = 'royalblue4',     
-       color = all.sp,
-       labels = dimnames(bij.med)$species,
-       fade = T,
-       title = 'C', title.cex =5)
+# qgraph(cooc,
+#        layout = 'circle', 
+#        negCol = 'orange',   # swap the colours around
+#        posCol = 'royalblue4',     
+#        color = all.sp,
+#        labels = dimnames(bij.med)$species,
+#        fade = T,
+#        title = 'C', title.cex =5)
 dev.off()
 
 #-------------------------------------------
