@@ -137,40 +137,46 @@ Taken together, identifiable and unidentifiable interaction estimates are then u
     %\textbf{Changes: removed mention of 'interaction neighbourhood' and moved info about environment / interaction covariation to case study section. This is to generalise the method. [[DBS: I have a suspicion that we would need to change things if the observations are not per capita...]]}
 
     \paragraph{}
-    We define $s$ as the number of focal species $i$, $i \in \{ 1, .., s \}$, and $t$ as the number of interacting species $j$ across all $s$ focals, $j \in \{1, ..., t \}$. Typically not all species in the system will be represented in the set of focals, such that $s \le t$. Measurements of the performance of individual units from each focal element (e.g.\ seed production of individual plants belonging to a set of focal species) are stored in a vector $p$ of length $n$ and indexed by $k$, with $k \in \{1, ..., n \}$. The abundances of interaction partners are stored in a matrix $X$, of size $n \times t$. When an element $j$ was absent for a given observation $p_k$, then $X_{k,j} = 0$. Finally, the species identity of each of the $n$ focal individuals is stored in the vector $d$, of length $n$, and containing the index of the corresponding species: $d_k \in \{1, ..., s \}$.
+    We define $s$ as the number of focal species $i$, $i \in \{ 1, .., s \}$, and $t$ as the number of interacting species $j$ across all $s$ focals, $j \in \{1, ..., t \}$. Typically not all species in the system will be represented in the set of focals, such that $s \le t$. Measurements of the performance of individual units from each focal element (e.g.\ seed production of individual plants belonging to a set of focal species) are stored in a vector $p$ of length $n$ and indexed by $k$, with $k \in \{1, ..., n \}$. The densities of interaction partners are stored in a matrix $X$, of size $n \times t$. When an element $j$ was absent for a given observation $p_k$, then $X_{k,j} = 0$. Finally, the species identity of each of the $n$ focal individuals is stored in the vector $d$, of length $n$, and containing the index of the corresponding species: $d_k \in \{1, ..., s \}$.
 
+    \subsection{Neighbour-density dependent model}
+    \label{meth:nddm}    
+
+        \paragraph{}
+        The strengths of interactions are quantified by regressing the performance of a species  - alternatively, a population or any chosen set of replicated units - against the abundance and identity of other interacting species in a neighbour-density dependent model (NDDM).  Increases or decreases in a species's performance is thus attributed to the changing densities of its interaction partners. 
+
+        \paragraph{}
+        We implement a NDDM for each focal species $i$ which regresses the identity and abundance of species $j$ ($j = 1, ..., t$) against the measured proxy for performance $p_{k}$ through a link function $f$:
+        \begin{equation}
+        f(p_{k}) = \gamma_{d_k} - \sum_{j=1}^{t} \beta_{d_k,j} \, X_{d_k,j}
+        \label{nddm}
+        \end{equation}
+
+        The parameters $\beta_{d_k,j}$ capture the effect of each species $j$ on $i$ whereas the intercept $\gamma_{d_k}$ represents intrinsic performance (in the link scale), a species' performance in the absence of interactions or when all interaction effects are $0$. Note that interacting species $j$ can include members of focal species $i$ itself, in which case intraspecific interactions are denoted as $\beta_{ii}$ and correspond to the diagonal of matrix $B$. Furthermore, the equation above places no restrictions on the sign of $\beta_{ij}$: interactions can be harmful to the focal species (competitive) or beneficial (facilitative). The negative sign in front of $\beta_{ij}$ does, however, mean that positive interaction estimates should be interpreted as competitive and negative estimates as facilitative.
+
+        \paragraph{}
+        This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $p_k$ and the right-hand side of the equation does not need to be linear. This can easily be changed by choosing an appropriate link function $f(p_k)$ for the data in question. In our case study, for example, we use the link function $f(p_k) = \ln(p_k)$ since we model our response variable as a negative-binomial variate.
+              
 
     \subsection{Identifying realised and unrealised interactions}
     \label{meth:id_params}
 
     \paragraph{}
-    The aim of the joint framework is to estimate $B$, the $s \times t$ matrix of interactions between all focal elements $i$ and interacting elements $j$. [[DBS: Isn't it also to estimate the intercept? Or even better, to estimate the parameters of a model of density-dependent performance, full stop?]] The effect of element $j$ on the performance of focal element $i$ is noted as $\beta_{ij}$, corresponding to the $i$'th row and the $j$'th column of $B$. 
+    A common issue in observational datasets is that some elements may not be observed to interact with many other elements or to interact at sufficiently variable densities because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. 
+    
+    The aim of the joint framework is to estimate $B$, the $s \times t$ matrix of interactions between all focal elements $i$ and interacting elements $j$. [[DBS: Isn't it also to estimate the intercept? Or even better, to estimate the parameters of a model of density-dependent performance, full stop?]] 
+
+
+    The effect of element $j$ on the performance of focal element $i$ is noted as $\beta_{ij}$, corresponding to the $i$'th row and the $j$'th column of $B$. 
     For an interaction $\beta_{ij}$ to be inferrable, and thus realised, the data must contain measurements of the performance of $i$ when interacting with $j$ at varying abundances. Moreover, the vector of abundances of $j$ associated to measurements of focal $i$ must be linearly independent to all other vectors of abundances of other elements interacting with $i$. For example, if two elements $a$ and $b$ interact with focal $i$ yet have the same abundance at every measurement or equally proportional abundances at every measurement, neither $\beta_{ia}$ nor $\beta_{ib}$ will be inferrable. We define \textit{realised} interactions as those which are inferrable following the above assumptions, and \textit{unrealised} interactions as those which are not. We construct a matrix $Q$ of size $s \times t$, with $Q_{ij} = 1$ if the corresponding $\beta_{ij}$ parameter is realised, and $Q_{ij} = 0$ if not. How we to mathematically construct this $Q$ matrix is shared in the code for the publically available github repository associated to this paper.
 
     
-    \subsection{Realised interactions}
-    \label{meth:nddm}    
-
-        \paragraph{}
-        The strength of realised interactions are quantified by regressing the performance of an element  - a species, population or any chosen set of replicated units - against the abundance and identity of other interacting elements in a neighbour-density dependent model (NDDM).  Increases or decreases in an element's performance is thus attributed to the changing abundances of its interaction partners. 
-
-        \paragraph{}
-        We implement a neighbour density-dependent model for each focal element $i$ which regresses the identity and abundance of elements $j$ ($j = 1, ..., t$) against the measured proxy for performance $p_{i}$ through a link function $f$:
-        \begin{equation}
-        f(p_{k}) = \gamma_{d_k} - \sum_{j=1}^{t} \beta_{d_k,j} \, X_{d_k,j}
-        \label{nddm}
-        \end{equation}
-        \textbf{Note that $p_i$ refers to the subset of all individual measurements of performance $p$ for a focal element $i$. [[Maybe better off calling it $p_{d_i}$ ?]] [[DBS: This sentence makes no sense to me. This model is still only at the level of a single observation. Also, wouldn't it be easier if we didn't call the intercepts betas as well. We already defined $B$ as a matrix whose column indexing does NOT start at 0.]]}
-        The parameters $\beta_{d_k,j}$ capture the \textbf{overall} effect of each element $j$ on $i$ whereas the intercept $\beta_{i0}$ represents intrinsic performance (in the link scale), an element's performance \textbf{across all observations [[DBS doesn't understand this.]]} in the absence of interactions or when all interaction effects are $0$. Note that interacting elements can include members of focal element $i$ itself, in which case intraspecific interactions are denoted as $\beta_{ii}$ and correspond to the diagonal of matrix $B$. \textbf{Furthermore, the equation above places no restrictions on the sign of $\beta_{ij}$: interactions can be harmful to the focal element (competitive) or beneficial (facilitative). The negative sign in front of $\beta_{ij}$ does, however, mean that positive interaction estimates should be interpreted as competitive and negative estimates as facilitative.}
-
-        \paragraph{}
-        This model, as well as the RIM described below, are implemented as generalised linear models. This means that the relationship between $p_i$ and the right-hand side of the equation does not need to be linear. This can easily be changed by choosing an appropriate link function $f(p_i)$ for the data in question. In our case study, for example, we use the link function $f(p_i) = \ln(p_i)$ since we model our response variable as a negative-binomial variate.
-              
+    
     \subsection{Unrealised interactions}
     \label{meth:rim}
 
     \paragraph{}
-       A common issue in ecological datasets is that some elements may not be observed to interact with many other elements or to interact at sufficiently variable densities because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. It has previously been shown that these \textit{unrealised} interactions can be estimated by using an alternative model which assumes that elements typically have a singular impact ($e_i$) on and a singular response ($r_i$) to neighbours independent of neighbour identity (response and impact model, or RIM - see \cite{Godoy2014b}). An unrealised interaction is therefore the product of two elements' impact and response parameters. 
+    It has previously been shown that these \textit{unrealised} interactions can be estimated by using an alternative model which assumes that elements typically have a singular impact ($e_i$) on and a singular response ($r_i$) to neighbours independent of neighbour identity (response and impact model, or RIM - see \cite{Godoy2014b}). An unrealised interaction is therefore the product of two elements' impact and response parameters. 
         \begin{equation}
         f(p_{i}) = \beta_{i0} - r_{i} \sum_{j=1}^{k} e_{j} N_{j}
         \label{rim}
@@ -250,7 +256,7 @@ Taken together, identifiable and unidentifiable interaction estimates are then u
     \subsection{Model fitting}
 
         \paragraph{}        
-        We implement the NDDM (Eq. \ref{nddm}), the RIM (Eq. \ref{rim}), and the joint model as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. The advantage of this approach is two-fold: the model can converge and coefficients can be estimated despite high model complexity and a large number of parameters. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to discriminate between realised and unrealised interactions. We provide a working example of the STAN code used to specify and set this model to the case study below in the Supplementary Methods \ref{SI:modelcode}, as well as a downloadable zip folder which contains the necessary STAN model code, R script and functions to run the model on a simulated dataset. \textbf{The most up-to-date versions of the code and data used for this manuscript are also available on our public  github repository: [insert link here].}
+        We implement the NDDM (Eq. \ref{nddm}), the RIM (Eq. \ref{rim}), and the joint model as generalised linear models in STAN \parencite{Carpenter2017}, a Bayesian statistical language where coefficient values will be estimated by MCMC sampling. Using STAN requires translating the model formula into the STAN language, setting priors for parameters to be estimated, and using an indexing system to discriminate between realised and unrealised interactions. We provide a working example of the STAN code used to specify and set this model to the case study below in the Supplementary Methods \ref{SI:modelcode}, as well as a downloadable zip folder which contains the necessary STAN model code, R script and functions to run the model on a simulated dataset. \textbf{The most up-to-date versions of the code and data used for this manuscript are also available on our public  github repository: [insert link here].}
         From the model file, only the link function for $p_i$ and it's parameterisation need to be modified in order to apply it to a differently-distributed dataset. Additionally, non-integer measures of performance (e.g. biomass) should be redefined as real rather than integers in the data block. In the code given, a negative binomial distribution is used to fit seed production ($p_i$) but a different distribution may be more appropriate when using other measures of performance.   
 
         \paragraph{}
