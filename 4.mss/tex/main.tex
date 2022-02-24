@@ -163,7 +163,7 @@ Taken together, identifiable and unidentifiable interaction estimates are then u
 
     \paragraph{}
     A common issue in observational datasets is that some elements may not be observed to interact with many other elements or to interact at sufficiently variable densities because data sampling is limited in space and time. The NDDM above will thus not be able to estimate all potential interactions ($\beta_{ij}$), especially for rare elements. 
-    
+
     The aim of the joint framework is to estimate $B$, the $s \times t$ matrix of interactions between all focal elements $i$ and interacting elements $j$. [[DBS: Isn't it also to estimate the intercept? Or even better, to estimate the parameters of a model of density-dependent performance, full stop?]] 
 
 
@@ -188,17 +188,15 @@ Taken together, identifiable and unidentifiable interaction estimates are then u
     \label{meth:addlog}
 
     \paragraph{}
-    \textbf{
-    An approximation of the matrix of interactions $B$ is thus given by:}
+    An approximation of the matrix of interactions $B$ is thus given by:
 
         \begin{equation}
         B = Q \circ \tilde B + (1 - Q) \circ r e^T
         \label{matB}
         \end{equation}
 
-    [[NB: No transpose on re here because it wasn't necessary in the code - double check!]]
     
-    \textbf{where $\circ$ represents the elementwise (Hadamard) product, $Q$ the matrix of inferrable interactions, and $\tilde B$ is an $s \times k$ matrix that only has free parameters inferred in the locations where $Q_{ij} =1$. In other words, the final interaction matrix $B$ takes a free parameter from the NDDM when that parameter is inferrable, and the corresponding RIM estimate, $r_i e_j$, when that parameter is not. Both the NDD and RI models contribute to the overall joint model log likelihood:}
+    where $\circ$ represents the elementwise (Hadamard) product, $Q$ the matrix of identifiable interactions, and $\tilde B$ is an $s \times k$ matrix that only has free parameters inferred in the locations where $Q_{ij} =1$. In other words, the final interaction matrix $B$ takes a free parameter from the NDDM when that parameter is identifiable, and the corresponding RIM estimate, $r_i e_j$, when that parameter is not. Both the NDDM and RIM  contribute to the overall joint model log likelihood:
 
          \begin{equation}
         \mathcal{L}_{joint} = \mathcal{L}_{RIM} + \mathcal{L}_{NDDM}
@@ -208,24 +206,21 @@ Taken together, identifiable and unidentifiable interaction estimates are then u
     with
 
         \begin{equation}
-        \mathcal{L}_{RIM} = \sum_{s=1}^{n} \log (d_s (p_s | \beta_{i0}, r, e, \theta))
+        \mathcal{L}_{RIM} = \sum_{k=1}^{n} \log (Pr (p_k | \gamma, r, e, ...))
         \label{logrim}
         \end{equation}
 
         \begin{equation}
-        \mathcal{L}_{NDDM} = \sum_{s=1}^{n} \log (d_s (p_s | \beta_{i0}, B, \theta))
+        \mathcal{L}_{NDDM} = \sum_{k=1}^{n} \log (Pr (p_k | \gamma, B, ...))
         \label{lognddm}
         \end{equation}
 
-\textbf{
-    where the sum is across all $n$ observations, $d_s$ is the probability density for the model (e.g. negative binomial), $p_s$ the vector of measured performances, $\beta_{i0}, r, e,$ and $B$ are parameters as defined in Eqs \ref{nddm} and \ref{rim}, and $\theta$ includes any other parameters (e.g. dispersion if using a negative binomial distribution for the data). Note that $p_s$ and $\beta_{i0}$ are common to both the RIM and NDDM.}
 
-    [[NB: notation here differs from your and Stefanos because above I define S as the number of focals and K as the number of neighbours. Keeping p as the vector of performances. Unless it's supposed to be all data aka performances and neighbour abundances? Unsure on the correct notation.]]
+    where the sum is across all $n$ observations, $Pr$ is the probability density for the model (e.g. negative binomial), $p_k$ the vector of measured performances, $\gamma, r, e,$ and $B$ are parameters as defined in Eqs \ref{nddm} and \ref{rim}, and $'...'$ includes any other parameters (e.g. dispersion if using a negative binomial distribution for the data). Note that $p_k$ and $\gamma$ are common to both the RIM and NDDM.
 
+    \paragraph{}
+    In a hypothetical world where all interactions in the observed dataset are realised, then $B = \tilde B$ and fitting the RIM is not strictly unnecessary. The parameter vectors $r$ and $e$ would still be estimated, but they are independent of the parameters in $\tilde B$ and hence maximization of both likelihoods is independent. Conversely, if no interactions are realised then the joint model devolves to the RIM only. In the middle ground---where the majority of datasets are likely to lie---the joint model framework allows us to estimate free interaction parameters when possible, and use $r_i \times e_j$ estimates when not.  An important distinction to make is that the NDDM estimates realised interactions only, whereas the RIM estimates all interactions, realised and unrealised. However, by maximising Eq.~\ref{loglikjoint} we allow both models to provide good fits to the data but also for $r$ and $e$ to ``adjust'' around inferred values of $\tilde B$. 
 
-\textbf{
-    In a hypothetical world where all interactions in the observed dataset are realised, then $B = \tilde B$ and fitting the RIM is not strictly unnecessary. The parameter vectors $r$ and $e$ would still be estimated, but they are independent of the parameters in $\tilde B$ and hence maximization of both likelihoods is independent. Conversely, if no interactions are realised then the joint model devolves to the RIM only. In the middle ground---where the majority of datasets are likely to lie---the joint model framework allows us to estimate free interaction parameters when possible, and use $r_i e_j$ estimates when not.  An important distinction to make is that the NDDM estimates realised interactions only, whereas the RIM estimates all interactions, realised and unrealised. However, by maximising Eq.~\ref{loglikjoint} we allow both models to provide good fits to the data but also for $r$ and $e$ to ``adjust'' around inferred values of $\tilde B$. 
-}
 
     \subsection{Rescaling interaction estimates into per-capita interactions}
 
