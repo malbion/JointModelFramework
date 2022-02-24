@@ -343,8 +343,8 @@ Taken together, identifiable and unidentifiable interaction estimates are then u
         %\paragraph{}
         %Our framework assumes that though the total effect of one element on another increases with density, this relationship is linear. This may not always be the case however, as interactions may be invariant to density \parencite{} or scale non-linearly \parencite{}. Our framework also evaluates direct interactions only, and does not consider higher-order interactions \parencite{}. 
 
-        \paragraph{}
-        Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain convergence and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times across all observations were grouped into an 'other' category with its own interaction effect. If interactions with or between very rare species are the explicit object of a study, however, data-collection should focus on amassing observations of focal individuals from those rarer species to be able to estimate  interaction strengths.   
+    \paragraph{}
+    Our model framework is aimed to helping empiricists who would like to estimate species interactions in non-trophic communities. Though the MCMC sampling algorithm does allow for many parameters to be estimated, it is crucial to check chain convergence and model behaviour to verify that the full parameter space is sampled. The amount of data required for sampling diverse communities may still be substantial. Grouping species which appear very rarely is also a common strategy to avoid over-parameterisation. In our case study, neighbour species which were recorded fewer than 10 times across all observations were grouped into an 'other' category with its own interaction effect. If interactions with or between very rare species are the explicit object of a study, however, data-collection should focus on amassing observations of focal individuals from those rarer species to be able to estimate  interaction strengths.   
 
 \subsection{Conclusion}
 
@@ -402,9 +402,9 @@ The authors declare no competing interests.
     \addtocounter{figure}{-1}
     \begin{figure} [t!]
         \caption{(Previous page.) Understanding interaction effects can help identify species of particular ecological importance to a system. For all graphs, diamonds are species medians across all network samples, black lines cover the 50\% quantile and grey dots indicate the full range of out-strength values as calculated from 1000 sampled networks. The shaded part of the graphs show facilitative (negative) interactions. Dashed lines represent the median value for all focals. Coloured triangles indicate the species refered to in the main text for each of the ecological questions associated with (A), (B) and (C). \\
-        In (A), the x-axis shows the strength of per-capita intraspecific interactions, that is how strongly a focal species interacts with itself, plotted against a focal species' log density (y-axis). Values over $0$ indicate competition, and values less than $0$ indicate facilitation.  The two most abundant natives, \textit{Velleia rosea} (VERO) and \textit{Podolepsis canescens} (POCA) in purple, do not seem to compete with themselves any more or less strongly than the median for all species in the system (dashed line). \\
-        (B) shows the sum of interaction effects of focal species on neighbours (x-axis) against the focal species' log density (x-axis). On the x-axis, values greater than $0$ indicate that a focal species has an overall competitive effect on neighbours, and values less than $0$ indicate that it has an overall facilitative effect. Green diamonds identify species with low density but strong competitive effects on neighbours: \textit{Trachymene ornata} (TROR) and \textit{Gilberta tenuifolia} (GITE). \\
-        (C) decomposes a focal species' net interaction effects into its competitive effects (x-axis) and facilitative effects (y-axis). Red diamonds show the exotic species \textit{Hypochaeris glabra} (HYPO), \textit{Arctotheca calendula} (ARCA) and \textit{Pentameris aroides} (PEAI). The light grey diagonal shows where x = y, species above that line have an overall facilitative effect on other species whereas those below that line have an overall competitive effect.} 
+        In (A), the x-axis shows the strength of per-capita intraspecific interactions, that is how strongly a focal species interacts with itself, plotted against a focal species' total log abundance (y-axis). Values over $0$ indicate competition, and values less than $0$ indicate facilitation.  The two most abundant natives, \textit{Velleia rosea} (VERO) and \textit{Podolepsis canescens} (POCA) in purple, do not seem to compete with themselves any more or less strongly than the median for all species in the system (dashed line). \\
+        (B) shows the sum of interaction effects of focal species on neighbours (x-axis) against the focal species' total log abundance (x-axis). On the x-axis, values greater than $0$ indicate that a focal species has an overall competitive effect on neighbours, and values less than $0$ indicate that it has an overall facilitative effect. Green diamonds identify species with low overall abundance but strong competitive effects on neighbours: \textit{Trachymene ornata} (TROR) and \textit{Gilberta tenuifolia} (GITE). \\
+        (C) decomposes a focal species' net interaction strength into its competitive effects (x-axis) and facilitative effects (y-axis). Red diamonds show the exotic species \textit{Hypochaeris glabra} (HYPO), \textit{Arctotheca calendula} (ARCA) and \textit{Pentameris aroides} (PEAI). The light grey diagonal shows where x = y, species above that line have an overall facilitative effect on other species whereas those below that line have an overall competitive effect.} 
     \end{figure}
 
 \clearpage
@@ -447,7 +447,7 @@ The authors declare no competing interests.
         We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season. The resulting dataset includes between 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and densities of all neighbouring individuals within the interaction neighbourhood of each focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species \parencite{Martyn2020}. Total neighbourhood diversity was 71 wildflower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low density, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and thinning did not target any particular species. 
 
         \paragraph{}
-    	In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring elements and provide observations for low-density estimates of interactions. Though this steps is not strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
+    	In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring individuals and provide observations for low-density estimates of interactions. Though this steps is not strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
 
         \paragraph{} 
         We required species demographic rates (seed survival and germination) in order to scale model interaction estimates into per-capita interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability.  The remaining species were assigned mean demographic rates from these experiments. Further details on the methods used for collecting those seed rates are available in section \ref{SI:germination}.
@@ -474,32 +474,32 @@ The authors declare no competing interests.
                 F_{i,t} = \lambda_{i} e^{- \alpha_{ii} g_{i} N_{i, t} -  \alpha_{ij} g_{j} N_{j, t} }
                 \label{fecundity}   
             \end{equation}
-        where \(\lambda_{i}\) corresponds to seed number in the absence of competition, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij}\) and \(\alpha_{ii}\) which are equivalent to \(\beta_{ij}\) in Eq. \ref{nddm}. 
+        where \(\lambda_{i}\) corresponds to seed number in the absence of competition, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij}\) and \(\alpha_{ii}\) which are equivalent to \(\beta_{d_k, j}\) in Eq.~\ref{nddm} of the main text. 
         We determine the scaled, per-capita interaction strengths ${\alpha}''$'s by including \(\lambda_{i}\), \(g_{i}\) and \(s_{i}\) in such a way that these variables are cancelled out when the ${\alpha}''$'s are substituted for the $\alpha$'s in our annual plant population model \parencite{Godoy2014, Bimler2018}. 
         \begin{equation}
-            {\alpha_{ij}}'' = \frac{g_{j} \alpha_{ij}}{ln(\eta_{i})}
+            {\alpha}''_{ij} = \frac{g_{j} \alpha_{ij}}{ln(\eta_{i})}
         \end{equation}
         with $\eta_{i} = \frac{\lambda_{i} g_{i}}{\theta_{i}}$ and $\theta_{i} = 1 - (1 - g_{i})(s_{i})$. % \(ln(\eta_{i})\) is thus equivalent to \(\beta_{i0}\) in Eqs. \ref{nddm} and \ref{scaling}.
-        Note that because our model evaluates the rate of change of seeds in the seed bank, 'per-capita' here refers to changes 'per seed in the seed bank' of a focal species. Substituting ${\alpha}''$'s for $\alpha$'s in Eq. \ref{ifm} gives us: 
+        Note that because our model evaluates the rate of change of seeds in the seed bank, 'per-capita' here refers to changes 'per seed in the seed bank' of a focal species. Substituting ${\alpha}''$'s for $\alpha$'s in Eq.~\ref{ifm} gives us: 
     
         \begin{equation}
-            \frac{N_{i, t+1}}{N_{i, t}} = (1 - \theta_{i}) + \theta_{i} \eta_{i} e^{-ln(\eta_{i})({\alpha_{ii}}'' N_{i, t} + {\alpha_{ij}}'' N_{j, t})}
+            \frac{N_{i, t+1}}{N_{i, t}} = (1 - \theta_{i}) + \theta_{i} \eta_{i} e^{-ln(\eta_{i})({\alpha}''_{ii} N_{i, t} + {\alpha}''_{ij} N_{j, t})}
         \end{equation}
         where we can see that the ${\alpha}''$'s are directly proportional to the density of neighbours. Relating this population model to the joint model framework, we recover the following: 
 
         \begin{equation}
-        {\beta_{ij}}'' = {\alpha_{ij}}''
+        {\beta}''_{d_k, j} = {\alpha}''_{ij}
         \end{equation}
 
         \begin{equation}
-        \beta_{ij} = \alpha_{ij}
+        \beta_{d_k, j} = \alpha_{ij}
         \end{equation}
 
         \begin{equation}
-        \beta_{i0}  = ln(\eta_{i}) = ln(\frac{\lambda_{i} g_{i}}{\theta_{i}})
+        \gamma  = ln(\eta_{i}) = ln(\frac{\lambda_{i} g_{i}}{\theta_{i}})
         \end{equation}
         % Daniel thinks this last equation is wrong but I don't think so?
-        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\lambda_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
+        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\gamma_{d_k}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
 
 
         \subsubsection{Seed germination and survival data}
@@ -534,14 +534,14 @@ The authors declare no competing interests.
     \begin{figure}[H]
        % \hspace*{-3.5cm}
         \includegraphics[width=.6\textwidth]{../../3.analyses/figures_mss/postpredch_mu.png}
-        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey) as estimated by the RI model only, on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey) as estimated by the RIM only, on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
         \label{fig:ppcheckmu1}
     \end{figure}
 
     \begin{figure}[H]
        % \hspace*{-3.5cm}
         \includegraphics[width=\textwidth]{../../3.analyses/figures_mss/interaction_estimates.png}
-        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{ij}$), which are then plotted against the corresponding RIM estimates ($r_i e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unidentifiable} (left) and identifiable interactions estimates returned by the RIM. Interaction estimates are unscaled.}
+        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{d_k, j}$), which are then plotted against the corresponding RIM estimates ($r_{d_k} e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unidentifiable} (left) and identifiable interactions estimates returned by the RIM. Interaction estimates are unscaled.}
         \label{fig:adist}
     \end{figure}
 
@@ -549,19 +549,19 @@ The authors declare no competing interests.
 
     \begin{figure}[H]
         \includegraphics[width=\textwidth]{../../3.analyses/figures/joint_network.png}
-        \caption{The full network of interactions between 22 focal species as estimated by the joint modelling framework presented here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
+        \caption{The full network of unscaled interactions between 22 focal species as estimated by the joint modelling framework presented here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
         \label{fig:jointnetwork}
     \end{figure}
 
     \begin{figure}[H]
         \includegraphics[width=\textwidth]{../../3.analyses/figures/NDDM_network.png}
-        \caption{Network of identifiable interactions between 22 focal species as estimated by the NDD model, unidentifiable interactions are not shown here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
+        \caption{Network of identifiable interactions (unscaled) between 22 focal species as estimated by the NDDM, unidentifiable interactions are not shown here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
         \label{fig:jointnetwork}
     \end{figure}
 
     \begin{figure}[H]
         \includegraphics[width=\textwidth]{../../3.analyses/figures/RIM_noninferrables_network.png}
-        \caption{Network of unidentifiable interactions between 22 focal species as estimated by the RI Model. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
+        \caption{Network of unidentifiable interactions (unscaled) between 22 focal species as estimated by the RIM. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
         \label{fig:jointnetwork}
     \end{figure}
 
