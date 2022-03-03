@@ -1,4 +1,4 @@
-# Methods_for_compnet
+# Joint Model Framework
 
 This folder covers the code, analyses, case study results and manuscript for the joint model. 
 
