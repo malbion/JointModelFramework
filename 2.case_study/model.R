@@ -4,15 +4,13 @@
 #   
 #   R CMD BATCH '--args 0' model.R model/0_model_script.Rout
 # 
-# substituting '0' for the comm number (0, 1, 2, or 3) 
-# 
 # This calls up model.R, which runs joint_model.stan. 
 # results got to model/output, /transformed and /validation
 
 
 # Run the joint model: 
-# 1. Estimate inferrable interactions with NDDM 
-# 2. Estimate response and effect interactions when non-inferrable
+# 1. Estimate identifiable interactions with NDDM 
+# 2. Estimate response and effect interactions when non-identifiable
 
 # Then: 
 # 3. Extract the intrinsic growth rates 
@@ -22,6 +20,8 @@
 #-------
 Sys.time()
 
+#########################################################################
+# Comment out section below if you are not running this from the terminal:
 # Get arguments from bash script
 #!/usr/bin/env Rscript
 args = commandArgs(trailingOnly=TRUE)
@@ -33,6 +33,9 @@ if (length(args)>1) {
   stop("Model can only be run on 1 comm at a time.n", call.=FALSE)
 }
 comm <- args[1]
+#########################################################################
+# and instead uncomment the following line: 
+# comm <- 0
 
 # set up R environment
 library(rstan)
@@ -68,7 +71,7 @@ indep <- sapply(seq(1, dim(Z_all)[1], 1), function(k){
 all(indep == 1) # if TRUE then neighbours are linearly independent and we can continue
 if(!all(indep == 1)) message('WARNING neighbours are not linearly independent') 
 
-# transform data into format required by STAN
+# transform data into format required by STAN and select identifiable interaction parameters
 stan.data <- data_prep(perform = 'seeds', focal = 'focal', 
                        nonNcols = 4, df = fecundities)
 
@@ -77,7 +80,7 @@ message(paste0('Community selected: ', comm))
 message(paste0('Fecundity data dimensions = ', dim(fecundities)[1], ', ', dim(fecundities)[2]))
 message(paste0('Number of focals = ', length(key_speciesID)))
 message(paste0('Number of neighbours = ', length(key_neighbourID)))
-message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$K)))
+message(paste0('Proportion of identifiable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$K)))
 
 #--------------------------------------------------
 # Estimate interactions with a joint NDD*RI model |
@@ -85,9 +88,9 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 
 fit <- stan(file = '../1.code/joint_model.stan',
             data =  stan.data,               # named list of data
-            chains = 1,
+            chains = 1,             # run model on 1 chain only
             warmup = 5000,          # number of warmup iterations per chain
-            iter = 10000,            # total number of iterations per chain
+            iter = 10000,           # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10)
 )

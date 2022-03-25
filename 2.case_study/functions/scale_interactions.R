@@ -1,10 +1,8 @@
-# Malyon Bimler
-# CompNet 2019 
-
-# Scale the interaction parameters into betas
+# Scale the interaction parameters into interaction coefficients which are comparable
+# across species
 # Returns a 3D array of dimensions [N_species, N_neighbs, N_samples]
 
-scale_interactions <- function(betas,
+scale_interactions <- function(betas,     # interaction parameters returned by the joint model
                                lambdas,   # growth.rates.samples
                                key_speciesID,
                                key_neighbourID,
@@ -61,8 +59,8 @@ scale_interactions <- function(betas,
     
     
     # Scale the betas by dividing by growth rate
-    # scaled alpha = model_param/r_i = model_param/ln(eta)
-    # reminder: model_param == alpha*g
+    # scaled beta = model_param/r_i = model_param/ln(eta)
+    # reminder: model_param == alpha*g (in plant pop dyn model)
     alpha_mat <- sapply(c(1:length(key_speciesID)), function(x) {
       # sample each interaction from the community matrix
       aij_samples <- alpha_mat[x, , ]

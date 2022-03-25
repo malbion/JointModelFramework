@@ -3,8 +3,9 @@
 This folder contains the data, model output and certain specific functions for the joint model framework applied to a case study of Western Australia annual wildflowers, as described in the associated manuscript. The code presented here is not intended to be used for other datasets, but made available in the interest of open access and reproducibility.
 
 ### How to use it: 
-Use the **model.R** script - it can be run straight from the terminal, or through R (instructions in the comments at the top of the model.R file).  
-This will load the case study data, prepare it for the model, select identifiable interaction parameters, run the joint model, verify model convergence, save model output and selected parameters, and scale the returned interaction parameters according to a population dynamic model for annual plants with a seed bank.  
+Use the **model.R** script - it can be run straight from the terminal, or through R (instructions in the comments at the top of the model.R file). Please note that running the model may take considerable time and processing power, and this script includes the saving of large .Rdata objects, so consider yourself forwarned! 
+**model.R** will load the case study data, prepare it for the model, select identifiable interaction parameters, run the joint model, verify model convergence, save model output and selected parameters, and scale the returned interaction parameters according to a population dynamic model for annual plants with a seed bank.  
+NB: **model.R** calls upon the ../1.code/**data_prep.R** function to format the data and select identifiable parameters, and the ../1.code/**joint_model.stan** file to run the model.  
 
 ### File inventory
 
