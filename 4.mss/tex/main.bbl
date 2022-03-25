@@ -43,11 +43,11 @@
       \list{publisher}{1}{%
         {Springer US}%
       }
-      \strng{namehash}{f27922c0761c707032f6feb1836db480}
+      \strng{namehash}{0561ef19738f051d729438fa0388c267}
       \strng{fullhash}{f27922c0761c707032f6feb1836db480}
       \strng{bibnamehash}{f27922c0761c707032f6feb1836db480}
       \strng{authorbibnamehash}{f27922c0761c707032f6feb1836db480}
-      \strng{authornamehash}{f27922c0761c707032f6feb1836db480}
+      \strng{authornamehash}{0561ef19738f051d729438fa0388c267}
       \strng{authorfullhash}{f27922c0761c707032f6feb1836db480}
       \field{sortinit}{B}
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
@@ -188,11 +188,11 @@
            giveni={M\bibinithyphendelim F\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{7388b5cab2907a1867c6307bb0222fc4}
+      \strng{namehash}{83c87c84cfbe9e1cff066dd3e147350f}
       \strng{fullhash}{7388b5cab2907a1867c6307bb0222fc4}
       \strng{bibnamehash}{7388b5cab2907a1867c6307bb0222fc4}
       \strng{authorbibnamehash}{7388b5cab2907a1867c6307bb0222fc4}
-      \strng{authornamehash}{7388b5cab2907a1867c6307bb0222fc4}
+      \strng{authornamehash}{83c87c84cfbe9e1cff066dd3e147350f}
       \strng{authorfullhash}{7388b5cab2907a1867c6307bb0222fc4}
       \field{sortinit}{B}
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
@@ -294,11 +294,11 @@
            giveni={D\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{1fdef3fa0a48637ee006047b04d4aac6}
+      \strng{namehash}{f575d10b9b80d95e326196446ec9c1e0}
       \strng{fullhash}{1fdef3fa0a48637ee006047b04d4aac6}
       \strng{bibnamehash}{1fdef3fa0a48637ee006047b04d4aac6}
       \strng{authorbibnamehash}{1fdef3fa0a48637ee006047b04d4aac6}
-      \strng{authornamehash}{1fdef3fa0a48637ee006047b04d4aac6}
+      \strng{authornamehash}{f575d10b9b80d95e326196446ec9c1e0}
       \strng{authorfullhash}{1fdef3fa0a48637ee006047b04d4aac6}
       \field{sortinit}{B}
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
@@ -342,11 +342,11 @@
            giveni={S\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \strng{namehash}{c55855f5201376e75d7b4c969aa7edd4}
       \strng{fullhash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
       \strng{bibnamehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
       \strng{authorbibnamehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
-      \strng{authornamehash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
+      \strng{authornamehash}{c55855f5201376e75d7b4c969aa7edd4}
       \strng{authorfullhash}{e2a5283ff5bec5ea74c92e2f9ce9d7cf}
       \field{sortinit}{B}
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
@@ -371,185 +371,8 @@
       \endverb
       \keyw{capture–mark–recapture multistate model,dynamic heterogeneity,lifetime reproductive success,sensitivity,variance partitioning}
     \endentry
-    \entry{Brooker2008a}{article}{}
-      \name{author}{24}{ul=9}{%
-        {{un=0,uniquepart=base,hash=0840331fb807021df249d5097526742b}{%
-           family={Brooker},
-           familyi={B\bibinitperiod},
-           given={Rob\bibnamedelima W.},
-           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=05c8e3dd3f9f1d48eef19719d03fa2e3}{%
-           family={Maestre},
-           familyi={M\bibinitperiod},
-           given={Fernando\bibnamedelima T.},
-           giveni={F\bibinitperiod\bibinitdelim T\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=2d8e7392887badebfdc4223bbc5d187c}{%
-           family={Callaway},
-           familyi={C\bibinitperiod},
-           given={Ragan\bibnamedelima M.},
-           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=509a6ae7f7fb4c1170c83ce169962d1b}{%
-           family={Lortie},
-           familyi={L\bibinitperiod},
-           given={Christopher\bibnamedelima L.},
-           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=ee62e0ce8cabf38bc51094dcad34756a}{%
-           family={Cavieres},
-           familyi={C\bibinitperiod},
-           given={Lohengrin\bibnamedelima A.},
-           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=1ad96402d9c897e77bdc8f6aa201304b}{%
-           family={Kunstler},
-           familyi={K\bibinitperiod},
-           given={Georges},
-           giveni={G\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=f3f12fabc39b1ff28f8ea5e6fddc35f9}{%
-           family={Liancourt},
-           familyi={L\bibinitperiod},
-           given={Pierre},
-           giveni={P\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=b9264fcbedb52a2b18a5f3789c00c6ee}{%
-           family={Tielb{ö}rger},
-           familyi={T\bibinitperiod},
-           given={Katja},
-           giveni={K\bibinitperiod},
-           givenun=0}}%
-        {{un=1,uniquepart=given,hash=5946df9b54aafa0040d063402546ff63}{%
-           family={Travis},
-           familyi={T\bibinitperiod},
-           given={Justin\bibnamedelimb M\bibnamedelima J},
-           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim J\bibinitperiod},
-           givenun=1}}%
-        {{un=0,uniquepart=base,hash=218ed633ef7a076e07adb86bb0a36e8e}{%
-           family={Anthelme},
-           familyi={A\bibinitperiod},
-           given={Fabien},
-           giveni={F\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=71a8f8493b25cff52699ccb2ab13f221}{%
-           family={Armas},
-           familyi={A\bibinitperiod},
-           given={Cristina},
-           giveni={C\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=f663405b49c1d05ee067c41787d0020b}{%
-           family={Coll},
-           familyi={C\bibinitperiod},
-           given={Lluis},
-           giveni={L\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=2b21c1e8f4ce75f4146bfbd8903c7d67}{%
-           family={Corcket},
-           familyi={C\bibinitperiod},
-           given={Emmanuel},
-           giveni={E\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=d9759b63f5bf41eb637d5f34928e4c7d}{%
-           family={Delzon},
-           familyi={D\bibinitperiod},
-           given={Sylvain},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=a0e34b7a1464a888fa731df4617c10fe}{%
-           family={Forey},
-           familyi={F\bibinitperiod},
-           given={Estelle},
-           giveni={E\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=4d009af36cb488dbfb5a03c5a83ec761}{%
-           family={Kikvidze},
-           familyi={K\bibinitperiod},
-           given={Zaal},
-           giveni={Z\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=8631d9816fb829a65753bde374b9fc1c}{%
-           family={Olofsson},
-           familyi={O\bibinitperiod},
-           given={Johan},
-           giveni={J\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=7529bb03d13bb9fd56ee1c3794cc6a7f}{%
-           family={Pugnaire},
-           familyi={P\bibinitperiod},
-           given={Francisco},
-           giveni={F\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=d256a85efe48095fa11f8434c4935ae9}{%
-           family={Quiroz},
-           familyi={Q\bibinitperiod},
-           given={Constanza\bibnamedelima L.},
-           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=029d0ccd04c90bd5a8e1a087128c929b}{%
-           family={Saccone},
-           familyi={S\bibinitperiod},
-           given={Patrick},
-           giveni={P\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=32606ef260496701357dbf6c8ac1826d}{%
-           family={Schiffers},
-           familyi={S\bibinitperiod},
-           given={Katja},
-           giveni={K\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=5525f449ff3d24850336dd8b1fd401fa}{%
-           family={Seifan},
-           familyi={S\bibinitperiod},
-           given={Merav},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=194b73a89f3cab95499e13b4c725aad6}{%
-           family={Touzard},
-           familyi={T\bibinitperiod},
-           given={Blaize},
-           giveni={B\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=e164d8e5347f27275499c9d5f966efa5}{%
-           family={Michalet},
-           familyi={M\bibinitperiod},
-           given={Richard},
-           giveni={R\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{072c303b09f73dd431bbc9a59d2cf04f}
-      \strng{fullhash}{195115fe1439ba57dd5cb2cdc980f7e8}
-      \strng{bibnamehash}{072c303b09f73dd431bbc9a59d2cf04f}
-      \strng{authorbibnamehash}{072c303b09f73dd431bbc9a59d2cf04f}
-      \strng{authornamehash}{072c303b09f73dd431bbc9a59d2cf04f}
-      \strng{authorfullhash}{195115fe1439ba57dd5cb2cdc980f7e8}
-      \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{1. Once neglected, the role of facilitative interactions in plant communities has received consider-able attention in the last two decades, and is now widely recognized. It is timely to consider the progress made by research in this field. 2. We review the development of plant facilitation research, focusing on the history of the field, the relationship between plant–plant interactions and environmental severity gradients, and attempts to integrate facilitation into mainstream ecological theory. We then consider future directions for facilitation research. 3. With respect to our fundamental understanding of plant facilitation, clarification of the relationship between interactions and environmental gradients is central for further progress, and necessitates the design and implementation of experiments that move beyond the clear limitations of previous studies. 4. There is substantial scope for exploring indirect facilitative effects in plant communities, including their impacts on diversity and evolution, and future studies should connect the degree of non-transitivity in plant competitive networks to community diversity and facilitative promotion of species coexistence, and explore how the role of indirect facilitation varies with environmental severity. 5. Certain ecological modelling approaches (e.g. individual-based modelling), although thus far largely neglected, provide highly useful tools for exploring these fundamental processes. 6. Evolutionary responses might result from facilitative interactions, and consideration of facilitation might lead to re-assessment of the evolution of plant growth forms. 7. Improved understanding of facilitation processes has direct relevance for the development of tools for ecosystem restoration, and for improving our understanding of the response of plant species and communities to environmental change drivers. 8. Attempts to apply our developing ecological knowledge would benefit from explicit recognition of the potential role of facilitative plant–plant interactions in the design and interpretation of studies from the fields of restoration and global change ecology. 9. Synthesis: Plant facilitation research provides new insights into classic ecological theory and pressing environmental issues. Awareness and understanding of facilitation should be part of the basic ecological knowledge of all plant ecologists.}
-      \field{isbn}{1365-2745}
-      \field{issn}{00220477}
-      \field{journaltitle}{Journal of Ecology}
-      \field{number}{1}
-      \field{title}{{Facilitation in plant communities: The past, the present, and the future}}
-      \field{volume}{96}
-      \field{year}{2008}
-      \field{pages}{18\bibrangedash 34}
-      \range{pages}{17}
-      \verb{doi}
-      \verb 10.1111/j.1365-2745.2007.01295.x
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Brooker et al. - 2008 - Facilitation in plant communities The past, the present, and the future.pdf:pdf
-      \endverb
-      \keyw{Competition,Disturbance,Ecological theory,Environmental change,Environmental gradients,Facilitation,Plant communities,Positive plant interactions,Review,Stress}
-    \endentry
     \entry{Brooker2008}{article}{}
-      \name{author}{24}{ul=9}{%
+      \name{author}{24}{}{%
         {{un=0,uniquepart=base,hash=0840331fb807021df249d5097526742b}{%
            family={Brooker},
            familyi={B\bibinitperiod},
@@ -598,12 +421,12 @@
            given={Katja},
            giveni={K\bibinitperiod},
            givenun=0}}%
-        {{un=1,uniquepart=given,hash=5946df9b54aafa0040d063402546ff63}{%
+        {{un=0,uniquepart=base,hash=5946df9b54aafa0040d063402546ff63}{%
            family={Travis},
            familyi={T\bibinitperiod},
            given={Justin\bibnamedelima M.J.},
            giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
-           givenun=1}}%
+           givenun=0}}%
         {{un=0,uniquepart=base,hash=218ed633ef7a076e07adb86bb0a36e8e}{%
            family={Anthelme},
            familyi={A\bibinitperiod},
@@ -695,11 +518,11 @@
            giveni={R\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{072c303b09f73dd431bbc9a59d2cf04f}
+      \strng{namehash}{4633983802dc8ffe9c26fc8cd3c8c1c7}
       \strng{fullhash}{195115fe1439ba57dd5cb2cdc980f7e8}
-      \strng{bibnamehash}{072c303b09f73dd431bbc9a59d2cf04f}
-      \strng{authorbibnamehash}{072c303b09f73dd431bbc9a59d2cf04f}
-      \strng{authornamehash}{072c303b09f73dd431bbc9a59d2cf04f}
+      \strng{bibnamehash}{4633983802dc8ffe9c26fc8cd3c8c1c7}
+      \strng{authorbibnamehash}{4633983802dc8ffe9c26fc8cd3c8c1c7}
+      \strng{authornamehash}{4633983802dc8ffe9c26fc8cd3c8c1c7}
       \strng{authorfullhash}{195115fe1439ba57dd5cb2cdc980f7e8}
       \field{sortinit}{B}
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
@@ -746,11 +569,11 @@
            giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{2ab3cb6d11129de86dd94ba5127a90b2}
+      \strng{namehash}{fcca59eb36b07c39f9fc96d7753846a2}
       \strng{fullhash}{2ab3cb6d11129de86dd94ba5127a90b2}
       \strng{bibnamehash}{2ab3cb6d11129de86dd94ba5127a90b2}
       \strng{authorbibnamehash}{2ab3cb6d11129de86dd94ba5127a90b2}
-      \strng{authornamehash}{2ab3cb6d11129de86dd94ba5127a90b2}
+      \strng{authornamehash}{fcca59eb36b07c39f9fc96d7753846a2}
       \strng{authorfullhash}{2ab3cb6d11129de86dd94ba5127a90b2}
       \field{sortinit}{B}
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
@@ -1249,11 +1072,11 @@
            giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{ebed08eb1fa7b6cb316eda00a5b93a9e}
+      \strng{namehash}{64fc0c49efcc1ecc6747b40106be15ec}
       \strng{fullhash}{ebed08eb1fa7b6cb316eda00a5b93a9e}
       \strng{bibnamehash}{ebed08eb1fa7b6cb316eda00a5b93a9e}
       \strng{authorbibnamehash}{ebed08eb1fa7b6cb316eda00a5b93a9e}
-      \strng{authornamehash}{ebed08eb1fa7b6cb316eda00a5b93a9e}
+      \strng{authornamehash}{64fc0c49efcc1ecc6747b40106be15ec}
       \strng{authorfullhash}{ebed08eb1fa7b6cb316eda00a5b93a9e}
       \field{sortinit}{C}
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
@@ -1517,19 +1340,19 @@
       \keyw{Animals,Biodiversity,Biological,Food Chain,Linear Models,Models,Parasites,Parasites: physiology,Probability,Species Specificity,Stoufferlab}
     \endentry
     \entry{Dunne2002}{article}{}
-      \name{author}{3}{}{%
+      \name{author}{3}{ul=2}{%
         {{un=0,uniquepart=base,hash=c5659bfc1fbcae4a75934e6094d7e9fa}{%
            family={Dunne},
            familyi={D\bibinitperiod},
            given={Jennifer\bibnamedelima a.},
            giveni={J\bibinitperiod\bibinitdelim a\bibinitperiod},
            givenun=0}}%
-        {{un=1,uniquepart=given,hash=8bf10ed4f0afb794613214b847bea1fd}{%
+        {{un=0,uniquepart=base,hash=8bf10ed4f0afb794613214b847bea1fd}{%
            family={Williams},
            familyi={W\bibinitperiod},
            given={Richard\bibnamedelima J.},
            giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod},
-           givenun=1}}%
+           givenun=0}}%
         {{un=0,uniquepart=base,hash=2ae2470ca065d7ef410b50b1e3575d2a}{%
            family={Martinez},
            familyi={M\bibinitperiod},
@@ -1537,11 +1360,11 @@
            giveni={N\bibinitperiod\bibinitdelim D\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{223226789b1e9a7998736a653fd93682}
+      \strng{namehash}{f3dda40aad30f73a2426c2381788912f}
       \strng{fullhash}{223226789b1e9a7998736a653fd93682}
       \strng{bibnamehash}{223226789b1e9a7998736a653fd93682}
       \strng{authorbibnamehash}{223226789b1e9a7998736a653fd93682}
-      \strng{authornamehash}{223226789b1e9a7998736a653fd93682}
+      \strng{authornamehash}{f3dda40aad30f73a2426c2381788912f}
       \strng{authorfullhash}{223226789b1e9a7998736a653fd93682}
       \field{sortinit}{D}
       \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
@@ -1702,18 +1525,18 @@
            given={A.\bibnamedelimi Steven},
            giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
            givenun=0}}%
-        {{un=1,uniquepart=given,hash=26f62580ab832b031a77c99b0763f0be}{%
+        {{un=0,uniquepart=base,hash=26f62580ab832b031a77c99b0763f0be}{%
            family={Williams},
            familyi={W\bibinitperiod},
            given={C.\bibnamedelimi B.},
            giveni={C\bibinitperiod\bibinitdelim B\bibinitperiod},
-           givenun=1}}%
+           givenun=0}}%
       }
-      \strng{namehash}{35429bb7c541ee7defb081707d2ec388}
+      \strng{namehash}{5887a2ce9f8b69cc4d6ac66bb7be0793}
       \strng{fullhash}{35429bb7c541ee7defb081707d2ec388}
       \strng{bibnamehash}{35429bb7c541ee7defb081707d2ec388}
       \strng{authorbibnamehash}{35429bb7c541ee7defb081707d2ec388}
-      \strng{authornamehash}{35429bb7c541ee7defb081707d2ec388}
+      \strng{authornamehash}{5887a2ce9f8b69cc4d6ac66bb7be0793}
       \strng{authorfullhash}{35429bb7c541ee7defb081707d2ec388}
       \field{sortinit}{F}
       \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
@@ -1973,7 +1796,7 @@
       \keyw{Coexistence,feasibility,multi-trophic networks,species interactions,stability}
     \endentry
     \entry{Godoy2014b}{article}{}
-      \name{author}{3}{}{%
+      \name{author}{3}{ul=2}{%
         {{un=0,uniquepart=base,hash=4447b83dfbd0d6b5d830b2cd28d530b7}{%
            family={Godoy},
            familyi={G\bibinitperiod},
@@ -1993,11 +1816,11 @@
            giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{7848136f0643b039232099b48e75d6d9}
+      \strng{namehash}{74ee1a0dbe0c896979f7cbe6a6454a3d}
       \strng{fullhash}{7848136f0643b039232099b48e75d6d9}
       \strng{bibnamehash}{7848136f0643b039232099b48e75d6d9}
       \strng{authorbibnamehash}{7848136f0643b039232099b48e75d6d9}
-      \strng{authornamehash}{7848136f0643b039232099b48e75d6d9}
+      \strng{authornamehash}{74ee1a0dbe0c896979f7cbe6a6454a3d}
       \strng{authorfullhash}{7848136f0643b039232099b48e75d6d9}
       \field{sortinit}{G}
       \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
@@ -2214,11 +2037,11 @@
            giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{db8507236d1c93e83808b3ce69a7b039}
+      \strng{namehash}{4df7c073e3ec80822b547e47032d1332}
       \strng{fullhash}{db8507236d1c93e83808b3ce69a7b039}
       \strng{bibnamehash}{db8507236d1c93e83808b3ce69a7b039}
       \strng{authorbibnamehash}{db8507236d1c93e83808b3ce69a7b039}
-      \strng{authornamehash}{db8507236d1c93e83808b3ce69a7b039}
+      \strng{authornamehash}{4df7c073e3ec80822b547e47032d1332}
       \strng{authorfullhash}{db8507236d1c93e83808b3ce69a7b039}
       \field{sortinit}{G}
       \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
@@ -2396,11 +2219,11 @@
            giveni={M\bibinithyphendelim P\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \strng{namehash}{05f68747593d94a6a9559970051b0327}
       \strng{fullhash}{73be148d81ec8daa4b7e38cf0cbf1986}
       \strng{bibnamehash}{73be148d81ec8daa4b7e38cf0cbf1986}
       \strng{authorbibnamehash}{73be148d81ec8daa4b7e38cf0cbf1986}
-      \strng{authornamehash}{73be148d81ec8daa4b7e38cf0cbf1986}
+      \strng{authornamehash}{05f68747593d94a6a9559970051b0327}
       \strng{authorfullhash}{73be148d81ec8daa4b7e38cf0cbf1986}
       \field{sortinit}{H}
       \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
@@ -2875,11 +2698,11 @@
            giveni={D\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{876bd4eac861bd4b8cc9f70fff8fe14a}
+      \strng{namehash}{f1444409e7e3df9f1dcee19b32d1dc70}
       \strng{fullhash}{876bd4eac861bd4b8cc9f70fff8fe14a}
       \strng{bibnamehash}{876bd4eac861bd4b8cc9f70fff8fe14a}
       \strng{authorbibnamehash}{876bd4eac861bd4b8cc9f70fff8fe14a}
-      \strng{authornamehash}{876bd4eac861bd4b8cc9f70fff8fe14a}
+      \strng{authornamehash}{f1444409e7e3df9f1dcee19b32d1dc70}
       \strng{authorfullhash}{876bd4eac861bd4b8cc9f70fff8fe14a}
       \field{sortinit}{L}
       \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
@@ -3035,11 +2858,11 @@
            giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{cd388886c2555cf8a814cfbe352db306}
+      \strng{namehash}{17de6f16d5f61c7c488e60f6b2184c66}
       \strng{fullhash}{cd388886c2555cf8a814cfbe352db306}
       \strng{bibnamehash}{cd388886c2555cf8a814cfbe352db306}
       \strng{authorbibnamehash}{cd388886c2555cf8a814cfbe352db306}
-      \strng{authornamehash}{cd388886c2555cf8a814cfbe352db306}
+      \strng{authornamehash}{17de6f16d5f61c7c488e60f6b2184c66}
       \strng{authorfullhash}{cd388886c2555cf8a814cfbe352db306}
       \field{sortinit}{M}
       \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
@@ -4153,11 +3976,11 @@
            giveni={R\bibinitperiod\bibinitdelim O\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{9072f69fe7f3681dc867b4c752c28631}
+      \strng{namehash}{515bc34b7918eb0fa2b0de2a48bc8bfb}
       \strng{fullhash}{9072f69fe7f3681dc867b4c752c28631}
       \strng{bibnamehash}{9072f69fe7f3681dc867b4c752c28631}
       \strng{authorbibnamehash}{9072f69fe7f3681dc867b4c752c28631}
-      \strng{authornamehash}{9072f69fe7f3681dc867b4c752c28631}
+      \strng{authornamehash}{515bc34b7918eb0fa2b0de2a48bc8bfb}
       \strng{authorfullhash}{9072f69fe7f3681dc867b4c752c28631}
       \field{sortinit}{R}
       \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
@@ -4376,11 +4199,11 @@
       \list{publisher}{1}{%
         {Springer US}%
       }
-      \strng{namehash}{5d468cac10f7e1d6fadec4604480eeea}
+      \strng{namehash}{884bc0890b9e0f14e6d0b578585e717e}
       \strng{fullhash}{5d468cac10f7e1d6fadec4604480eeea}
       \strng{bibnamehash}{5d468cac10f7e1d6fadec4604480eeea}
       \strng{authorbibnamehash}{5d468cac10f7e1d6fadec4604480eeea}
-      \strng{authornamehash}{5d468cac10f7e1d6fadec4604480eeea}
+      \strng{authornamehash}{884bc0890b9e0f14e6d0b578585e717e}
       \strng{authorfullhash}{5d468cac10f7e1d6fadec4604480eeea}
       \field{sortinit}{S}
       \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
@@ -4523,11 +4346,11 @@
            given={Ignasi},
            giveni={I\bibinitperiod}}}%
       }
-      \strng{namehash}{0ea4f5d52dc696fb6982a5bb2c3216c0}
+      \strng{namehash}{5f17d9a34a311ec1085c613ea24498d9}
       \strng{fullhash}{0ea4f5d52dc696fb6982a5bb2c3216c0}
       \strng{bibnamehash}{0ea4f5d52dc696fb6982a5bb2c3216c0}
       \strng{authorbibnamehash}{0ea4f5d52dc696fb6982a5bb2c3216c0}
-      \strng{authornamehash}{0ea4f5d52dc696fb6982a5bb2c3216c0}
+      \strng{authornamehash}{5f17d9a34a311ec1085c613ea24498d9}
       \strng{authorfullhash}{0ea4f5d52dc696fb6982a5bb2c3216c0}
       \strng{editorbibnamehash}{d74974ea9d7271bf92b480b88abf2d81}
       \strng{editornamehash}{d74974ea9d7271bf92b480b88abf2d81}
@@ -4766,6 +4589,66 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Ulanowicz, Wolff - 1991 - Ecosystem flow networks Loaded dice.pdf:pdf
       \endverb
     \endentry
+    \entry{Wainwright2019}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=81f793a09eb0f444afc393bfadd58cdb}{%
+           family={Wainwright},
+           familyi={W\bibinitperiod},
+           given={Claire\bibnamedelima E.},
+           giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8161432e4dd02df26aeb5dc87033dedd}{%
+           family={Holt},
+           familyi={H\bibinitperiod},
+           given={Robert\bibnamedelima D.},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=55228a5add139429462457a06c6dafae}{%
+           family={Mayfield},
+           familyi={M\bibinitperiod},
+           given={Margaret\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{1a889a2ef3d3a891f7895bd0e389dddf}
+      \strng{fullhash}{141d6aa86ad5aa7c5929d93afd684b73}
+      \strng{bibnamehash}{141d6aa86ad5aa7c5929d93afd684b73}
+      \strng{authorbibnamehash}{141d6aa86ad5aa7c5929d93afd684b73}
+      \strng{authornamehash}{1a889a2ef3d3a891f7895bd0e389dddf}
+      \strng{authorfullhash}{141d6aa86ad5aa7c5929d93afd684b73}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Exotic species are often predicted to successfully invade when their functional traits differ from species in recipient communities. Many studies have related trait differences among natives and invaders to competitive outcomes. Few studies, however, have tested whether functionally similar invaders have similar competitive impacts on natives. We investigated interactions in communities of a native annual forb Waitzia acuminata (Asteraceae) and two invasive annual grasses that are ecologically similar and co-occur in southwestern Australia. Using a combination of field and laboratory experiments and several performance measures, we assessed impacts of these grasses on W. acuminata. We also examined differences among species in their responses to intraspecific versus interspecific competition, including their frequency dependence. The two similar exotic grasses differed in interaction impacts, with one facilitating and the other suppressing the native. In general, intraspecific competition was stronger than interspecific competition for the native, while evidence of competition was weak for the exotics. These patterns may reflect that W. acuminata does well in these communities due to the combined impacts of stabilization and facilitation, whereas the exotics benefit from limited stabilization (mediated by their weak intraspecific competition) or weak interspecific competition with W. acuminata. We found divergent impacts of the exotic species despite their similar functional traits. We demonstrate that a native species may benefit from interactions with an exotic “benefactor” species, highlighting the potential importance of positive interactions in invaded communities. Our findings underscore the necessity of considering neutral and positive interactions in addition to competition in understanding invasion dynamics in real plant communities.}
+      \field{isbn}{0123456789}
+      \field{issn}{14321939}
+      \field{journaltitle}{Oecologia}
+      \field{number}{4}
+      \field{title}{{Looks can be deceiving: ecologically similar exotics have different impacts on a native competitor}}
+      \field{volume}{190}
+      \field{year}{2019}
+      \field{pages}{927\bibrangedash 940}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1007/s00442-019-04468-z
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Wainwright, Holt, Mayfield - 2019 - Looks can be deceiving ecologically similar exotics have different impacts on a native competitor.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s00442-019-04468-z
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s00442-019-04468-z
+      \endverb
+      \keyw{Annual plants,Coexistence,Competition,Facilitation,Functional traits}
+    \endentry
     \entry{Wootton2005}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=c6c580bf5cca09a3b4aa3590ec574b9a}{%
@@ -4838,11 +4721,11 @@
            giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim M\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{6366dab434123ba9bbdba6356fec1def}
+      \strng{namehash}{c1a633ae1c7c5b27bd2c9a49ddaf231c}
       \strng{fullhash}{6366dab434123ba9bbdba6356fec1def}
       \strng{bibnamehash}{6366dab434123ba9bbdba6356fec1def}
       \strng{authorbibnamehash}{6366dab434123ba9bbdba6356fec1def}
-      \strng{authornamehash}{6366dab434123ba9bbdba6356fec1def}
+      \strng{authornamehash}{c1a633ae1c7c5b27bd2c9a49ddaf231c}
       \strng{authorfullhash}{6366dab434123ba9bbdba6356fec1def}
       \field{extraname}{1}
       \field{sortinit}{Y}
@@ -4886,11 +4769,11 @@
            giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim M\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{6366dab434123ba9bbdba6356fec1def}
+      \strng{namehash}{c1a633ae1c7c5b27bd2c9a49ddaf231c}
       \strng{fullhash}{6366dab434123ba9bbdba6356fec1def}
       \strng{bibnamehash}{6366dab434123ba9bbdba6356fec1def}
       \strng{authorbibnamehash}{6366dab434123ba9bbdba6356fec1def}
-      \strng{authornamehash}{6366dab434123ba9bbdba6356fec1def}
+      \strng{authornamehash}{c1a633ae1c7c5b27bd2c9a49ddaf231c}
       \strng{authorfullhash}{6366dab434123ba9bbdba6356fec1def}
       \field{extraname}{2}
       \field{sortinit}{Y}
