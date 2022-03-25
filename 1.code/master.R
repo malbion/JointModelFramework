@@ -15,13 +15,6 @@ source('simul_data.R')
 # load simulated data 
 simdat <- simul_data(S=10, K=10, p=0.25)
 df <- simdat[[1]]
-# ############# TEMP #############
-# # add more neighbours than focals 
-# simdat2 <- simul_data(S=10, K=10, p=0.25)
-# mn <- min(nrow(df), nrow(simdat2[[1]]))
-# df <- cbind(df[1:mn, ], simdat2[[1]][1:mn, 3:5])
-# colnames(df)[13:15] <- c("K11", "K12", "K13")
-# ###################################
 sim_a <- simdat[[2]]
 sim_interactions <- simdat[[3]]
 
@@ -81,23 +74,6 @@ joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
 param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', 'lp__')]
-
-# ######### diagnostics only ####################
-# source('../2.case_study/functions/stan_modelcheck_rem.R')
-# detach('package:coda')  # otherwise it interfers
-# 
-# # empty results folder of past runs
-# do.call(file.remove, list(list.files("output", full.names = TRUE)))
-# 
-# stan_diagnostic(fit, 'output')
-# stan_model_check(fit, 'output', params = param.vec)
-# stan_post_pred_check(joint.post.draws, 'mu', 'output', stan.data)
-# stan_post_pred_check(joint.post.draws, 'mu2', 'output', stan.data)
-# 
-# log_post <- unlist(extract(fit, 'lp__'))
-# write.csv(log_post, file = paste0('output/log_post.csv'), row.names = F)
-# 
-# ##################################################################################
 
 # Draw 1000 samples from the 80% posterior interval for each parameter of interest
 p.samples <- list()
