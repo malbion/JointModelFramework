@@ -1,8 +1,8 @@
-/* NDDM & RIM joint model
+/* RIM
 
 code to run on all focal species at once
 
-Bimler 2021
+Bimler 2022
 */ 
   
   
@@ -10,12 +10,12 @@ data {
   int<lower=1> S;          // number of species (elements) 
   int<lower=1> N;          // number of observations (rows in model matrix)
   int<lower=0> K;          // number of neighbours (columns in model matrix)
-  int<lower=0> I;          // number of inferred interactions 
+  int<lower=0> I;          // number of identifiable interactions 
   
   int<lower=0> species_ID[N];   // index matching species to observations
   int<lower=0> perform[N];      // response variable 
     
-  int<lower=0> istart[S];       // indices matching species to inferred interactions
+  int<lower=0> istart[S];       // indices matching species to identifiable interactions
   int<lower=0> iend[S];
   int<lower=0> icol[I];
   int<lower=0> irow[I];
