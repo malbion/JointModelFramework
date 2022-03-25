@@ -25,13 +25,6 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   # set up the data in list format as preferred by STAN:
   stan.data <- list()
   
-  # # create a matrix which tallies the number of realised interactions for each focal and neighbour
-  # # here we define
-  # counts <- df[ , -c(1:nonNcols)] # keep only neighbour abundances
-  # counts[counts>0] <- 1 # here we de
-  # counts <- split(counts, as.factor(df[ , focal]))
-  # obs <- do.call(rbind, lapply(counts, colSums))
-  
   # MATRIX OF INFERRABLE INTERACTIONS
   # this is done species by species
   Q <- t(sapply(levels(as.factor(df$focal)), function(f){
@@ -63,10 +56,7 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   stan.data$perform <- df[ , perform]
   
   # set up indices to place realised interactions in the interaction matrix
-  # first count the number of interactions realised for each focal species
-  # stan.data$inter_per_species <- obs
-  # stan.data$inter_per_species[stan.data$inter_per_species > 0] <- 1 # this counts every interaction
-  # # for which a focal i and neighbour j cooccur at least once as realised. 
+  # first count the number of identifiable interactions for each focal species
   stan.data$inter_per_species <- rowSums(Q)
   # column index in the interactions matrix for each inferrable interaction
   stan.data$icol <- unlist(apply(ifelse(Q > 0, T, F), 1, which))
@@ -76,7 +66,7 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   stan.data$irow <- rep(1, stan.data$inter_per_species[[1]])
   # begin the start and end indices for the vector of inferrable interactions per species
   stan.data$istart <- 1
-  stan.data$iend <- stan.data$inter_per_species[[1]] #???
+  stan.data$iend <- stan.data$inter_per_species[[1]] 
   
   # populate indices for all the other species
   for(s in 2:stan.data$S) {
@@ -89,9 +79,7 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   }
   
   # MODEL MATRIX
-  stan.data$X <- as.matrix(df[ , -c(1:nonNcols)]) 
-  
-  
+  stan.data$X <- as.matrix(df[ , -c(1:nonNcols)]) # neighbour abundances
   
   
   # Done!
