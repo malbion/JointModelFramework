@@ -3,10 +3,10 @@
 This folder contains all the code needed to run and implement the joint model framework on a simulated data set. We recommend you use the code presented here if you would like to run the joint model framework on your own dataset. 
 
 ### How to use it: 
-1- open the **master.R** script in R 
-2- the script will call up the **simul_data()** function to simulate data, and the **data_prep()** function to check parameter identifiability and prepare the data for the format preferred by STAN
-3- the script will then run the model using the **joint_model.stan** file
-4- Tada! 
+1- open the **master.R** script in R  
+2- the script will call up the **simul_data()** function to simulate data, and the **data_prep()** function to check parameter identifiability and prepare the data for the format preferred by STAN  
+3- the script will then run the model using the **joint_model.stan** file  
+4- Tada!  
 
 
 ### File inventory: 
