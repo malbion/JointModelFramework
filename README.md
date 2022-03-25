@@ -8,4 +8,9 @@ This directory contains the code, analyses, case study results and manuscript fo
 
 **3.analyses** - analyses and figures from the case study
 
-**4.mss** - associated manuscript 
+**4.mss** - associated manuscript  
+
+
+If you would like to apply the joint model framework to your own dataset, everything you need should be in the ~/1.code folder. The remaining three folders are specific to the case study and associated manuscript, and are made available in the interest of open access and reproducibility.  
+
+I have tried to provide as detailed comments as possible throughout the code, if anything remains unclear please refer first to the manuscript and supps for this project. If those are of no help, you can either contact me here or by email (provided in the manuscript).  
