@@ -1,6 +1,7 @@
 # Quantitative analysis of the case study interaction matrices
 
-setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
+library(here)
+setwd(here())
 
 
 load('2.case_study/model/transformed/scaled_betaij_matrices.Rdata')

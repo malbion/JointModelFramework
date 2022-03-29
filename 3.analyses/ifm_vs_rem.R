@@ -1,7 +1,8 @@
 # Plot networks of NDDM and RIM interaction estimates
 #------------------------------------------------------
 
-setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
+library(here)
+setwd(here())
 
 keyspeciesID <- unlist(read.csv('2.case_study/data/key_speciesID0.csv', stringsAsFactors = F))
 keyneighbourID <- unlist(read.csv('2.case_study/data/key_neighbourID0.csv', stringsAsFactors = F))

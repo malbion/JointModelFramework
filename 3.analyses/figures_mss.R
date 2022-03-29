@@ -1,8 +1,8 @@
-# CompNet Methods paper
+# Methods paper
 # Script to create figures for manuscript 
 
-setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
-
+library(here)
+setwd(here())
 
 # Figures 1-3 use 'raw' parameters extracted from the model output 
 # Figures 4 and 5 used interaction estimates which have been rescaled with a pop dyn model
@@ -12,17 +12,6 @@ setwd('~/Dropbox/Work/Projects/2020_Methods_for_compnet/')
 #                               PREP FOR FIGURES 1-3
 ############################################################################################
 
-# # Get raw quantities from model output
-# load('2.case_study/model/output/post_draws.Rdata')
-# 
-# # 80% posterior of relevant parameters - vectors
-# param.vec <- c('beta_i0', 'beta_ij', 'effect', 'response', 're', 'mu', 'disp_dev')
-# p.samples <- list()
-# p.samples <- sapply(param.vec, function(p) {
-#   p.samples[[p]] <- apply(joint.post.draws[[p]], 2, function(x){
-#     sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
-#   }) 
-# })
 
 rim_mat <- as.matrix(read.csv('2.case_study/model/output/RIM_betaij_samples.csv'))
 nddm_mat <- as.matrix(read.csv('2.case_study/model/output/NDDM_betaij_samples.csv'))
