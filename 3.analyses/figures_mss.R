@@ -4,12 +4,12 @@
 library(here)
 setwd(here())
 
-# Figures 1-3 use 'raw' parameters extracted from the model output 
-# Figures 4 and 5 used interaction estimates which have been rescaled with a pop dyn model
+# Figures 1 and Supp Figs 1&2 use 'raw' parameters extracted from the model output 
+# Figures 2 and 3 used interaction estimates which have been rescaled with a pop dyn model
 
 
 ############################################################################################
-#                               PREP FOR FIGURES 1-3
+#                      PREP FOR FIGURES 1 AND SUPPLEMENTARY FIGS 1 & 2
 ############################################################################################
 
 
@@ -17,38 +17,9 @@ rim_mat <- as.matrix(read.csv('2.case_study/model/output/RIM_betaij_samples.csv'
 nddm_mat <- as.matrix(read.csv('2.case_study/model/output/NDDM_betaij_samples.csv'))
 
 
-#---------------------------------
-# Figure 1: IFM vs RIM estimates |
-#---------------------------------
-mn <- min(nddm_mat)
-mx <- max(nddm_mat)
-
-png('3.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 700)
-par(mfrow=c(2,2), cex = 1.5)
-hist(nddm_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})], 
-     xlab = "", breaks = 30,
-     main = "Realised interactions (NDDM)", 
-     xlim = c(mn, mx))
-plot(rim_mat[nddm_mat!=0], nddm_mat[nddm_mat!=0], 
-     ylab = 'NDDM estimates', xlab='Response*Impact estimates',
-     xlim = c(mn, mx), ylim = c(mn, mx), 
-     pch = 16, 
-     col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
-abline(0,1)
-hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x == 0)})],  
-     xlab = "", breaks = 30,
-     main = 'Unrealised interactions (RIM)', 
-     xlim = c(mn, mx))
-hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})],  
-     xlab = "", breaks = 30,
-     main = 'Realised interactions (RIM)', 
-     xlim = c(mn, mx))
-dev.off()
-
-
-#---------------------------------------
-# Figure 2: Posterior predictive check |
-#---------------------------------------
+#-------------------------------------------------------------
+# SUPPS Figure 1: Posterior predictive check on the RIM only |
+#-------------------------------------------------------------
 
 # get real data
 fecundities <- read.csv('2.case_study/data/fecundities0.csv', stringsAsFactors = F)
@@ -112,7 +83,12 @@ ppc.plot <- legend('topright',
 print(ppc.plot)
 dev.off()
 
-#################### And do the same again but for mu2 ######################
+
+#--------------------------------------------------------------------
+# MAIN TEXT Figure 1: Posterior predictive check on the joint model |
+#--------------------------------------------------------------------
+
+#################### Do the same as above but for mu2 ######################
 mu2 <- read.csv('2.case_study/model/output/mu2_samples.csv')
 
 # generating posterior predictions
@@ -168,38 +144,65 @@ print(ppc.plot)
 dev.off()
 
 
-#-------------------------------
-# Figure 3: Response vs Impact |
-#-------------------------------
+#---------------------------------------
+# SUPPS Figure 2: IFM vs RIM estimates |
+#---------------------------------------
+mn <- min(nddm_mat)
+mx <- max(nddm_mat)
 
-response <- as.matrix(read.csv('2.case_study/model/output/response_samples.csv'))
-effect <- as.matrix(read.csv('2.case_study/model/output/effect_samples.csv'))
-S <- dim(response)[2]
-
-png('3.analyses/figures_mss/response_impact.png', width = 400, height = 700)
-plot(response, effect[ , 1:S], type = 'n',
-     xlab = expression(italic('response i')), ylab = expression(italic('impact i')))
-abline(h = 0, lty = 2)
-points(response, effect[ , 1:S],
+png('3.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 700)
+par(mfrow=c(2,2), cex = 1.5)
+hist(nddm_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})], 
+     xlab = "", breaks = 30,
+     main = "Realised interactions (NDDM)", 
+     xlim = c(mn, mx))
+plot(rim_mat[nddm_mat!=0], nddm_mat[nddm_mat!=0], 
+     ylab = 'NDDM estimates', xlab='Response*Impact estimates',
+     xlim = c(mn, mx), ylim = c(mn, mx), 
      pch = 16, 
-     col = rgb(red = 0.5, green = 0.5, blue = 0.5, alpha = 0.2))
-points(apply(response, 2, median), apply(effect[ , 1:S], 2, median),
-       pch = 18, cex = 2)
+     col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
+abline(0,1)
+hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x == 0)})],  
+     xlab = "", breaks = 30,
+     main = 'Unrealised interactions (RIM)', 
+     xlim = c(mn, mx))
+hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})],  
+     xlab = "", breaks = 30,
+     main = 'Realised interactions (RIM)', 
+     xlim = c(mn, mx))
 dev.off()
 
 
 
 
+# # Potential figure for Supps ?
+# #------------------------------
+# response <- as.matrix(read.csv('2.case_study/model/output/response_samples.csv'))
+# effect <- as.matrix(read.csv('2.case_study/model/output/effect_samples.csv'))
+# S <- dim(response)[2]
+# 
+# png('3.analyses/figures_mss/response_impact.png', width = 400, height = 700)
+# plot(response, effect[ , 1:S], type = 'n',
+#      xlab = expression(italic('response i')), ylab = expression(italic('impact i')))
+# abline(h = 0, lty = 2)
+# points(response, effect[ , 1:S],
+#      pch = 16, 
+#      col = rgb(red = 0.5, green = 0.5, blue = 0.5, alpha = 0.2))
+# points(apply(response, 2, median), apply(effect[ , 1:S], 2, median),
+#        pch = 18, cex = 2)
+# dev.off()
+
+
+
 ############################################################################################
-#                               PREP FOR FIGURES 4 & 5
+#                               PREP FOR FIGURES 2 & 3
 ############################################################################################
 
+#-------------------------------------------------------------
+# MAIN TEXT Figure 2: Networks (Facilitative vs Competitive) |
+#-------------------------------------------------------------
 
 load('2.case_study/model/transformed/scaled_betaij_matrices.Rdata')
-
-#--------------------------------------
-# Figure 4: Pretty network vs cooccur |
-#--------------------------------------
 
 # Median interaction estimates for joint model
 bij.med <- apply(scaled_betas, c(1, 2), median)
@@ -219,36 +222,7 @@ all.sp[keyst] <- 'seagreen2'
 # names(node.outline.width) <- dimnames(bij.med)$species
 # node.outline.width[ c(invasives, foundation, keyst)] <- 3
 
-# get the cooccurence matrix
-cooc <- read.csv('3.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
-cooc <- cooc[1:nrow(bij.med), 1:nrow(bij.med)]
-cooc <- t(cooc)
-
 library(qgraph)
-
-png('3.analyses/figures_mss/networks_strengths_med.png', 
-    width = 600, height = 800, units = 'px')
-par(mfrow=c(2, 1))
-# plot all interactions
-qgraph(bij.med,  # plot interaction means
-     #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
-       layout = 'circle',
-       negCol = 'royalblue4',   # facilitation = blue
-       posCol = 'orange',       # competition = orange
-       color = all.sp,
-       labels = dimnames(bij.med)$species,
-       fade = T, directed = T,
-       title = 'A', title.cex =5)
-# plot from the cooccur package
-qgraph(cooc,
-       layout = 'circle', 
-       negCol = 'orange',   # swap the colours around
-       posCol = 'royalblue4',     
-       color = all.sp,
-       labels = dimnames(bij.med)$species,
-       fade = T,
-       title = 'B', title.cex =5)
-dev.off()
 
 png('3.analyses/figures_mss/networks_C_F.png', 
     width = 600, height = 1200, units = 'px')
@@ -274,7 +248,31 @@ qgraph(bij.med,  # plot interaction means
        labels = dimnames(bij.med)$species,
        fade = T, directed = T,
        title = 'B', title.cex =5)
-# plot from the cooccur package
+
+dev.off()
+
+
+# # OLD FIGURE - compared to a cooccurrence network
+# # -------------------------------------------------
+# # get the cooccurence matrix
+# cooc <- read.csv('3.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
+# cooc <- cooc[1:nrow(bij.med), 1:nrow(bij.med)]
+# cooc <- t(cooc)
+# 
+# png('3.analyses/figures_mss/networks_strengths_med.png', 
+#     width = 600, height = 800, units = 'px')
+# par(mfrow=c(2, 1))
+# # plot all interactions
+# qgraph(bij.med,  # plot interaction means
+#        #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
+#        layout = 'circle',
+#        negCol = 'royalblue4',   # facilitation = blue
+#        posCol = 'orange',       # competition = orange
+#        color = all.sp,
+#        labels = dimnames(bij.med)$species,
+#        fade = T, directed = T,
+#        title = 'A', title.cex =5)
+# # plot from the cooccur package
 # qgraph(cooc,
 #        layout = 'circle', 
 #        negCol = 'orange',   # swap the colours around
@@ -282,12 +280,13 @@ qgraph(bij.med,  # plot interaction means
 #        color = all.sp,
 #        labels = dimnames(bij.med)$species,
 #        fade = T,
-#        title = 'C', title.cex =5)
-dev.off()
+#        title = 'B', title.cex =5)
+# dev.off()
 
-#-------------------------------------------
-# Figure 5: Applications - species effects |
-#-------------------------------------------
+
+#-----------------------------------------------------
+# MAIN TEXT Figure 3: Applications - species effects |
+#-----------------------------------------------------
 
 sp.abunds <- read.csv('2.case_study/data/plot_species_abundances.csv', stringsAsFactors = F)
 sp.abunds <- split(sp.abunds, as.factor(sp.abunds$species))
@@ -439,28 +438,28 @@ text(lab.x.pos, lab.y.pos,
 dev.off()
 
 
-# Another figure - cooccur strengths vs log abundance? 
-#------------------------------------------------------
-png('3.analyses/figures_mss/cooccur_vs_abund.png', 
-    width = 500, height = 500, units = 'px')
-par(cex=1.2)
-plot(-colSums(cooc, na.rm = T), sp.abunds, 
-     xlab = 'Absolute sum of association strengths',
-     ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2,
-     xlim = c(0, 40))
-abline(v=median(-colSums(cooc, na.rm = T)), lty = 2)
-abline(h=median(sp.abunds), lty = 2)
-# points for species means
-points(-colSums(cooc, na.rm = T), sp.abunds, pch = 23, 
-       bg = 'black', cex = 1)
-# points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
-#        bg = 'royalblue', cex = 1.3)
-points(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], pch = 24, 
-       bg = 'chartreuse3', cex = 1.8)
-# ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
-#        bg = 'red', cex = 1.3)
-text(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], 
-     labels = names(-colSums(cooc, na.rm = T)[keyst]), pos = 4, col = 'chartreuse4', 
-     cex = 1.4, offset = 1.7)
-dev.off()
+# # Potential figure - cooccur strengths vs log abundance? 
+# #------------------------------------------------------
+# png('3.analyses/figures_mss/cooccur_vs_abund.png', 
+#     width = 500, height = 500, units = 'px')
+# par(cex=1.2)
+# plot(-colSums(cooc, na.rm = T), sp.abunds, 
+#      xlab = 'Absolute sum of association strengths',
+#      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2,
+#      xlim = c(0, 40))
+# abline(v=median(-colSums(cooc, na.rm = T)), lty = 2)
+# abline(h=median(sp.abunds), lty = 2)
+# # points for species means
+# points(-colSums(cooc, na.rm = T), sp.abunds, pch = 23, 
+#        bg = 'black', cex = 1)
+# # points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
+# #        bg = 'royalblue', cex = 1.3)
+# points(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], pch = 24, 
+#        bg = 'chartreuse3', cex = 1.8)
+# # ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
+# #        bg = 'red', cex = 1.3)
+# text(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], 
+#      labels = names(-colSums(cooc, na.rm = T)[keyst]), pos = 4, col = 'chartreuse4', 
+#      cex = 1.4, offset = 1.7)
+# dev.off()
 
