@@ -1,6 +1,9 @@
 # Joint Model Framework
 
-This directory contains the code, analyses, case study results and manuscript for the joint model framework presented in the Bimler et. al 2022 manuscript *Estimating interaction matrices from performance data for diverse systems*. 
+This directory contains the code, analyses, case study results and manuscript for the joint model framework presented in the Bimler et. al 2022 manuscript *Estimating interaction matrices from performance data for diverse systems*.  
+
+This manuscript is currently available as a preprint on bioRxiv: https://www.biorxiv.org/content/10.1101/2022.03.28.486154v1
+
 
 **1.code** - scripts and functions to run the joint model framework
 
