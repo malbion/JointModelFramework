@@ -27,9 +27,9 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   
   # MATRIX OF INFERRABLE INTERACTIONS
   # this is done species by species
-  Q <- t(sapply(levels(as.factor(df$focal)), function(f){
+  Q <- t(sapply(levels(as.factor(df[ , focal])), function(f){
     
-    N_i <- as.matrix(df[df$focal == f, -c(1:nonNcols)])
+    N_i <- as.matrix(df[df[ , focal] == f, -c(1:nonNcols)])
     X_i <- cbind(1,N_i)
     R_i <- pracma::rref(X_i)
     Z_i <- t(R_i) %*% R_i
