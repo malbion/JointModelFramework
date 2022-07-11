@@ -37,8 +37,20 @@ median(smmii$perc.exploiter)*2
 library(magrittr)
 library(dplyr)
 
+# intraspecific interactions - overlap with 0
 smmii$species <- droplevels(smmii$species)
 smmii %>% group_by(species) %>% summarise(min = min(aii),
                                           max = max(aii)) -> foo
 foo[which(sign(foo$min) == sign(foo$max)), ]
 
+# interspecific interactions - overlap with 0
+minval <- apply(scaled_betas, c(1,2), min)
+maxval <- apply(scaled_betas, c(1,2), max)
+# remove intraspecific interactions 
+diag(minval) <- NA
+diag(maxval) <- NA
+# proportion which do not overlap with 0
+length(minval[which(sign(minval) == sign(maxval))]) / (dim(minval)[1] * dim(minval)[2] - 22) * 100
+# check on focal x focal only 
+minval <- minval[ , 1:nrow(minval)]
+maxval <- maxval[ , 1:nrow(maxval)]
