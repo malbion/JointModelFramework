@@ -1,0 +1,152 @@
+\begin{refsection}
+
+\section{Supplementary Methods}
+
+\setcounter{figure}{0}
+
+\label{SI:Methods}
+
+    \subsection{Model code and parameterisation}
+    \label{SI:modelcode}
+    
+
+    We make the several observations in addition to comments in the code. Firstly, identifiable interactions (beta\_ij in the code) are defined as a vector, which must then be matched to their correct position in the interaction matrix. This is the role of the istart, iend, icol, and irow vectors defined in the data block. Our github repository also contains the data\_prep.R file, which will show how to calculate these vectors from the input data. 
+    Secondly, we impose the following constraints to improve convergence, avoid over-parameterisation and maintain identifiability of our parameters $r_{d_k}$ and $e_j$ \parencite{Huber2004, Kidzinski2020, Niku2021}. We define the effect parameters as a unit vector, which means we only require K-1 degrees of freedom (where K is the total number of neighbour elements) to estimate all effect values. This loss of a degree of freedom arises from the fact that the matrix of $r_{d_k}$ $e_j$ parameters is of rank 1. The first response parameter is also forced to positive. This improves convergence by providing an anchor for all other parameter values to 'rotate' around. Though these latter two have implications for our estimates of the latent variables $r_{d_k}$ and $e_j$, estimates for identifiable and unidentifiable interactions should not be affected.
+
+    \subsection{Assessing parameter identifiability}
+    \label{SI:identify}
+
+    \textbf{We assess which interactions parameters are identifiable in the data\_prep.R file (lines 30-44) and store this information in the $Q$ matrix. To do so, we create a model matrix $X_i$ for each focal species $i$ which is made up of a column vector of 1's (representing the intercept) and the subset of neighbour abundances recorded for that focal species (one predictor aka neighbour species per column). We transform this matrix into its row-reduced echelon form $R_i$ using the rref() function from the pracma package \parencite{Borchers2022}. We then multiply $R_i$ by its transpose to get the symmetric matrix $Z_i$, which we can use to determine which predictors (rows) are linearly independent of all other predictors. Note that given $Z-i$ is symmetrical, this can also be done using the columns of $Z_i$. We ignore the first row (column) of $Z_i$ because it corresponds to the intercept which we always want to include. For every row (column) $k > 1$, it is linearly independent if that row (column) is a vector of $0$'s except for the k'th element. If this is true, the interaction parameter corresponding to that row is thus identifiable and we assign it a value of $1$ in the $i$'th row and $k-1$'th column of $Q$. Alternatively, the corresponding interaction parameter is given a value of $0$ in $Q$. Evaluating the $Z_i$ matrix of each focal species therefore allows us to construct the $Q$ matrix of inferrable parameters.}
+
+    In a similar way, we also evaluate whether predictors (neighbours) are linearly independent across the entire dataset in order to be able to correctly distinguish between their respective effect parameters $e_j$ for the RIM. The same procedure as above is performed across the entire model matrix (without subsetting for each focal species) and neighbours are evaluated for linear independence. This is is done early on in the master.R file (lines 26-36) as a check before transforming the data into the format required by STAN. A lack of linear independence across the entire dataset is very unlikely, and would only arise if multiple neighbours' densities were perfectly correlated across all neighbourhoods.
+
+% We construct a matrix $Q$ of size $s \times t$, with $Q_{i, j} = 1$ if the corresponding $\beta_{i, j}$ parameter is identifiable, and $Q_{i, j} = 0$ if not.
+
+    \subsection{Case study Methods}
+    \label{SI:casestudy}
+
+        \subsubsection{Community data}
+
+        \paragraph{}
+        We applied this framework to annual wildflower community dataset from Western Australia. This system is a diverse and well-studied community of annual plants which germinate, grow, set seed and die within approximately 4 months every year. Individual fecundity data were collected in 2016, when 100 50 x 50 cm plots established in the understory of West Perenjori Reserve (29$^o$28'01.3"S 116$^o$12'21.6"E) were monitored over the length of the full field season. The resulting dataset includes between 29 to over 1000 counts of individual plant seed production from 22 different focal species (with a median of 108 observations per species), in addition to the identity and densities of all neighbouring individuals within the interaction neighbourhood of each focal plant. Interaction neighbourhoods varied in radius from 3 to 5 cm depending on the size of the focal species \parencite{Martyn2020}. Total neighbourhood diversity was 71 wildflower species, 19 of which were recorded fewer than 10 times across the whole dataset. The species-specific effects of this latter group of species on focals were deemed negligible due to their extremely low density, they were thus grouped into an 'other' category and their effects on focals averaged. This resulted in 53 potential neighbour identities. Half of all plots were thinned (a quarter to 60\% diversity and a quarter to 30\%) to mitigate possible confounding effects between plot location and plant density, and thinning did not target any particular species. 
+
+        \paragraph{}
+    	In study systems which allow it, a proportion of interaction neighbourhoods can instead be thinned prior to the experiment to randomly remove neighbouring individuals and provide observations for low-density estimates of interactions. Though this steps is not strictly necessary, thinning certain neighbourhoods can also reduce potential confounding effects between the environment and interactions and thus provide more accurate estimates of interaction effects. Environmental data known to affect performance can also be recorded and included in the model (as a random effect for example) to minimise those confounding effects.
+
+        \paragraph{} 
+        We required species demographic rates (seed survival and germination) in order to scale model interaction estimates into interaction strengths. Species demographic rates for 16 of our focal species were estimated from a database of field experiments carried out between 2016 and 2019 where seedbags were placed in the field to estimate germination rates, and ungerminated seeds were evaluated in the lab for survivability.  The remaining species were assigned mean demographic rates from these experiments. Further details on the methods used for collecting those seed rates are available in section \ref{SI:germination}.
+
+        \subsubsection{Model fitting}
+
+        \paragraph{}
+        We fit the model using R version 3.6.3, STAN and the rstan package \parencite{R2020, Carpenter2017, Rstan2020}. Estimates of seed production were fit with a negative binomial distribution. The model was run with 1 chain of 10000 iterations, discarding the first 5000. Models were checked for convergence using the geweke.diag() function from the coda package \parencite{Plummer2006} and traceplots were visually inspected to verify good chain behaviour. Model parameters were sampled 1000 times from the 80\% posterior confidence intervals to construct our parameter estimates. We then applied bootstrap sampling from each resulting interaction strength distribution to create 1000 samples of the community interaction network.
+
+        \subsubsection{A model for annual plant population dynamics}
+        \label{SI:popdyn}
+
+        \paragraph{}
+        The above model framework returns species-specific estimates of intrinsic fitness ($\gamma_{d_k}$), as well as as a species x neighbour matrix $B$ of identifiable ($\beta_{d_k, j}$) and unidentifiable ($r_{d_k} e_j$) interaction estimates which quantify the effects of one neighbour $j$ on the intrinsic fitness of a focal species $i$. Though useful as they are, these estimates can lead to a wider range of potential applications when integrated into models of population dynamics. For example, we might be more interested in the effects of neighbours on the density or growth rate of a focal species rather than on it's proxy for lifetime reproductive success. Importantly, it is necessary to specifiy a model describing population dynamics in order to draw conclusions about the effects of interactions and network structure on the maintenance of community diversity and stability. 
+
+        \paragraph{} 
+        We defined the following model for annual plants with a seed bank \parencite{Levine2009, Mayfield2017, Bimler2018} which describes the rate of change in a focal species' \textit{i} abundance of seeds in a seed bank from one year to the next: 
+            \begin{equation}
+                \frac{N_{i, t+1}}{N_{i, t}} = \left( 1 - g_{i} \right) s_{i} + g_{i}F_{i, t}
+                \label{ifm}
+            \end{equation}
+        where \(F_{i,t}\) measures the number of viable seeds produced per germinated individual whilst \(g_{i}\) and \(s_{i}\) are the seed germination and seed survival rate, respectively. In a simplified case where the focal species \textit{i} interacts with only one other species \textit{j}, our use of a log link function implies that \(F_{i,t}\) in this model of population dynamics is given by:
+            \begin{equation}
+                F_{i,t} = \lambda_{i} e^{- \alpha_{ii} g_{i} N_{i, t} -  \alpha_{ij} g_{j} N_{j, t} }
+                \label{fecundity}   
+            \end{equation}
+        where \(\lambda_{i}\) corresponds to seed number in the absence of interaction effects, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij}\) and \(\alpha_{ii}\) which are equivalent to \(\beta_{d_k, j}\) in Eq.~\ref{nddm} of the main text. 
+        We determine the scaled interaction strengths ${\alpha}''$'s by including \(\lambda_{i}\), \(g_{i}\) and \(s_{i}\) in such a way that these variables are cancelled out when the ${\alpha}''$'s are substituted for the $\alpha$'s in our annual plant population model \parencite{Godoy2014, Bimler2018}. 
+        \begin{equation}
+            {\alpha}''_{ij} = \frac{g_{j} \alpha_{ij}}{ln(\eta_{i})}
+        \end{equation}
+        with $\eta_{i} = \frac{\lambda_{i} g_{i}}{\theta_{i}}$ and $\theta_{i} = 1 - (1 - g_{i})(s_{i})$. % \(ln(\eta_{i})\) is thus equivalent to \(\beta_{i0}\) in Eqs. \ref{nddm} and \ref{scaling}.
+        Note that our model evaluates the rate of change of seeds in the seed bank, and this is reflected in the scaling terms used to compare interaction strengths between focal species. Substituting ${\alpha}''$'s for $\alpha$'s in Eq.~\ref{ifm} gives us: 
+    
+        \begin{equation}
+            \frac{N_{i, t+1}}{N_{i, t}} = (1 - \theta_{i}) + \theta_{i} \eta_{i} e^{-ln(\eta_{i})({\alpha}''_{ii} N_{i, t} + {\alpha}''_{ij} N_{j, t})}
+        \end{equation}
+        where we can see that the ${\alpha}''$'s are directly proportional to the density of neighbours. Relating this population model to the joint model framework, we recover the following: 
+
+        \begin{equation}
+        {\beta}''_{d_k, j} = {\alpha}''_{ij}
+        \end{equation}
+
+        \begin{equation}
+        \beta_{d_k, j} = \alpha_{ij}
+        \end{equation}
+
+        \begin{equation}
+        \gamma_{d_k}  = ln(\eta_{i}) = ln(\frac{\lambda_{i} g_{i}}{\theta_{i}})
+        \end{equation}
+        % Daniel thinks this last equation is wrong but I don't think so?
+        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\gamma_{d_k}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
+
+
+        \subsubsection{Seed germination and survival data}
+        \label{SI:germination}
+
+        \paragraph{}
+        Seed demographic rates were collected from a set of field experiments conducted by T. Martyn, M. Raymundo and I. Towers at Perenjori reserve between 2015 and 2019. Experiments differed both in the methods and in which focal species were included in ways which are detailed further below, such that each focal species had a different number of replicates across all experiments. Given how much seed rates estimates have been found to vary within species and according to a range of both individual and environmental factors, we chose to average results from these multiple experiments for each focal species in order to provide a point estimate which captures a wide range of conditions under which seeds may grow. For those species which did not have any field estimates of seed rates (\textit{Austrostipa elegantissima}, \textit{Erodium sp.}, \textit{Petrorhagia dubia}) or seed survival rate (\textit{Gilberta tenuifolia}), no replication (\textit{Waitzia acuminata}) or an unrealistically low estimate of germination rate (\textit{Goodenia pusilliflora}), we substituted the community mean instead. 
+
+        \paragraph{}
+        For each experiment, mature seeds were collected at the end of the growing season (September - October) from multiple populations of each focal species located throughout the reserve. Immature or damaged seeds were not included, and collected seed was homogenised for each focal species to elimiate bias associated with local adaptation within populations. Germination rate was estimated by planting seeds in the field along gradients of soil phosphorus, woody canopy cover and herbaceous vegetation density and either directly counting the number of seeds which had germinated or comparing recruitment rates to unplanted plots after a sufficient amount of time had elapsed. Seeds were planted during late-September to mid-October, mimicking natural seed dispersal timing for wildflowers in the area. Seed surival rates were estimated using either the remaining seeds or a separate batch of seeds and assessing viability of the seeds using tetrazolium staining. 
+
+
+        \paragraph{T. Martyn experiment:}
+        For 19 focal species (the full species list excluding \textit{A. elegantissima}, \textit{P. dubia} and \textit{G. tenuifolia}), germination bags containing 20 seeds each were planted in the field in 2016 across multiple areas of Perenjori Reserve. Out of the 30 bags, 19 were collected in 2017 and the remaining were collected in 2018. Due to a severe drougth in 2017, half of the bags collected that year were watered during the field season and prior to collection. Germination bags were then brought back to the Mayfield Lab facilities at the University of Queensland, Brisbane, and seeds extracted. Seeds were examined for signs of germination in the field (broken or empty seed coat) and those remaining were placed in germination trays and a germination chamber to mimic light and temperature conditions conducive to germination. Trays were watered with Gibberellic acid once to twice a week and seedlings were recorded and removed until no more seedlings emerged. Remaining, ungerminated seeds were then assessed as dead (moldy) or potentially viable. The remaining potentially viable seeds were assessed for viability using tetrazolium staining, contributing to our estimates of seed survival rates. For this procedure, embryos in each seed were exposed by either removing the seed coat or by creating a thin cut along the seed coat. The exposed embryos were then placed on a six-well germination plate and 2 ml of 0.25\% Tetrazolium solution was added to each well to stain the embryos, before covering them and storing them at 25$^{\circ}$C overnight. To check for staining, embryos were dissected under a dissecting microscope. Viable seeds showed a dark pink embryo while non-viable seeds did not stain or were stained in a splotchy way.
+
+
+        \paragraph{M. Raymundo experiment:}
+        This experiment was carried out on the focal species \textit{H. glutinosum}, \textit{T. cyanopetala}, \textit{T. ornata} and \textit{V. rosea} from 2015 to 2017. However, a severe drought in 2017 made the second round of data collection impossible and thus we only include results for 2016 here. Ten plots were established measuring 0.5 m x 0.5 m at each of three sites in Perenjori Reserve for a total of 30 plots. Each plot was divided into 25 0.1 m x 0.1 m subplots and focal species were randomly assigned a subplot in each plot. Thirty seeds of each focal species were planted in the designated subplot in late September 2015 and a plastic ring 10 cm in diameter and 1 cm high was placed in each subplot where seeds were added to limit seed movement among subplots. Another five subplots were assigned plastic rings to serve as controls for the effect of the rings on non-experimental communities. The remaining 15 subplots served as controls where no seeds or rings were added allowing for recruitment from either natural dispersal or from the seed bank. Blocks were placed in such a way as to span shaded and open areas, bare ground and dense herbaceous vegetation, and areas with native dominated and exotic dominated assemblages. Before implementing the experiment in 2015, plots were surveyed to record the number and identity of all adult plants in each subplot. Due to the randomization of seed addition into subplots, some subplots had focal species already in them. As all focal species were common to this reserve, it is also likely that seeds for all species were in the seed banks in at least some subplots. There was no way to determine this in advance, though when adult individuals of a focal species were present in a subplot prior to the implementation of our experiment, we expected that some seedlings in the following year would be from the seedbank as well as our planted seeds and looked for evidence of this (more than 30 individuals) in data from 2016. We therefore compared average densities of successful focal recruits and those which emerged in situ between sown, control, and ringed subplots to assess seed limitation and germination rate. To measure seed survival rates, thirty seeds of each focal species were also assessed for viability using tetrazolium staining using the same procedure as for the T. Martyn experiment. 
+
+        \paragraph{I. Towers experiment: }
+        This experiment was carried out on the focal species \textit{A. calendula}, \textit{G. berardiana}, \textit{H. glutinosum}, \textit{H. glabra},\textit{P. aroides}, \textit{P. debilis}, \textit{P. canescens}, \textit{T. cyanopetala}, \textit{T. ornata}, \textit{V. rosea} and \textit{W. acuminata} in 2018 and 2019. Pairs of free-draining germination trays were deployed across a gradient of canopy cover in mid-October of both years, filled with soil, which had either been collected from the field and heat-sterilised to render pre-existing seeds nonviable (2019), or simply collected from the roadside (2018). Each germination tray consisted of 24 cells, with two cells randomly assigned to each focal species. In each cell, 15 seeds of the designated focal species were broadly distributed and lightly misted with water to facilitate seed-soil contact and minimise removal by wind. Trays placed in 2018 used seeds collected at the end of the 2017 growing season and dry after-ripened at 60$^{\circ}$C for a month before being stored in cool, dry conditions at the University of Queensland. Seeds planted in 2019 were collected at the end of the 2018 growing season and were placed directly from the field into the germination trays. To re-establish microbial communities for those trays where the soil had been heat-treated, seeds were lightly covered with a small amount of untreated soil collected from the site in which they were buried. Untreated soil was collected from directly underneath coarse woody debris in patches where it was present as prior research in this system has shown that the effect of coarse woody debris on plant performance is partially attributable to debris-specific soil microbial communities (A. Pastore unpublished data). Some of the trays received the additions of leaf litter, but the results of this treatment were not included for the seed rates used in this study. Seed germination rate was measured by counting the number of seedlings which emerged in the field, but seed survival rate was not calculated in this experiment.
+
+
+        %\subsection{References}
+        \printbibliography   
+        % Add Supps bibliography here!
+\end{refsection}
+
+
+\section{Supplementary Results}
+\label{SI:results}
+
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=.6\textwidth]{../../3.analyses/figures_mss/postpredch_mu.png}
+        \caption{Posterior predictive check showing the density distribution of observed seed production values (red line) to simulated seed production values (light grey) as estimated by the RIM only, on a log scale. Simulated values were generated using the 80\% posterior confidence intervals for each parameter, the black line shows simulated values using the median of each parameter. }
+        \label{fig:ppcheckmu1}
+    \end{figure}
+
+    \begin{figure}[H]
+       % \hspace*{-3.5cm}
+        \includegraphics[width=\textwidth]{../../3.analyses/figures_mss/interaction_estimates.png}
+        \caption{Distribution of interaction estimates from our case study. Parameter estimates are sampled from the 80\% posterior confidence intervals returned by STAN. Upper left panel shows the distribution of observed interactions as estimated by the NDDM ($\beta_{d_k, j}$), which are then plotted against the corresponding RIM estimates ($r_{d_k} e_j$, x-axis) in the upper right panel. Bottom rows show the distribution of \textit{unidentifiable} (left) and identifiable interactions estimates returned by the RIM. Interaction estimates are unscaled.}
+        \label{fig:adist}
+    \end{figure}
+
+   % NETWORK FIGURES
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{../../3.analyses/figures/joint_network.png}
+        \caption{The full network of unscaled interactions between 22 focal species as estimated by the joint modelling framework presented here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
+        \label{fig:jointnetwork}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{../../3.analyses/figures/NDDM_network.png}
+        \caption{Network of identifiable interactions (unscaled) between 22 focal species as estimated by the NDDM, unidentifiable interactions are not shown here. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
+        \label{fig:jointnetwork}
+    \end{figure}
+
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{../../3.analyses/figures/RIM_noninferrables_network.png}
+        \caption{Network of unidentifiable interactions (unscaled) between 22 focal species as estimated by the RIM. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
+        \label{fig:jointnetwork}
+    \end{figure}
