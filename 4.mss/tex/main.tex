@@ -244,6 +244,15 @@ Taken together, identifiable and unidentifiable interaction estimates are then u
         \paragraph{}
         STAN returns parameters as distributions which maximise the likelihood, and are conditioned by the data and priors. Priors describe the distribution of plausible values which these parameters may take. For an introduction to Bayesian inference which relates the use of priors to frequentist hypothesis testing, see \textcite{Ellison1996}. We recommend investigators experiment with setting different informed priors to both improve model convergence and verify the robustness of parameter estimates. The resulting parameters are termed posterior distributions, and samples from the posterior are drawn for analysis. Using parameter distributions rather than point estimates allows for easy inclusion of uncertainty in the analysis of results, we therefore recommend bootstrap sampling from each posterior interaction strength distribution to create multiple samples of the community interaction matrix. \textcite{Ellison2004} also provides an accessible review of parameter estimates and the use of posterior distributions using a worked example on ant species richness data.
 
+    \subsection{Dealing with sparse networks}
+
+    It is likely that the posterior distributions of some interaction estimates returned by the model will overlap with zero. We note that an overlap with zero may be due to several factors and does not necessarily equate to an interaction being insignificant. Firstly, an overlap with zero may arise when an interaction is positive or negative depending on local conditions. Secondly, it may indicate the interaction is poorly informed and hence overlaps with zero because it has a large posterior distribution since we cannot confidently speak to its effect. Lastly, the interaction may be well-informed and weak, in which case the posterior is centered around zero. 
+
+    If a user of our framework has good cause to believe that many interactions are weak and the network is sparse, there are many ways to deal with this issue... % Finish this paragraph when I know what's happening with Reviewer 1.
+
+    Here I can add a section on sparsity - how might we eliminate parameters if we have reasonable cause to think they are $0$? Various possibilities e.g. bayesian variable selection. Point readers towards possible directions and leave decision to future users because there are many schools of thought here. 
+    Instead of removing parameter, sample from prior that is on 0!
+    Topher weiss-lehman's method with the erularised horseshoe prior implies scarcity 
 
     \subsection{Case study}
 
