@@ -70,6 +70,7 @@ indep <- sapply(seq(1, dim(Z_all)[1], 1), function(k){
 }) #
 all(indep == 1) # if TRUE then neighbours are linearly independent and we can continue
 if(!all(indep == 1)) message('WARNING neighbours are not linearly independent') 
+rm(N_all, X_all, R_all, Z_all)  # free up some space
 
 # transform data into format required by STAN and select identifiable interaction parameters
 stan.data <- data_prep(perform = 'seeds', focal = 'focal', 
@@ -144,30 +145,15 @@ stan_post_pred_check(post.draws, 'mu2', 'model/validation/', stan.data)
 
 # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
 #------------------
-# this works for parameters that are not the interaction matrices
-sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], function(p) {
-  
-  p.samples <- apply(post.draws[[p]], 2, function(x){
-    sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
-  })
-  write.csv(p.samples, paste0('model/output/', p, '_samples.csv'), 
-            row.names = F)
-  
-})
-
 # Interactions (betaij)
 # joint interactions 
-betaij <- apply(post.draws$ndd_betaij, c(2, 3), function(x) {
-  sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
-})
+betaij <- joint.post.draws$ndd_betaij
 betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
 colnames(betaijS) <- grep('ndd_betaij', rownames(fit_sum), value = T)
 write.csv(betaijS, paste0('model/output/joint_betaij_samples.csv'), row.names = F)
 
 # rim interactions only
-rim_betaij <- apply(post.draws$ri_betaij, c(2, 3), function(x) {
-  sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
-})
+rim_betaij <- joint.post.draws$ri_betaij
 rim_betaijS <- as.data.frame(aperm(rim_betaij, perm = c(1, 3, 2)))
 colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
 write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
@@ -209,15 +195,11 @@ dev.off()
 # Transformed parameters
 #-----------------------
 # Intrinsic growth rate (lambda)
-growth.rates.samples <- apply(post.draws$beta_i0, 2, function(x){
-  sample(x[x > quantile(x, 0.1) & x < quantile(x, 0.9)], size = 1000)
-})
-# exponentiate to get lambda
-growth.rates.samples <- exp(growth.rates.samples)
+growth.rates.samples <- exp(joint.post.draws$beta_i0)
 write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
 
 # Scale the alphas and save
-scaled_betas <- scale_interactions(betaijS, growth.rates.samples, key_speciesID, key_neighbourID, comm)
+scaled_betas <- scale_interactions(betaij, growth.rates.samples, key_speciesID, key_neighbourID, comm)
 save(scaled_betas, file = paste0('model/transformed/scaled_betaij_matrices.Rdata')) 
 
 Sys.time()
