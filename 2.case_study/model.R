@@ -9,12 +9,12 @@
 
 
 # Run the joint model: 
-# 1. Estimate identifiable interactions with NDDM 
-# 2. Estimate response and effect interactions when non-identifiable
+# - Estimate identifiable interactions with NDDM 
+# - Estimate response and effect interactions 
 
 # Then: 
-# 3. Extract the intrinsic growth rates 
-# 5. Scale the interactions into per-capita growth rates
+# - Extract the intrinsic growth rates 
+# - Scale the interactions into per-capita growth rates
 
 # PRELUDE
 #-------
