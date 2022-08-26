@@ -147,13 +147,13 @@ stan_post_pred_check(post.draws, 'mu2', 'model/validation/', stan.data)
 #------------------
 # Interactions (betaij)
 # joint interactions 
-betaij <- joint.post.draws$ndd_betaij
+betaij <- post.draws$ndd_betaij
 betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
 colnames(betaijS) <- grep('ndd_betaij', rownames(fit_sum), value = T)
 write.csv(betaijS, paste0('model/output/joint_betaij_samples.csv'), row.names = F)
 
 # rim interactions only
-rim_betaij <- joint.post.draws$ri_betaij
+rim_betaij <- post.draws$ri_betaij
 rim_betaijS <- as.data.frame(aperm(rim_betaij, perm = c(1, 3, 2)))
 colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
 write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
@@ -195,7 +195,7 @@ dev.off()
 # Transformed parameters
 #-----------------------
 # Intrinsic growth rate (lambda)
-growth.rates.samples <- exp(joint.post.draws$beta_i0)
+growth.rates.samples <- exp(post.draws$beta_i0)
 write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
 
 # Scale the alphas and save
