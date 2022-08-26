@@ -13,7 +13,7 @@ scale_interactions <- function(betas,
   betamat <- aperm(betaij, c(2, 3, 1))
   
   # average seed rates 
-  seeds <- read.csv('clean_data/seed_rates.csv', row.names = 1)
+  seeds <- read.csv('data/seed_rates.csv', row.names = 1)
   # Scale lambdas into growth rates including the seed rates (demographic param)
   # r_i = ln(eta) = ln( (g_i * lambda_i ) / (1 - (1 - g_i) s_i) )
     r_i <- sapply(c(1:length(key_speciesID)), function(x) {
