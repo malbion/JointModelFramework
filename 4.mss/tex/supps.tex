@@ -22,6 +22,13 @@
 
 % We construct a matrix $Q$ of size $s \times t$, with $Q_{i, j} = 1$ if the corresponding $\beta_{i, j}$ parameter is identifiable, and $Q_{i, j} = 0$ if not.
 
+    \subsection{Validation on multiple chains}
+    \label{SI:multichains}
+
+
+    \textbf{To further validate good chain behaviour and convergence of our model, we conducted an additional model run using three MCMC chains, each run for a total of 4000 iterations with the first 2000 discarded. We confirmed good chain mixing through the visual inspection of traceplots. All chains converged, as evidenced by the distribution of the split $\hat{R}$ statistic  which did not exceed $1.004$ over all parameters. The posterior distributions returned from multiple chains matched closely to those returned from running the model on a single chain, we thus present results from the single chain procedure in the main text. 
+    }
+
     \subsection{Case study Methods}
     \label{SI:casestudy}
 
@@ -150,3 +157,4 @@
         \caption{Network of unidentifiable interactions (unscaled) between 22 focal species as estimated by the RIM. Arrows point to species $i$ and line thickness denotes median interaction strength over 1000 samples drawn from the 80\% posterior confidence interval of each parameter. Facilitative interactions are shown in blue and competitive interactions are shown in yellow.}
         \label{fig:jointnetwork}
     \end{figure}
+
