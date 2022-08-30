@@ -29,6 +29,12 @@
     \textbf{To further validate good chain behaviour and convergence of our model, we conducted an additional model run using three MCMC chains, each run for a total of 4000 iterations with the first 2000 discarded. We confirmed good chain mixing through the visual inspection of traceplots. All chains converged, as evidenced by the distribution of the split $\hat{R}$ statistic  which did not exceed $1.004$ over all parameters. The posterior distributions returned from multiple chains matched closely to those returned from running the model on a single chain, we thus present results from the single chain procedure in the main text. 
     }
 
+    \begin{figure}[H]
+        \includegraphics[width=0.7\textwidth]{../../2.case_study/appendix_model_multichain/diag_rhat.png}
+        \caption{Distribution of the split $\hat{R}$ statistic from the model run on our case study data with three chains of 4000 iterations each, with the first 2000 discarded. The graph shows that $\hat{R}$ is centered on 1 and does not exceed $1.01$, indicating that chains have converged to the same underlying distribution. This figure was plotted using the stan\_rhat() function from the rstan package \parencite{Rstan2020}.}
+        \label{fig:adist}
+    \end{figure}
+
     \subsection{Case study Methods}
     \label{SI:casestudy}
 
