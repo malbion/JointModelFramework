@@ -9,7 +9,7 @@ Bimler 2022
 data {
   int<lower=1> S;          // total number of focal species (s in the manuscript) 
   int<lower=1> N;          // total number of observations (rows in model matrix) (n in the manuscript)
-  int<lower=0> K;          // total number of interaction partners (columns in model matrix) (t in the manuscript)
+  int<lower=0> T;          // total number of interaction partners (columns in model matrix) (t in the manuscript)
   int<lower=0> I;          // total number of identifiable interactions 
   
   int<lower=0> species_ID[N];   // index matching observations to focal species (d in the manuscript)
@@ -20,7 +20,7 @@ data {
   int<lower=0> icol[I];
   int<lower=0> irow[I];
   
-  matrix[N,K] X;         // neighbour abundances (the model matrix)
+  matrix[N,T] X;         // neighbour abundances (the model matrix)
 
 } 
 
@@ -38,7 +38,7 @@ parameters {
   // constrained to be positive for identifiability
   vector[S-1] responseSm1; // other species-specific response parameters
 
-  unit_vector[K] effect; // species-specific effect parameter (e in the manuscript)
+  unit_vector[T] effect; // species-specific effect parameter (e in the manuscript)
 
 } 
 
@@ -50,8 +50,8 @@ transformed parameters {
   vector[N] mu;              // the RIM linear predictor for perform (here seed production)
   vector[N] mu2;             // the joint model linear predictor for perform (here seed production)
   
-  matrix[S, K] ri_betaij;   // interaction matrix for response - impact estimates (re in the manuscript)
-  matrix[S, K] ndd_betaij;  // interaction matrix for joint model interaction estimates (B in the manuscript)
+  matrix[S, T] ri_betaij;   // interaction matrix for response - impact estimates (re in the manuscript)
+  matrix[S, T] ndd_betaij;  // interaction matrix for joint model interaction estimates (B in the manuscript)
   
   
   // stitch together the response values
