@@ -45,10 +45,10 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   # Q is a matrix of focal x neighbours, if Q[i, j] = 1 then the interaction between i and j is inferrable
   
   # INTEGERS
-  stan.data$S <- length(unique(df[ , focal]))  # number of focal elements (species)
-  stan.data$N <- nrow(df)                      # number of observations
-  stan.data$K <- ncol(df[ , -c(1:nonNcols)])   # number of neighbours
-  stan.data$I <- sum(Q)                        # number of inferred interactions
+  stan.data$S <- length(unique(df[ , focal]))    # number of focal elements (species)
+  stan.data$N <- nrow(df)                        # number of observations
+  stan.data$`T` <- ncol(df[ , -c(1:nonNcols)])   # number of neighbours
+  stan.data$I <- sum(Q)                          # number of inferred interactions
 
   
   # VECTORS
