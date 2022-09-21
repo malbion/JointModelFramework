@@ -15,7 +15,7 @@ This contains the data_prep() function which is called in master.R
 data_prep() takes a dataframe object where rows are observations of individual performance and columns include the densities of potential interaction partners or neighbours. It returns the data in a list object which is the correct format with which to run the model on. This list includes Q, the matrix of identifiable interaction parameters, how this matrix is calculated can be found in this file under the heading 'Matrix of inferrable interactions'. 
 
 #### joint_model.stan
-This file describes the joint model in the STAN programing language. Comments include the corresponding names of the various parameters as named in the associated manuscript. This file can be modified as necessary to model the response variable with a different distribution and link function than the one used in our case study (negative binomial).
+This file describes the joint model in the STAN programing language. Comments include the corresponding names of the various parameters as named in the associated manuscript. This file can be modified as necessary to model the response variable with a different distribution and link function than the one used in our case study (negative binomial with a log link, or in this case an exponential inverse link).
 
 #### master.R
 This is the 'master' script which calls all the other functions in this folder in order to simulate some data, prepare it for the model, select identifiable parameters, and then run the model in STAN. 
