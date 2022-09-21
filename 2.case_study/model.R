@@ -195,7 +195,7 @@ dev.off()
 # Transformed parameters
 #-----------------------
 # Intrinsic growth rate (lambda)
-growth.rates.samples <- exp(post.draws$beta_i0)
+growth.rates.samples <- exp(post.draws$gamma_i)
 write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
 
 # Scale the alphas and save

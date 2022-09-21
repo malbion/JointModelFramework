@@ -26,7 +26,7 @@ data {
 
 parameters {
   
-  vector[S] beta_i0;    // species-specific intercept (gamma in the manuscript)
+  vector[S] gamma_i;    // species-specific intercept 
     
   vector<lower=0>[S] disp_dev; // species-specific dispersion deviation parameter, 
   // defined for the negative binomial distribution used to reflect seed production (perform)
@@ -61,7 +61,7 @@ transformed parameters {
    
   // Estimate response-impact interactions
   for(n in 1:N) {
-       mu[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], ri_betaij[species_ID[n], ]));  
+       mu[n] = exp(gamma_i[species_ID[n]] - dot_product(X[n], ri_betaij[species_ID[n], ]));  
   }
   
   // NDDM estimates identifiable interactions, and uses RIM estimates when non-identifiable:
@@ -74,7 +74,7 @@ transformed parameters {
   }
   // estimate identifiable interactions
   for(n in 1:N) {
-        mu2[n] = exp(beta_i0[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
+        mu2[n] = exp(gamma_i[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
    }
    
 } 
@@ -82,7 +82,7 @@ transformed parameters {
 model {
 
   // priors
-  beta_i0 ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
+  gamma_i ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
   disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
   beta_ij ~ normal(0,1);    // prior for interactions inferred by the NDDM
   response1 ~ normal(0, 1);   // constrained by parameter definition to be positive
