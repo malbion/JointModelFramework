@@ -45,15 +45,8 @@ med_betas <- apply(scaled_betas, c(1,2), median)
 med_bii <- diag(med_betas)
 # remove intras from calculations
 diag(med_betas) <- 0
-# get focal x neighbour matrix
-med_betas_FN <- med_betas[med_betas!=0]
-# percentage of competitive interactions
-length(med_betas_FN[med_betas_FN>0])/length(med_betas_FN)*100
-# percentage of facilitative interactions
-length(med_betas_FN[med_betas_FN<0])/length(med_betas_FN)*100
-# get focal x focal matrix
-med_betas_FF <- med_betas[1:22, 1:22]
-med_betas_FF <- med_betas_FF[med_betas_FF!=0]
+# get focal x focal matrix without intras
+med_betas_FF <- med_betas[med_betas!=0]
 # percentage of competitive interactions
 length(med_betas_FF[med_betas_FF>0])/length(med_betas_FF)*100
 # percentage of facilitative interactions
@@ -63,12 +56,11 @@ length(med_bii[med_bii>0])/length(med_bii)*100  # competitive
 length(med_bii[med_bii<0])/length(med_bii)*100  # facilitative
 
 # Asymmetry 
-med_betas_FF <- med_betas[1:22, 1:22]
 asym <- matrix(data = NA, nrow = 22, ncol = 22)
-for (i in 1:nrow(med_betas_FF)) {
-  for (j in 1: ncol(med_betas_FF)) {
+for (i in 1:nrow(med_betas)) {
+  for (j in 1: ncol(med_betas)) {
     # return 1 if asymmetric, 0 if they match sign
-    asym[i , j] <- ifelse(sign(med_betas_FF[i , j]) == sign(med_betas_FF[j, i]), 0, 1)
+    asym[i , j] <- ifelse(sign(med_betas[i , j]) == sign(med_betas[j, i]), 0, 1)
   }
 }
 asym <- asym[upper.tri(asym)]

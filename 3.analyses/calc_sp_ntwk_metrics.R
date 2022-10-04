@@ -217,7 +217,8 @@ calc.sp.ntwk.metrics <- function(
   effect <- read.csv(paste0('2.case_study/model/output/effect_samples.csv'), stringsAsFactors = F)
   colnames(response) <- read.csv(paste0('2.case_study/data/key_speciesID', com, '.csv'),stringsAsFactors = F)[ , 1]
   colnames(effect) <- read.csv(paste0('2.case_study/data/key_neighbourID', com, '.csv'), stringsAsFactors = F)[ , 1]
-
+  effect <- effect[ , colnames(effect) %in% colnames(response)]
+  
   metrics[ , 'response', ] <- rbind(t(response), matrix(data = NA, nrow = (Nb-Sp), ncol = Sm))
   metrics[ , 'effect', ] <- t(effect)
 
@@ -234,7 +235,7 @@ calc.sp.ntwk.metrics <- function(
   named <- lapply(named, function(x){rep(sum(x[, 'Num_indivs']), Sm)}) # repeat by the number of samples
   named <- do.call(rbind, named)
   abunds <- rbind(named, rep(others, Sm))
-  dimnames(abunds)[[1]][Nb] <- 'others'
+  dimnames(abunds)[[1]][Nb+1] <- 'others'
   # order
   abunds <- abunds[dimnames(metrics)[['species']], ]
   # join up
