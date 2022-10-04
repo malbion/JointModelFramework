@@ -304,7 +304,7 @@ upper.intra <- apply(intras, 1, quantile, 0.75)
 lower.intra <- apply(intras, 1, quantile, 0.25)
 mean.intra <- apply(intras, 1, median)
 
-# get the effects of species on others
+# get the effects of species on others - FOCALS ONLY
 inters.out <- scaled_betas[ , 1:nrow(scaled_betas), ]
 sum.out <- apply(inters.out, c(2, 3), sum)
 sum.out <- sum.out - intras   # remove intraspecific interactions
@@ -344,7 +344,7 @@ plot(intras, sp.abunds.rep,
      xlab = 'Intraspecific interactions (self-regulation)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 title(main = 'A', adj = 0)
-polygon(x = c(-0.129 , 0, 0, -0.129), y = c(4.4, 4.4, 9.3, 9.3),
+polygon(x = c(-0.6 , 0, 0, -0.6), y = c(4.4, 4.4, 9.3, 9.3),
         col = 'ivory2', border = NA)
 abline(v=median(intras), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
@@ -376,7 +376,7 @@ plot(sum.out, sp.abunds.rep,
      xlab = 'Net effect on neighbours (Out-strength)',
      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2)
 title(main = 'B', adj = 0)
-polygon(x = c(-0.475 , 0, 0, -0.475), y = c(4.4, 4.4, 9.3, 9.3),
+polygon(x = c(-4 , 0, 0, -4), y = c(4.4, 4.4, 9.3, 9.3),
         col = 'ivory2', border = NA)
 abline(v=median(sum.out), lty = 2)
 abline(h=median(sp.abunds), lty = 2)
