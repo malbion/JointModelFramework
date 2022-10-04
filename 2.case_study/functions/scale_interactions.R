@@ -1,4 +1,4 @@
-# Scale the interaction parameters into betas
+# Scale the interaction parameters according to the annual plant pop model
 # Returns a 3D array of dimensions [N_species, N_neighbs, N_samples]
 
 # NB: demographic scaling can only be done on those interactions where we have germination
@@ -13,12 +13,15 @@ scale_interactions <- function(betas,
   
   N_samples <- dim(betas)[1]
   # order as focals / neighbours / samples
-  betamat <- aperm(betaij, c(2, 3, 1))
+  betamat <- aperm(betas, c(2, 3, 1))
   
   # average seed rates 
   seeds <- read.csv('data/seed_rates.csv', row.names = 1)
-  # Scale lambdas into growth rates including the seed rates (demographic param)
-  # r_i = ln(eta) = ln( (g_i * lambda_i ) / (1 - (1 - g_i) s_i) ) --- see Eq 15 Supps
+  
+  # SCALING: scaled beta = (g_j * model_param_ij) / ln(eta_i)  --- see Eq 15 Supps
+  
+  # Calculate the divisor first
+  # r_i = ln(eta_i) = ln( (g_i * lambda_i ) / (1 - (1 - g_i) s_i) )
   # reminder: lambda_i = exp(gamma_i) = exp(beta_i0) in old code
     r_i <- sapply(c(1:length(key_speciesID)), function(x) {
     prod <- seeds[key_speciesID[x], 'germ'] / (1 - (1 - seeds[key_speciesID[x], 'germ'])*seeds[key_speciesID[x], 'surv'])
