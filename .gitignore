@@ -13,4 +13,4 @@
 /3.analyses/smm.csv
 *.rds
 *.zip
-/2.case_study/model/*_samples.csv
+/2.case_study/model/*.csv
