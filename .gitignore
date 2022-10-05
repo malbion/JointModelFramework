@@ -10,6 +10,7 @@
 *.pdf
 *.Rhistory
 *.html
-/2.analyses/smm.csv
+/3.analyses/smm.csv
 *.rds
 *.zip
+/2.case_study/model/*_samples.csv
