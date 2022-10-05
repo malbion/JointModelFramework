@@ -81,7 +81,7 @@ message(paste0('Community selected: ', comm))
 message(paste0('Fecundity data dimensions = ', dim(fecundities)[1], ', ', dim(fecundities)[2]))
 message(paste0('Number of focals = ', length(key_speciesID)))
 message(paste0('Number of neighbours = ', length(key_neighbourID)))
-message(paste0('Proportion of identifiable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$K)))
+message(paste0('Proportion of identifiable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$`T`)))
 
 #--------------------------------------------------
 # Estimate interactions with a joint NDD*RI model |
