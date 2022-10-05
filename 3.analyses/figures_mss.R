@@ -212,12 +212,13 @@ bij.med <- t(bij.med)  # this is so qgraph points the arrows towards i
 # set up colours for nodes (linking to next figure)
 invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
-keyst <- c('GITE', 'TROR')
+keyst <- c('GITE')
 all.sp <- rep('white', length(dimnames(bij.med)$species))
 names(all.sp) <- dimnames(bij.med)$species
 # all.sp[invasives] <- 'tomato'
-all.sp[foundation] <- 'plum'
-all.sp[keyst] <- 'seagreen2'
+all.sp[foundation] <- 'purple'
+all.sp[keyst] <- 'aquamarine3'
+all.sp[invasives] <- 'firebrick3'
 # node.outline.width <- rep(1, length(dimnames(bij.med)$species))
 # names(node.outline.width) <- dimnames(bij.med)$species
 # node.outline.width[ c(invasives, foundation, keyst)] <- 3
@@ -251,37 +252,6 @@ qgraph(bij.med,  # plot interaction means
 
 dev.off()
 
-
-# # OLD FIGURE - compared to a cooccurrence network
-# # -------------------------------------------------
-# # get the cooccurence matrix
-# cooc <- read.csv('3.analyses/0_cooc.csv', stringsAsFactors = F, row.names = 1)
-# cooc <- cooc[1:nrow(bij.med), 1:nrow(bij.med)]
-# cooc <- t(cooc)
-# 
-# png('3.analyses/figures_mss/networks_strengths_med.png', 
-#     width = 600, height = 800, units = 'px')
-# par(mfrow=c(2, 1))
-# # plot all interactions
-# qgraph(bij.med,  # plot interaction means
-#        #  edge.width = (alpha_var*100),  # set edge width to be equal to the variance
-#        layout = 'circle',
-#        negCol = 'royalblue4',   # facilitation = blue
-#        posCol = 'orange',       # competition = orange
-#        color = all.sp,
-#        labels = dimnames(bij.med)$species,
-#        fade = T, directed = T,
-#        title = 'A', title.cex =5)
-# # plot from the cooccur package
-# qgraph(cooc,
-#        layout = 'circle', 
-#        negCol = 'orange',   # swap the colours around
-#        posCol = 'royalblue4',     
-#        color = all.sp,
-#        labels = dimnames(bij.med)$species,
-#        fade = T,
-#        title = 'B', title.cex =5)
-# dev.off()
 
 
 #-----------------------------------------------------
@@ -331,7 +301,7 @@ med.faci <- apply(sum.faci, 1, median)
 # get 'special' species
 invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
-keyst <- c('GITE', 'TROR')
+keyst <- c('GITE')
 
 ###### PLOT
 png('3.analyses/figures_mss/species_effects.png', 
@@ -401,7 +371,7 @@ lab.x.pos <- mean.sum.out[keyst]
 # lab.x.pos['TROR'] <- lab.x.pos['TROR'] - 0.15
 text(lab.x.pos + .5, sp.abunds[keyst], 
      labels = names(mean.sum.out[keyst]), pos = 3, col = 'springgreen4', 
-     cex = 1.4, offset = 0.7)
+     cex = 1.4, offset = -0.2)
 
 
 # 3. competitive vs facilitative effects
@@ -420,17 +390,14 @@ abline(h=median(-sum.faci), lty = 2)
 #        pch = 16, cex=0.7, col = 'grey')
 points(med.comp, -med.faci, 
        pch = 23, cex=1, bg='black')
-# points(rowMeans(sum.comp)[foundation], -rowMeans(sum.faci)[foundation], 
-#        pch = 23, bg = 'royalblue', cex = 1.3)
-# points(rowMeans(sum.comp)[keyst], -rowMeans(sum.faci)[keyst], 
-#        pch = 23, bg = 'orange', cex = 1.3)
 points(med.comp[invasives], -med.faci[invasives],  
        pch = 24, bg = 'red', cex = 1.8)
 lab.x.pos <- med.comp[invasives] 
-lab.x.pos['HYPO'] <- lab.x.pos['HYPO'] + 0.1
+lab.x.pos['PEAI'] <- lab.x.pos['PEAI'] - 0.15
+# lab.x.pos['ARCA'] <- lab.x.pos['ARCA'] - 0.4
 lab.y.pos <- (-med.faci[invasives] + 0.11)
 lab.y.pos['PEAI'] <- lab.y.pos['PEAI'] +0.05
-lab.y.pos['ARCA'] <- lab.y.pos['ARCA'] - 0.4
+lab.y.pos['ARCA'] <- lab.y.pos['ARCA'] - 0.2
 text(lab.x.pos, lab.y.pos, 
      labels = names(med.comp[invasives]), 
      pos =  4, col = 'darkred', offset = 0.3, cex = 1.4)
