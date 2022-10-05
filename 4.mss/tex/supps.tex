@@ -11,8 +11,10 @@
     
 
     We make the several observations in addition to comments in the code. Firstly, identifiable interactions (beta\_ij in the code) are defined as a vector, which must then be matched to their correct position in the interaction matrix. This is the role of the istart, iend, icol, and irow vectors defined in the data block. Our Github repository also contains the data\_prep.R file, which will show how to create these vectors from appropriate input data. 
-    Secondly, we impose the following constraints to improve convergence, avoid over-parameterisation and maintain identifiability of our parameters $r_i$ and $e_j$ \parencite{Huber2004, Kidzinski2020, Niku2021}. We define the effect parameters as a unit vector, which means we only require K-1 degrees of freedom (where K is the total number of neighbour elements) to estimate all effect values. This loss of a degree of freedom arises from the fact that the matrix whose $i,j$-elements are all products $r_i \times e_j$ is of rank 1. The first response parameter is also forced to positive. This improves convergence by providing an anchor for all other parameter values to `rotate' around. Though these latter two have implications for our estimates of the latent variables $r_i$ and $e_j$, estimates for identifiable and unidentifiable interactions should not be affected.
+    \textit{Secondly, the code is written to use a negative binomial function (lines 96 and 98, and again 112 and 114) with an exponential inverse link (lines 64 and 77), the latter is equivalent to a log link function. These lines, along with the dispersion parameter (lines 31 and 86, and wherever the negative binomial function is used) must all be modified if a different family and link function are to be used.}
+    Thirdly, we impose the following constraints to improve convergence, avoid over-parameterisation and maintain identifiability of our parameters $r_i$ and $e_j$ \parencite{Huber2004, Kidzinski2020, Niku2021}. We define the effect parameters as a unit vector, which means we only require K-1 degrees of freedom (where K is the total number of neighbour elements) to estimate all effect values. This loss of a degree of freedom arises from the fact that the matrix whose $i,j$-elements are all products $r_i \times e_j$ is of rank 1. The first response parameter is also forced to positive. This improves convergence by providing an anchor for all other parameter values to `rotate' around. Though these latter two have implications for our estimates of the latent variables $r_i$ and $e_j$, estimates for identifiable and unidentifiable interactions should not be affected.
     % DBS: Above, I still bristle at the fact that we use K in the code and t in the main text for the number of neighbouring elements. Can we please change the code to match?
+    % MDB: The main issue is that 'T' reads as 'TRUE' in R
 
     \subsection{Assessing parameter identifiability}
     \label{SI:identify}
@@ -20,8 +22,6 @@
     \textbf{We assess which interactions parameters are identifiable in the data\_prep.R file (lines 30-44) and store this information in the matrix $Q$. To do so, we first create a model matrix $X_i$ for each focal species $i$. This matrix has as many rows as performance measurements for focal species $i$ and $t+1$ columns, where $t$ is the total number of neighbouring species across the full dataset. Its first column is a vector of $1$'s (representing the intercept) and all remaining columns denote the neighbour abundances recorded for each observation. We transform this matrix into its row-reduced echelon form $R_i$ using the rref() function from the pracma package \parencite{Borchers2022}, and we then left multiply $R_i$ by its transpose to produce a $t+1 \times t+1$ symmetric matrix $Z_i$. We can use this matrix $Z_i$ to determine which neighbour abundances are linearly independent of all other neighbour abundances as follows. We ignore the first row of $Z_i$ because it corresponds to the intercept which we always want to include in our model. For every other row $k > 1$, its corresponding predictor is linearly independent if and only if it consists entirely of $0$'s except for its $k$'th element. If this is true, the interaction parameter corresponding to that row (neighbour abundance) is thus identifiable and we assign it a value of $1$ in the $i$'th row and $k-1$'th column of $Q$. Alternatively, the corresponding element in $Q$ is given a value of $0$. Examining the $Z_i$ matrix of each focal species $i$therefore allows us to construct the full $Q$ matrix of inferrable pairwise interaction parameters. Given that $Z_i$ is symmetric, note that the checks for linear independence could equivalently be done using the columns of $Z_i$.}
 
     In a similar way, we also evaluate whether predictors (neighbours) are linearly independent across the entire dataset in order to be able to correctly distinguish their respective effect parameters $e_j$ for the RIM. The same procedure as above is performed across the entire model matrix $X$ (without subsetting for each focal species) and neighbours in the entire matrix $Z$ are evaluated for linear independence. This is done early on in the master.R file (lines 26-36) as a check before transforming the data into the format required by STAN. Given enough data, a lack of linear independence across the entire dataset is very unlikely; indeed, it would only arise if multiple neighbours' densities were perfectly correlated across all neighbourhoods.
-
-% We construct a matrix $Q$ of size $s \times t$, with $Q_{i, j} = 1$ if the corresponding $\beta_{i, j}$ parameter is identifiable, and $Q_{i, j} = 0$ if not.
 
     \subsection{Validation on multiple chains}
     \label{SI:multichains}
@@ -59,7 +59,7 @@
         \label{SI:popdyn}
 
         \paragraph{}
-        The above model framework returns species-specific estimates of intrinsic fitness ($\gamma_i$), as well as as a focal species $\times$ neighbour species matrix $B$ of identifiable ($\beta_{i, j}$) and unidentifiable ($r_{i} e_j$) interaction estimates which quantify the effects of one neighbour $j$ on the intrinsic fitness of a focal species $i$. Though useful as they are, these estimates can lead to a wider range of potential applications when integrated into models of population dynamics. For example, we might be more interested in the effects of neighbours on the density or growth rate of a focal species rather than on its proxy for lifetime reproductive success. Importantly, it is necessary to specify a model describing population dynamics in order to draw conclusions about the effects of interactions and network structure on the maintenance of community diversity and stability. 
+        The above model framework returns species-specific estimates of intrinsic fitness ($\gamma_i$), as well as as a focal species $\times$ neighbour species composite matrix $B$ of identifiable ($\beta_{i, j}$) and unidentifiable ($r_{i} e_j$) interaction estimates which quantify the effects of one neighbour $j$ on the intrinsic fitness of a focal species $i$. Though useful as they are, these estimates can lead to a wider range of potential applications when integrated into models of population dynamics. For example, we might be more interested in the effects of neighbours on the density or growth rate of a focal species rather than on its proxy for lifetime reproductive success. Importantly, it is necessary to specify a model describing population dynamics in order to draw conclusions about the effects of interactions and network structure on the maintenance of community diversity and stability. 
 
         \paragraph{} 
         We defined the following model for annual plants with a seed bank \parencite{Levine2009, Mayfield2017, Bimler2018} which describes the rate of change in a focal species' \textit{i} abundance of seeds in a seed bank from one year to the next: 
@@ -72,13 +72,13 @@
                 F_{i,t} = \lambda_{i} e^{- \alpha_{ii} g_{i} N_{i, t} -  \alpha_{ij} g_{j} N_{j, t} }
                 \label{fecundity}   
             \end{equation}
-        where \(\lambda_{i}\) corresponds to seed number in the absence of interaction effects, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij}\) and \(\alpha_{ii}\) which are equivalent to \(\beta_{i, j}\) in Eq.~\ref{nddm} of the main text.
-        % DBS: Change the $\beta$ above to $B$ depending on your response to my comment.
+        where \(\lambda_{i}\) corresponds to seed number in the absence of interaction effects, and \(\alpha_{ii}\) and \(\alpha_{ij}\) are the interaction strengths between species \(i\) and its intraspecific and interspecific neighbours respectively. Here it is \(\alpha_{ij}\) and \(\alpha_{ii}\) which are equivalent to \(B_{i, j}\) in Eq.~\ref{matB} of the main text.
+
         We determine the scaled interaction strengths ${\alpha}''$'s by including \(\lambda_{i}\), \(g_{i}\) and \(s_{i}\) in such a way that these variables are cancelled out when the ${\alpha}''$'s are substituted for the $\alpha$'s in our annual plant population model \parencite{Godoy2014, Bimler2018}. 
         \begin{equation}
             {\alpha}''_{ij} = \frac{g_{j} \alpha_{ij}}{ln(\eta_{i})}
         \end{equation}
-        with $\eta_{i} = \frac{\lambda_{i} g_{i}}{\theta_{i}}$ and $\theta_{i} = 1 - (1 - g_{i})(s_{i})$. % \(ln(\eta_{i})\) is thus equivalent to \(\beta_{i0}\) in Eqs. \ref{nddm} and \ref{scaling}.
+        with $\eta_{i} = \frac{\lambda_{i} g_{i}}{\theta_{i}}$ and $\theta_{i} = 1 - (1 - g_{i})(s_{i})$. 
         Note that our model evaluates the rate of change of seeds in the seed bank, and this is reflected in the scaling terms used to compare interaction strengths between focal species. Substituting ${\alpha}''$'s for $\alpha$'s in Eq.~\ref{ifm} gives us: 
     
         \begin{equation}
@@ -87,19 +87,27 @@
         where we can see that the ${\alpha}''$'s are directly proportional to the density of neighbours. Relating this population model to the joint model framework, we recover the following: 
 
         \begin{equation}
-        {\beta}''_{i, j} = {\alpha}''_{ij}
+        B_{i, j} = \alpha_{ij} % CORRECT
         \end{equation}
 
         \begin{equation}
-        \beta_{i, j} = \alpha_{ij}
+        \gamma_{i}  = ln(\lambda_{i})  % CORRECT
         \end{equation}
 
         \begin{equation}
-        \gamma_{i}  = ln(\eta_{i}) = ln(\frac{\lambda_{i} g_{i}}{\theta_{i}})
+        \eta_{i} = \frac{e^{\gamma_{i}} g_{i}}{\theta_{i}}
         \end{equation}
-        % Daniel thinks this last equation is wrong but I don't think so?
-        % DBS: Daniel is still convinced it's 100% wrong.
-        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\gamma_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
+
+        \begin{equation}
+        ln(\eta_{i}) = \gamma_{i} \left( ln(g_i) - ln(\theta_i) \right)
+        \end{equation}
+
+        \begin{equation}
+        {\alpha}''_{i, j} = \frac{g_j B_{i,j}}{ln(\eta_i)} = \frac{g_j B_{i,j}}{\gamma_{i} \left( ln(g_i) - ln(\theta_i) \right)} 
+        \label{alphaprime}
+        \end{equation}
+
+        As we show here, the exact form of the rescaled interactions as well as intrinsic fitness can therefore vary depending on the specific population dynamic model applied and may include other demographic rates which reflect species-level differences in growth and mortality. \textit{In our case study, we were only able to scale interactions between pairs of focal species because we required demographic rates for both species involved in the interaction (Eq. \ref{alphaprime}) and rates for non-focal species were not available.} Because intrinsic fitness is estimated by the model framework and not directly observed, we used the mean of the $\gamma_{i}$ posterior distribution returned by our model in our scaling of the interaction coefficients.
 
 
         \subsubsection{Seed germination and survival data}
