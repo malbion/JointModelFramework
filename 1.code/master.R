@@ -13,7 +13,7 @@ source('data_prep.R')
 source('simul_data.R')
 
 # load simulated data 
-simdat <- simul_data(S=10, K=10, p=0.25)
+simdat <- simul_data(S=5, K=5, p=0.25)
 df <- simdat[[1]]
 sim_a <- simdat[[2]]
 sim_interactions <- simdat[[3]]
@@ -46,12 +46,12 @@ stan.data <- data_prep(perform = 'seeds',
 message(paste0('Data dimensions = ', dim(df)[1], ', ', dim(df)[2]))
 message(paste0('Number of focal groups = ', length(focalID)))
 message(paste0('Number of neighbour groups = ', length(neighbourID)))
-message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$K)))
+message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$`T`)))
 
 # Run the model! 
 fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
-            chains = 1,
+            chains = 5,
             warmup = 1000,          # number of warmup iterations per chain
             iter = 2500,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
@@ -84,9 +84,9 @@ p.samples <- sapply(param.vec[!param.vec %in% c('ri_betaij', 'ndd_betaij')], fun
 })
 
 
-# WARNING: in the STAN model for annual wildflowers, parameter 'beta_i0' lies within an exponential,
-# 'beta_i0' estimates must thus be exponentiated to return estimates of intrinsic performance
-intrinsic.perf <- exp(p.samples$beta_i0)
+# WARNING: in the STAN model for annual wildflowers, parameter 'gamma_i' lies within an exponential,
+# 'gamma_i' estimates must thus be exponentiated to return estimates of intrinsic performance
+intrinsic.perf <- exp(p.samples$gamma_i)
 colnames(intrinsic.perf) <- focalID
 
 # Get interaction estimates
