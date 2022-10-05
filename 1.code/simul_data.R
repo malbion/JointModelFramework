@@ -20,7 +20,7 @@ simul_data <- function(
   # randomly select observations that will be set to 0
   obs_to_rm <- sample(seq_along(1:(S*K)), pI*S*K)
   # remove unobserved interactions
-  for(i in 1:(pI*S*K)) {
+  for(i in seq_along(obs_to_rm)) {
     summedSK[[obs_to_rm[i]]] <- 0
   }
   
