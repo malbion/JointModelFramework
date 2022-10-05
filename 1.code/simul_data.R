@@ -1,10 +1,9 @@
 # Function to create a simulated dataset 
 
 simul_data <- function(
-                        # number of species has to be a multiple of 10
-                        S = 10,   # number of focal groups / species
-                        K = 10,   # number of neighbour focals 
-                        pI = 0.25,   # proportion of interactions which are NOT observed 
+                        S,   # number of focal groups / species
+                        K,   # number of neighbour focals 
+                        pI,   # proportion of interactions which are NOT observed 
                         ...
 ) {
   
@@ -12,6 +11,7 @@ simul_data <- function(
   #-------------------------------
   # we assume we have a different number of observations for each focal
   S_obs <- c(rpois(.1*S, 100), rpois(.2*S, 80), rpois(.5*S, 50), rpois(.2*S, 35))
+  if (length(S_obs) < S) {S_obs <- c(rpois(S-length(S_obs), 100), S_obs)} # workaround for species number < 10
   
   # we assume that S = K, and that the number of observations of K is relative to their abundance
   approx_K_obs <- round(jitter(10*(S_obs), amount = 30))
