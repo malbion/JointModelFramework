@@ -15,8 +15,6 @@ data {
   int<lower=0> species_ID[N];   // index matching observations to focal species (d in the manuscript)
   int<lower=0> perform[N];      // response variable (p in the manuscript)
     
-  int<lower=0> istart[S];       // indices matching species to identifiable interactions
-  int<lower=0> iend[S];
   int<lower=0> icol[I];
   int<lower=0> irow[I];
   
@@ -67,11 +65,10 @@ transformed parameters {
   // NDDM estimates identifiable interactions, and uses RIM estimates when non-identifiable:
   ndd_betaij = ri_betaij; // initialise nddm interaction matrix to rim estimates
   // match identifiable interactions parameters to the correct position in the interaction matrix
-  for(s in 1:S) {
-    for(i in istart[s]:iend[s]) {
-      ndd_betaij[irow[i], icol[i]] = beta_ij[i];
-   }
+  for(i in 1:I) {
+    ndd_betaij[irow[i], icol[i]] = beta_ij[i];
   }
+
   // estimate identifiable interactions
   for(n in 1:N) {
         mu2[n] = exp(gamma_i[species_ID[n]] - dot_product(X[n], ndd_betaij[species_ID[n], ]));  
