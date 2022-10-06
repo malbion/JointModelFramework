@@ -5,7 +5,7 @@ require(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores()) 
 
-# library(rethinking)
+library(rethinking)
 library(reshape2)
 library(truncnorm)
 
@@ -35,7 +35,7 @@ indep <- sapply(seq(1, dim(Z_all)[1], 1), function(k){
   ifelse(Z_all[k, k] == 1 & sum(Z_all[k, -k]) == 0, 1, 0)
 }) #
 all(indep == 1) # if TRUE then neighbours are linearly independent and we can continue
-if(!all(indep == 1)) message('WARNING neighbours are not linearly independent') 
+if(!all(indep == 1)) warning('WARNING neighbours are not linearly independent') 
 
 
 # prepare the data into the format required by STAN and the model code
