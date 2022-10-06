@@ -7,6 +7,7 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
+library(truncnorm)
 
 # load required functions
 source('data_prep.R')
@@ -52,8 +53,8 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 fit <- stan(file = 'joint_model.stan',
             data =  stan.data,               # named list of data
             chains = 5,
-            warmup = 1000,          # number of warmup iterations per chain
-            iter = 2500,            # total number of iterations per chain
+            warmup = 3000,          # number of warmup iterations per chain
+            iter = 4000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
                            adapt_delta = 0.8) # try lowering this to remove divergences
