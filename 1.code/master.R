@@ -5,7 +5,7 @@ require(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores()) 
 
-library(rethinking)
+# library(rethinking)
 library(reshape2)
 library(truncnorm)
 
@@ -14,7 +14,8 @@ source('data_prep.R')
 source('simul_data.R')
 
 # load simulated data 
-simdat <- simul_data(S=5, K=5, p=0.25)
+set.seed(15864)
+simdat <- simul_data(S=3, K=3, p=1)
 df <- simdat[[1]]
 sim_a <- simdat[[2]]
 sim_interactions <- simdat[[3]]
@@ -60,6 +61,28 @@ fit <- stan(file = 'joint_model.stan',
                            adapt_delta = 0.8) # try lowering this to remove divergences
 )
 
+
+fitsum <- as.data.frame(summary(fit)$summary)
+noncon <- fitsum[fitsum$Rhat > 1.1, ]
+
+# DBS additions
+# these are the only parameters whose convergence we care about (right?)
+print(summary(fit, pars=c("gamma_i","ndd_betaij","ri_betaij"))$summary)
+
+# inspect for bimodality across parameters in RIM
+pairs(fit, pars=c('gamma_i','ri_betaij'))
+
+# inspect for bimodality across parameters in pairwise model
+pairs(fit, pars=c("gamma_i","beta_ij"))
+
+# inspect for bimodality across parameters in joint model
+pairs(fit, pars=c("gamma_i","ndd_betaij"))
+
+pairs(fit, pars=c('response','effect'))
+
+rstan::traceplot(fit, pars=c("gamma_i","ndd_betaij"))
+#### END of DBS additions
+
 # As well as the usual traceplots etc., convergence one 1 chain can be checked 
 # using the geweke.diag() function from the coda package, e.g.:
 library(coda)
@@ -74,7 +97,7 @@ gew <- coda::geweke.diag(matrix_of_draws)
 joint.post.draws <- extract.samples(fit)
 
 # Select parameters of interest
-param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', 'lp__')]
+param.vec <- fit@model_pars[!fit@model_pars %in% c('lp__')]
 
 # Draw 1000 samples from the 80% posterior interval for each parameter of interest
 p.samples <- list()
