@@ -11,11 +11,11 @@ library(truncnorm)
 
 # load required functions
 source('data_prep.R')
-source('simul_data.R')
+source('from_daniel/simul_data.R')
 
 # load simulated data 
-set.seed(15864)
-simdat <- simul_data(S=3, K=3, p=1)
+set.seed(22379)
+simdat <- simul_data(S=3, K=3, p=0)
 df <- simdat[[1]]
 sim_a <- simdat[[2]]
 sim_interactions <- simdat[[3]]
@@ -51,20 +51,27 @@ message(paste0('Number of neighbour groups = ', length(neighbourID)))
 message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(stan.data$S*stan.data$`T`)))
 
 # Run the model! 
-fit <- stan(file = 'joint_model.stan',
-            data =  stan.data,               # named list of data
-            chains = 5,
-            warmup = 3000,          # number of warmup iterations per chain
-            iter = 4000,            # total number of iterations per chain
-            refresh = 100,         # show progress every 'refresh' iterations
-            control = list(max_treedepth = 10,
-                           adapt_delta = 0.8) # try lowering this to remove divergences
-)
-
+stan.seed <- 1234
+fit <- list()
+for (i in 1:4) {
+  fit[i] <- stan(file = 'joint_model.stan',
+                     data =  stan.data,               # named list of data
+                     chains = 1,
+                     warmup = 200,          # number of warmup iterations per chain
+                     iter = 300,            # total number of iterations per chain
+                     refresh = 100,         # show progress every 'refresh' iterations
+                     control = list(max_treedepth = 10,
+                                    adapt_delta = 0.8), # try lowering this to remove divergences
+                     seed = stan.seed,
+                     chain_id = i
+  )
+}
+# run model chains separately then combine then to avoid memory issues
+fit <- sflist2stanfit(fit)
 
 fitsum <- as.data.frame(summary(fit)$summary)
 noncon <- fitsum[fitsum$Rhat > 1.1, ]
-
+noncon
 # DBS additions
 # these are the only parameters whose convergence we care about (right?)
 print(summary(fit, pars=c("gamma_i","ndd_betaij","ri_betaij"))$summary)
