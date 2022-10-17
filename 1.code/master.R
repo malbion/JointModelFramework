@@ -17,7 +17,7 @@ source('from_daniel/simul_data.R')
 set.seed(22379)
 simdat <- simul_data(S=3, K=3, p=0)
 df <- simdat[[1]]
-sim_a <- simdat[[2]]
+sim_gamma <- simdat[[2]]
 sim_interactions <- simdat[[3]]
 
 # identify focal and neighbouring species to be matched to parameter estimates
