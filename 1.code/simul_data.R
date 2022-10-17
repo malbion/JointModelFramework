@@ -1,4 +1,5 @@
 # Function to create a simulated dataset 
+library(truncnorm)
 
 simul_data <- function(
                         S,   # number of focal groups / species
@@ -6,7 +7,22 @@ simul_data <- function(
                         pI,   # proportion of interactions which are NOT observed 
                         ...
 ) {
+    # Parameters
+  #-----------
+  # log of species-specific intrinsic performance
+  sim_a <- runif(S, 2, 7)  
   
+  # 'true' interaction strengths 
+  # a <- rnorm( 8000, 0, .3 )
+  # b <- rnorm( 2000, -0.7, .3 )
+  # c <- rnorm( 1000,  0.3, .2 )
+  # customdist <- c( a, b, c ) ## make a weird dist with Kurtosis and Skew
+  # sim_truealpha <- matrix(data = sample(customdist, S*K, replace = F),
+  #                         nrow = S, ncol = K)
+  sim_responses <- runif(S,-0.1,1)
+  sim_effects <- runif(K)
+  sim_truealpha <- matrix(sim_responses%*%t(sim_effects), S, K)
+
   # Neighbourhood abundance counts
   #-------------------------------
   # we assume we have a different number of observations for each focal
@@ -46,19 +62,6 @@ simul_data <- function(
   if (nrow(K_Nmat) != sum(S_obs)) message('Error in total number of observations!')
   if (sum(colSums(K_Nmat) != colSums(summedSK)) > 1) message('Error in neighbour abundances')
   colnames(K_Nmat) <- paste0('K', 1:K)
-  
-  # Parameters
-  #-----------
-  # log of species-specific intrinsic performance
-  sim_a <- runif(S, 2, 7)  
-  
-  # 'true' interaction strengths 
-  a <- rnorm( 8000, 0, .3 )
-  b <- rnorm( 2000, -0.7, .3 )
-  c <- rnorm( 1000,  0.3, .2 )
-  customdist <- c( a, b, c ) ## make a weird dist with Kurtosis and Skew
-  sim_truealpha <- matrix(data = sample(customdist, S*K, replace = F),
-                          nrow = S, ncol = K)
   
   # Observed seed set
   #------------------
