@@ -73,7 +73,7 @@ stan_model_check <- function(fit,
     # this is just to length the plots so they can show all parameters
     N <- length(grep(x, rownames(fit_summary)))
     # some exceptions: 
-    if (x == 'beta_i0') {N <- 20}
+    if (x == 'gamma_i') {N <- 20}
     if (x == 'beta_ij') {N <- 800}
     if (x == 'lp__') {N <- 10}
     
