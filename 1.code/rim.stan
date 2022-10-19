@@ -26,9 +26,8 @@ parameters {
   // defined for the negative binomial distribution used to reflect seed production (perform)
   // disp_dev = 1/sqrt(phi)
   
-  vector<lower=0>[1] response1; // first species-specific response parameter
-  // constrained to be positive for identifiability
-  vector[S-1] responseSm1; // other species-specific response parameters
+  real<lower=0> weight;    // weighting value controlling the average strength of interactions (must be positive)
+  unit_vector[S] response; // species-specific effect parameter (r in the manuscript but without weight)
 
   unit_vector[T] effect; // species-specific effect parameter
 
@@ -37,17 +36,12 @@ parameters {
 transformed parameters {
   
   // transformed parameters constructed from parameters above
-  vector[S] response;        // combined vector of species-specific responses
-  
   vector[N] mu;              // the linear predictor for perform (here seed production)
   
   matrix[S, T] ri_betaij;   // interaction matrix for the RI model
   
-  
-  // stitch together the response values
-  response = append_row(response1, responseSm1);
   // get RIM interactions
-  ri_betaij = response*effect';
+  ri_betaij = weight * response*effect';  // the apostrophe transposes the effect vector
   
   // response-impact model estimates all interactions
   for(n in 1:N) {
@@ -62,11 +56,9 @@ model {
   gamma_i ~ cauchy(0,10);   // prior for the intercept following Gelman 2008
   disp_dev ~ cauchy(0, 1);  // safer to place prior on disp_dev than on phi
  
-  response1 ~ normal(0, 1);   // constrained by parameter defintion to be positive
-  responseSm1 ~ normal(0,1);
-  // no prior needed for effect as we can use the default prior for the unit_vector
+  weight ~ normal(0, 10); // constrained by parameter definition to be positive
+  // no prior needed for response or effect as we can use the default prior for the unit_vector
 
-  
   for(n in 1:N) {
     perform[n] ~ neg_binomial_2(mu[n], (disp_dev[species_ID[n]]^2)^(-1));
     // in our case study, seed production shows a better fit to a negative binomial 
