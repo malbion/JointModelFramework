@@ -1,5 +1,4 @@
 # Function to create a simulated dataset 
-library(truncnorm)
 
 simul_data <- function(
                         S,   # number of focal groups / species
@@ -68,12 +67,9 @@ simul_data <- function(
   seeds <- rep(NA, length = sum(S_obs))
   counter <- 0
   for(s in 1:S) {
-    # species-specific dispersion for generation of negative binomial seed distribution
-    size_s <- rtruncnorm(1, a = 0, b = 2, mean = 1, sd = 0.2) # truncated normal distribution
     for (i in (counter+1):(counter + S_obs[s])) {
       # multiply neighbour abundances by 'true' alpha values
-      mu_i <- exp(sim_a[s] - sum(K_Nmat[i, ] * sim_truealpha[s, ]))
-      seeds[i] <- rnbinom(1, mu = mu_i, size = size_s)
+      seeds[i] <- rpois(1,exp(sim_a[s] - sum(K_Nmat[i, ] * sim_truealpha[s, ])))
     }
     counter <- counter + S_obs[s]
   } 
