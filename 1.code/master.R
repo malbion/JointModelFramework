@@ -7,14 +7,13 @@ options(mc.cores = parallel::detectCores())
 
 library(rethinking)
 library(reshape2)
-library(truncnorm)
 
 # load required functions
 source('data_prep.R')
 source('simul_data.R')
 
 # load simulated data 
-set.seed(22379)
+set.seed(54)
 simdat <- simul_data(S=3, T=3, p=0.4)   # p = proportion of interactions which are NOT observed 
 df <- simdat[[1]]
 sim_gamma <- simdat[[2]]
@@ -52,22 +51,17 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 
 # Run the model! 
 stan.seed <- 1234
-fit <- list()
-for (i in 1:4) {
-  fit[i] <- stan(file = 'rim.stan',
-                     data =  stan.data,               # named list of data
-                     chains = 1,
-                     warmup = 200,          # number of warmup iterations per chain
-                     iter = 300,            # total number of iterations per chain
-                     refresh = 100,         # show progress every 'refresh' iterations
-                     control = list(max_treedepth = 10,
-                                    adapt_delta = 0.8), 
-                     seed = stan.seed,
-                     chain_id = i
+fit <- stan(file = 'rim.stan',
+            data =  stan.data,               # named list of data
+            chains = 4,
+            warmup = 2000,          # number of warmup iterations per chain
+            iter = 3000,            # total number of iterations per chain
+            refresh = 100,         # show progress every 'refresh' iterations
+            control = list(max_treedepth = 10,
+                           adapt_delta = 0.8), 
+            seed = stan.seed
   )
-}
-# run model chains separately then combine then to avoid memory issues
-fit <- sflist2stanfit(fit)
+
 
 fitsum <- as.data.frame(summary(fit)$summary)
 noncon <- fitsum[fitsum$Rhat > 1.1, ]
