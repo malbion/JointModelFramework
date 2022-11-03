@@ -11,11 +11,11 @@ library(truncnorm)
 
 # load required functions
 source('data_prep.R')
-source('from_daniel/simul_data.R')
+source('simul_data.R')
 
 # load simulated data 
 set.seed(22379)
-simdat <- simul_data(S=3, K=3, p=0)
+simdat <- simul_data(S=3, T=3, p=0.4)   # p = proportion of interactions which are NOT observed 
 df <- simdat[[1]]
 sim_gamma <- simdat[[2]]
 sim_interactions <- simdat[[3]]
@@ -54,14 +54,14 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 stan.seed <- 1234
 fit <- list()
 for (i in 1:4) {
-  fit[i] <- stan(file = 'joint_model.stan',
+  fit[i] <- stan(file = 'rim.stan',
                      data =  stan.data,               # named list of data
                      chains = 1,
                      warmup = 200,          # number of warmup iterations per chain
                      iter = 300,            # total number of iterations per chain
                      refresh = 100,         # show progress every 'refresh' iterations
                      control = list(max_treedepth = 10,
-                                    adapt_delta = 0.8), # try lowering this to remove divergences
+                                    adapt_delta = 0.8), 
                      seed = stan.seed,
                      chain_id = i
   )
