@@ -32,7 +32,7 @@
 
     \begin{figure}[H]
         \includegraphics[width=\textwidth]{../../2.case_study/mc_joint/adapt_delta_095_treedepth_20/gamma_21_joint.png}
-        \caption{Diagnostic plot for the least convergent $\gamma_i$ parameter ($\hat{R} = 4.73$) in the joint model. For all graphs, values for that $\gamma_i$ are given on the y-axis. The first graph shows a scatterplot of $\gamma_i$ against the accumulated log-posterior on the x-axis, whilst the second graph is a scatterplot of $\gamma_i$ against the average Metropolic acceptance rate. Each point corresponds to one sample. The bottom graph is a violin plot of the distribution of $\gamma_i$ at each of the sampled step sizes (one per chain). This figure illustrates that despite the chains not converging on the exact same values for $\gamma_i$, estimates are very close between chains and the associated log posteriors overlap. The figure was plotted using the \texttt{stan\_par()} function from the rstan package.}
+        \caption{Diagnostic plot for the least convergent $\gamma_i$ parameter ($\hat{R} = 4.73$) in the joint model. For all graphs, values for that $\gamma_i$ are given on the y-axis. The first graph shows a scatterplot of $\gamma_i$ against the accumulated log-posterior on the x-axis, whilst the second graph is a scatterplot of $\gamma_i$ against the average Metropolic acceptance rate. Each point corresponds to one sample. The bottom graph is a violin plot of the distribution of $\gamma_i$ at each of the sampled step sizes (one per chain). This figure illustrates that despite the chains not converging on the exact same values for $\gamma_i$, estimates are very close between chains and the associated log posteriors overlap. No divergent transitions were present. The figure was plotted using the \texttt{stan\_par()} function from the rstan package.}
         \label{fig:parexample}
     \end{figure}
 
@@ -40,7 +40,7 @@
     \newgeometry{top=0.5cm, bottom = .5cm}
     \begin{figure}[H]
         \includegraphics[width=\textwidth]{../../2.case_study/gamma_i_all_models.png}
-        \caption{Posterior interval distributions for all 22 $\gamma$ parameters as returned by the RIM, NDDM and joint model. For all graphs, posterior values are given on the x-axis. The red dot indicates the median of each distribution. The $\gamma_i$ with the highest $\hat{R}$ in the joint model is shown in the bottom-most right corner.}
+        \caption{Posterior interval distributions for all 22 $\gamma$ parameters as returned by the RIM, NDDM and joint model. For all graphs, posterior values are given on the x-axis. The red dot indicates the median of each distribution. The $\gamma_i$ with the highest $\hat{R}$ in the joint model is shown in the bottom-most left corner.}
         \label{fig:gamma_all}
     \end{figure}
 
