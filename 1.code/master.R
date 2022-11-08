@@ -58,9 +58,9 @@ fit <- stan(file = 'rim.stan',
             iter = 3000,            # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10,
-                           adapt_delta = 0.8), 
+                           adapt_delta = 0.9), 
             seed = stan.seed
-  )
+)
 
 
 fitsum <- as.data.frame(summary(fit)$summary)
