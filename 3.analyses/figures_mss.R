@@ -4,93 +4,26 @@
 library(here)
 setwd(here())
 
-# Figures 1 and Supp Figs 1&2 use 'raw' parameters extracted from the model output 
+# Figures 1 and Supp Figs 1-4 use 'raw' parameters extracted from the model output 
 # Figures 2 and 3 used interaction estimates which have been rescaled with a pop dyn model
-
-
-############################################################################################
-#                      PREP FOR FIGURES 1 AND SUPPLEMENTARY FIGS 1 & 2
-############################################################################################
-
-
-rim_mat <- as.matrix(read.csv('2.case_study/model/output/RIM_betaij_samples.csv'))
-nddm_mat <- as.matrix(read.csv('2.case_study/model/output/NDDM_betaij_samples.csv'))
-
-
-#-------------------------------------------------------------
-# SUPPS Figure 1: Posterior predictive check on the RIM only |
-#-------------------------------------------------------------
 
 # get real data
 fecundities <- read.csv('2.case_study/data/fecundities0.csv', stringsAsFactors = F)
 seeds <- fecundities$seeds
 focalobs <- as.numeric(as.factor(fecundities$focal))
 
-# extract mu and phi
-mu <- read.csv('2.case_study/model/output/mu_samples.csv')
+#################################################################################
+# MAIN TEXT Figure 1: Posterior predictive check on the joint model 
+##################################################################################
+
+mu2 <- read.csv('2.case_study/model/output/mu2_samples.csv')
 phi <- read.csv('2.case_study/model/output/disp_dev_samples.csv')
 phi <- (phi^2)^(-1)
 
-# generating posterior predictions
-seed_pred <- matrix(nrow = dim(mu)[1], ncol = dim(mu)[2])
-for (i in 1:dim(mu)[1]) {     # for each posterior draw
-  for (j in 1:dim(mu)[2]) {    # for each observation 
-    # draw from the predicted distribution
-    seed_pred[i, j] <- rnbinom(1, mu = mu[i, j], size = phi[i, focalobs[j]])  
-  }
-}
-# log transform seed predictions
-seed_pred <- log(seed_pred)
-# and using just the median of the parameters
-m.mu <- apply(mu, 2, median)
-m.phi <- apply(phi, 2, median)
-mean_seed_pred <- sapply(1:length(m.mu) , function(x) {
-  rnbinom(1, mu = m.mu[x], size = m.phi[focalobs[x]])
-})
-mean_seed_pred <- log(mean_seed_pred)
-
-# get maximum density for plot limits
-max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}), 
-                     max(density(seeds)$y)))
-
-
-png('3.analyses/figures_mss/postpredch_mu.png', width=500, height=500)
-# start a plot with the first draw 
-ppc.plot <- plot(density(seed_pred[1, ]), 
-                 type = 'n',
-                 bty = 'n',
-                 ylim = c(0, max.density+0.03),  
-                 xlim = c(-1, 10),
-                 col = 'lightgrey',
-                 ylab = 'Seed probability density',
-                 xlab = 'Log seed production',
-                 main = '',
-                 # sub = '(grey = predicted, red = observed)'
-                 ) 
-for (i in 1:dim(seed_pred)[1]) {
-  # add a line for each draw
-  ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
-}
-# add the 'mean prediction'
-ppc.plot <- lines(density(mean_seed_pred), col = 'black', lwd = 1)  
-# add the actual data
-ppc.plot <- lines(density(log(seeds)), col = 'red', lwd = 1)  
-# add legend
-ppc.plot <- legend('topright', 
-                  legend = c('predicted', 'observed'), 
-                  col = c('lightgrey', 'red'), lwd = c(6, 1),
-                  bty = 'n')
-print(ppc.plot)
-dev.off()
-
-
-#--------------------------------------------------------------------
-# MAIN TEXT Figure 1: Posterior predictive check on the joint model |
-#--------------------------------------------------------------------
-
-#################### Do the same as above but for mu2 ######################
-mu2 <- read.csv('2.case_study/model/output/mu2_samples.csv')
-
+# select 1000 samples from the 80% posterior interval
+mu2 <- apply(mu2, 2, function(p) {sample(p[p > quantile(p, 0.1) & p < quantile(p, 0.9)], size = 1000)})
+phi <- apply(phi, 2, function(p) {sample(p[p > quantile(p, 0.1) & p < quantile(p, 0.9)], size = 1000)})
+  
 # generating posterior predictions
 seed_pred <- matrix(nrow = dim(mu2)[1], ncol = dim(mu2)[2])
 for (i in 1:dim(mu2)[1]) {     # for each posterior draw
@@ -143,64 +76,11 @@ ppc.plot <- legend('topright',
 print(ppc.plot)
 dev.off()
 
+rm(mu2, ppc.plot, seed_pred)
 
-#---------------------------------------
-# SUPPS Figure 2: IFM vs RIM estimates |
-#---------------------------------------
-mn <- min(nddm_mat)
-mx <- max(nddm_mat)
-
-png('3.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 700)
-par(mfrow=c(2,2), cex = 1.5)
-hist(nddm_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})], 
-     xlab = "", breaks = 30,
-     main = "Realised interactions (NDDM)", 
-     xlim = c(mn, mx))
-plot(rim_mat[nddm_mat!=0], nddm_mat[nddm_mat!=0], 
-     ylab = 'NDDM estimates', xlab='Response*Impact estimates',
-     xlim = c(mn, mx), ylim = c(mn, mx), 
-     pch = 16, 
-     col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
-abline(0,1)
-hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x == 0)})],  
-     xlab = "", breaks = 30,
-     main = 'Unrealised interactions (RIM)', 
-     xlim = c(mn, mx))
-hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})],  
-     xlab = "", breaks = 30,
-     main = 'Realised interactions (RIM)', 
-     xlim = c(mn, mx))
-dev.off()
-
-
-
-
-# # Potential figure for Supps ?
-# #------------------------------
-# response <- as.matrix(read.csv('2.case_study/model/output/response_samples.csv'))
-# effect <- as.matrix(read.csv('2.case_study/model/output/effect_samples.csv'))
-# S <- dim(response)[2]
-# 
-# png('3.analyses/figures_mss/response_impact.png', width = 400, height = 700)
-# plot(response, effect[ , 1:S], type = 'n',
-#      xlab = expression(italic('response i')), ylab = expression(italic('impact i')))
-# abline(h = 0, lty = 2)
-# points(response, effect[ , 1:S],
-#      pch = 16, 
-#      col = rgb(red = 0.5, green = 0.5, blue = 0.5, alpha = 0.2))
-# points(apply(response, 2, median), apply(effect[ , 1:S], 2, median),
-#        pch = 18, cex = 2)
-# dev.off()
-
-
-
-############################################################################################
-#                               PREP FOR FIGURES 2 & 3
-############################################################################################
-
-#-------------------------------------------------------------
-# MAIN TEXT Figure 2: Networks (Facilitative vs Competitive) |
-#-------------------------------------------------------------
+##################################################################################
+# MAIN TEXT Figure 2: Networks (Facilitative vs Competitive) 
+##################################################################################
 
 load('2.case_study/model/transformed/scaled_betaij_matrices.Rdata')
 
@@ -252,11 +132,9 @@ qgraph(bij.med,  # plot interaction means
 
 dev.off()
 
-
-
-#-----------------------------------------------------
-# MAIN TEXT Figure 3: Applications - species effects |
-#-----------------------------------------------------
+##################################################################################
+# MAIN TEXT Figure 3: Applications - species effects 
+##################################################################################
 
 sp.abunds <- read.csv('2.case_study/data/plot_species_abundances.csv', stringsAsFactors = F)
 sp.abunds <- split(sp.abunds, as.factor(sp.abunds$species))
@@ -303,7 +181,7 @@ invasives <- c('ARCA', 'PEAI', 'HYPO')
 foundation <- c('VERO', 'POCA')
 keyst <- c('GITE')
 
-###### PLOT
+# plot! 
 png('3.analyses/figures_mss/species_effects.png', 
     width = 500, height = 1500, units = 'px')
 par(mfrow=c(3,1), cex=1.2)
@@ -404,29 +282,187 @@ text(lab.x.pos, lab.y.pos,
 
 dev.off()
 
+##################################################################################
+# SUPPS Figure 1: analyses of 1 gamma parameter
+##################################################################################
 
-# # Potential figure - cooccur strengths vs log abundance? 
-# #------------------------------------------------------
-# png('3.analyses/figures_mss/cooccur_vs_abund.png', 
-#     width = 500, height = 500, units = 'px')
-# par(cex=1.2)
-# plot(-colSums(cooc, na.rm = T), sp.abunds, 
-#      xlab = 'Absolute sum of association strengths',
-#      ylab = 'Log abundance', las = 1, type = 'n', bty = 'n', cex.lab = 1.2,
-#      xlim = c(0, 40))
-# abline(v=median(-colSums(cooc, na.rm = T)), lty = 2)
-# abline(h=median(sp.abunds), lty = 2)
-# # points for species means
-# points(-colSums(cooc, na.rm = T), sp.abunds, pch = 23, 
-#        bg = 'black', cex = 1)
-# # points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
-# #        bg = 'royalblue', cex = 1.3)
-# points(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], pch = 24, 
-#        bg = 'chartreuse3', cex = 1.8)
-# # ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
-# #        bg = 'red', cex = 1.3)
-# text(-colSums(cooc, na.rm = T)[keyst], sp.abunds[keyst], 
-#      labels = names(-colSums(cooc, na.rm = T)[keyst]), pos = 4, col = 'chartreuse4', 
-#      cex = 1.4, offset = 1.7)
+library(rstan)
+
+load('2.case_study/model/output/model_fit.Rdata')
+sfit <- summary(fit, pars = 'gamma_i')$summary
+names(which(sfit[ , 'Rhat'] == max(sfit[ , 'Rhat'])))
+
+png('3.analyses/figures_mss/gamma_21_joint.png', width=600, height=400)
+stan_par(fit, names(which(sfit[ , 'Rhat'] == max(sfit[ , 'Rhat']))))
+dev.off()
+
+rm(fit)
+
+##################################################################################
+# SUPPS Figure 2: Overlapping posterior density plots of gamma
+##################################################################################
+
+library(rethinking)
+library(tidyverse)
+library(ggjoy)
+library(magrittr)
+
+# extract gamma samples 
+load('2.case_study/model/output/model_fit.Rdata')
+joint_gamma <- extract.samples(fit, pars = 'gamma_i')[[1]]
+rm(fit)
+
+load('mc_nddm/model_fit.Rdata')
+ndd_gamma <- extract.samples(fit, pars = 'gamma_i')[[1]]
+rm(fit)
+
+load('mc_rim/adapt_delta_099_treedepth_20/model_fit.Rdata')
+rim_gamma <- extract.samples(fit, pars = 'gamma_i')[[1]]
+rm(fit)
+
+# set up plot! 
+pl <- vector("list", length = 22)
+
+for (i in 1:22) {
+  
+  Samples <- c(joint_gamma[ , i], ndd_gamma[ , i], rim_gamma[ , i])
+  Model <-  c(rep('Joint', 8000), rep('NDDM', 8000), rep('RIM', 8000))
+  df <- list(Model, Samples)
+  df <- as.data.frame(df, col.names = c('Model', 'Samples'))
+  
+  df2 <- group_by(df, Model) %>% summarise('Samples' = median(Samples))
+  
+  g <- ggplot(df, aes(x=Samples, y=Model))+
+    geom_joy(scale = 2, alpha=0.5) +
+    scale_y_discrete(expand=c(0.01, 0)) +
+    scale_x_continuous(name = NULL, expand=c(0.01, 0)) +
+    geom_point(data = df2, col = 'red') +
+    theme_joy()
+  
+  pl[[i]] <- g
+  
+}
+
+png('3.analyses/figures_mss/gamma_i_all_models.png', width=800, height=1200)
+cowplot::plot_grid(plotlist = pl, nrow = 6)
+dev.off()
+
+
+##################################################################################
+# SUPPS Figure 3: Posterior predictive check on the RIM only 
+##################################################################################
+
+# Do the same as for Fig 1 but for mu
+
+# extract mu 
+mu <- read.csv('2.case_study/model/output/mu_samples.csv')
+mu <- apply(mu, 2, function(p) {sample(p[p > quantile(p, 0.1) & p < quantile(p, 0.9)], size = 1000)})
+
+# generating posterior predictions
+seed_pred <- matrix(nrow = dim(mu)[1], ncol = dim(mu)[2])
+for (i in 1:dim(mu)[1]) {     # for each posterior draw
+  for (j in 1:dim(mu)[2]) {    # for each observation 
+    # draw from the predicted distribution
+    seed_pred[i, j] <- rnbinom(1, mu = mu[i, j], size = phi[i, focalobs[j]])  
+  }
+}
+# log transform seed predictions
+seed_pred <- log(seed_pred)
+# and using just the median of the parameters
+m.mu <- apply(mu, 2, median)
+m.phi <- apply(phi, 2, median)
+mean_seed_pred <- sapply(1:length(m.mu) , function(x) {
+  rnbinom(1, mu = m.mu[x], size = m.phi[focalobs[x]])
+})
+mean_seed_pred <- log(mean_seed_pred)
+
+# get maximum density for plot limits
+max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}), 
+                     max(density(seeds)$y)))
+
+
+png('3.analyses/figures_mss/postpredch_mu.png', width=500, height=500)
+# start a plot with the first draw 
+ppc.plot <- plot(density(seed_pred[1, ]), 
+                 type = 'n',
+                 bty = 'n',
+                 ylim = c(0, max.density+0.03),  
+                 xlim = c(-1, 10),
+                 col = 'lightgrey',
+                 ylab = 'Seed probability density',
+                 xlab = 'Log seed production',
+                 main = '',
+                 # sub = '(grey = predicted, red = observed)'
+) 
+for (i in 1:dim(seed_pred)[1]) {
+  # add a line for each draw
+  ppc.plot <- lines(density(seed_pred[i, ]), col = 'lightgrey')
+}
+# add the 'mean prediction'
+ppc.plot <- lines(density(mean_seed_pred), col = 'black', lwd = 1)  
+# add the actual data
+ppc.plot <- lines(density(log(seeds)), col = 'red', lwd = 1)  
+# add legend
+ppc.plot <- legend('topright', 
+                   legend = c('predicted', 'observed'), 
+                   col = c('lightgrey', 'red'), lwd = c(6, 1),
+                   bty = 'n')
+print(ppc.plot)
+dev.off()
+
+##################################################################################
+# SUPPS Figure 4: IFM vs RIM estimates 
+##################################################################################
+
+# Load data
+rim_mat <- as.matrix(read.csv('2.case_study/model/output/RIM_betaij_samples.csv'))
+nddm_mat <- as.matrix(read.csv('2.case_study/model/output/NDDM_betaij_samples.csv'))
+# sample from 80% confidence interval
+rim_mat <- apply(rim_mat, 2, function(p) {sample(p[p > quantile(p, 0.1) & 
+                                                           p < quantile(p, 0.9)], size = 1000)})
+nddm_mat <- apply(nddm_mat, 2, function(p) {
+  if (sum(p) != 0) {sample(p[p > quantile(p, 0.1) & p < quantile(p, 0.9)], size = 1000)} else {rep(0, 1000)}})
+
+mn <- min(nddm_mat)
+mx <- max(nddm_mat)
+
+# plot!
+png('3.analyses/figures_mss/interaction_estimates.png', width = 1400, height = 700)
+par(mfrow=c(2,2), cex = 1.5)
+hist(nddm_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})], 
+     xlab = "", breaks = 30,
+     main = "Realised interactions (NDDM)", 
+     xlim = c(mn, mx))
+plot(rim_mat[nddm_mat!=0], nddm_mat[nddm_mat!=0], 
+     ylab = 'NDDM estimates', xlab='Response*Impact estimates',
+     xlim = c(mn, mx), ylim = c(mn, mx), 
+     pch = 16, 
+     col = rgb(red = 0, green = 0, blue = 0, alpha = 0.2))
+abline(0,1)
+hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x == 0)})],  
+     xlab = "", breaks = 30,
+     main = 'Unrealised interactions (RIM)', 
+     xlim = c(mn, mx))
+hist(rim_mat[ , apply(nddm_mat, 2, function(x) {all(x != 0)})],  
+     xlab = "", breaks = 30,
+     main = 'Realised interactions (RIM)', 
+     xlim = c(mn, mx))
+dev.off()
+
+
+# # # Potential figure for Supps ?
+# # #------------------------------
+# response <- as.matrix(read.csv('2.case_study/model/output/response_samples.csv'))
+# effect <- as.matrix(read.csv('2.case_study/model/output/effect_samples.csv'))
+# S <- dim(response)[2]
+# 
+# png('3.analyses/figures_mss/response_impact.png', width = 400, height = 700)
+# plot(response, effect[ , 1:S], type = 'n',
+#      xlab = expression(italic('response i')), ylab = expression(italic('impact i')))
+# abline(h = 0, lty = 2)
+# points(response, effect[ , 1:S],
+#      pch = 16,
+#      col = rgb(red = 0.5, green = 0.5, blue = 0.5, alpha = 0.2))
+# points(apply(response, 2, median), apply(effect[ , 1:S], 2, median),
+#        pch = 18, cex = 2)
 # dev.off()
-
