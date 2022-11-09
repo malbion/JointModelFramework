@@ -97,8 +97,9 @@ stan_model_check <- function(fit,
 
 # This function plots the posterior predicted seed number vs the actual data
 
-stan_post_pred_check <- function(post.draws,
-                                 var_name = 'mu',  # can be mu or mu2
+stan_post_pred_check <- function(mu,
+                                 disp_dev,
+                                 var_name = 'mu',
                                  results_folder,
                                  stan.data,
                                  ...) {
@@ -108,9 +109,6 @@ stan_post_pred_check <- function(post.draws,
   # phi is the overdispersion parameter for the neg binom model
   # mu or mu2 is the mean for predicted seed number 
   
-  # extract mu and phi
-  mu <- post.draws[[var_name]] # matrix with nrow = draws and ncol = observations
-  disp_dev <- post.draws$disp_dev
   phi <- (disp_dev^2)^(-1)
   
   # generating posterior predictions
