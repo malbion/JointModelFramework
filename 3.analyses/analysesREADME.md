@@ -12,10 +12,10 @@ Function to summarise certain metrics at a species-level from the case study res
 Script to calculate percentage of facilitative and competitive interactions, and summarise certain interaction metrics using the calc_sp_ntwk_metrics() function.
 
 #### figures_mss.R
-Script to plot Figure 1 to 3 in the main text, and Supplementary Figures 1 and 2. 
+Script to plot Figure 1 to 3 in the main text, and Supplementary Figures 1-4. 
 
 #### ifm_vs_rem.R 
-Script to plot Supplementary Figures 3, 4 and 5 aka network graphs of the NDDM (identifiable) and IFM (non-identifiable) interactions using the qgraph package. 
+Script to plot Supplementary Figures 5-7 aka network graphs of the NDDM (identifiable) and RIM (non-identifiable) interactions using the qgraph package. 
 
 #### smm.csv 
 Output from the calc_sp_ntwk_metrics() function, this does not appear in the manuscript.
