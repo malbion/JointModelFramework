@@ -12,6 +12,14 @@ joint_betaij <- read.csv('2.case_study/model/output/joint_betaij_samples.csv')
 rim_betaij <- read.csv('2.case_study/model/output/RIM_betaij_samples.csv')
 nddm_betaij <- read.csv('2.case_study/model/output/NDDM_betaij_samples.csv')
 
+# sample from 80% confidence interval
+joint_betaij <- apply(joint_betaij, 2, function(p) {sample(p[p > quantile(p, 0.1) & 
+                                                       p < quantile(p, 0.9)], size = 1000)})
+rim_betaij <- apply(rim_betaij, 2, function(p) {sample(p[p > quantile(p, 0.1) & 
+                                                               p < quantile(p, 0.9)], size = 1000)})
+nddm_betaij <- apply(nddm_betaij, 2, function(p) {
+  if (sum(p) != 0) {sample(p[p > quantile(p, 0.1) & p < quantile(p, 0.9)], size = 1000)} else {rep(0, 1000)}})
+
 # get median species x species interaction matrices 
 joint_mat <- matrix(apply(joint_betaij, 2, median), byrow = T,
                     nrow = length(keyspeciesID), ncol = length(keyneighbourID))
