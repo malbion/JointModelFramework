@@ -61,7 +61,7 @@ calc.sp.ntwk.metrics <- function(
                    'aii', 'aii>0', # 'imbalance',  'indirect.effs', 
                    'H.in', 'H.out',  # 'rH.out', 'rH.in', 
                    'perc.exploited', 'perc.exploiter', 'perc.fullcomp', 
-                   'perc.coop','comp.rank', 'response', 'effect', 
+                   'perc.coop','comp.rank', # 'response', 'effect', 
                    'eff.comp', 'eff.comp.intra', 'com.abund', 
                    'rel.abund', 'com')
   metrics <- array(data = NA, dim = c(Nb, length(metricnames), Sm),
@@ -212,15 +212,15 @@ calc.sp.ntwk.metrics <- function(
   metrics[ , 'comp.rank', ] <- rbind(cr, 
                                      matrix(data = NA, nrow = (Nb-Sp), ncol = Sm))
   
-  # Extract the response and effect parameters too 
-  response <- read.csv(paste0('2.case_study/model/output/response_samples.csv'),  stringsAsFactors = F)
-  effect <- read.csv(paste0('2.case_study/model/output/effect_samples.csv'), stringsAsFactors = F)
-  colnames(response) <- read.csv(paste0('2.case_study/data/key_speciesID', com, '.csv'),stringsAsFactors = F)[ , 1]
-  colnames(effect) <- read.csv(paste0('2.case_study/data/key_neighbourID', com, '.csv'), stringsAsFactors = F)[ , 1]
-  effect <- effect[ , colnames(effect) %in% colnames(response)]
-  
-  metrics[ , 'response', ] <- rbind(t(response), matrix(data = NA, nrow = (Nb-Sp), ncol = Sm))
-  metrics[ , 'effect', ] <- t(effect)
+  # # Extract the response and effect parameters too 
+  # response <- read.csv(paste0('2.case_study/model/output/response_samples.csv'),  stringsAsFactors = F)
+  # effect <- read.csv(paste0('2.case_study/model/output/effect_samples.csv'), stringsAsFactors = F)
+  # colnames(response) <- read.csv(paste0('2.case_study/data/key_speciesID', com, '.csv'),stringsAsFactors = F)[ , 1]
+  # colnames(effect) <- read.csv(paste0('2.case_study/data/key_neighbourID', com, '.csv'), stringsAsFactors = F)[ , 1]
+  # effect <- effect[ , colnames(effect) %in% colnames(response)]
+  # 
+  # metrics[ , 'response', ] <- rbind(t(response), matrix(data = NA, nrow = (Nb-Sp), ncol = Sm))
+  # metrics[ , 'effect', ] <- t(effect)
 
   # sum of competition received (alphas * neighbour abundances)
   efcc <- efc(imat, com, intras)
