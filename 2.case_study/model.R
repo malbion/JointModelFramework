@@ -89,9 +89,9 @@ message(paste0('Proportion of identifiable interactions = ', sum(stan.data$Q)/(s
 
 fit <- stan(file = '../1.code/joint_model.stan',
             data =  stan.data,               # named list of data
-            chains = 3,             # run model on 1 chain only
-            warmup = 3000,          # number of warmup iterations per chain
-            iter = 4000,           # total number of iterations per chain
+            chains = 1,             # run model on 1 chain only
+            warmup = 5000,          # number of warmup iterations per chain
+            iter = 10000,           # total number of iterations per chain
             refresh = 100,         # show progress every 'refresh' iterations
             control = list(max_treedepth = 10)
 )
@@ -102,105 +102,105 @@ param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', '
 
 # Raw output
 #------------
-save(fit, file = paste0('3chain/model_fit.Rdata')) # model fit
+save(fit, file = paste0('model/output/model_fit.Rdata')) # model fit
 # Save the 'raw' draws from the posterior
 post.draws <- extract.samples(fit)
-save(post.draws, file = paste0('3chain/post_draws.Rdata'))
+save(post.draws, file = paste0('model/output/post_draws.Rdata'))
 
 # Save mean, 10% and 90% quantiles for each parameter, as well as n_eff and Rhat
 fit_sum <- summary(fit, pars = param.vec, probs = c(0.1, 0.9))$summary
-write.csv(fit_sum, file = paste0('3chain/summary_of_draws.csv'), row.names = T)
-# 
-# # Save the logarithm of the (unnormalized) posterior density (lp__)
-# log_post <- unlist(extract(fit, 'lp__'))
-# write.csv(log_post, file = paste0('model/output/log_post.csv'), row.names = F)
+write.csv(fit_sum, file = paste0('model/output/summary_of_draws.csv'), row.names = T)
 
-# # Validation
-# #------------
-# # Get Geweke statistics
-# matrix_of_draws <- as.matrix(fit)
-# gew <- coda::geweke.diag(matrix_of_draws)
-# write.csv(gew$z, 'model/validation/gew_stats.csv')
-# # get adjusted values (see boral() package)
-# gew.pvals <- 2*pnorm(abs(unlist(gew$z)), lower.tail = FALSE)
-# adj.gew <- p.adjust(gew.pvals, method = "holm")
-# write.csv(adj.gew, 'model/validation/gew_stats_holmadjust.csv')
-# print(paste0('Range of p-values for chain convergence: ', min(na.omit(adj.gew)), ' to ',  max(na.omit(adj.gew))))
-# 
-# png('model/validation/geweke_dist.png', width = 500, height = 500)
-# plot(density(na.omit(gew$z)))
-# lines(density(rnorm(10000)), col = 'red')
-# abline(v = -2, lty = 2)
-# abline(v = 2, lty = 2)
-# dev.off()
+# Save the logarithm of the (unnormalized) posterior density (lp__)
+log_post <- unlist(extract(fit, 'lp__'))
+write.csv(log_post, file = paste0('model/output/log_post.csv'), row.names = F)
+
+# Validation
+#------------
+# Get Geweke statistics
+matrix_of_draws <- as.matrix(fit)
+gew <- coda::geweke.diag(matrix_of_draws)
+write.csv(gew$z, 'model/validation/gew_stats.csv')
+# get adjusted values (see boral() package)
+gew.pvals <- 2*pnorm(abs(unlist(gew$z)), lower.tail = FALSE)
+adj.gew <- p.adjust(gew.pvals, method = "holm")
+write.csv(adj.gew, 'model/validation/gew_stats_holmadjust.csv')
+print(paste0('Range of p-values for chain convergence: ', min(na.omit(adj.gew)), ' to ',  max(na.omit(adj.gew))))
+
+png('model/validation/geweke_dist.png', width = 500, height = 500)
+plot(density(na.omit(gew$z)))
+lines(density(rnorm(10000)), col = 'red')
+abline(v = -2, lty = 2)
+abline(v = 2, lty = 2)
+dev.off()
 
 
 # Diagnostics
-stan_diagnostic(fit, '3chain/')
+stan_diagnostic(fit, 'model/validation/')
 # Traceplots and posterior uncertainty intervals
-stan_model_check(fit, '3chain/', params = param.vec)
-# # Posterior predictive check
-# stan_post_pred_check(post.draws, 'mu', 'model/validation/', stan.data)
-# stan_post_pred_check(post.draws, 'mu2', 'model/validation/', stan.data)
-# 
-# # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
-# #------------------
-# # Interactions (betaij)
-# # joint interactions 
-# betaij <- post.draws$ndd_betaij
-# betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
-# colnames(betaijS) <- grep('ndd_betaij', rownames(fit_sum), value = T)
-# write.csv(betaijS, paste0('model/output/joint_betaij_samples.csv'), row.names = F)
-# 
-# # rim interactions only
-# rim_betaij <- post.draws$ri_betaij
-# rim_betaijS <- as.data.frame(aperm(rim_betaij, perm = c(1, 3, 2)))
-# colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
-# write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
-# 
-# # replace uninferrable interactions with 0 to get the NDDM estimates only 
-# Q <- as.vector(t(stan.data$Q)) # the t() is very important to fill Q by row! 
-# nddm_betaij <- sweep(betaijS, 2, Q, `*`)
-# write.csv(nddm_betaij, paste0('model/output/NDDM_betaij_samples.csv'), row.names = F)
-# 
-# # Let's do a few plots while we're at it
-# # interactions inferred by the NDDM only
-# nddm_betaij_inf <-as.matrix(nddm_betaij[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
-# # RIM estimates for those inferrable interactions
-# rim_betaij_inf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
-# # RIM estimates for non-inferrable interactions only
-# rim_betaij_noinf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) == 0)])
-# 
-# # Check estimates of inferrable interactions from both models 
-# png(paste0('model/validation/nddm_vs_rim_alphas.png'))
-# plot(nddm_betaij_inf, rim_betaij_inf, 
-#      xlab = 'NDDM interactions (inferrable only)', 
-#      ylab = 'RIM interactions (inferrable only)',
-#      xlim = c(min(nddm_betaij), max(nddm_betaij)),
-#      ylim = c(min(nddm_betaij), max(nddm_betaij)))
-# abline(0,1)
-# dev.off()
-# 
-# # check distribution of inferrable and non-inferrable interactions
-# png(paste0('model/validation/betaij_est_distr.png'))
-# par(mfrow=c(3,1))
-# hist(nddm_betaij_inf, xlab = "", breaks = 30,
-#      main = "Inferrable interactions (NDDM)", xlim = c(min(betaijS), max(betaijS)))
-# hist(rim_betaij_inf,  xlab = "", breaks = 30,
-#      main = 'Inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
-# hist(rim_betaij_noinf,  xlab = "", breaks = 30,
-#      main = 'Non-inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
-# dev.off()
-# 
-# # Transformed parameters
-# #-----------------------
-# # Intrinsic growth rate (lambda)
-# growth.rates.samples <- exp(post.draws$gamma_i)
-# write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
-# 
-# # Scale the alphas and save
-# scaled_betas <- scale_interactions(betaij, growth.rates.samples, key_speciesID, key_neighbourID, comm)
-# save(scaled_betas, file = paste0('model/transformed/scaled_betaij_matrices.Rdata')) 
+stan_model_check(fit, 'model/validation/', params = param.vec)
+# Posterior predictive check
+stan_post_pred_check(post.draws, 'mu', 'model/validation/', stan.data)
+stan_post_pred_check(post.draws, 'mu2', 'model/validation/', stan.data)
+
+# Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
+#------------------
+# Interactions (betaij)
+# joint interactions 
+betaij <- post.draws$ndd_betaij
+betaijS <- as.data.frame(aperm(betaij, perm = c(1, 3, 2)))
+colnames(betaijS) <- grep('ndd_betaij', rownames(fit_sum), value = T)
+write.csv(betaijS, paste0('model/output/joint_betaij_samples.csv'), row.names = F)
+
+# rim interactions only
+rim_betaij <- post.draws$ri_betaij
+rim_betaijS <- as.data.frame(aperm(rim_betaij, perm = c(1, 3, 2)))
+colnames(rim_betaijS) <- grep('ri_betaij', rownames(fit_sum), value = T)
+write.csv(rim_betaijS, paste0('model/output/RIM_betaij_samples.csv'), row.names = F)
+
+# replace uninferrable interactions with 0 to get the NDDM estimates only 
+Q <- as.vector(t(stan.data$Q)) # the t() is very important to fill Q by row! 
+nddm_betaij <- sweep(betaijS, 2, Q, `*`)
+write.csv(nddm_betaij, paste0('model/output/NDDM_betaij_samples.csv'), row.names = F)
+
+# Let's do a few plots while we're at it
+# interactions inferred by the NDDM only
+nddm_betaij_inf <-as.matrix(nddm_betaij[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
+# RIM estimates for those inferrable interactions
+rim_betaij_inf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) != 0)]) # NDDM without non-inferrables
+# RIM estimates for non-inferrable interactions only
+rim_betaij_noinf <- as.matrix(rim_betaijS[  , which(colSums(nddm_betaij) == 0)])
+
+# Check estimates of inferrable interactions from both models 
+png(paste0('model/validation/nddm_vs_rim_alphas.png'))
+plot(nddm_betaij_inf, rim_betaij_inf, 
+     xlab = 'NDDM interactions (inferrable only)', 
+     ylab = 'RIM interactions (inferrable only)',
+     xlim = c(min(nddm_betaij), max(nddm_betaij)),
+     ylim = c(min(nddm_betaij), max(nddm_betaij)))
+abline(0,1)
+dev.off()
+
+# check distribution of inferrable and non-inferrable interactions
+png(paste0('model/validation/betaij_est_distr.png'))
+par(mfrow=c(3,1))
+hist(nddm_betaij_inf, xlab = "", breaks = 30,
+     main = "Inferrable interactions (NDDM)", xlim = c(min(betaijS), max(betaijS)))
+hist(rim_betaij_inf,  xlab = "", breaks = 30,
+     main = 'Inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
+hist(rim_betaij_noinf,  xlab = "", breaks = 30,
+     main = 'Non-inferrable interactions (RIM)', xlim = c(min(betaijS), max(betaijS)))
+dev.off()
+
+# Transformed parameters
+#-----------------------
+# Intrinsic growth rate (lambda)
+growth.rates.samples <- exp(post.draws$gamma_i)
+write.csv(growth.rates.samples, paste0('model/transformed/lambda_samples.csv'), row.names = F)
+
+# Scale the alphas and save
+scaled_betas <- scale_interactions(betaij, growth.rates.samples, key_speciesID, key_neighbourID, comm)
+save(scaled_betas, file = paste0('model/transformed/scaled_betaij_matrices.Rdata')) 
 
 Sys.time()
 
