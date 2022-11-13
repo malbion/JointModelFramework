@@ -51,7 +51,7 @@ message(paste0('Proportion of inferrable interactions = ', sum(stan.data$Q)/(sta
 
 # Run the model! 
 stan.seed <- 1234
-fit <- stan(file = 'rim.stan',
+fit <- stan(file = 'joint_model.stan', 
             data =  stan.data,               # named list of data
             chains = 4,
             warmup = 2000,          # number of warmup iterations per chain
@@ -62,37 +62,10 @@ fit <- stan(file = 'rim.stan',
             seed = stan.seed
 )
 
-
-fitsum <- as.data.frame(summary(fit)$summary)
-noncon <- fitsum[fitsum$Rhat > 1.1, ]
-noncon
-# DBS additions
-# these are the only parameters whose convergence we care about (right?)
+# check convergence
 print(summary(fit, pars=c("gamma_i","ndd_betaij","ri_betaij"))$summary)
-
-# inspect for bimodality across parameters in RIM
-pairs(fit, pars=c('gamma_i','ri_betaij'))
-
-# inspect for bimodality across parameters in pairwise model
-pairs(fit, pars=c("gamma_i","beta_ij"))
-
-# inspect for bimodality across parameters in joint model
-pairs(fit, pars=c("gamma_i","ndd_betaij"))
-
-pairs(fit, pars=c('response','effect'))
-
 rstan::traceplot(fit, pars=c("gamma_i","ndd_betaij"))
-#### END of DBS additions
-
-# As well as the usual traceplots etc., convergence one 1 chain can be checked 
-# using the geweke.diag() function from the coda package, e.g.:
-library(coda)
-matrix_of_draws <- as.matrix(fit)
-gew <- coda::geweke.diag(matrix_of_draws)
-
-# plot(density(na.omit(gew$z)), main = 'Geweke statistic density distribution')
-# abline(v = -2, lty = 2)
-# abline(v = 2, lty = 2)
+rstan::stan_rhat(fit, pars=c("gamma_i","ndd_betaij"))
 
 # Get the full posteriors 
 joint.post.draws <- extract.samples(fit)
