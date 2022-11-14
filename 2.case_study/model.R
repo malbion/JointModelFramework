@@ -87,25 +87,30 @@ message(paste0('Proportion of identifiable interactions = ', sum(stan.data$Q)/(s
 # Estimate interactions with a joint NDD*RI model |
 #--------------------------------------------------
 
-fit <- stan(file = '../1.code/joint_model.stan',
-            data =  stan.data,               # named list of data
-            chains = 1,             # run model on 1 chain only
-            warmup = 5000,          # number of warmup iterations per chain
-            iter = 10000,           # total number of iterations per chain
-            refresh = 100,         # show progress every 'refresh' iterations
-            control = list(max_treedepth = 10)
-)
+# run model chains separately then combine then to avoid memory issues
+stan.seed <- 52
+fit <- list()
+for (i in 1:4) {
+  fit[i] <- stan(file = '../1.code/joint_model.stan',
+                 data =  stan.data,               # named list of data
+                 chains = 1,
+                 warmup = 5000,          # number of warmup iterations per chain
+                 iter = 7000,            # total number of iterations per chain
+                 refresh = 100,         # show progress every 'refresh' iterations
+                 control = list(max_treedepth = 20,
+                                adapt_delta = 0.99), 
+                 seed = stan.seed,
+                 chain_id = i
+  )
+}
+fit <- sflist2stanfit(fit)  # combined chains
 
 # parameters of interest
-param.vec <- fit@model_pars[!fit@model_pars %in% c('response1', 'responseSm1', 'lp__')]
-
+param.vec <- fit@model_pars[!fit@model_pars %in% c('lp__')]  # exclude as necessary
 
 # Raw output
 #------------
 save(fit, file = paste0('model/output/model_fit.Rdata')) # model fit
-# Save the 'raw' draws from the posterior
-post.draws <- extract.samples(fit)
-save(post.draws, file = paste0('model/output/post_draws.Rdata'))
 
 # Save mean, 10% and 90% quantiles for each parameter, as well as n_eff and Rhat
 fit_sum <- summary(fit, pars = param.vec, probs = c(0.1, 0.9))$summary
@@ -117,31 +122,20 @@ write.csv(log_post, file = paste0('model/output/log_post.csv'), row.names = F)
 
 # Validation
 #------------
-# Get Geweke statistics
-matrix_of_draws <- as.matrix(fit)
-gew <- coda::geweke.diag(matrix_of_draws)
-write.csv(gew$z, 'model/validation/gew_stats.csv')
-# get adjusted values (see boral() package)
-gew.pvals <- 2*pnorm(abs(unlist(gew$z)), lower.tail = FALSE)
-adj.gew <- p.adjust(gew.pvals, method = "holm")
-write.csv(adj.gew, 'model/validation/gew_stats_holmadjust.csv')
-print(paste0('Range of p-values for chain convergence: ', min(na.omit(adj.gew)), ' to ',  max(na.omit(adj.gew))))
-
-png('model/validation/geweke_dist.png', width = 500, height = 500)
-plot(density(na.omit(gew$z)))
-lines(density(rnorm(10000)), col = 'red')
-abline(v = -2, lty = 2)
-abline(v = 2, lty = 2)
-dev.off()
-
-
 # Diagnostics
 stan_diagnostic(fit, 'model/validation/')
 # Traceplots and posterior uncertainty intervals
 stan_model_check(fit, 'model/validation/', params = param.vec)
 # Posterior predictive check
-stan_post_pred_check(post.draws, 'mu', 'model/validation/', stan.data)
-stan_post_pred_check(post.draws, 'mu2', 'model/validation/', stan.data)
+mu <- extract.samples(fit, n= 1000, pars = 'mu')[[1]]
+write.csv(mu, 'model/output/mu_samples.csv', row.names = F)
+disp_dev <- extract.samples(fit, n= 1000, pars = 'disp_dev')[[1]]
+write.csv(disp_dev, 'model/output/disp_dev_samples.csv', row.names = F)
+mu2 <- extract.samples(fit, n= 1000, pars = 'mu2')[[1]]
+write.csv(mu2, 'model/output/mu2_samples.csv', row.names = F)
+
+stan_post_pred_check(mu, disp_dev, 'mu', 'model/validation/', stan.data)
+stan_post_pred_check(mu2, disp_dev, 'mu2', 'model/validation/', stan.data)
 
 # Parameter outputs - draw 1000 samples from the 80% confidence intervals and save 
 #------------------
