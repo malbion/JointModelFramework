@@ -63,7 +63,6 @@ data_prep <- function(perform = "seeds", # column name for performance indicator
   # MODEL MATRIX
   stan.data$X <- as.matrix(df[ , -c(1:nonNcols)]) # neighbour abundances
   
-  
   # Done!
   return(stan.data)
   

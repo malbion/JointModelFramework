@@ -209,10 +209,6 @@ points(mean.intra, sp.abunds, pch = 23,
        bg = 'black', cex = 1)
 points(mean.intra[foundation], sp.abunds[foundation], pch = 24,
        bg = 'purple', cex = 1.8)
-# points(mean.intra[keyst], sp.abunds[keyst], pch = 23, 
-#        bg = 'orange', cex = 1.3)
-# points(mean.intra[invasives], sp.abunds[invasives], pch = 23, 
-#        bg = 'red', cex = 1.3)
 text(mean.intra[foundation], sp.abunds[foundation], 
      labels = names(mean.intra[foundation]), 
      pos = 4, col = 'darkorchid4', offset = 1, cex = 1.4)
@@ -239,17 +235,12 @@ sapply(1:length(sp.abunds), function(x) {
 # points for species means
 points(mean.sum.out, sp.abunds, pch = 23, 
        bg = 'black', cex = 1)
-# points(mean.sum.out[foundation], sp.abunds[foundation], pch = 23, 
-#        bg = 'royalblue', cex = 1.3)
 points(mean.sum.out[keyst], sp.abunds[keyst], pch = 24, 
        bg = 'chartreuse3', cex = 1.8)
-# ppoints(mean.sum.out[invasives], sp.abunds[invasives], pch = 23, 
-#        bg = 'red', cex = 1.3)
 lab.x.pos <- mean.sum.out[keyst]
-# lab.x.pos['TROR'] <- lab.x.pos['TROR'] - 0.15
-text(lab.x.pos + .5, sp.abunds[keyst], 
+text(lab.x.pos + .3, sp.abunds[keyst], 
      labels = names(mean.sum.out[keyst]), pos = 3, col = 'springgreen4', 
-     cex = 1.4, offset = -0.2)
+     cex = 1.4)
 
 
 # 3. competitive vs facilitative effects
@@ -264,15 +255,12 @@ title(main = 'C', adj = 0)
 abline(0, 1, cex=0.5, col = 'snow4')
 abline(v=median(sum.comp), lty = 2)
 abline(h=median(-sum.faci), lty = 2)
-# points(sum.comp, -sum.faci, las = 1, bty = 'n', 
-#        pch = 16, cex=0.7, col = 'grey')
 points(med.comp, -med.faci, 
        pch = 23, cex=1, bg='black')
 points(med.comp[invasives], -med.faci[invasives],  
        pch = 24, bg = 'red', cex = 1.8)
 lab.x.pos <- med.comp[invasives] 
 lab.x.pos['PEAI'] <- lab.x.pos['PEAI'] - 0.15
-# lab.x.pos['ARCA'] <- lab.x.pos['ARCA'] - 0.4
 lab.y.pos <- (-med.faci[invasives] + 0.11)
 lab.y.pos['PEAI'] <- lab.y.pos['PEAI'] +0.05
 lab.y.pos['ARCA'] <- lab.y.pos['ARCA'] - 0.2

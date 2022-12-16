@@ -24,7 +24,7 @@ focalID <- unique(df$focal)  # this should return the names of unique focal grou
 # in which they are encountered in the dataframe
 neighbourID <- colnames(df[ , -c(1:2)])
 
-# ensure neighbours are linearly independent across the whole dataset
+# ensure neighbours are linearly independent across the whole dataset (see S1.2)
 N_all <- df[ , neighbourID]
 N_all <- apply(N_all, c(1,2), as.numeric)
 X_all <- cbind(model.matrix(~as.factor(df$focal)), N_all)
