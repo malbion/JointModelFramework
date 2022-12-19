@@ -47,7 +47,8 @@ max.density <- max(c(apply(seed_pred, 1, function(x) {max(density(x)$y)}),
                      max(density(seeds)$y)))
 
 
-png('3.analyses/figures_mss/postpredch_mu2.png', width=500, height=500)
+png('3.analyses/figures_mss/postpredch_mu2.png', width=1563, height=1563)
+par(cex = 4.5)
 # start a plot with the first draw 
 ppc.plot <- plot(density(seed_pred[1, ]), 
                  type = 'n',
@@ -106,7 +107,7 @@ all.sp[invasives] <- 'firebrick3'
 library(qgraph)
 
 png('3.analyses/figures_mss/networks_C_F.png', 
-    width = 600, height = 1200, units = 'px')
+    width = 1875, height = 3750, units = 'px')
 par(mfrow=c(2, 1))
 # plot competition only
 qgraph(bij.med,  # plot interaction means
@@ -183,8 +184,8 @@ keyst <- c('GITE')
 
 # plot! 
 png('3.analyses/figures_mss/species_effects.png', 
-    width = 500, height = 1500, units = 'px')
-par(mfrow=c(3,1), cex=1.2)
+    width = 1563, height = 4688, units = 'px')
+par(mfrow=c(3,1), cex=4)
 
 # 1. intra vs abundance
 #-------------------
@@ -248,7 +249,7 @@ text(lab.x.pos + .3, sp.abunds[keyst],
 plot(sum.comp, -sum.faci,  
      las = 1, bty = 'n', cex.lab = 1.2,
      # type = 'n',
-     pch = 16, cex=0.7, col = 'grey',
+     pch = 16, col = 'grey',
      xlab = 'Absolute sum of competitive effects', 
      ylab = 'Absolute sum of facilitative effects')
 title(main = 'C', adj = 0)
@@ -280,7 +281,7 @@ load('2.case_study/model/output/model_fit.Rdata')
 sfit <- summary(fit, pars = 'gamma_i')$summary
 names(which(sfit[ , 'Rhat'] == max(sfit[ , 'Rhat'])))
 
-png('3.analyses/figures_mss/gamma_21_joint.png', width=600, height=400)
+png('3.analyses/figures_mss/gamma_21_joint.png', width=800, height=500)
 stan_par(fit, names(which(sfit[ , 'Rhat'] == max(sfit[ , 'Rhat']))))
 dev.off()
 
