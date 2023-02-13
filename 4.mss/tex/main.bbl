@@ -164,8 +164,54 @@
       \verb http://www.mendeley.com/research/relationships-among-species-traits-separating-levels-response-identifying-linkages-abundances/
       \endverb
     \endentry
+    \entry{Bimler2023}{article}{}
+      \name{author}{4}{ul=2}{%
+        {{un=0,uniquepart=base,hash=a469c72d262857f4d27dcb0f973f4811}{%
+           family={Bimler},
+           familyi={B\bibinitperiod},
+           given={Malyon\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=55228a5add139429462457a06c6dafae}{%
+           family={Mayfield},
+           familyi={M\bibinitperiod},
+           given={Margaret\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=861e5420f59c540b84e98ad6b88a5928}{%
+           family={Martyn},
+           familyi={M\bibinitperiod},
+           given={Trace\bibnamedelima E.},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=665c89761f307c1b05d2d1a9cbcc192e}{%
+           family={Stouffer},
+           familyi={S\bibinitperiod},
+           given={Daniel\bibnamedelima B.},
+           giveni={D\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0b503ad134e815070f5c698d2171bad9}
+      \strng{fullhash}{e33470b0a30d620a710f01d0ade4984f}
+      \strng{bibnamehash}{0b503ad134e815070f5c698d2171bad9}
+      \strng{authorbibnamehash}{0b503ad134e815070f5c698d2171bad9}
+      \strng{authornamehash}{0b503ad134e815070f5c698d2171bad9}
+      \strng{authorfullhash}{e33470b0a30d620a710f01d0ade4984f}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Methods in Ecology and Evolution}
+      \field{title}{{Data from: Estimating interaction strengths for diverse horizontal systems using performance data}}
+      \field{year}{2023}
+      \verb{doi}
+      \verb doi:10.5061/dryad.h44j0zpq3
+      \endverb
+    \endentry
     \entry{Bimler2018}{article}{}
-      \name{author}{4}{}{%
+      \name{author}{4}{ul=2}{%
         {{un=0,uniquepart=base,hash=a469c72d262857f4d27dcb0f973f4811}{%
            family={Bimler},
            familyi={B\bibinitperiod},
@@ -191,11 +237,11 @@
            giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{96d615babecac432871b097fc9c3ce8d}
+      \strng{namehash}{3a5946d2f92fc93a71f3cc48d8801a90}
       \strng{fullhash}{48cf80f109b5026c211e574fb087953c}
-      \strng{bibnamehash}{96d615babecac432871b097fc9c3ce8d}
-      \strng{authorbibnamehash}{96d615babecac432871b097fc9c3ce8d}
-      \strng{authornamehash}{96d615babecac432871b097fc9c3ce8d}
+      \strng{bibnamehash}{3a5946d2f92fc93a71f3cc48d8801a90}
+      \strng{authorbibnamehash}{3a5946d2f92fc93a71f3cc48d8801a90}
+      \strng{authornamehash}{3a5946d2f92fc93a71f3cc48d8801a90}
       \strng{authorfullhash}{48cf80f109b5026c211e574fb087953c}
       \field{sortinit}{B}
       \field{sortinithash}{8de16967003c7207dae369d874f1456e}
@@ -543,7 +589,7 @@
       \endverb
       \keyw{Algorithmic differentiation,Bayesian inference,Probabilistic program,Stan}
     \endentry
-    \entry{Chu2015a}{article}{}
+    \entry{Chu2015}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=7e92dda566e04cab33d35b72cb175196}{%
            family={Chu},
@@ -596,12 +642,12 @@
     \endentry
     \entry{Cirtwill2015a}{article}{}
       \name{author}{2}{}{%
-        {{un=1,uniquepart=given,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
+        {{un=0,uniquepart=base,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
            family={Cirtwill},
            familyi={C\bibinitperiod},
            given={Alyssa\bibnamedelima R},
            giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
-           givenun=1}}%
+           givenun=0}}%
         {{un=0,uniquepart=base,hash=665c89761f307c1b05d2d1a9cbcc192e}{%
            family={Stouffer},
            familyi={S\bibinitperiod},
@@ -646,36 +692,36 @@
       \keyw{Bottom-up effects,community assembly,food web,predator–prey interactions,species richness,theory of island biogeography,top-down effects}
     \endentry
     \entry{Cirtwill2018a}{article}{}
-      \name{author}{8}{}{%
-        {{un=1,uniquepart=given,hash=278f55b94012653f7cf37519e93e465d}{%
+      \name{author}{7}{ul=2}{%
+        {{un=0,uniquepart=base,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
            family={Cirtwill},
            familyi={C\bibinitperiod},
-           given={Alyssa\bibnamedelimb R\bibnamedelima A.R.},
-           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=1}}%
-        {{un=0,uniquepart=base,hash=4076365cd5f222242b02e87cf2d1c70a}{%
+           given={Alyssa\bibnamedelima R.},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=defc2a7ac630d62cdabea789f7121812}{%
            family={{Dalla Riva}},
            familyi={D\bibinitperiod},
-           given={G.V.\bibnamedelimi Giulio\bibnamedelima Valentino},
-           giveni={G\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim V\bibinitperiod},
+           given={Giulio\bibnamedelima Valentino},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=b646bdc02d8f49d14b598b24fd5a3bbb}{%
+        {{un=0,uniquepart=base,hash=452be04d3cb006f849b1ad0ecfe3aaaa}{%
            family={Gaiarsa},
            familyi={G\bibinitperiod},
-           given={M.P.\bibnamedelimi Marilia\bibnamedelima P},
-           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim P\bibinitperiod},
+           given={Marilia\bibnamedelima P.},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=4221f1b4e8d4764a629929c7a7ad7873}{%
+        {{un=0,uniquepart=base,hash=a469c72d262857f4d27dcb0f973f4811}{%
            family={Bimler},
            familyi={B\bibinitperiod},
-           given={Malyon\bibnamedelimb D\bibnamedelima M.D.},
-           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Malyon\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=802e0a3cd4ca520b71c8a36084049eca}{%
+        {{un=0,uniquepart=base,hash=efed9665fb424d515f0e584982aedacd}{%
            family={Cagua},
            familyi={C\bibinitperiod},
-           given={E.F.\bibnamedelimi Fernando},
-           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod},
+           given={Fernando},
+           giveni={F\bibinitperiod},
            givenun=0}}%
         {{un=0,uniquepart=base,hash=36476aacfdfbdf47f797ade1ca57ba8d}{%
            family={Coux},
@@ -683,28 +729,22 @@
            given={Camille},
            giveni={C\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=d5597df0303545008393e8cd59ecbf80}{%
-           family={Matthias},
-           familyi={M\bibinitperiod},
-           given={D},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=c6e79c0f2fa9fa782b3b509e216ec301}{%
+        {{un=0,uniquepart=base,hash=e4545146fb0c38a3088bc83139aa2b94}{%
            family={Dehling},
            familyi={D\bibinitperiod},
-           given={D.M.},
-           giveni={D\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod},
            givenun=0}}%
       }
       \list{publisher}{1}{%
         {Elsevier Inc}%
       }
-      \strng{namehash}{d9a17d3ccf1155a9a8421609feaf8dda}
-      \strng{fullhash}{db22069fb255e14ff058d7c947c7527c}
-      \strng{bibnamehash}{d9a17d3ccf1155a9a8421609feaf8dda}
-      \strng{authorbibnamehash}{d9a17d3ccf1155a9a8421609feaf8dda}
-      \strng{authornamehash}{d9a17d3ccf1155a9a8421609feaf8dda}
-      \strng{authorfullhash}{db22069fb255e14ff058d7c947c7527c}
+      \strng{namehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{fullhash}{3278cb51035bb429ca51f6804ddc87af}
+      \strng{bibnamehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{authorbibnamehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{authornamehash}{9b6bb1ed00f193f25dafaa8c4bf69785}
+      \strng{authorfullhash}{3278cb51035bb429ca51f6804ddc87af}
       \field{sortinit}{C}
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{extradatescope}{labelyear}
@@ -858,8 +898,238 @@
       \verb 10.1126/science.aad2602
       \endverb
       \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Coyte, Schluter, Foster - 2015 - The ecology of the microbiome Networks, competition, and stability.pdf:pdf;:home/uqmbimle/Dropbox/Work/Library{\_}organised//Coyte, Schluter, Foster - 2015 - The ecology of the microbiome Networks, competition, and stability.pdf:pdf
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised//Coyte, Schluter, Foster - 2015 - The ecology of the microbiome Networks, competition, and stability.pdf:pdf;:home/uqmbimle/Dropbox/Work/Library{\_}organised/Coyte, Schluter, Foster - 2015 - The ecology of the microbiome Networks, competition, and stability.pdf:pdf
       \endverb
+    \endentry
+    \entry{Delmas2019}{article}{}
+      \name{author}{32}{}{%
+        {{un=0,uniquepart=base,hash=debe5634b7d5f4a85f65c601e181b2ff}{%
+           family={Delmas},
+           familyi={D\bibinitperiod},
+           given={Eva},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6a2eabb4b560337006ce05597d7f6341}{%
+           family={Besson},
+           familyi={B\bibinitperiod},
+           given={Mathilde},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c9da7dd503193233106fcc7b436b49f}{%
+           family={Brice},
+           familyi={B\bibinitperiod},
+           given={Marie-H{é}l{è}ne\bibnamedelima H{é}l{è}ne},
+           giveni={M\bibinithyphendelim H\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5327ec2af58f2762c4e010a50bbbdb1c}{%
+           family={Burkle},
+           familyi={B\bibinitperiod},
+           given={Laura\bibnamedelima A.},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39500fc8de14e4a03f4e530e52189532}{%
+           family={{Dalla Riva}},
+           familyi={D\bibinitperiod},
+           given={Giulio\bibnamedelima V.},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fc6be0bea1d69296f940371e26fae7d4}{%
+           family={Fortin},
+           familyi={F\bibinitperiod},
+           given={Marie-Jos{é}e\bibnamedelima Jos{é}e},
+           giveni={M\bibinithyphendelim J\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63bf0d8e60941c7bd0526fb3208072b5}{%
+           family={Gravel},
+           familyi={G\bibinitperiod},
+           given={Dominique},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f95b5ee796013558cd02e5985423224b}{%
+           family={Guimar{ã}es},
+           familyi={G\bibinitperiod},
+           given={Paulo\bibnamedelima R.},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ce012a5bfc33c73fa7a9fe2df0ef7e67}{%
+           family={Hembry},
+           familyi={H\bibinitperiod},
+           given={David\bibnamedelima H.},
+           giveni={D\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3abf09badda05426fee199e8515dcd8}{%
+           family={Newman},
+           familyi={N\bibinitperiod},
+           given={Erica\bibnamedelima A.},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7a358f314311e399f7f1ef559f1a17ff}{%
+           family={Olesen},
+           familyi={O\bibinitperiod},
+           given={Jens\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d4737d31e2cf6bff4dc839f2ad51fabd}{%
+           family={Pires},
+           familyi={P\bibinitperiod},
+           given={Mathias\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7a73016237d2d81e0367ae5d3866d700}{%
+           family={Yeakel},
+           familyi={Y\bibinitperiod},
+           given={Justin\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=707f55e341a1c9baf6b1c57fc13a6701}{%
+           family={Poisot},
+           familyi={P\bibinitperiod},
+           given={Timoth{é}e},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ef990b07e1813218d75e6eeb0e40ba08}{%
+           family={Riva},
+           familyi={R\bibinitperiod},
+           given={Giulio\bibnamedelimb V\bibnamedelima Dalla},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63bf0d8e60941c7bd0526fb3208072b5}{%
+           family={Gravel},
+           familyi={G\bibinitperiod},
+           given={Dominique},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dea97e712dc2ce851969e2ecb0601286}{%
+           family={Guimar},
+           familyi={G\bibinitperiod},
+           given={Paulo\bibnamedelima R},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ce012a5bfc33c73fa7a9fe2df0ef7e67}{%
+           family={Hembry},
+           familyi={H\bibinitperiod},
+           given={David\bibnamedelima H.},
+           giveni={D\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3abf09badda05426fee199e8515dcd8}{%
+           family={Newman},
+           familyi={N\bibinitperiod},
+           given={Erica\bibnamedelima A.},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7a358f314311e399f7f1ef559f1a17ff}{%
+           family={Olesen},
+           familyi={O\bibinitperiod},
+           given={Jens\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c9da7dd503193233106fcc7b436b49f}{%
+           family={Brice},
+           familyi={B\bibinitperiod},
+           given={Marie-H{é}l{è}ne\bibnamedelima H{é}l{è}ne},
+           giveni={M\bibinithyphendelim H\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5327ec2af58f2762c4e010a50bbbdb1c}{%
+           family={Burkle},
+           familyi={B\bibinitperiod},
+           given={Laura\bibnamedelima A.},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39500fc8de14e4a03f4e530e52189532}{%
+           family={{Dalla Riva}},
+           familyi={D\bibinitperiod},
+           given={Giulio\bibnamedelima V.},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fc6be0bea1d69296f940371e26fae7d4}{%
+           family={Fortin},
+           familyi={F\bibinitperiod},
+           given={Marie-Jos{é}e\bibnamedelima Jos{é}e},
+           giveni={M\bibinithyphendelim J\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63bf0d8e60941c7bd0526fb3208072b5}{%
+           family={Gravel},
+           familyi={G\bibinitperiod},
+           given={Dominique},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f95b5ee796013558cd02e5985423224b}{%
+           family={Guimar{ã}es},
+           familyi={G\bibinitperiod},
+           given={Paulo\bibnamedelima R.},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ce012a5bfc33c73fa7a9fe2df0ef7e67}{%
+           family={Hembry},
+           familyi={H\bibinitperiod},
+           given={David\bibnamedelima H.},
+           giveni={D\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3abf09badda05426fee199e8515dcd8}{%
+           family={Newman},
+           familyi={N\bibinitperiod},
+           given={Erica\bibnamedelima A.},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7a358f314311e399f7f1ef559f1a17ff}{%
+           family={Olesen},
+           familyi={O\bibinitperiod},
+           given={Jens\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d4737d31e2cf6bff4dc839f2ad51fabd}{%
+           family={Pires},
+           familyi={P\bibinitperiod},
+           given={Mathias\bibnamedelima M.},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7a73016237d2d81e0367ae5d3866d700}{%
+           family={Yeakel},
+           familyi={Y\bibinitperiod},
+           given={Justin\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=707f55e341a1c9baf6b1c57fc13a6701}{%
+           family={Poisot},
+           familyi={P\bibinitperiod},
+           given={Timoth{é}e},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{93f69e6545282c97118fb02befb0d6e9}
+      \strng{fullhash}{5df8ddafe433eb73add608bc86a5d3d9}
+      \strng{bibnamehash}{93f69e6545282c97118fb02befb0d6e9}
+      \strng{authorbibnamehash}{93f69e6545282c97118fb02befb0d6e9}
+      \strng{authornamehash}{93f69e6545282c97118fb02befb0d6e9}
+      \strng{authorfullhash}{5df8ddafe433eb73add608bc86a5d3d9}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Networks provide one of the best representation for ecological communities, composed of many speecies with dense connections between them. Yet the methodological literature allowing one to analyse and extract meaning from ecological networks is dense, fragmented, and unwelcoming. We provide a general overview to the field, outlining both the intent of the different measures, their assumptions, and the contexts in which they can be used. We anchor this discussion in examples from empirical studies, and conclude by highlighting what we think should be the future developments in the field.}
+      \field{issn}{1464-7931}
+      \field{journaltitle}{Biological Reviews}
+      \field{number}{1}
+      \field{title}{{Analysing ecological networks of species interactions}}
+      \field{volume}{94}
+      \field{year}{2019}
+      \field{pages}{16\bibrangedash 36}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1111/brv.12433
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised//Delmas et al. - 2019 - Analysing ecological networks of species interactions.pdf:pdf;:home/uqmbimle/Dropbox/Work/Library{\_}organised//Delmas et al. - 2019 - Analysing ecological networks of species interactions.pdf:pdf;:home/uqmbimle/Dropbox/Work/Library{\_}organised/Delmas et al. - 2019 - Analysing ecological networks of species interactions.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://doi.wiley.com/10.1111/brv.12433 http://biorxiv.org/content/early/2017/02/28/112540
+      \endverb
+      \verb{url}
+      \verb http://doi.wiley.com/10.1111/brv.12433%20http://biorxiv.org/content/early/2017/02/28/112540
+      \endverb
+      \keyw{000,1,2018,2018 cambridge philosophical society,514-343-7691,Biology,Ecological network,Empirical research,Management science,author for correspondence,biogeography,biological reviews,ca,community ecology,e-mail,ecological networks,graph theory,interactions,poisot,tel,timothee,umontreal}
     \endentry
     \entry{Dunne2002}{article}{}
       \name{author}{3}{}{%
@@ -1556,6 +1826,57 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Lafferty et al. - 2008 - Parasites in food webs The ultimate missing links.pdf:pdf
       \endverb
       \keyw{Disease,Food web network,Parasite}
+    \endentry
+    \entry{Laird2006}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=1d48dae1b300b6bb962a5c4491ba2307}{%
+           family={Laird},
+           familyi={L\bibinitperiod},
+           given={Robert\bibnamedelimb A.\bibnamedelimi A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c11f4883eeaa6a8754698f4f1bb8870f}{%
+           family={Schamp},
+           familyi={S\bibinitperiod},
+           given={Brandon\bibnamedelimb S.\bibnamedelimi S.},
+           giveni={B\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5553c358ca48c5971645fa5b07ebbfea}
+      \strng{fullhash}{5553c358ca48c5971645fa5b07ebbfea}
+      \strng{bibnamehash}{5553c358ca48c5971645fa5b07ebbfea}
+      \strng{authorbibnamehash}{5553c358ca48c5971645fa5b07ebbfea}
+      \strng{authornamehash}{5553c358ca48c5971645fa5b07ebbfea}
+      \strng{authorfullhash}{5553c358ca48c5971645fa5b07ebbfea}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Using a spatially explicit cellular automaton model with local competition, we investigate the potential for varied levels of competitive intransitivity (i.e., nonhierarchical competition) to promote species coexistence. As predicted, on average, increased levels of intransitivity result in more sustained coexistence within simulated communities, although the outcome of competition also becomes increasingly unpredictable. Interestingly, even a moderate degree of intransitivity within a community can promote coexistence, in terms of both the length of time until the first competitive exclusion and the number of species remaining in the community after 500 simulated generations. These results suggest that modest levels of intransitivity in nature, such as those that are thought to be characteristic of plant communities, can contribute to coexistence and, therefore, community-scale biodiversity. We explore a potential connection between competitive intransitivity and neutral theory, whereby competitive intransitivity may represent an important mechanism for "ecological equivalence."}
+      \field{isbn}{0003-0147}
+      \field{issn}{0003-0147}
+      \field{journaltitle}{The American Naturalist}
+      \field{number}{2}
+      \field{title}{{Competitive Intransitivity Promotes Species Coexistence}}
+      \field{volume}{168}
+      \field{year}{2006}
+      \field{pages}{182\bibrangedash 193}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1086/506259
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Laird, Schamp - 2006 - Competitive Intransitivity Promotes Species Coexistence.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.journals.uchicago.edu/doi/10.1086/506259
+      \endverb
+      \verb{url}
+      \verb http://www.journals.uchicago.edu/doi/10.1086/506259
+      \endverb
+      \keyw{biodiversity,cellular automaton,competition,ecology,explaining species coexistence is,impor-,intransitiv-,ity,one of the greatest,one of the most,species coexistence,tant problems in community,transitivity}
     \endentry
     \entry{Laska1998}{article}{}
       \name{author}{2}{}{%
@@ -2323,6 +2644,9 @@
       \verb{doi}
       \verb /10.1098/rspb.2017.0768
       \endverb
+      \verb{file}
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Ovaskainen et al. - 2017 - How are species interactions structured in species-rich communities A new method for analysing time-series d.pdf:pdf
+      \endverb
     \endentry
     \entry{Paine1969}{article}{}
       \name{author}{1}{}{%
@@ -2444,7 +2768,7 @@
       \verb 10.1111/1365-2745.13410
       \endverb
       \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Picoche, Barraquand - 2020 - Strong self-regulation and widespread facilitative interactions in phytoplankton communities(2).pdf:pdf;:home/uqmbimle/Dropbox/Work/Library{\_}organised/Picoche, Barraquand - 2020 - Strong self-regulation and widespread facilitative interactions in phytoplankton communities.pdf:pdf
+      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Picoche, Barraquand - 2020 - Strong self-regulation and widespread facilitative interactions in phytoplankton communities.pdf:pdf;:home/uqmbimle/Dropbox/Work/Library{\_}organised/Picoche, Barraquand - 2020 - Strong self-regulation and widespread facilitative interactions in phytoplankton communities(2).pdf:pdf
       \endverb
       \keyw{1,c ti o n,coexistence,coralie,corresponding author,email,facilitation,fr,genera can coexist together,how species or close,i ntro d u,in spite of com,mutualism,networks,niche theory,phytoplankton,picoche,time series,u-bordeaux}
     \endentry
@@ -2635,6 +2959,84 @@
       \endverb
       \verb{file}
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Power et al. - 1996 - Challenges in the Quest for Keystones.pdf:pdf
+      \endverb
+    \endentry
+    \entry{R2020}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=60018bfe71baf4f685a8e0309f47139e}{%
+           family={{R Development Core Team}},
+           familyi={R\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dcdebb6b35bff7c0568bf8c50ef8626d}{%
+           family={{R Core Team}},
+           familyi={R\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=60018bfe71baf4f685a8e0309f47139e}{%
+           family={{R Development Core Team}},
+           familyi={R\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=5d6aa4b40a1541f69f41ab99a47cb8f5}{%
+           family={Team},
+           familyi={T\bibinitperiod},
+           given={R\bibnamedelima Development\bibnamedelima Core},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {R Foundation for Statistical Computing}%
+      }
+      \list{location}{1}{%
+        {Vienna, Austria}%
+      }
+      \list{publisher}{1}{%
+        {R Foundation for Statistical Computing}%
+      }
+      \strng{namehash}{f94b5d6f324abefe8093a1e987b897b2}
+      \strng{fullhash}{bcbdd563981f950bff79e7ac8ec4ac20}
+      \strng{bibnamehash}{bcbdd563981f950bff79e7ac8ec4ac20}
+      \strng{authorbibnamehash}{bcbdd563981f950bff79e7ac8ec4ac20}
+      \strng{authornamehash}{f94b5d6f324abefe8093a1e987b897b2}
+      \strng{authorfullhash}{bcbdd563981f950bff79e7ac8ec4ac20}
+      \strng{editorbibnamehash}{5d6aa4b40a1541f69f41ab99a47cb8f5}
+      \strng{editornamehash}{5d6aa4b40a1541f69f41ab99a47cb8f5}
+      \strng{editorfullhash}{5d6aa4b40a1541f69f41ab99a47cb8f5}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{R Development Core Team (2011). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0, URL http://www.R-project.org/.}
+      \field{eprintclass}{http:}
+      \field{eprinttype}{arXiv}
+      \field{isbn}{3900051070}
+      \field{issn}{16000706}
+      \field{journaltitle}{R Foundation for Statistical Computing Vienna Austria}
+      \field{number}{2.11.1}
+      \field{series}{R Foundation for Statistical Computing}
+      \field{title}{{R: A Language and Environment for Statistical Computing}}
+      \field{volume}{1}
+      \field{year}{2020}
+      \field{pages}{409}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1038/sj.hdy.6800737
+      \endverb
+      \verb{eprint}
+      \verb /www.R-project.org
+      \endverb
+      \verb{file}
+      \verb :home/uqmbimle/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/R Development Core Team - 2016 - R A language and environment for Statistical Computing.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.r-project.org/ https://www.r-project.org/ http://www.r-project.org
+      \endverb
+      \verb{url}
+      \verb http://www.r-project.org/%20https://www.r-project.org/%20http://www.r-project.org
       \endverb
     \endentry
     \entry{Ramus2017}{article}{}
@@ -2903,6 +3305,34 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Skwara et al. - 2022 - Modeling ecological communities when composition is manipulated experimentally.pdf:pdf
       \endverb
     \endentry
+    \entry{Rstan2020}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=38cdaa762a62c2f6e7ff4a46c1ce1705}{%
+           family={{Stan Development Team}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
+      \strng{fullhash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
+      \strng{bibnamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
+      \strng{authorbibnamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
+      \strng{authornamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
+      \strng{authorfullhash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{RStan: the R interface to Stan. R package version 2.19.3.}}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb http://mc-stan.org/
+      \endverb
+      \verb{url}
+      \verb http://mc-stan.org/
+      \endverb
+    \endentry
     \entry{Team2022}{online}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=38cdaa762a62c2f6e7ff4a46c1ce1705}{%
@@ -2915,6 +3345,7 @@
       \strng{authorbibnamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
       \strng{authornamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
       \strng{authorfullhash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
+      \field{extraname}{2}
       \field{sortinit}{S}
       \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
       \field{extradatescope}{labelyear}
@@ -2991,12 +3422,12 @@
            given={Daniel\bibnamedelima B.},
            giveni={D\bibinitperiod\bibinitdelim B\bibinitperiod},
            givenun=0}}%
-        {{un=1,uniquepart=given,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
+        {{un=0,uniquepart=base,hash=06d8f13ccdb62715f46dfdcbf8be664b}{%
            family={Cirtwill},
            familyi={C\bibinitperiod},
            given={Alyssa\bibnamedelima R.},
            giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
-           givenun=1}}%
+           givenun=0}}%
         {{un=0,uniquepart=base,hash=b71c47fff97792c37706210243e23ae5}{%
            family={Bascompte},
            familyi={B\bibinitperiod},
@@ -3686,9 +4117,6 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{Chu2015}
-  \missing{Delmas2019}
-  \missing{Laird2006a}
 \endrefsection
 
 \refsection{2}
@@ -3777,96 +4205,6 @@
       \verb{url}
       \verb https://cran.r-project.org/package=pracma
       \endverb
-    \endentry
-    \entry{Carpenter2017}{article}{}
-      \name{author}{10}{}{%
-        {{un=0,uniquepart=base,hash=5321a7ac2b0407bc405fa8816fd73f09}{%
-           family={Carpenter},
-           familyi={C\bibinitperiod},
-           given={Bob},
-           giveni={B\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=1e1eb60e3b6e222217bf8e9b24070b28}{%
-           family={Gelman},
-           familyi={G\bibinitperiod},
-           given={Andrew},
-           giveni={A\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=937991c72400f4d0e0252027c8c03f67}{%
-           family={Hoffman},
-           familyi={H\bibinitperiod},
-           given={Matthew\bibnamedelima D.},
-           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=fb04571d965766ee6d71dafbd3eb452e}{%
-           family={Lee},
-           familyi={L\bibinitperiod},
-           given={Daniel},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=9cc812cde8c441e79dfaab4955a72c2c}{%
-           family={Goodrich},
-           familyi={G\bibinitperiod},
-           given={Ben},
-           giveni={B\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=1982fa604a3f94837efceaa53330b2a4}{%
-           family={Betancourt},
-           familyi={B\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=f730d72d20df7a1ba533a0115b9e97d2}{%
-           family={Brubaker},
-           familyi={B\bibinitperiod},
-           given={Marcus\bibnamedelima A.},
-           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=41eee90a96d38ce11a198e6c0aeb415f}{%
-           family={Guo},
-           familyi={G\bibinitperiod},
-           given={Jiqiang},
-           giveni={J\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=137297e0019ba55bca6f9b200782ae52}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Peter},
-           giveni={P\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=6f0d8885ad4c012b0ced0ee95cdf2729}{%
-           family={Riddell},
-           familyi={R\bibinitperiod},
-           given={Allen},
-           giveni={A\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{315a7c9e1cdeecc523de3b4d0e029d66}
-      \strng{fullhash}{6578a42993bbcf636422e762a3a1b572}
-      \strng{bibnamehash}{315a7c9e1cdeecc523de3b4d0e029d66}
-      \strng{authorbibnamehash}{315a7c9e1cdeecc523de3b4d0e029d66}
-      \strng{authornamehash}{315a7c9e1cdeecc523de3b4d0e029d66}
-      \strng{authorfullhash}{6578a42993bbcf636422e762a3a1b572}
-      \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Stan is a probabilistic programming language for specifying statistical models. A Stan program imperatively defines a log probability function over parameters conditioned on specified data and constants. As of version 2.14.0, Stan provides full Bayesian inference for continuous-variable models through Markov chain Monte Carlo methods such as the No-U-Turn sampler, an adaptive form of Hamiltonian Monte Carlo sampling. Penalized maximum likelihood estimates are calculated using optimization methods such as the limited memory Broyden-Fletcher-Goldfarb-Shanno algorithm. Stan is also a platform for computing log densities and their gradients and Hessians, which can be used in alternative algorithms such as variational Bayes, expectation propagation, and marginal inference using approximate integration. To this end, Stan is set up so that the densities, gradients, and Hessians, along with intermediate quantities of the algorithm such as acceptance probabilities, are easily accessible. Stan can be called from the command line using the cmdstan package, through R using the rstan package, and through Python using the pystan package. All three interfaces support sampling and optimization-based inference with diagnostics and posterior analysis. rstan and pystan also provide access to log probabilities, gradients, Hessians, parameter transforms, and specialized plotting.}
-      \field{issn}{15487660}
-      \field{journaltitle}{Journal of Statistical Software}
-      \field{number}{1}
-      \field{title}{{Stan: A probabilistic programming language}}
-      \field{volume}{76}
-      \field{year}{2017}
-      \verb{doi}
-      \verb 10.18637/jss.v076.i01
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Carpenter et al. - 2017 - Stan A probabilistic programming language.pdf:pdf
-      \endverb
-      \keyw{Algorithmic differentiation,Bayesian inference,Probabilistic program,Stan}
     \endentry
     \entry{Dwyer2015}{article}{}
       \name{author}{4}{}{%
@@ -4252,158 +4590,6 @@
       \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/Niku et al. - 2021 - Analyzing environmental-trait interactions in ecological communities with fourth-corner latent variable models.pdf:pdf;:home/uqmbimle/Dropbox/Work/Library{\_}organised/Niku et al. - 2021 - Analyzing environmental-trait interactions in ecological communities with fourth-corner latent variable models(2).pdf:pdf
       \endverb
       \keyw{community analysis,fourth-corner problem,generalized linear mixed model,joint species,joint species distribution model,multivariate abundance data,variational approximation}
-    \endentry
-    \entry{Plummer2006}{article}{}
-      \name{author}{4}{}{%
-        {{un=0,uniquepart=base,hash=6517e388f001f1738b93666bd6e17507}{%
-           family={Plummer},
-           familyi={P\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=0b722de921c70fe17432894948d786b1}{%
-           family={Best},
-           familyi={B\bibinitperiod},
-           given={Nicky},
-           giveni={N\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=1075563ae9bf6b4aecbfbfb4c63f2ac2}{%
-           family={Cowles},
-           familyi={C\bibinitperiod},
-           given={Kate},
-           giveni={K\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=483c69f925708e764cf622755693188d}{%
-           family={Vines},
-           familyi={V\bibinitperiod},
-           given={Karen},
-           giveni={K\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{90f55d6cf75805f81ead3bd3569a1533}
-      \strng{fullhash}{ab731f9c5d854ace7a0637beab396314}
-      \strng{bibnamehash}{90f55d6cf75805f81ead3bd3569a1533}
-      \strng{authorbibnamehash}{90f55d6cf75805f81ead3bd3569a1533}
-      \strng{authornamehash}{90f55d6cf75805f81ead3bd3569a1533}
-      \strng{authorfullhash}{ab731f9c5d854ace7a0637beab396314}
-      \field{sortinit}{P}
-      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{R News}
-      \field{number}{1}
-      \field{title}{{CODA: Convergence Diagnosis and Output Analysis for MCMC}}
-      \field{volume}{6}
-      \field{year}{2006}
-      \field{pages}{7\bibrangedash 11}
-      \range{pages}{5}
-    \endentry
-    \entry{R2020}{article}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=60018bfe71baf4f685a8e0309f47139e}{%
-           family={{R Development Core Team}},
-           familyi={R\bibinitperiod},
-           given={R},
-           giveni={R\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=dcdebb6b35bff7c0568bf8c50ef8626d}{%
-           family={{R Core Team}},
-           familyi={R\bibinitperiod}}}%
-        {{un=0,uniquepart=base,hash=60018bfe71baf4f685a8e0309f47139e}{%
-           family={{R Development Core Team}},
-           familyi={R\bibinitperiod},
-           given={R},
-           giveni={R\bibinitperiod},
-           givenun=0}}%
-      }
-      \name{editor}{1}{}{%
-        {{hash=5d6aa4b40a1541f69f41ab99a47cb8f5}{%
-           family={Team},
-           familyi={T\bibinitperiod},
-           given={R\bibnamedelima Development\bibnamedelima Core},
-           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {R Foundation for Statistical Computing}%
-      }
-      \list{location}{1}{%
-        {Vienna, Austria}%
-      }
-      \list{publisher}{1}{%
-        {R Foundation for Statistical Computing}%
-      }
-      \strng{namehash}{f94b5d6f324abefe8093a1e987b897b2}
-      \strng{fullhash}{bcbdd563981f950bff79e7ac8ec4ac20}
-      \strng{bibnamehash}{bcbdd563981f950bff79e7ac8ec4ac20}
-      \strng{authorbibnamehash}{bcbdd563981f950bff79e7ac8ec4ac20}
-      \strng{authornamehash}{f94b5d6f324abefe8093a1e987b897b2}
-      \strng{authorfullhash}{bcbdd563981f950bff79e7ac8ec4ac20}
-      \strng{editorbibnamehash}{5d6aa4b40a1541f69f41ab99a47cb8f5}
-      \strng{editornamehash}{5d6aa4b40a1541f69f41ab99a47cb8f5}
-      \strng{editorfullhash}{5d6aa4b40a1541f69f41ab99a47cb8f5}
-      \field{sortinit}{R}
-      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{R Development Core Team (2011). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0, URL http://www.R-project.org/.}
-      \field{eprintclass}{http:}
-      \field{eprinttype}{arXiv}
-      \field{isbn}{3900051070}
-      \field{issn}{16000706}
-      \field{journaltitle}{R Foundation for Statistical Computing Vienna Austria}
-      \field{number}{2.11.1}
-      \field{series}{R Foundation for Statistical Computing}
-      \field{title}{{R: A Language and Environment for Statistical Computing}}
-      \field{volume}{1}
-      \field{year}{2020}
-      \field{pages}{409}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.1038/sj.hdy.6800737
-      \endverb
-      \verb{eprint}
-      \verb /www.R-project.org
-      \endverb
-      \verb{file}
-      \verb :home/uqmbimle/Dropbox/Work/Library{\_}organised/R Development Core Team - 2016 - R A language and environment for Statistical Computing.pdf:pdf
-      \endverb
-      \verb{urlraw}
-      \verb http://www.r-project.org/ https://www.r-project.org/ http://www.r-project.org
-      \endverb
-      \verb{url}
-      \verb http://www.r-project.org/%20https://www.r-project.org/%20http://www.r-project.org
-      \endverb
-    \endentry
-    \entry{Rstan2020}{online}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=38cdaa762a62c2f6e7ff4a46c1ce1705}{%
-           family={{Stan Development Team}},
-           familyi={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
-      \strng{fullhash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
-      \strng{bibnamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
-      \strng{authorbibnamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
-      \strng{authornamehash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
-      \strng{authorfullhash}{38cdaa762a62c2f6e7ff4a46c1ce1705}
-      \field{sortinit}{S}
-      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{{RStan: the R interface to Stan. R package version 2.19.3.}}
-      \field{year}{2020}
-      \verb{urlraw}
-      \verb http://mc-stan.org/
-      \endverb
-      \verb{url}
-      \verb http://mc-stan.org/
-      \endverb
     \endentry
   \enddatalist
 \endrefsection
