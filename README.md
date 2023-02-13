@@ -1,6 +1,6 @@
 # Joint Model Framework
 
-This directory contains the code, analyses, case study results and manuscript for the joint model framework presented in the Bimler et. al 2023 Methods in Ecology and Evolution paper *Estimating interaction strengths for diverse horizontal systems using performance data* ([doi][https://doi.org/10.1111/2041-210X.14068]). 
+This directory contains the code, analyses, case study results and manuscript for the joint model framework presented in the Bimler et. al 2023 Methods in Ecology and Evolution paper *Estimating interaction strengths for diverse horizontal systems using performance data* (https://doi.org/10.1111/2041-210X.14068). 
 
 A previous version of this manuscript which runs on a single Markov chain and with slightly different parameterisation is also available on bioRxiv: https://www.biorxiv.org/content/10.1101/2022.03.28.486154v1
 
