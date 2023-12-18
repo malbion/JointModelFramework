@@ -18,11 +18,13 @@ simdat <- simul_data(S=3, T=3, p=0.4)   # p = proportion of interactions which a
 df <- simdat[[1]]
 sim_gamma <- simdat[[2]]
 sim_interactions <- simdat[[3]]
+# NB: if using real data or named species, ensure they are ordered alphabetically in the dataset
 
 # identify focal and neighbouring species to be matched to parameter estimates
 focalID <- unique(df$focal)  # this should return the names of unique focal groups in the order
-# in which they are encountered in the dataframe
-neighbourID <- colnames(df[ , -c(1:2)])
+# in which they are encountered in the dataframe - must be alphabetical
+neighbourID <- colnames(df[ , -c(1:2)]) # should be ordered focal first (alphabetically), then
+# non-focals in alphabetical order
 
 # ensure neighbours are linearly independent across the whole dataset (see S1.2)
 N_all <- df[ , neighbourID]
